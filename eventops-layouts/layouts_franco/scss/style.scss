@@ -1,0 +1,87 @@
+$primary: #9F2D30;
+
+@import 'bootstrap';
+
+body {
+  background-color: #21262A;
+}
+
+.simple {
+    min-height: 100vh;
+    a {
+        font-weight: 700;
+        text-decoration: none;
+    }
+    @at-root #{&}__title {
+        font-size: 4.5rem;
+        font-weight: 700;
+        span {
+            color: $primary;   
+        }
+    }
+}
+
+.eventops {
+    min-height: 100vh;
+    @at-root #{&}__header {
+        background-color: #21262A;
+    }
+    @at-root #{&}__title {
+        color: white;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 2.5rem;
+
+        span {
+            color: $primary;
+        }
+    }
+
+    @at-root #{&}__search-input {
+        width: auto;
+    }
+
+    @at-root #{&}__title:hover {
+        color: white;
+    }
+}
+
+.filter-search:focus {
+    box-shadow: 0 0 0 0.0 rgb(159 45 48 / 25%);
+}
+
+.password-recovery {
+    @at-root #{&}__text {
+        text-align: justify;
+    }
+}
+
+.footer {
+    font-size: 1rem;
+    color: black;
+    border-top: 5px solid white;
+    padding-top: 1.6rem;
+    background-color: white;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+    background-color: #21262a;
+    ul {
+      margin-top: 0.6rem;
+    }
+    li {
+      list-style: none;
+    }
+    label {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #9f2d30;
+    }
+    a {
+      color: white;
+      text-decoration: none;
+    }
+    span {
+      color: white;
+    }
+  }
