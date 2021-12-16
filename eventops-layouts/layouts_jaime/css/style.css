@@ -26177,11 +26177,6 @@ body {
   color: white;
 }
 
-.eventops__main {
-  display: flex;
-  justify-content: center;
-}
-
 .form-main {
   display: flex;
   text-align: center;
@@ -26234,11 +26229,239 @@ body {
   flex-direction: row;
 }
 
+.eventops__main {
+  max-width: 1200px;
+}
+
 .bi-card-list {
   position: absolute;
   padding: 10px;
   margin-left: 5px;
   pointer-events: none;
+}
+
+#contenedor-main {
+  max-width: 1000px;
+  border: solid 2px #E4EFE1;
+  display: flex;
+  align-content: center;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.principal {
+  max-width: 1000px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.principal .titulo {
+  color: #fff;
+  display: flex;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.principal .titulo .title {
+  display: flex;
+  text-align: center;
+}
+.principal .logos {
+  max-width: 999px;
+  margin: auto;
+}
+.principal .sub-logos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #fff;
+}
+.principal .sub-logos img {
+  max-width: 75px;
+  max-height: 50px;
+}
+.principal .sub-logos a {
+  max-height: 50px;
+}
+.principal .sub-logos a span {
+  color: #9F2D30;
+}
+.principal .linea hr {
+  color: #fff;
+  max-height: 10px;
+  max-width: 1000px;
+}
+.principal .pago-autorizado {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  background-color: #E4EFE1;
+  justify-content: space-around;
+}
+.principal .pago-autorizado h3, .principal .pago-autorizado .h3 {
+  color: #97AA2D;
+  font-size: 25px;
+}
+.principal .pago-autorizado img {
+  max-height: 25px;
+}
+.principal .detalle {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  color: #fff;
+  max-width: 90%;
+  margin: 0 auto;
+}
+.principal .detalle .subgrupo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.principal .detalle .subgrupo .texto h4, .principal .detalle .subgrupo .texto .h4 {
+  color: #E4EFE1;
+  font-family: "Poppins";
+  font-size: 14px;
+  font-weight: 600;
+}
+.principal .detalle .subgrupo .valor-texto h4, .principal .detalle .subgrupo .valor-texto .h4 {
+  color: #E4EFE1;
+  font-family: "Poppins";
+  font-size: 13px;
+  font-weight: 200;
+}
+.principal .botones {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.principal .botones .boton {
+  border: none;
+  border-radius: 5px;
+  background-color: #9F2D30;
+  color: #E4EFE1;
+  padding: 10px;
+}
+
+#container-datos-tarjeta {
+  max-width: 750px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+#contenedor-principal .container {
+  color: #E4EFE1;
+  display: flex;
+  flex-direction: column;
+}
+#contenedor-principal .container .titulo {
+  font-size: 2.2rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+}
+#contenedor-principal .container .titulo span {
+  color: #9F2D30;
+}
+#contenedor-principal .container .table {
+  margin-top: 40px;
+  background-color: #fff;
+  border: solid 1px #9F2D30;
+}
+#contenedor-principal .container .table td svg:hover {
+  background-color: red;
+}
+#contenedor-principal .container .table tr:hover {
+  background-color: #9F2D30;
+}
+#contenedor-principal .container #contenedor-detalles {
+  display: flex;
+  flex-direction: row;
+  margin-right: 20px;
+  justify-content: space-around;
+}
+#contenedor-principal .container #contenedor-detalles .categorias {
+  display: flex;
+  max-width: 30%;
+  flex-direction: column;
+  padding: 10px;
+}
+#contenedor-principal .container #contenedor-detalles .categorias .row {
+  background: #9F2D30;
+  padding: 10px;
+  border: solid 1px #fff;
+}
+#contenedor-principal .container #contenedor-detalles .categorias .row h4, #contenedor-principal .container #contenedor-detalles .categorias .row .h4 {
+  color: #E4EFE1;
+  font-family: "Poppins";
+  font-size: 14px;
+  font-weight: 400;
+}
+#contenedor-principal .container #contenedor-detalles .categorias .row:hover {
+  background-color: red;
+}
+#contenedor-principal .container #contenedor-detalles #detalles {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  max-width: 700px;
+}
+#contenedor-principal .container #contenedor-detalles #detalles #contenedor-imagen {
+  max-width: 100%;
+  max-height: 300px;
+  display: flex;
+  align-items: center;
+}
+#contenedor-principal .container #contenedor-detalles #detalles #imagen-portada {
+  max-height: 100%;
+  max-width: 100%;
+}
+#contenedor-principal .container #contenedor-detalles #detalles #datos-concierto {
+  display: flex;
+  flex-direction: column;
+}
+#contenedor-principal .container #contenedor-detalles #detalles #datos-concierto #nombre-concierto {
+  background-color: #fff;
+  color: #000;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#contenedor-principal .container #contenedor-detalles #detalles #datos-concierto #datos-evento {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #CCCBCB;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#contenedor-principal .container #contenedor-detalles #detalles #datos-concierto #datos-evento h2, #contenedor-principal .container #contenedor-detalles #detalles #datos-concierto #datos-evento .h2 {
+  color: #000;
+  font-family: "Poppins";
+  font-size: 15px;
+  font-weight: 200;
+  margin: 10px;
+}
+#contenedor-principal .container #contenedor-detalles #detalles #datos-concierto #datos-evento img {
+  max-width: 30px;
+  margin-left: 10px;
+}
+#contenedor-principal .container #contenedor-detalles #detalles #botones {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#contenedor-principal .container #contenedor-detalles #detalles #botones button {
+  background-color: #9F2D30;
+}
+#contenedor-principal .container #contenedor-detalles #detalles #botones h3, #contenedor-principal .container #contenedor-detalles #detalles #botones .h3 {
+  color: #000;
+  font-family: "Poppins";
+  font-size: 15px;
+  font-weight: 200;
 }
 
 /*# sourceMappingURL=style.css.map */
