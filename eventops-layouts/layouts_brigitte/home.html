@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link href="css/style.css" rel="stylesheet" />
+    <title>Home</title>
+  </head>
+  <body>
+   <!--  HOME -->
+<div class="eventops d-flex flex-column">
+      <header class="eventops__header border-bottom sticky-top">
+        <nav class="eventops__header navbar navbar-expand-md container">
+          <a href="#" class="eventops__title navbar-brand"
+            >EVEN<span>TOPS</span></a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon">
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 60 40"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M60 40H0V33.3333H60V40ZM60 23.3333H0V16.6667H60V23.3333ZM60 6.66667H0V0H60V6.66667Z"
+                  fill="#F8F8F8"
+                />
+              </svg>
+            </span>
+          </button>
+          <div class="navbar-collapse collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center gap-md-3">
+              <li class="nav-item">
+                <a class="nav-link link-light" href="#">INICIO</a>
+              </li>
+              <li class="nav-item btn btn-primary rounded-pill">
+                <a class="nav-link link-light" href="#">CREAR EVENTO</a>
+              </li>
+              <li
+                class="nav-item dropdown d-flex flex-column align-self-stretch"
+              >
+                <a
+                  class="nav-link text-center"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <svg
+                    width="40"
+                    height="40"
+                    viewBox="0 0 50 53"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12.5 12.5C12.5 19.3917 18.1083 25 25 25C31.8917 25 37.5 19.3917 37.5 12.5C37.5 5.60833 31.8917 0 25 0C18.1083 0 12.5 5.60833 12.5 12.5ZM47.2222 52.7778H50V50C50 39.2806 41.275 30.5556 30.5556 30.5556H19.4444C8.72222 30.5556 0 39.2806 0 50V52.7778H47.2222Z"
+                      fill="white"
+                    />
+                  </svg>
+                </a>
+                <ul
+                  class="dropdown-menu dropdown-menu-end py-3"
+                  aria-labelledby="navbarDropdown"
+                >
+                  <li>
+                    <a
+                      class="dropdown-item d-flex align-items-center gap-2"
+                      href="#"
+                    >
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 28 30"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M7 7C7 10.8593 10.1407 14 14 14C17.8593 14 21 10.8593 21 7C21 3.14067 17.8593 0 14 0C10.1407 0 7 3.14067 7 7ZM26.4444 29.5556H28V28C28 21.9971 23.114 17.1111 17.1111 17.1111H10.8889C4.88444 17.1111 0 21.9971 0 28V29.5556H26.4444Z"
+                          fill="#21262A"
+                        />
+                      </svg>
+                      Perfil</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item d-flex align-items-center gap-2"
+                      href="#"
+                    >
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M27.351 7.448L26.6217 8.17733C26.2503 8.54864 25.7467 8.75723 25.2216 8.75723C24.6964 8.75723 24.1928 8.54864 23.8215 8.17733C23.4502 7.80603 23.2416 7.30244 23.2416 6.77733C23.2416 6.25223 23.4502 5.74864 23.8215 5.37733L24.5509 4.648L19.9026 0L14.0355 5.86667L13.7689 6.67267L12.9628 6.93933L0 19.9013L4.65096 24.552L5.38034 23.8227C5.75166 23.4514 6.25529 23.2428 6.78042 23.2428C7.30556 23.2428 7.80919 23.4514 8.18051 23.8227C8.55184 24.194 8.76045 24.6976 8.76045 25.2227C8.76045 25.7478 8.55184 26.2514 8.18051 26.6227L7.45113 27.352L12.0994 32L25.0602 19.04L25.3269 18.234L26.133 17.9673L32 12.1007L27.351 7.448ZM13.4462 7.81L14.9043 6.352L17.1044 8.552L15.6456 10.01L13.4462 7.81ZM16.313 10.6767L17.7718 9.218L19.9399 11.386L18.4812 12.8447L16.313 10.6767ZM19.1505 13.514L20.6093 12.0553L22.7774 14.2233L21.3213 15.6853L19.1505 13.514ZM24.1888 18.5513L21.9887 16.3513L23.4468 14.8927L25.6469 17.0927L24.1888 18.5513Z"
+                          fill="#21262A"
+                        />
+                      </svg>
+                      Entradas</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item d-flex align-items-center gap-2"
+                      href="#"
+                    >
+                      <svg
+                        class="me-1"
+                        width="16"
+                        height="20"
+                        viewBox="0 0 25 32"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M24.6662 7.9794C24.8793 8.19247 25 8.48011 25 8.78196V30.6818C25 31.3104 24.4922 31.8182 23.8636 31.8182H1.13636C0.507812 31.8182 0 31.3104 0 30.6818V1.13636C0 0.507812 0.507812 0 1.13636 0H16.218C16.5199 0 16.8111 0.120739 17.0241 0.333807L24.6662 7.9794ZM22.3793 9.30398L15.696 2.62074V9.30398H22.3793Z"
+                          fill="#21262A"
+                        />
+                      </svg>
+                      Mis eventos</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item d-flex align-items-center gap-2"
+                      href="#"
+                    >
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 28 27"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g clip-path="url(#clip0_184_136)">
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M18.3219 2.65686V6.5258C20.967 7.98674 22.6569 10.8477 22.6569 14.066C22.6569 18.7667 18.7863 22.5797 14.0132 22.5797C9.24328 22.5797 5.37269 18.7684 5.37269 14.066C5.37269 10.7439 7.03952 7.89121 9.81316 6.48792V2.65356C4.97575 4.25945 1.75081 8.73615 1.75081 14.066C1.75081 20.7399 7.2421 26.1472 14.0115 26.1472C20.7826 26.1472 26.2755 20.7399 26.2755 14.066C26.2772 8.83333 23.0259 4.34509 18.3219 2.65686Z"
+                            fill="#21262A"
+                          />
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M13.9341 12.9673C15.2155 12.9673 16.2597 12.1767 16.2597 11.1967V1.83651C16.2597 0.858153 15.2155 0.065918 13.9341 0.065918C12.651 0.065918 11.6084 0.858153 11.6084 1.83651V11.1967C11.6084 12.1767 12.651 12.9673 13.9341 12.9673Z"
+                            fill="#21262A"
+                          />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_184_136">
+                            <rect width="28" height="26.3529" fill="white" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                      Cerrar sesión
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <section class="filter-menu bg-primary my-4 py-3">
+        <div
+          class="
+            container
+            d-flex
+            flex-column flex-md-row
+            justify-content-md-between
+          "
+        >
+
+          <form class="d-flex mb-3 mb-md-0">
+            <div class="input-group border rounded-3">
+              <button class="input-group-text bg-white border-0">
+                <svg
+                  width="23"
+                  height="25"
+                  viewBox="0 0 25 27"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_150_126)">
+                    <path
+                      d="M18.3463 17.457C19.8593 15.2273 20.5369 12.4628 20.2437 9.7167C19.9504 6.97056 18.7079 4.44527 16.7647 2.64604C14.8215 0.846816 12.3209 -0.0936566 9.76326 0.0127793C7.20558 0.119215 4.77943 1.26471 2.97018 3.22009C1.16094 5.17548 0.102029 7.79654 0.00530708 10.5589C-0.0914145 13.3213 0.781183 16.0212 2.44852 18.1186C4.11587 20.216 6.45499 21.5561 8.99792 21.8708C11.5408 22.1856 14.1 21.4517 16.1635 19.8161H16.162C16.2088 19.8836 16.2588 19.9478 16.3151 20.0102L22.3307 26.5071C22.6237 26.8237 23.0211 27.0017 23.4356 27.0019C23.8501 27.002 24.2477 26.8243 24.5409 26.5079C24.834 26.1915 24.9988 25.7623 24.999 25.3146C24.9991 24.867 24.8346 24.4376 24.5416 24.1209L18.526 17.6241C18.4702 17.563 18.4101 17.5066 18.3463 17.4553V17.457ZM18.7495 10.9703C18.7495 12.1891 18.5272 13.396 18.0953 14.522C17.6634 15.6481 17.0304 16.6713 16.2324 17.5331C15.4344 18.3949 14.487 19.0786 13.4444 19.545C12.4017 20.0114 11.2842 20.2515 10.1557 20.2515C9.02715 20.2515 7.90966 20.0114 6.86702 19.545C5.82437 19.0786 4.87701 18.3949 4.079 17.5331C3.281 16.6713 2.64799 15.6481 2.21611 14.522C1.78423 13.396 1.56195 12.1891 1.56195 10.9703C1.56195 8.50872 2.46736 6.148 4.079 4.40743C5.69064 2.66686 7.8765 1.68901 10.1557 1.68901C12.4349 1.68901 14.6208 2.66686 16.2324 4.40743C17.844 6.148 18.7495 8.50872 18.7495 10.9703Z"
+                      fill="#B5B5B5"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_150_126">
+                      <rect width="25" height="27" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </button>
+              <input
+                class="filter-search form-control border-0"
+                type="search"
+                placeholder="Buscar..."
+                aria-label="Search"
+              />
+            </div>
+          </form>
+          <div class="d-flex justify-content-around">
+            <div class="btn-group">
+              <button
+                class="btn btn-primary d-flex align-items-center"
+                type="button"
+                id="preciosDropdown"
+                data-bs-toggle="dropdown"
+                data-bs-auto-close="outside"
+                aria-expanded="false"
+              >
+                <span class="me-1 me-sm-2">
+                  <svg
+                    width="23"
+                    height="23"
+                    viewBox="0 0 36 36"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M18 3C15.0333 3 12.1332 3.87973 9.66645 5.52796C7.19972 7.17618 5.27713 9.51886 4.14181 12.2597C3.0065 15.0006 2.70945 18.0166 3.28823 20.9264C3.86701 23.8361 5.29562 26.5088 7.3934 28.6066C9.49119 30.7044 12.1639 32.133 15.0737 32.7118C17.9834 33.2906 20.9994 32.9935 23.7403 31.8582C26.4811 30.7229 28.8238 28.8003 30.472 26.3336C32.1203 23.8668 33 20.9667 33 18C33 16.0302 32.612 14.0796 31.8582 12.2597C31.1044 10.4399 29.9995 8.78628 28.6066 7.3934C27.2137 6.00052 25.5601 4.89563 23.7403 4.14181C21.9204 3.38799 19.9698 3 18 3ZM18 30C15.6266 30 13.3066 29.2962 11.3332 27.9776C9.35977 26.6591 7.8217 24.7849 6.91345 22.5922C6.0052 20.3995 5.76756 17.9867 6.23058 15.6589C6.69361 13.3311 7.83649 11.1929 9.51472 9.51472C11.193 7.83649 13.3312 6.6936 15.6589 6.23058C17.9867 5.76755 20.3995 6.00519 22.5922 6.91345C24.7849 7.8217 26.6591 9.35977 27.9776 11.3332C29.2962 13.3065 30 15.6266 30 18C30 21.1826 28.7357 24.2348 26.4853 26.4853C24.2349 28.7357 21.1826 30 18 30Z"
+                      fill="#F8F8F8"
+                    />
+                    <path
+                      d="M18 16.5C15 16.5 15 15.555 15 15C15 14.445 16.05 13.5 18 13.5C19.95 13.5 20.085 14.46 20.1 15H23.1C23.0797 13.9781 22.7122 12.9936 22.0579 12.2084C21.4036 11.4233 20.5015 10.8842 19.5 10.68V9H16.5V10.635C13.5 11.13 12 13.065 12 15C12 16.68 12.78 19.5 18 19.5C21 19.5 21 20.52 21 21C21 21.48 20.07 22.5 18 22.5C15.24 22.5 15 21.21 15 21H12C12 22.38 12.99 24.825 16.5 25.38V27H19.5V25.38C22.5 24.87 24 22.935 24 21C24 19.32 23.22 16.5 18 16.5Z"
+                      fill="#F8F8F8"
+                    />
+                  </svg>
+                </span>
+                <span class="d-none d-sm-block"> Precios </span>
+                <span class="ms-1 ms-sm-2">
+                  <svg
+                    width="10"
+                    height="5"
+                    viewBox="0 0 13 8"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 1L6.5 7L12 1"
+                      stroke="#F8F8F8"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <div
+                class="dropdown-menu p-3 price-dropdown"
+                aria-labelledby="preciosDropdown"
+              >
+                <form action="" class="register">
+                  <h4 class="text-center mb-3">Filtro por Precios</h4>
+                  <div class="mb-3 d-flex align-items-center gap-3">
+                    <span class="fw-bold">S/.</span>
+                    <input
+                      type="number"
+                      class="price-dropdown__min form-control"
+                      id="min"
+                      placeholder="Min."
+                      min="0"
+                    />
+                    <input
+                      type="number"
+                      class="price-dropdown__max form-control"
+                      id="max"
+                      placeholder="Max."
+                      min="0"
+                    />
+                  </div>
+                  <div class="d-flex gap-3">
+                    <button
+                      class="category-dropdown__btn btn btn-secondary flex-fill"
+                      type="button"
+                    >
+                      Limpiar
+                    </button>
+                    <button
+                      class="price-dropdown__btn btn btn-primary flex-fill"
+                      type="submit"
+                    >
+                      Aplicar
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="btn-group">
+              <button
+                class="btn btn-primary d-flex align-items-center"
+                type="button"
+                id="categoriasDropdown"
+                data-bs-toggle="dropdown"
+                data-bs-auto-close="outside"
+                aria-expanded="false"
+              >
+                <span class="me-1 me-sm-2">
+                  <svg
+                    width="23"
+                    height="23"
+                    viewBox="0 0 36 36"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M34.8985 0.728883C34.7941 0.468804 34.5934 0.258999 34.3382 0.143113C34.083 0.0272264 33.793 0.0141826 33.5284 0.106695C33.2639 0.199207 33.0452 0.390152 32.9178 0.639806C32.7905 0.889461 32.7643 1.1786 32.8447 1.44708C34.5169 6.25308 31.1977 9.84228 28.6669 11.7647L27.6445 10.2995C27.3007 9.80808 26.5321 9.39948 25.9345 9.39228L20.1961 9.41748C19.4951 9.43865 18.8128 9.64886 18.2215 10.0259L1.31229 21.8825C0.918977 22.1593 0.651361 22.5806 0.568032 23.0543C0.484703 23.5279 0.592451 24.0153 0.867686 24.4097L8.55189 35.4041C9.12789 36.2231 10.0477 36.1241 10.8685 35.5517L27.7777 23.6933C28.2637 23.3495 28.8253 22.6079 29.0233 22.0409L30.8197 16.3799C31.0177 15.8147 30.8971 14.9525 30.5533 14.4611L29.9305 13.5683C33.3289 10.9637 36.8569 6.36108 34.8985 0.728883ZM27.0307 17.5733C26.7192 17.7913 26.3678 17.9459 25.9965 18.0281C25.6252 18.1103 25.2414 18.1185 24.867 18.0523C24.4926 17.9861 24.1348 17.8468 23.8143 17.6423C23.4937 17.4378 23.2166 17.1721 22.9987 16.8605C22.5576 16.2299 22.3847 15.45 22.518 14.692C22.6513 13.9341 23.0799 13.26 23.7097 12.8177C24.2034 12.4718 24.7929 12.2887 25.3958 12.2942C25.9986 12.2997 26.5847 12.4934 27.0721 12.8483C26.5825 13.1435 26.2459 13.3163 26.1829 13.3433C25.9598 13.4497 25.7794 13.6287 25.6713 13.851C25.5632 14.0733 25.5339 14.3258 25.5881 14.567C25.6423 14.8081 25.7767 15.0238 25.9695 15.1785C26.1623 15.3333 26.4019 15.4179 26.6491 15.4187C26.8039 15.4187 26.9623 15.3827 27.1117 15.3125C27.4609 15.1469 27.8353 14.9507 28.2259 14.7185C28.3157 15.2586 28.2512 15.8131 28.0398 16.3182C27.8283 16.8232 27.4785 17.2583 27.0307 17.5733Z"
+                      fill="#F8F8F8"
+                    />
+                  </svg>
+                </span>
+                <span class="d-none d-sm-block"> Categorias </span>
+                <span class="ms-1 ms-sm-2">
+                  <svg
+                    width="10"
+                    height="5"
+                    viewBox="0 0 13 8"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 1L6.5 7L12 1"
+                      stroke="#F8F8F8"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <div
+                class="dropdown-menu dropdown-menu-end p-3 category-dropdown"
+                aria-labelledby="categoriasDropdown"
+              >
+                <form action="" class="register">
+                  <h4 class="text-center mb-3">Filtro por Categorias</h4>
+                  <div
+                    class="
+                      filter__pill-container
+                      d-flex
+                      justify-content-center
+                      flex-wrap
+                      mb-3
+                      gap-2
+                    "
+                  >
+                    <button
+                      class="btn btn-outline-primary rounded-pill"
+                      type="button"
+                    >
+                      Concierto
+                    </button>
+                    <button
+                      class="btn btn-outline-primary rounded-pill"
+                      type="button"
+                    >
+                      Salud y Bienestar
+                    </button>
+                    <button
+                      class="btn btn-outline-primary rounded-pill"
+                      type="button"
+                    >
+                      Tecnología
+                    </button>
+                    <button
+                      class="btn btn-outline-primary rounded-pill"
+                      type="button"
+                    >
+                      Deportes
+                    </button>
+                    <button
+                      class="btn btn-outline-primary rounded-pill"
+                      type="button"
+                    >
+                      Cine
+                    </button>
+                  </div>
+                  <div class="d-flex gap-3">
+                    <button
+                      class="category-dropdown__btn btn btn-secondary flex-fill"
+                      type="button"
+                    >
+                      Limpiar
+                    </button>
+                    <button
+                      class="category-dropdown__btn btn btn-primary flex-fill"
+                      type="submit"
+                    >
+                      Aplicar
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="btn-group">
+              <button
+                class="btn btn-primary d-flex align-items-center"
+                type="button"
+                id="fechasDropdown"
+                data-bs-toggle="dropdown"
+                data-bs-auto-close="outside"
+                aria-expanded="false"
+              >
+                <span class="me-1 me-sm-2">
+                  <svg
+                    width="23"
+                    height="23"
+                    viewBox="0 0 34 34"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M32.64 3.06H25.5V0.34C25.5 0.153 25.347 0 25.16 0H22.78C22.593 0 22.44 0.153 22.44 0.34V3.06H11.56V0.34C11.56 0.153 11.407 0 11.22 0H8.84C8.653 0 8.5 0.153 8.5 0.34V3.06H1.36C0.60775 3.06 0 3.66775 0 4.42V32.64C0 33.3923 0.60775 34 1.36 34H32.64C33.3923 34 34 33.3923 34 32.64V4.42C34 3.66775 33.3923 3.06 32.64 3.06ZM30.94 30.94H3.06V14.79H30.94V30.94ZM30.94 11.9H3.06V6.12H8.5V8.16C8.5 8.347 8.653 8.5 8.84 8.5H11.22C11.407 8.5 11.56 8.347 11.56 8.16V6.12H22.44V8.16C22.44 8.347 22.593 8.5 22.78 8.5H25.16C25.347 8.5 25.5 8.347 25.5 8.16V6.12H30.94V11.9Z"
+                      fill="white"
+                    />
+                  </svg>
+                </span>
+                <span class="d-none d-sm-block"> Fechas </span>
+                <span class="ms-1 ms-sm-2">
+                  <svg
+                    width="10"
+                    height="5"
+                    viewBox="0 0 13 8"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 1L6.5 7L12 1"
+                      stroke="#F8F8F8"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <div
+                class="dropdown-menu p-3 date-dropdown"
+                aria-labelledby="fechasDropdown"
+              >
+                <form action="" class="register">
+                  <h4 class="text-center mb-3">Filtro por Fechas</h4>
+                  <div class="mb-3 d-flex align-items-center gap-3">
+                    <input
+                      type="text"
+                      class="register__names form-control"
+                      id="dateBegin"
+                      placeholder="Inicio..."
+                      onfocus="(this.type='date')"
+                      onblur="(this.type='text')"
+                    />
+                    <input
+                      type="text"
+                      class="register__names form-control"
+                      id="dateEnd"
+                      placeholder="Fin..."
+                      onfocus="(this.type='date')"
+                      onblur="(this.type='text')"
+                    />
+                  </div>
+                  <div class="d-flex gap-3">
+                    <button
+                      class="category-dropdown__btn btn btn-secondary flex-fill"
+                      type="button"
+                    >
+                      Limpiar
+                    </button>
+                    <button
+                      class="date-dropdown__btn btn btn-primary flex-fill"
+                      type="submit"
+                    >
+                      Aplicar
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <main class="eventops__main container d-flex flex-column flex-grow-1">
+        <div class="d-flex flex-column flex-grow-1 gap-3">
+          <section class="eventos-filtrados d-flex flex-grow-1">
+            <div class="container">
+              <h1>Eventos próximos</h1>
+              <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card">
+                    <img
+                      src="img/first.jpg"
+                      alt="Imagen de concierto de rock"
+                      class="card-img-top"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-main-text">CONCIERTO DE ROCK</h5>
+                      <p class="card-text">Lunes 20 dic - 5:00 pm</p>
+                      <div class="card-detail text-dark">
+                        S/ 80.00
+                        <button class="card-button">DETALLES</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card">
+                    <img
+                      src="img/first.jpg"
+                      alt="Imagen de concierto de rock"
+                      class="card-img-top"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-main-text">CONCIERTO DE ROCK</h5>
+                      <p class="card-text">Lunes 20 dic - 5:00 pm</p>
+                      <div class="card-detail text-dark">
+                        S/ 80.00
+                        <button class="card-button">DETALLES</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card">
+                    <img
+                      src="img/first.jpg"
+                      alt="Imagen de concierto de rock"
+                      class="card-img-top"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-main-text">CONCIERTO DE ROCK</h5>
+                      <p class="card-text">Lunes 20 dic - 5:00 pm</p>
+                      <div class="card-detail text-dark">
+                        S/ 80.00
+                        <button class="card-button">DETALLES</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card">
+                    <img
+                      src="img/first.jpg"
+                      alt="Imagen de concierto de rock"
+                      class="card-img-top"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-main-text">CONCIERTO DE ROCK</h5>
+                      <p class="card-text">Lunes 20 dic - 5:00 pm</p>
+                      <div class="card-detail text-dark">
+                        S/ 80.00
+                        <button class="card-button">DETALLES</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card">
+                    <img
+                      src="img/first.jpg"
+                      alt="Imagen de concierto de rock"
+                      class="card-img-top"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-main-text">CONCIERTO DE ROCK</h5>
+                      <p class="card-text">Lunes 20 dic - 5:00 pm</p>
+                      <div class="card-detail text-dark">
+                        S/ 80.00
+                        <button class="card-button">DETALLES</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card">
+                    <img
+                      src="img/first.jpg"
+                      alt="Imagen de concierto de rock"
+                      class="card-img-top"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-main-text">CONCIERTO DE ROCK</h5>
+                      <p class="card-text">Lunes 20 dic - 5:00 pm</p>
+                      <div class="card-detail text-dark">
+                        S/ 80.00
+                        <button class="card-button">DETALLES</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="eventos-filtrados d-flex flex-grow-1">
+            <div class="container">
+              <h1>Todos los eventos</h1>
+              <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card">
+                    <img
+                      src="img/first.jpg"
+                      alt="Imagen de concierto de rock"
+                      class="card-img-top"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-main-text">CONCIERTO DE ROCK</h5>
+                      <p class="card-text">Lunes 20 dic - 5:00 pm</p>
+                      <div class="card-detail text-dark">
+                        S/ 80.00
+                        <button class="card-button">DETALLES</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card">
+                    <img
+                      src="img/first.jpg"
+                      alt="Imagen de concierto de rock"
+                      class="card-img-top"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-main-text">CONCIERTO DE ROCK</h5>
+                      <p class="card-text">Lunes 20 dic - 5:00 pm</p>
+                      <div class="card-detail text-dark">
+                        S/ 80.00
+                        <button class="card-button">DETALLES</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card">
+                    <img
+                      src="img/first.jpg"
+                      alt="Imagen de concierto de rock"
+                      class="card-img-top"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-main-text">CONCIERTO DE ROCK</h5>
+                      <p class="card-text">Lunes 20 dic - 5:00 pm</p>
+                      <div class="card-detail text-dark">
+                        S/ 80.00
+                        <button class="card-button">DETALLES</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card">
+                    <img
+                      src="img/first.jpg"
+                      alt="Imagen de concierto de rock"
+                      class="card-img-top"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-main-text">CONCIERTO DE ROCK</h5>
+                      <p class="card-text">Lunes 20 dic - 5:00 pm</p>
+                      <div class="card-detail text-dark">
+                        S/ 80.00
+                        <button class="card-button">DETALLES</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card">
+                    <img
+                      src="img/first.jpg"
+                      alt="Imagen de concierto de rock"
+                      class="card-img-top"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-main-text">CONCIERTO DE ROCK</h5>
+                      <p class="card-text">Lunes 20 dic - 5:00 pm</p>
+                      <div class="card-detail text-dark">
+                        S/ 80.00
+                        <button class="card-button">DETALLES</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card">
+                    <img
+                      src="img/first.jpg"
+                      alt="Imagen de concierto de rock"
+                      class="card-img-top"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-main-text">CONCIERTO DE ROCK</h5>
+                      <p class="card-text">Lunes 20 dic - 5:00 pm</p>
+                      <div class="card-detail text-dark">
+                        S/ 80.00
+                        <button class="card-button">DETALLES</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+        </div>
+      </main>
+      <footer class="footer">
+        <div class="col-md-12 order-md-1 container" id="container_footer">
+          <div class="row">
+            <div class="col-md-3 order-md-1">
+              <div class="mb-3" style="margin-top: 1rem">
+                <label
+                  or="address"
+                  style="display: flex; justify-content: center"
+                  ><span>EVEN</span>TOPS</label
+                >
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 0.9rem;
+                  "
+                >
+                  <a href="#" style="width: 1.5rem"
+                    ><i class="bi bi-facebook"></i
+                  ></a>
+                  <a href="#" style="width: 1.5rem"
+                    ><i class="bi bi-twitter"></i
+                  ></a>
+                  <a href="#" style="width: 1.5rem"
+                    ><i class="bi bi-instagram"></i
+                  ></a>
+                  <a href="#" style="width: 1.5rem"
+                    ><i class="bi bi-whatsapp"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 order-md-1">
+              <div class="mb-3" style="margin-top: 1rem">
+                <label or="address">Conócenos</label>
+                <ul class="list-unstyled">
+                  <li><a href="#">Acerca de nosotros</a></li>
+                  <li><a href="#">Preguntas frecuentes</a></li>
+                  <li><a href="#">Términos y condiciones</a></li>
+                  <li><a href="#">Políticas de privacidad</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-3 order-md-1">
+              <div class="mb-3" style="margin-top: 1rem">
+                <label or="address">Explora</label>
+                <ul class="list-unstyled">
+                  <li><a href="#">Explora Eventops</a></li>
+                  <li><a href="#">Danos tu opinión</a></li>
+                  <li><a href="#">Blog</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-3 order-md-1">
+              <div class="mb-3" style="margin-top: 1rem">
+                <label or="address">Categorías</label>
+                <ul class="list-unstyled">
+                  <li><a href="#">Conciertos</a></li>
+                  <li><a href="#">Salud y Bienestar</a></li>
+                  <li><a href="#">Tecnologia</a></li>
+                  <li><a href="#">Deportes</a></li>
+                  <li><a href="#">Cine</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script> -->
+     <!--  HOME -->
+
+
+
+
+     
+  </body>
+</html>
