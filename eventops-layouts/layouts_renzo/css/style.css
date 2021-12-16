@@ -13110,21 +13110,25 @@ progress {
 .cuerpo .image-picker {
   border: 1px solid black;
   background-color: white;
-  height: 240px;
-  width: 80%;
+  height: 226px;
+  width: 400px;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+  border-radius: 3%;
 }
 .cuerpo .image-ticket {
   border: 1px solid black;
   background-color: white;
-  height: 162px;
+  height: 169px;
   width: 300px;
   position: relative;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+  position: relative;
+  margin-top: 0.1rem;
+  border-radius: 4%;
 }
 .cuerpo #crearEntrada {
   display: flex;
@@ -13148,6 +13152,8 @@ progress {
 }
 
 .footer {
+  width: 80%;
+  margin: 0 auto;
   font-size: 1rem;
   font-family: "Roboto", sans-serif;
   height: 300px;
@@ -13205,6 +13211,58 @@ progress {
 #btnComprar {
   display: flex;
   justify-content: center;
+}
+
+#cardCarrito {
+  width: 85%;
+  margin: 1.5rem auto;
+  background-color: #21262a;
+  color: white;
+  border: #21262a;
+}
+#cardCarrito #cabeceraCarrito {
+  background-color: #9f2d30;
+}
+#cardCarrito #cabeceraCarrito .row {
+  margin: 1rem auto;
+}
+#cardCarrito a {
+  color: white;
+  text-decoration: none;
+}
+
+.inferiorCarrito {
+  width: 85%;
+  margin: 1.5rem auto;
+  color: white;
+}
+.inferiorCarrito #resumenPago {
+  background-color: white;
+  color: black;
+}
+
+#btnPagar {
+  width: 85%;
+  margin: 1.5rem auto;
+}
+
+#barraFiltros {
+  background-color: #9f2d30;
+  padding: 0.5rem 0.5rem;
+  margin-bottom: 0.7rem;
+}
+#barraFiltros #container {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+#filtro {
+  width: 85%;
+  margin: 0 auto;
+  color: white;
+  margin-bottom: 1rem;
 }
 
 /*# sourceMappingURL=style.css.map */
