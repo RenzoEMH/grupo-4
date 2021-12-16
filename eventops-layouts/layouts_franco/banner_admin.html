@@ -179,77 +179,243 @@
           </div>
         </nav>
       </header>
-      <div class="container d-flex flex-column flex-grow-1">
-        <main class="eventops__main d-flex flex-grow-1"></main>
-        <footer class="footer">
-          <div class="col-md-12 order-md-1" id="container_footer">
-            <div class="row">
-              <div class="col-md-3 order-md-1">
-                <div class="mb-3" style="margin-top: 1rem">
-                  <label
-                    or="address"
-                    style="display: flex; justify-content: center"
-                    ><span>EVEN</span>TOPS</label
-                  >
-                  <div
-                    style="
-                      display: flex;
-                      justify-content: center;
-                      margin-top: 0.9rem;
-                    "
-                  >
-                    <a href="#" style="width: 1.5rem"
-                      ><i class="bi bi-facebook"></i
-                    ></a>
-                    <a href="#" style="width: 1.5rem"
-                      ><i class="bi bi-twitter"></i
-                    ></a>
-                    <a href="#" style="width: 1.5rem"
-                      ><i class="bi bi-instagram"></i
-                    ></a>
-                    <a href="#" style="width: 1.5rem"
-                      ><i class="bi bi-whatsapp"></i
-                    ></a>
-                  </div>
+      <main class="eventops__main d-flex flex-grow-1 container">
+        <div class="mt-3 d-flex flex-column col-12 col-lg-8 mx-auto">
+          <h2 class="text-center mt-4">Gestionar Banner</h2>
+          <button class="btn btn-primary btn-lg rounded-pill my-4" data-bs-toggle="modal" data-bs-target="#slideModal">
+            Agregar
+            <span>
+              <svg width="35" height="35" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M27.0834 27.0832V39.5832H22.9167V27.0832H10.4167V22.9165H22.9167V10.4165H27.0834V22.9165H39.5834V27.0832H27.0834Z" fill="#F8F8F8"/>
+              </svg>
+            </span>
+          </button>
+          <div class="modal fade" id="slideModal" tabindex="-1" aria-labelledby="slideModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+              <div class="modal-content">
+                <div class="modal-header text-primary flex-column">
+                  <h4 class="modal-title text-center fw-bold" id="slideModalLabel">Nuevo Slider</h5>
                 </div>
-              </div>
-              <div class="col-md-3 order-md-1">
-                <div class="mb-3" style="margin-top: 1rem">
-                  <label or="address">Conócenos</label>
-                  <ul class="list-unstyled">
-                    <li><a href="#">Acerca de nosotros</a></li>
-                    <li><a href="#">Preguntas frecuentes</a></li>
-                    <li><a href="#">Términos y condiciones</a></li>
-                    <li><a href="#">Políticas de privacidad</a></li>
-                  </ul>
+                <div class="modal-body text-dark">
+                  <form action="" class="slider d-grid col-12 col-lg-6 mx-auto mt-5 mb-4">
+                    <div class="mb-4">
+                      <select class="form-select" aria-label="select para nuevo slider">
+                        <option disabled selected hidden>Seleccionar evento...</option>
+                        <option value="1">Concierto Rock SADS SDSD</option>
+                        <option value="2">Recital Teatro Nacional</option>
+                        <option value="3">Eva Ayllon</option>
+                      </select>
+                    </div>
+                    <div class="mb-4 d-flex gap-4">
+                      <input type="text" class="register__names form-control" id="date" placeholder="Fecha de inicio..." onfocus="(this.type='date')" onblur="(this.type='text')">
+                      <select class="form-select" aria-label="select para nuevo slider">
+                        <option disabled selected hidden>orden...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">Último</option>
+                      </select>
+                    </div>
+                  </form>
                 </div>
-              </div>
-              <div class="col-md-3 order-md-1">
-                <div class="mb-3" style="margin-top: 1rem">
-                  <label or="address">Explora</label>
-                  <ul class="list-unstyled">
-                    <li><a href="#">Explora Eventops</a></li>
-                    <li><a href="#">Danos tu opinión</a></li>
-                    <li><a href="#">Blog</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-3 order-md-1">
-                <div class="mb-3" style="margin-top: 1rem">
-                  <label or="address">Categorías</label>
-                  <ul class="list-unstyled">
-                    <li><a href="#">Conciertos</a></li>
-                    <li><a href="#">Salud y Bienestar</a></li>
-                    <li><a href="#">Tecnologia</a></li>
-                    <li><a href="#">Deportes</a></li>
-                    <li><a href="#">Cine</a></li>
-                  </ul>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-primary btn-lg" type="submit">Guardar</button>
                 </div>
               </div>
             </div>
           </div>
-        </footer>
-      </div>
+          <div>
+            <section
+              class="
+                col-12
+                bg-secondary
+                mb-3
+                d-flex
+                align-items-center
+                rounded-3
+              "
+            >
+              <span class="fw-bold p-3 fs-1">1</span>
+              <div
+                class="
+                  d-flex
+                  flex-column flex-sm-row flex-grow-1
+                  align-items-center
+                  bg-white
+                  p-3
+                  rounded-end
+                "
+              >
+                <div class="details flex-grow-1 text-dark">
+                  <p>
+                    <span class="fw-bold">Evento:</span> CONCIERTO DE ROCK SADS
+                    DSDS
+                  </p>
+                  <p class="m-0">
+                    <span class="fw-bold">Se mostrara desde:</span> 20-01-22
+                  </p>
+                </div>
+                <div class="options mt-3 mt-sm-0">
+                  <button class="btn btn-primary py-2">
+                    <svg
+                      width="25"
+                      height="25"
+                      viewBox="0 0 43 39"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M13.6233 36.056L34.5673 16.6956L24.6193 7.49973L3.67531 26.8601C3.38698 27.127 3.18216 27.461 3.08258 27.8268L0.76123 38.7497L12.5753 36.6039C12.972 36.5122 13.3348 36.3227 13.6233 36.056V36.056ZM41.3285 10.4456C42.1735 9.6642 42.6482 8.60458 42.6482 7.49973C42.6482 6.39488 42.1735 5.33526 41.3285 4.5539L37.7541 1.24973C36.9088 0.468599 35.7625 0.0297852 34.5673 0.0297852C33.3721 0.0297852 32.2258 0.468599 31.3805 1.24973L27.8061 4.5539L37.7541 13.7497L41.3285 10.4456Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </button>
+                  <button class="btn btn-secondary py-2">
+                    <svg
+                      width="25"
+                      height="25"
+                      viewBox="0 0 39 39"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M2.78571 34.6667C2.78571 37.05 5.29286 39 8.35714 39H30.6429C33.7071 39 36.2143 37.05 36.2143 34.6667V8.66667H2.78571V34.6667ZM9.63857 19.24L13.5664 16.185L19.5 20.7783L25.4057 16.185L29.3336 19.24L23.4279 23.8333L29.3336 28.4267L25.4057 31.4817L19.5 26.8883L13.5943 31.4817L9.66643 28.4267L15.5721 23.8333L9.63857 19.24ZM29.25 2.16667L26.4643 0H12.5357L9.75 2.16667H0V6.5H39V2.16667H29.25Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </section>
+            <section
+              class="
+                col-12
+                bg-secondary
+                mb-3
+                d-flex
+                align-items-center
+                rounded-3
+              "
+            >
+              <span class="fw-bold p-3 fs-1">2</span>
+              <div
+                class="
+                  d-flex
+                  flex-column flex-sm-row flex-grow-1
+                  align-items-center
+                  bg-white
+                  p-3
+                  rounded-end
+                "
+              >
+                <div class="details flex-grow-1 text-dark">
+                  <p>
+                    <span class="fw-bold">Evento:</span> CONCIERTO DE ROCK SADS
+                    DSDS
+                  </p>
+                  <p class="m-0">
+                    <span class="fw-bold">Se mostrara desde:</span> 20-01-22
+                  </p>
+                </div>
+                <div class="options mt-3 mt-sm-0">
+                  <button class="btn btn-primary py-2">
+                    <svg
+                      width="25"
+                      height="25"
+                      viewBox="0 0 43 39"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M13.6233 36.056L34.5673 16.6956L24.6193 7.49973L3.67531 26.8601C3.38698 27.127 3.18216 27.461 3.08258 27.8268L0.76123 38.7497L12.5753 36.6039C12.972 36.5122 13.3348 36.3227 13.6233 36.056V36.056ZM41.3285 10.4456C42.1735 9.6642 42.6482 8.60458 42.6482 7.49973C42.6482 6.39488 42.1735 5.33526 41.3285 4.5539L37.7541 1.24973C36.9088 0.468599 35.7625 0.0297852 34.5673 0.0297852C33.3721 0.0297852 32.2258 0.468599 31.3805 1.24973L27.8061 4.5539L37.7541 13.7497L41.3285 10.4456Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </button>
+                  <button class="btn btn-secondary py-2">
+                    <svg
+                      width="25"
+                      height="25"
+                      viewBox="0 0 39 39"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M2.78571 34.6667C2.78571 37.05 5.29286 39 8.35714 39H30.6429C33.7071 39 36.2143 37.05 36.2143 34.6667V8.66667H2.78571V34.6667ZM9.63857 19.24L13.5664 16.185L19.5 20.7783L25.4057 16.185L29.3336 19.24L23.4279 23.8333L29.3336 28.4267L25.4057 31.4817L19.5 26.8883L13.5943 31.4817L9.66643 28.4267L15.5721 23.8333L9.63857 19.24ZM29.25 2.16667L26.4643 0H12.5357L9.75 2.16667H0V6.5H39V2.16667H29.25Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </section>
+            <section
+              class="
+                col-12
+                bg-secondary
+                mb-3
+                d-flex
+                align-items-center
+                rounded-3
+              "
+            >
+              <span class="fw-bold p-3 fs-1">3</span>
+              <div
+                class="
+                  d-flex
+                  flex-column flex-sm-row flex-grow-1
+                  align-items-center
+                  bg-white
+                  p-3
+                  rounded-end
+                "
+              >
+                <div class="details flex-grow-1 text-dark">
+                  <p>
+                    <span class="fw-bold">Evento:</span> CONCIERTO DE ROCK SADS
+                    DSDS
+                  </p>
+                  <p class="m-0">
+                    <span class="fw-bold">Se mostrara desde:</span> 20-01-22
+                  </p>
+                </div>
+                <div class="options mt-3 mt-sm-0">
+                  <button class="btn btn-primary py-2">
+                    <svg
+                      width="25"
+                      height="25"
+                      viewBox="0 0 43 39"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M13.6233 36.056L34.5673 16.6956L24.6193 7.49973L3.67531 26.8601C3.38698 27.127 3.18216 27.461 3.08258 27.8268L0.76123 38.7497L12.5753 36.6039C12.972 36.5122 13.3348 36.3227 13.6233 36.056V36.056ZM41.3285 10.4456C42.1735 9.6642 42.6482 8.60458 42.6482 7.49973C42.6482 6.39488 42.1735 5.33526 41.3285 4.5539L37.7541 1.24973C36.9088 0.468599 35.7625 0.0297852 34.5673 0.0297852C33.3721 0.0297852 32.2258 0.468599 31.3805 1.24973L27.8061 4.5539L37.7541 13.7497L41.3285 10.4456Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </button>
+                  <button class="btn btn-secondary py-2">
+                    <svg
+                      width="25"
+                      height="25"
+                      viewBox="0 0 39 39"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M2.78571 34.6667C2.78571 37.05 5.29286 39 8.35714 39H30.6429C33.7071 39 36.2143 37.05 36.2143 34.6667V8.66667H2.78571V34.6667ZM9.63857 19.24L13.5664 16.185L19.5 20.7783L25.4057 16.185L29.3336 19.24L23.4279 23.8333L29.3336 28.4267L25.4057 31.4817L19.5 26.8883L13.5943 31.4817L9.66643 28.4267L15.5721 23.8333L9.63857 19.24ZM29.25 2.16667L26.4643 0H12.5357L9.75 2.16667H0V6.5H39V2.16667H29.25Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </section>
+          </div>
+          
+        </div>
+      </main>
     </div>
 
     <script
@@ -257,5 +423,6 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
+    <script src="banner.js"></script>
   </body>
 </html>
