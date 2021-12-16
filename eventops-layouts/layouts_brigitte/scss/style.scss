@@ -57,7 +57,9 @@ body {
   }
 }
 
-.price-dropdown, .category-dropdown, .date-dropdown {
+.price-dropdown,
+.category-dropdown,
+.date-dropdown {
   min-width: 20rem;
 }
 
@@ -97,7 +99,7 @@ body {
 
 .card {
   border-style: none;
-/*   width: 362px;
+  /*   width: 362px;
   height: 340px; */
 }
 
@@ -113,7 +115,7 @@ body {
 }
 
 .card-text {
-  background-color: rgba(52, 46, 46, 0.25);;
+  background-color: rgba(52, 46, 46, 0.25);
   color: #000;
   padding: 0.5rem;
   font-weight: 400;
@@ -126,7 +128,7 @@ body {
   margin: 1rem;
 }
 
-.card-state{
+.card-state {
   display: flex;
   align-items: center;
   margin-left: 20px;
@@ -135,10 +137,24 @@ body {
 .card-button {
   font-weight: 300;
   color: #fff;
-  background-color: #9F2D30;
+  background-color: #9f2d30;
   border-radius: 15px;
   border-style: none;
   padding: 0.3rem;
   width: 40%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+// carousel img
+
+.carousel img {
+  height: 50vw;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media only screen and (min-width: 1200px) {
+  .carousel img {
+    height: 50vh;
+  }
 }
