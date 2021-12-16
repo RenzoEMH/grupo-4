@@ -227,6 +227,7 @@
                 type="button"
                 id="preciosDropdown"
                 data-bs-toggle="dropdown"
+                data-bs-auto-close="outside"
                 aria-expanded="false"
               >
                 <span class="me-1 me-sm-2">
@@ -267,9 +268,44 @@
                 </span>
               </button>
               <div
-                class="dropdown-menu"
+                class="dropdown-menu p-3 price-dropdown"
                 aria-labelledby="preciosDropdown"
-              ></div>
+              >
+                <form action="" class="register">
+                  <h4 class="text-center mb-3">Filtro por Precios</h4>
+                  <div class="mb-3 d-flex align-items-center gap-3">
+                    <span class="fw-bold">S/.</span>
+                    <input
+                      type="number"
+                      class="price-dropdown__min form-control"
+                      id="min"
+                      placeholder="Min."
+                      min="0"
+                    />
+                    <input
+                      type="number"
+                      class="price-dropdown__max form-control"
+                      id="max"
+                      placeholder="Max."
+                      min="0"
+                    />
+                  </div>
+                  <div class="d-flex gap-3">
+                    <button
+                      class="category-dropdown__btn btn btn-secondary flex-fill"
+                      type="button"
+                    >
+                      Limpiar
+                    </button>
+                    <button
+                      class="price-dropdown__btn btn btn-primary flex-fill"
+                      type="submit"
+                    >
+                      Aplicar
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
             <div class="btn-group">
               <button
@@ -277,6 +313,7 @@
                 type="button"
                 id="categoriasDropdown"
                 data-bs-toggle="dropdown"
+                data-bs-auto-close="outside"
                 aria-expanded="false"
               >
                 <span class="me-1 me-sm-2">
@@ -313,9 +350,68 @@
                 </span>
               </button>
               <div
-                class="dropdown-menu"
+                class="dropdown-menu dropdown-menu-end p-3 category-dropdown"
                 aria-labelledby="categoriasDropdown"
-              ></div>
+              >
+                <form action="" class="register">
+                  <h4 class="text-center mb-3">Filtro por Categorias</h4>
+                  <div
+                    class="
+                      filter__pill-container
+                      d-flex
+                      justify-content-center
+                      flex-wrap
+                      mb-3
+                      gap-2
+                    "
+                  >
+                    <button
+                      class="btn btn-outline-primary rounded-pill"
+                      type="button"
+                    >
+                      Concierto
+                    </button>
+                    <button
+                      class="btn btn-outline-primary rounded-pill"
+                      type="button"
+                    >
+                      Salud y Bienestar
+                    </button>
+                    <button
+                      class="btn btn-outline-primary rounded-pill"
+                      type="button"
+                    >
+                      Tecnología
+                    </button>
+                    <button
+                      class="btn btn-outline-primary rounded-pill"
+                      type="button"
+                    >
+                      Deportes
+                    </button>
+                    <button
+                      class="btn btn-outline-primary rounded-pill"
+                      type="button"
+                    >
+                      Cine
+                    </button>
+                  </div>
+                  <div class="d-flex gap-3">
+                    <button
+                      class="category-dropdown__btn btn btn-secondary flex-fill"
+                      type="button"
+                    >
+                      Limpiar
+                    </button>
+                    <button
+                      class="category-dropdown__btn btn btn-primary flex-fill"
+                      type="submit"
+                    >
+                      Aplicar
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
             <div class="btn-group">
               <button
@@ -323,6 +419,7 @@
                 type="button"
                 id="fechasDropdown"
                 data-bs-toggle="dropdown"
+                data-bs-auto-close="outside"
                 aria-expanded="false"
               >
                 <span class="me-1 me-sm-2">
@@ -358,17 +455,68 @@
                   </svg>
                 </span>
               </button>
-              <div class="dropdown-menu" aria-labelledby="fechasDropdown"></div>
+              <div
+                class="dropdown-menu p-3 date-dropdown"
+                aria-labelledby="fechasDropdown"
+              >
+                <form action="" class="register">
+                  <h4 class="text-center mb-3">Filtro por Fechas</h4>
+                  <div class="mb-3 d-flex align-items-center gap-3">
+                    <input
+                      type="text"
+                      class="register__names form-control"
+                      id="dateBegin"
+                      placeholder="Inicio..."
+                      onfocus="(this.type='date')"
+                      onblur="(this.type='text')"
+                    />
+                    <input
+                      type="text"
+                      class="register__names form-control"
+                      id="dateEnd"
+                      placeholder="Fin..."
+                      onfocus="(this.type='date')"
+                      onblur="(this.type='text')"
+                    />
+                  </div>
+                  <div class="d-flex gap-3">
+                    <button
+                      class="category-dropdown__btn btn btn-secondary flex-fill"
+                      type="button"
+                    >
+                      Limpiar
+                    </button>
+                    <button
+                      class="date-dropdown__btn btn btn-primary flex-fill"
+                      type="submit"
+                    >
+                      Aplicar
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
           <!-- menu end -->
         </div>
       </section>
-      <section class="container d-flex align-items-center">
+      <section class="container d-flex align-items-center mb-4">
         <span>Filtros:</span>
         <div class="filter__pill-container d-flex flex-wrap">
-          <span class="badge rounded-pill bg-primary ms-2 px-3 py-2 border border-2 d-flex align-items-center">
-            Rock
+          <span
+            class="
+              badge
+              rounded-pill
+              bg-primary
+              ms-2
+              px-3
+              py-2
+              border border-2
+              d-flex
+              align-items-center
+            "
+          >
+            Concierto
             <a href="#" class="ms-2">
               <svg
                 width="8"
@@ -386,77 +534,191 @@
           </span>
         </div>
       </section>
-      <div class="container d-flex flex-column flex-grow-1">
-        <main class="eventops__main d-flex flex-grow-1"></main>
-        <footer class="footer">
-          <div class="col-md-12 order-md-1" id="container_footer">
-            <div class="row">
-              <div class="col-md-3 order-md-1">
-                <div class="mb-3" style="margin-top: 1rem">
-                  <label
-                    or="address"
-                    style="display: flex; justify-content: center"
-                    ><span>EVEN</span>TOPS</label
-                  >
-                  <div
-                    style="
-                      display: flex;
-                      justify-content: center;
-                      margin-top: 0.9rem;
-                    "
-                  >
-                    <a href="#" style="width: 1.5rem"
-                      ><i class="bi bi-facebook"></i
-                    ></a>
-                    <a href="#" style="width: 1.5rem"
-                      ><i class="bi bi-twitter"></i
-                    ></a>
-                    <a href="#" style="width: 1.5rem"
-                      ><i class="bi bi-instagram"></i
-                    ></a>
-                    <a href="#" style="width: 1.5rem"
-                      ><i class="bi bi-whatsapp"></i
-                    ></a>
+      <main class="eventops__main container d-flex flex-column flex-grow-1">
+        <div class="d-flex flex-column flex-grow-1 gap-3">
+          <section class="eventos-filtrados d-flex flex-grow-1">
+            <div class="container">
+              <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card">
+                    <img
+                      src="img/first.jpg"
+                      alt="Imagen de concierto de rock"
+                      class="card-img-top"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-main-text">CONCIERTO DE ROCK</h5>
+                      <p class="card-text">Lunes 20 dic - 5:00 pm</p>
+                      <div class="card-detail text-dark">
+                        S/ 80.00
+                        <button class="card-button">DETALLES</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card">
+                    <img
+                      src="img/first.jpg"
+                      alt="Imagen de concierto de rock"
+                      class="card-img-top"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-main-text">CONCIERTO DE ROCK</h5>
+                      <p class="card-text">Lunes 20 dic - 5:00 pm</p>
+                      <div class="card-detail text-dark">
+                        S/ 80.00
+                        <button class="card-button">DETALLES</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card">
+                    <img
+                      src="img/first.jpg"
+                      alt="Imagen de concierto de rock"
+                      class="card-img-top"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-main-text">CONCIERTO DE ROCK</h5>
+                      <p class="card-text">Lunes 20 dic - 5:00 pm</p>
+                      <div class="card-detail text-dark">
+                        S/ 80.00
+                        <button class="card-button">DETALLES</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card">
+                    <img
+                      src="img/first.jpg"
+                      alt="Imagen de concierto de rock"
+                      class="card-img-top"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-main-text">CONCIERTO DE ROCK</h5>
+                      <p class="card-text">Lunes 20 dic - 5:00 pm</p>
+                      <div class="card-detail text-dark">
+                        S/ 80.00
+                        <button class="card-button">DETALLES</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card">
+                    <img
+                      src="img/first.jpg"
+                      alt="Imagen de concierto de rock"
+                      class="card-img-top"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-main-text">CONCIERTO DE ROCK</h5>
+                      <p class="card-text">Lunes 20 dic - 5:00 pm</p>
+                      <div class="card-detail text-dark">
+                        S/ 80.00
+                        <button class="card-button">DETALLES</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card">
+                    <img
+                      src="img/first.jpg"
+                      alt="Imagen de concierto de rock"
+                      class="card-img-top"
+                    />
+                    <div class="card-body">
+                      <h5 class="card-main-text">CONCIERTO DE ROCK</h5>
+                      <p class="card-text">Lunes 20 dic - 5:00 pm</p>
+                      <div class="card-detail text-dark">
+                        S/ 80.00
+                        <button class="card-button">DETALLES</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-3 order-md-1">
-                <div class="mb-3" style="margin-top: 1rem">
-                  <label or="address">Conócenos</label>
-                  <ul class="list-unstyled">
-                    <li><a href="#">Acerca de nosotros</a></li>
-                    <li><a href="#">Preguntas frecuentes</a></li>
-                    <li><a href="#">Términos y condiciones</a></li>
-                    <li><a href="#">Políticas de privacidad</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-3 order-md-1">
-                <div class="mb-3" style="margin-top: 1rem">
-                  <label or="address">Explora</label>
-                  <ul class="list-unstyled">
-                    <li><a href="#">Explora Eventops</a></li>
-                    <li><a href="#">Danos tu opinión</a></li>
-                    <li><a href="#">Blog</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-3 order-md-1">
-                <div class="mb-3" style="margin-top: 1rem">
-                  <label or="address">Categorías</label>
-                  <ul class="list-unstyled">
-                    <li><a href="#">Conciertos</a></li>
-                    <li><a href="#">Salud y Bienestar</a></li>
-                    <li><a href="#">Tecnologia</a></li>
-                    <li><a href="#">Deportes</a></li>
-                    <li><a href="#">Cine</a></li>
-                  </ul>
+            </div>
+          </section>
+          <button
+            class="btn btn-primary btn-lg rounded-pill align-self-center px-5"
+          >
+            Cargar Más
+          </button>
+        </div>
+      </main>
+      <footer class="footer">
+        <div class="col-md-12 order-md-1 container" id="container_footer">
+          <div class="row">
+            <div class="col-md-3 order-md-1">
+              <div class="mb-3" style="margin-top: 1rem">
+                <label
+                  or="address"
+                  style="display: flex; justify-content: center"
+                  ><span>EVEN</span>TOPS</label
+                >
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 0.9rem;
+                  "
+                >
+                  <a href="#" style="width: 1.5rem"
+                    ><i class="bi bi-facebook"></i
+                  ></a>
+                  <a href="#" style="width: 1.5rem"
+                    ><i class="bi bi-twitter"></i
+                  ></a>
+                  <a href="#" style="width: 1.5rem"
+                    ><i class="bi bi-instagram"></i
+                  ></a>
+                  <a href="#" style="width: 1.5rem"
+                    ><i class="bi bi-whatsapp"></i
+                  ></a>
                 </div>
               </div>
             </div>
+            <div class="col-md-3 order-md-1">
+              <div class="mb-3" style="margin-top: 1rem">
+                <label or="address">Conócenos</label>
+                <ul class="list-unstyled">
+                  <li><a href="#">Acerca de nosotros</a></li>
+                  <li><a href="#">Preguntas frecuentes</a></li>
+                  <li><a href="#">Términos y condiciones</a></li>
+                  <li><a href="#">Políticas de privacidad</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-3 order-md-1">
+              <div class="mb-3" style="margin-top: 1rem">
+                <label or="address">Explora</label>
+                <ul class="list-unstyled">
+                  <li><a href="#">Explora Eventops</a></li>
+                  <li><a href="#">Danos tu opinión</a></li>
+                  <li><a href="#">Blog</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-3 order-md-1">
+              <div class="mb-3" style="margin-top: 1rem">
+                <label or="address">Categorías</label>
+                <ul class="list-unstyled">
+                  <li><a href="#">Conciertos</a></li>
+                  <li><a href="#">Salud y Bienestar</a></li>
+                  <li><a href="#">Tecnologia</a></li>
+                  <li><a href="#">Deportes</a></li>
+                  <li><a href="#">Cine</a></li>
+                </ul>
+              </div>
+            </div>
           </div>
-        </footer>
-      </div>
+        </div>
+      </footer>
     </div>
 
     <script
