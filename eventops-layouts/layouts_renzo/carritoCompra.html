@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="css/style.css" rel="stylesheet" />
+    <title>Carrito de Compra</title>
+  </head>
+  <body>
+    <header class="eventops__header border-bottom sticky-top">
+      <nav class="eventops__header navbar navbar-expand-md container">
+        <a href="#" class="eventops__title navbar-brand"
+          >EVEN<span>TOPS</span></a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon">
+            <svg
+              width="30"
+              height="30"
+              viewBox="0 0 60 40"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M60 40H0V33.3333H60V40ZM60 23.3333H0V16.6667H60V23.3333ZM60 6.66667H0V0H60V6.66667Z"
+                fill="#F8F8F8"
+              />
+            </svg>
+          </span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-center gap-md-3">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link text-center"
+                href="#"
+                id="searchDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <svg
+                  width="25"
+                  height="27"
+                  viewBox="0 0 25 27"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_156_480)">
+                    <path
+                      d="M18.3461 17.457C19.859 15.2273 20.5367 12.4628 20.2434 9.7167C19.9502 6.97056 18.7077 4.44527 16.7645 2.64604C14.8213 0.846816 12.3207 -0.0936566 9.76301 0.0127793C7.20534 0.119215 4.77918 1.26471 2.96994 3.22009C1.16069 5.17548 0.101785 7.79654 0.00506294 10.5589C-0.0916587 13.3213 0.780939 16.0212 2.44828 18.1186C4.11562 20.216 6.45474 21.5561 8.99767 21.8708C11.5406 22.1856 14.0998 21.4517 16.1633 19.8161H16.1617C16.2086 19.8836 16.2586 19.9478 16.3148 20.0102L22.3305 26.5071C22.6234 26.8237 23.0209 27.0017 23.4354 27.0019C23.8499 27.002 24.2474 26.8243 24.5406 26.5079C24.8338 26.1915 24.9986 25.7623 24.9987 25.3146C24.9989 24.867 24.8344 24.4376 24.5414 24.1209L18.5258 17.6241C18.4699 17.563 18.4098 17.5066 18.3461 17.4553V17.457ZM18.7492 10.9703C18.7492 12.1891 18.5269 13.396 18.095 14.522C17.6632 15.6481 17.0302 16.6713 16.2322 17.5331C15.4342 18.3949 14.4868 19.0786 13.4441 19.545C12.4015 20.0114 11.284 20.2515 10.1555 20.2515C9.02691 20.2515 7.90941 20.0114 6.86677 19.545C5.82413 19.0786 4.87676 18.3949 4.07876 17.5331C3.28075 16.6713 2.64774 15.6481 2.21587 14.522C1.78399 13.396 1.56171 12.1891 1.56171 10.9703C1.56171 8.50872 2.46712 6.148 4.07876 4.40743C5.6904 2.66686 7.87625 1.68901 10.1555 1.68901C12.4347 1.68901 14.6205 2.66686 16.2322 4.40743C17.8438 6.148 18.7492 8.50872 18.7492 10.9703Z"
+                      fill="white"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_156_480">
+                      <rect width="25" height="27" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end p-3"
+                aria-labelledby="searchDropdown"
+              >
+                <li>
+                  <form class="d-flex">
+                    <input
+                      class="form-control me-2 eventops__search-input"
+                      type="search"
+                      placeholder="Buscar..."
+                      aria-label="Search"
+                    />
+                    <button class="btn btn-primary" type="submit">
+                      Buscar
+                    </button>
+                  </form>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link-light" href="#">INICIO</a>
+            </li>
+            <li class="nav-item btn btn-danger rounded-pill">
+              <a class="nav-link link-light" href="#">CREAR EVENTO</a>
+            </li>
+            <li class="nav-item dropdown d-flex flex-column align-self-stretch">
+              <a
+                class="nav-link text-center"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 50 53"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12.5 12.5C12.5 19.3917 18.1083 25 25 25C31.8917 25 37.5 19.3917 37.5 12.5C37.5 5.60833 31.8917 0 25 0C18.1083 0 12.5 5.60833 12.5 12.5ZM47.2222 52.7778H50V50C50 39.2806 41.275 30.5556 30.5556 30.5556H19.4444C8.72222 30.5556 0 39.2806 0 50V52.7778H47.2222Z"
+                    fill="white"
+                  />
+                </svg>
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end py-3"
+                aria-labelledby="navbarDropdown"
+              >
+                <li>
+                  <a
+                    class="dropdown-item d-flex align-items-center gap-2"
+                    href="#"
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 28 30"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M7 7C7 10.8593 10.1407 14 14 14C17.8593 14 21 10.8593 21 7C21 3.14067 17.8593 0 14 0C10.1407 0 7 3.14067 7 7ZM26.4444 29.5556H28V28C28 21.9971 23.114 17.1111 17.1111 17.1111H10.8889C4.88444 17.1111 0 21.9971 0 28V29.5556H26.4444Z"
+                        fill="#21262A"
+                      />
+                    </svg>
+                    Perfil</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item d-flex align-items-center gap-2"
+                    href="#"
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 32 32"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M27.351 7.448L26.6217 8.17733C26.2503 8.54864 25.7467 8.75723 25.2216 8.75723C24.6964 8.75723 24.1928 8.54864 23.8215 8.17733C23.4502 7.80603 23.2416 7.30244 23.2416 6.77733C23.2416 6.25223 23.4502 5.74864 23.8215 5.37733L24.5509 4.648L19.9026 0L14.0355 5.86667L13.7689 6.67267L12.9628 6.93933L0 19.9013L4.65096 24.552L5.38034 23.8227C5.75166 23.4514 6.25529 23.2428 6.78042 23.2428C7.30556 23.2428 7.80919 23.4514 8.18051 23.8227C8.55184 24.194 8.76045 24.6976 8.76045 25.2227C8.76045 25.7478 8.55184 26.2514 8.18051 26.6227L7.45113 27.352L12.0994 32L25.0602 19.04L25.3269 18.234L26.133 17.9673L32 12.1007L27.351 7.448ZM13.4462 7.81L14.9043 6.352L17.1044 8.552L15.6456 10.01L13.4462 7.81ZM16.313 10.6767L17.7718 9.218L19.9399 11.386L18.4812 12.8447L16.313 10.6767ZM19.1505 13.514L20.6093 12.0553L22.7774 14.2233L21.3213 15.6853L19.1505 13.514ZM24.1888 18.5513L21.9887 16.3513L23.4468 14.8927L25.6469 17.0927L24.1888 18.5513Z"
+                        fill="#21262A"
+                      />
+                    </svg>
+                    Entradas</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item d-flex align-items-center gap-2"
+                    href="#"
+                  >
+                    <svg
+                      class="me-1"
+                      width="16"
+                      height="20"
+                      viewBox="0 0 25 32"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M24.6662 7.9794C24.8793 8.19247 25 8.48011 25 8.78196V30.6818C25 31.3104 24.4922 31.8182 23.8636 31.8182H1.13636C0.507812 31.8182 0 31.3104 0 30.6818V1.13636C0 0.507812 0.507812 0 1.13636 0H16.218C16.5199 0 16.8111 0.120739 17.0241 0.333807L24.6662 7.9794ZM22.3793 9.30398L15.696 2.62074V9.30398H22.3793Z"
+                        fill="#21262A"
+                      />
+                    </svg>
+                    Mis eventos</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item d-flex align-items-center gap-2"
+                    href="#"
+                  >
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 28 27"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g clip-path="url(#clip0_184_136)">
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M18.3219 2.65686V6.5258C20.967 7.98674 22.6569 10.8477 22.6569 14.066C22.6569 18.7667 18.7863 22.5797 14.0132 22.5797C9.24328 22.5797 5.37269 18.7684 5.37269 14.066C5.37269 10.7439 7.03952 7.89121 9.81316 6.48792V2.65356C4.97575 4.25945 1.75081 8.73615 1.75081 14.066C1.75081 20.7399 7.2421 26.1472 14.0115 26.1472C20.7826 26.1472 26.2755 20.7399 26.2755 14.066C26.2772 8.83333 23.0259 4.34509 18.3219 2.65686Z"
+                          fill="#21262A"
+                        />
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M13.9341 12.9673C15.2155 12.9673 16.2597 12.1767 16.2597 11.1967V1.83651C16.2597 0.858153 15.2155 0.065918 13.9341 0.065918C12.651 0.065918 11.6084 0.858153 11.6084 1.83651V11.1967C11.6084 12.1767 12.651 12.9673 13.9341 12.9673Z"
+                          fill="#21262A"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_184_136">
+                          <rect width="28" height="26.3529" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                    Cerrar sesión
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main class="cuerpoCarrito">
+      <div class="card" id="cardCarrito">
+        <div class="col-md-12 cart">
+          <div class="row" style="margin-bottom: 1rem">
+            <div class="col-md-10"><h3>Mi compra</h3></div>
+            <div class="col-md-2">
+              <button class="btn btn-danger">Vaciar Carrito</button>
+            </div>
+          </div>
+          <div class="row border-top border-bottom" id="cabeceraCarrito">
+            <div class="row">
+              <div class="col-md-6 text-center">
+                <h6><strong>Detalles del Evento</strong></h6>
+              </div>
+              <div class="col-md-2 text-center">
+                <h6><strong>Tipo de entrada</strong></h6>
+              </div>
+              <div class="col-md-2 text-center">
+                <h6><strong>Cantidad</strong></h6>
+              </div>
+              <div class="col-md-1">
+                <h6><strong>Precio</strong></h6>
+              </div>
+              <div class="col-md-1 text-center"></div>
+            </div>
+          </div>
+          <div class="row border-bottom" style="margin-top: 1rem">
+            <div
+              class="row main align-items-center"
+              style="margin-bottom: 1rem"
+            >
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-4">
+                    <img class="img-fluid" src="concert.png" />
+                  </div>
+                  <div class="col-md-8">
+                    <div class="row" style="line-height: 15px">
+                      <h6>Concierto de Rock sads dsds</h6>
+                      <p>Lima</p>
+                      <p>Lunes 20 de diciembre de 2021 5:00pm</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 text-center">
+                General <span class="close"></span>
+              </div>
+              <div class="col-md-2 text-center">
+                <a href="#"><i class="bi bi-dash"></i> </a>
+                <a href="#" class="border" style="padding: 0 0.5rem">1</a>
+                <a href="#"><i class="bi bi-plus"></i> </a>
+              </div>
+              <div class="col-md-1 text-center">
+                S/.60.00 <span class="close"></span>
+              </div>
+              <div class="col-md-1 text-center">
+                <a href="#"><i class="bi bi-trash-fill"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="row border-bottom" style="margin-top: 1rem">
+            <div
+              class="row main align-items-center"
+              style="margin-bottom: 1rem"
+            >
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-4">
+                    <img class="img-fluid" src="concert.png" />
+                  </div>
+                  <div class="col-md-8">
+                    <div class="row" style="line-height: 15px">
+                      <h6>Concierto de Rock sads dsds</h6>
+                      <p>Lima</p>
+                      <p>Lunes 20 de diciembre de 2021 5:00pm</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 text-center">
+                VIP <span class="close"></span>
+              </div>
+              <div class="col-md-2 text-center">
+                <a href="#"><i class="bi bi-dash"></i> </a>
+                <a href="#" class="border" style="padding: 0 0.5rem">1</a>
+                <a href="#"><i class="bi bi-plus"></i> </a>
+              </div>
+              <div class="col-md-1 text-center">
+                S/.90.00 <span class="close"></span>
+              </div>
+              <div class="col-md-1 text-center">
+                <a href="#"><i class="bi bi-trash-fill"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="row border-bottom" style="margin-top: 1rem">
+            <div
+              class="row main align-items-center"
+              style="margin-bottom: 1rem"
+            >
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-4">
+                    <img class="img-fluid" src="concert.png" />
+                  </div>
+                  <div class="col-md-8">
+                    <div class="row" style="line-height: 15px">
+                      <h6>Concierto de Rock sads dsds</h6>
+                      <p>Lima</p>
+                      <p>Lunes 20 de diciembre de 2021 5:00pm</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 text-center">
+                Platinum<span class="close"></span>
+              </div>
+              <div class="col-md-2 text-center">
+                <a href="#"><i class="bi bi-dash"></i> </a>
+                <a href="#" class="border" style="padding: 0 0.5rem">1</a>
+                <a href="#"><i class="bi bi-plus"></i> </a>
+              </div>
+              <div class="col-md-1 text-center">
+                S/.120.00 <span class="close"></span>
+              </div>
+              <div class="col-md-1 text-center">
+                <a href="#"><i class="bi bi-trash-fill"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="inferiorCarrito">
+        <div class="row">
+          <div class="col-md-9">
+            <div>
+              <p>¿Aun quieres seguir comprando otras entradas de Eventos?</p>
+            </div>
+            <div>
+              <button class="btn btn-danger">Seguir comprando</button>
+            </div>
+          </div>
+          <div class="col-md-3 summary" id="resumenPago">
+            <div
+              class="text-center"
+              style="border-bottom: 2px solid black; margin-top: 1rem"
+            >
+              <h5><b>Resumen de Pago</b></h5>
+            </div>
+            <div class="row" style="margin-top: 1rem">
+              <div class="col"><p>Subtotal:</p></div>
+              <div class="col text-right">S/. 240.00</div>
+            </div>
+            <div class="row">
+              <div class="col"><p>Descuento:</p></div>
+              <div class="col text-right">S/. 0.00</div>
+            </div>
+            <div
+              class="row"
+              style="border-top: 4px solid #21262a; padding: 2vh 0"
+            >
+              <div class="col"><p>Total</p></div>
+              <div class="col text-right"><p>S/. 240.00</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="btnPagar">
+        <div class="col-md-9"></div>
+        <div class="col-md-3" style="display: flex; justify-content: center">
+          <button class="btn btn-danger">Pagar Ahora</button>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="col-md-12 order-md-1" id="container_footer">
+        <div class="row">
+          <div class="col-md-3 order-md-1">
+            <div class="mb-3" style="margin-top: 1rem">
+              <label or="address" style="display: flex; justify-content: center"
+                ><span>EVEN</span>TOPS</label
+              >
+              <div
+                style="
+                  display: flex;
+                  justify-content: center;
+                  margin-top: 0.9rem;
+                "
+              >
+                <a href="#" style="width: 1.5rem"
+                  ><i class="bi bi-facebook"></i
+                ></a>
+                <a href="#" style="width: 1.5rem"
+                  ><i class="bi bi-twitter"></i
+                ></a>
+                <a href="#" style="width: 1.5rem"
+                  ><i class="bi bi-instagram"></i
+                ></a>
+                <a href="#" style="width: 1.5rem"
+                  ><i class="bi bi-whatsapp"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 order-md-1">
+            <div class="mb-3" style="margin-top: 1rem">
+              <label or="address">Conócenos</label>
+              <ul class="list-unstyled">
+                <li><a href="#">Acerca de nosotros</a></li>
+                <li><a href="#">Preguntas frecuentes</a></li>
+                <li><a href="#">Términos y condiciones</a></li>
+                <li><a href="#">Políticas de privacidad</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 order-md-1">
+            <div class="mb-3" style="margin-top: 1rem">
+              <label or="address">Explora</label>
+              <ul class="list-unstyled">
+                <li><a href="#">Explora Eventops</a></li>
+                <li><a href="#">Danos tu opinión</a></li>
+                <li><a href="#">Blog</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 order-md-1">
+            <div class="mb-3" style="margin-top: 1rem">
+              <label or="address">Categorías</label>
+              <ul class="list-unstyled">
+                <li><a href="#">Conciertos</a></li>
+                <li><a href="#">Salud y Bienestar</a></li>
+                <li><a href="#">Tecnologia</a></li>
+                <li><a href="#">Deportes</a></li>
+                <li><a href="#">Cine</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
