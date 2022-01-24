@@ -1,7 +1,7 @@
 const Home = () => {
   return (
     <div className="App">
-      <h1>Home</h1>
+      <h1 style={{ color: 'white' }}>Home</h1>
     </div>
   );
 };
