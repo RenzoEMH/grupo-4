@@ -8,7 +8,7 @@ const Nav = () => {
 
   const cerrarSesion = () => {
     navigate('/');
-    setSesion(undefined);
+    setSesion(null);
   };
 
   return (
