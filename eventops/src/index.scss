@@ -6,15 +6,161 @@ $primary: #9f2d30;
 @import '~bootstrap-icons/font/bootstrap-icons.scss';
 
 body {
+  background-color: #21262a;
+  color: white;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.simple {
+  min-height: 100vh;
+  a {
+    font-weight: 700;
+    text-decoration: none;
+  }
+  @at-root #{&}__title {
+    font-size: 4.5rem;
+    font-weight: 700;
+    span {
+      color: $primary;
+    }
+  }
+}
+
+.eventops {
+  min-height: 100vh;
+  @at-root #{&}__header {
+    background-color: #21262a;
+  }
+  @at-root #{&}__title {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 2.5rem;
+
+    span {
+      color: $primary;
+    }
+  }
+
+  @at-root #{&}__search-input {
+    width: auto;
+  }
+
+  @at-root #{&}__title:hover {
+    color: white;
+  }
+}
+
+.filter-search:focus {
+  box-shadow: 0 0 0 0 rgb(159 45 48 / 25%);
+}
+
+.password-recovery {
+  @at-root #{&}__text {
+    text-align: justify;
+  }
+}
+
+.price-dropdown,
+.category-dropdown,
+.date-dropdown {
+  min-width: 20rem;
+}
+
+// footer de Renzo
+
+.footer {
+  font-size: 1rem;
+  color: black;
+  border-top: 1px solid white;
+  padding-top: 1.6rem;
+  background-color: white;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-around;
+  background-color: #21262a;
+  ul {
+    margin-top: 0.6rem;
+  }
+  li {
+    list-style: none;
+  }
+  label {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #9f2d30;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  span {
+    color: white;
+  }
+}
+
+// card de Brigitte
+
+.card {
+  border-style: none;
+  /*   width: 362px;
+  height: 340px; */
+}
+
+.card-body {
+  margin: 0;
+  padding: 0;
+}
+
+.card-main-text {
+  margin: 0.5rem;
+  color: black;
+  font-weight: 700;
+}
+
+.card-text {
+  background-color: rgba(52, 46, 46, 0.25);
+  color: #000;
+  padding: 0.5rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.card-detail {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+}
+
+.card-state {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.card-button {
+  font-weight: 300;
+  color: #fff;
+  background-color: #9f2d30;
+  border-radius: 15px;
+  border-style: none;
+  padding: 0.3rem;
+  width: 40%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+// icons
+.burger-toggler {
+  display: contents;
+}
+
+.burger-bi-nav {
+  color: white;
+  font-size: 2.3rem;
+  line-height: 0;
+}
+
+.evt-person {
+  color: white;
+  font-size: 3.5rem;
 }
