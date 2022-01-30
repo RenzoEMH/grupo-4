@@ -18,6 +18,7 @@ import misRutas from '../utils/routesNames';
 import ManageBanner from '../pages/admin/ManageBanner';
 import RequireAuth from '../utils/RequireAuth';
 import HideIfLogged from '../utils/HideIfLogged';
+import SearchEvents from '../pages/SearchEvents';
 
 function App() {
   const { sesion } = useContext(SesionContext);
@@ -82,6 +83,17 @@ function App() {
             <RequireAuth type="user">
               <ManageEvents />
             </RequireAuth>
+          }
+        />
+        <Route
+          exact
+          path="/busqueda"
+          element={
+            sesion?.type === 'admin' ? (
+              <Navigate to="/not-found" replace />
+            ) : (
+              <SearchEvents />
+            )
           }
         />
 
