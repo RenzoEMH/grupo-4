@@ -1,3 +1,5 @@
+import './_EventCard.scss';
+
 const EventCard = ({ evento: { date, img, price, title } }) => {
   return (
     <div className="col-12 col-md-6 col-lg-4">

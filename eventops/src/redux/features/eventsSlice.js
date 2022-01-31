@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import eventos from '../../utils/eventos';
 
 export const eventsSlice = createSlice({
-  name: 'events',
+  name: 'eventos',
   initialState: {
     eventos,
   },

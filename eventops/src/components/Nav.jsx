@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SesionContext } from '../utils/SesionContext';
+import './_Nav.scss';
 
 const Nav = () => {
   const { sesion, setSesion } = useContext(SesionContext);
