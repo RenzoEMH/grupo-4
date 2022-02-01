@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SesionContext } from '../utils/SesionContext';
+import './_LogIn.scss';
 
 const LogIn = () => {
   const [user, setUser] = useState(null);

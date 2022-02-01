@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import './_PasswordRecovery.scss';
 
 const PasswordRecovery = () => {
   return (
