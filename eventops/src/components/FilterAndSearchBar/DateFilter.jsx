@@ -1,19 +1,38 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import { setDates } from '../../redux/features/filtersSlice';
 
 const DateFilter = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [dateRange, setDateRange] = useState({ min: '', max: '' });
-  const filters = useSelector((state) => state.filtros);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setDateRange({ min: filters.minDate, max: filters.maxDate });
-  }, [filters.maxDate, filters.minDate]);
+    setDateRange({
+      min: searchParams.get('sdate') || '',
+      max: searchParams.get('edate') || '',
+    });
+    dispatch(
+      setDates({
+        min: searchParams.get('sdate') || '',
+        max: searchParams.get('edate') || '',
+      })
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   const handleDateFilterSubmit = (e) => {
     e.preventDefault();
+    setSearchParams({
+      title: searchParams.get('title') || '',
+      sprice: searchParams.get('sprice') || '',
+      eprice: searchParams.get('eprice') || '',
+      category: searchParams.get('category') || '',
+      sdate: dateRange.min,
+      edate: dateRange.max,
+    });
     dispatch(setDates(dateRange));
   };
 

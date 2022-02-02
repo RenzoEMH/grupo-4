@@ -10,6 +10,7 @@ export const filtersSlice = createSlice({
     minDate: '',
     maxDate: '',
     page: 1,
+    length: 0,
   },
   reducers: {
     setTitleSearch: (state, { payload: query }) => {
@@ -33,10 +34,20 @@ export const filtersSlice = createSlice({
     load: (state) => {
       state.page += 1;
     },
+    // filtered array length
+    setLength: (state, { payload: newLength }) => {
+      state.length = newLength;
+    },
   },
 });
 
-export const { setTitleSearch, setPrices, setCategory, setDates, load } =
-  filtersSlice.actions;
+export const {
+  setTitleSearch,
+  setPrices,
+  setCategory,
+  setDates,
+  load,
+  setLength,
+} = filtersSlice.actions;
 
 export default filtersSlice.reducer;

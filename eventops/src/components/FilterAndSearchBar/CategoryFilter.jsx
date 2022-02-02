@@ -1,22 +1,33 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import { setCategory } from '../../redux/features/filtersSlice';
 import categorias from '../../utils/categoriesNames';
 import CategoryRadioOption from './CategoryRadioOption';
 import './_CategoryFilter.scss';
 
 const CategoryFilter = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [selectedValue, setSelectedValue] = useState('');
-  const filters = useSelector((state) => state.filtros);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setSelectedValue(filters.category);
-  }, [filters.category]);
+    setSelectedValue(searchParams.get('category') || '');
+    dispatch(setCategory(searchParams.get('category') || ''));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   const handleCategoryFilterSubmit = (e) => {
     e.preventDefault();
+    setSearchParams({
+      title: searchParams.get('title') || '',
+      sprice: searchParams.get('sprice') || '',
+      eprice: searchParams.get('eprice') || '',
+      category: selectedValue,
+      sdate: searchParams.get('sdate') || '',
+      edate: searchParams.get('edate') || '',
+    });
     dispatch(setCategory(selectedValue));
   };
 
