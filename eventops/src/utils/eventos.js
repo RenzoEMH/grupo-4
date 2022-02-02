@@ -45,7 +45,7 @@ const eventos = [
     img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Samsung%27s_Virtual_Reality_MWC_2016_Press_Conference_%2826666393696%29.jpg/1200px-Samsung%27s_Virtual_Reality_MWC_2016_Press_Conference_%2826666393696%29.jpg',
     date: '2022-02-17T21:00:00.000Z',
     price: 50.0,
-    category: 'Tecnologia',
+    category: 'Tecnología',
   },
   {
     id: 7,
