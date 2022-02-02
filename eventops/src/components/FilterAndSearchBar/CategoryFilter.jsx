@@ -1,4 +1,25 @@
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCategory } from '../../redux/features/filtersSlice';
+import categorias from '../../utils/categoriesNames';
+import CategoryRadioOption from './CategoryRadioOption';
+import './_CategoryFilter.scss';
+
 const CategoryFilter = () => {
+  const [selectedValue, setSelectedValue] = useState('');
+  const filters = useSelector((state) => state.filtros);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setSelectedValue(filters.category);
+  }, [filters.category]);
+
+  const handleCategoryFilterSubmit = (e) => {
+    e.preventDefault();
+    dispatch(setCategory(selectedValue));
+  };
+
   return (
     <div className="btn-group">
       <button
@@ -21,7 +42,12 @@ const CategoryFilter = () => {
         className="dropdown-menu dropdown-menu-end p-3 category-dropdown"
         aria-labelledby="categoriasDropdown"
       >
-        <form action="" className="register">
+        <form
+          onSubmit={(e) => {
+            handleCategoryFilterSubmit(e);
+          }}
+          className="register categories"
+        >
           <h4 className="text-center mb-3">Filtro por Categorias</h4>
           <div
             className="
@@ -33,44 +59,18 @@ const CategoryFilter = () => {
                       gap-2
                     "
           >
-            <button
-              className="btn btn-outline-primary rounded-pill"
-              type="button"
-            >
-              Concierto
-            </button>
-            <button
-              className="btn btn-outline-primary rounded-pill"
-              type="button"
-            >
-              Salud y Bienestar
-            </button>
-            <button
-              className="btn btn-outline-primary rounded-pill"
-              type="button"
-            >
-              Tecnología
-            </button>
-            <button
-              className="btn btn-outline-primary rounded-pill"
-              type="button"
-            >
-              Deportes
-            </button>
-            <button
-              className="btn btn-outline-primary rounded-pill"
-              type="button"
-            >
-              Cine
-            </button>
+            {categorias.map((categoria) => {
+              return (
+                <CategoryRadioOption
+                  categoria={categoria}
+                  selectedValue={selectedValue}
+                  setSelectedValue={setSelectedValue}
+                  key={`${categoria}`}
+                />
+              );
+            })}
           </div>
-          <div className="d-flex gap-3">
-            <button
-              className="category-dropdown__btn btn btn-secondary flex-fill"
-              type="button"
-            >
-              Limpiar
-            </button>
+          <div className="d-flex">
             <button
               className="category-dropdown__btn btn btn-primary flex-fill"
               type="submit"

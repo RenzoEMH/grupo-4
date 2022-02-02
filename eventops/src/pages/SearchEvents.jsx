@@ -7,31 +7,49 @@ import {
 import EventCard from '../components/EventCard';
 import FilterAndSearchBar from '../components/FilterAndSearchBar/FilterAndSearchBar';
 import misEventos from '../utils/eventos';
+import { load } from '../redux/features/filtersSlice';
+
+const defaultDate = '0000-01-01T05:08:12.000Z';
+const perPage = 6;
 
 const returnNumber = (string) => {
   const number = parseInt(string === '' ? '0' : string);
   return number;
 };
 
+const returnDate = (string) => {
+  const date = string === '' ? defaultDate : string;
+  return date;
+};
+
 const SearchEvents = () => {
   const eventos = useSelector((state) => state.eventos);
   const filters = useSelector((state) => state.filtros);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(setBothArrayEvents(misEventos));
   }, [dispatch]);
 
   useEffect(() => {
-    const min = returnNumber(filters.minPrice);
-    const max = returnNumber(filters.maxPrice);
+    const minPrice = returnNumber(filters.minPrice);
+    const maxPrice = returnNumber(filters.maxPrice);
+    const minDate = returnDate(filters.minDate);
+    const maxDate = returnDate(filters.maxDate);
+
     const events = eventos.allEvents.filter(
       (event) =>
         event.title.toLowerCase().indexOf(filters.titleSearch.toLowerCase()) >=
           0 &&
-        event.price >= min &&
-        event.price <= (max !== 0 ? max : event.price)
+        event.price >= minPrice &&
+        event.price <= (maxPrice !== 0 ? maxPrice : event.price) &&
+        event.category.indexOf(filters.category) >= 0 &&
+        new Date(event.date) >= new Date(minDate) &&
+        new Date(event.date) <=
+          new Date(maxDate !== defaultDate ? maxDate : event.date)
     );
-    dispatch(setFilteredEvents(events));
+
+    dispatch(setFilteredEvents(events.slice(0, filters.page * perPage)));
   }, [dispatch, eventos.allEvents, filters]);
 
   return (
@@ -48,9 +66,14 @@ const SearchEvents = () => {
               </div>
             </div>
           </section>
-          <button className="btn btn-primary btn-lg rounded-pill align-self-center px-5">
-            Cargar Más
-          </button>
+          {eventos.allEvents.length > filters.page * perPage ? (
+            <button
+              onClick={() => dispatch(load())}
+              className="btn btn-primary btn-lg rounded-pill align-self-center px-5"
+            >
+              Cargar Más
+            </button>
+          ) : null}
         </div>
       </main>
     </>

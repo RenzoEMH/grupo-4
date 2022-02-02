@@ -1,18 +1,20 @@
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { setPrices } from '../../redux/features/filtersSlice';
 
 const PriceFilter = () => {
+  const [priceRange, setPriceRange] = useState({ min: '', max: '' });
+  const filters = useSelector((state) => state.filtros);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setPriceRange({ min: filters.minPrice, max: filters.maxPrice });
+  }, [filters.maxPrice, filters.minPrice]);
 
   const handlePriceFilterSubmit = (e) => {
     e.preventDefault();
-    const prices = { min: e.target[0].value, max: e.target[1].value };
-    dispatch(setPrices(prices));
-  };
-
-  const handleClearPriceFilter = () => {
-    const prices = { min: '', max: '' };
-    dispatch(setPrices(prices));
+    dispatch(setPrices(priceRange));
   };
 
   return (
@@ -47,6 +49,10 @@ const PriceFilter = () => {
               id="min"
               placeholder="Min."
               min="0"
+              value={priceRange.min}
+              onChange={(e) => {
+                setPriceRange({ ...priceRange, min: e.target.value });
+              }}
             />
             <input
               type="number"
@@ -54,16 +60,13 @@ const PriceFilter = () => {
               id="max"
               placeholder="Max."
               min="0"
+              value={priceRange.max}
+              onChange={(e) => {
+                setPriceRange({ ...priceRange, max: e.target.value });
+              }}
             />
           </div>
-          <div className="d-flex gap-3">
-            <button
-              onClick={() => handleClearPriceFilter()}
-              className="category-dropdown__btn btn btn-secondary flex-fill"
-              type="button"
-            >
-              Limpiar
-            </button>
+          <div className="d-flex">
             <button
               className="price-dropdown__btn btn btn-primary flex-fill"
               type="submit"
