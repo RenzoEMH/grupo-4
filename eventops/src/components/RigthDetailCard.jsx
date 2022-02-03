@@ -4,9 +4,9 @@ const RigthDetailCard = ({
   return (
     <div className="col-md-4">
       <div className="card">
-        <div className="card-body">
+        <div className="card-body detail-eventops-body">
           <h3 className="card-title">{title}</h3>
-          <p className="card-text">
+          <p className="card-text detail-eventops-text">
             Fecha: Lunes 20 de diciembre, 2021 <br />
             Hora: 5:00pm
           </p>
