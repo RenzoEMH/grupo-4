@@ -3,6 +3,8 @@ import { useState } from 'react';
 import DetailsEvent from '../../components/crearEvento/DetailsEvent';
 import UbicactionEvent from '../../components/crearEvento/UbicationEvent';
 import CreationTicket from '../../components/crearEvento/CreationTicket';
+import FinishCreate from '../../components/crearEvento/FinishCreate';
+import { useNavigate } from 'react-router-dom';
 
 const CreateEvent = () => {
   const [page, setPage] = useState(1);
@@ -13,6 +15,9 @@ const CreateEvent = () => {
   function goPrevPage() {
     setPage((page) => page - 1);
   }
+
+  const navigate = useNavigate();
+
   return (
     <main className="cuerpo">
       {page === 1 && <Detalles />}
@@ -47,7 +52,9 @@ const CreateEvent = () => {
               className="col-md-6 order-md-1"
               style={{ display: 'flex', justifyContent: 'flex-end' }}
             >
-              <button className="btn btn-light">Ir a Inicio</button>
+              <button onClick={() => navigate('/')} className="btn btn-light">
+                Ir a Inicio
+              </button>
             </div>
           )}
           {(page === 1 || page === 2) && (
@@ -168,6 +175,7 @@ function Finalizado() {
           <strong>Finalizado</strong>
         </li>
       </ul>
+      <FinishCreate />
     </form>
   );
 }

@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
+
 const RigthDetailCard = ({
   EventDetail: { title, date, typeTicket, price, city, address, owner },
 }) => {
+  const navigate = useNavigate();
   return (
     <div className="col-md-4">
       <div className="card">
@@ -80,7 +83,12 @@ const RigthDetailCard = ({
             </div>
           </div>
           <div className="col-md-12" id="btnComprar">
-            <button className="btn btn-danger">Comprar Ahora</button>
+            <button
+              onClick={() => navigate('/metodo-pago')}
+              className="btn btn-danger"
+            >
+              Comprar Ahora
+            </button>
           </div>
           <div
             className="col-md-12 mt-4 pt-3"

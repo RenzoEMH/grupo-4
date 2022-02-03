@@ -2,8 +2,6 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
 import Home from '../pages/Home';
-/* import ManageEvents from '../pages/user/ManageEvents'; */
-/* import Tickets from '../pages/user/Tickets'; */
 import UserProfile from '../pages/user/UserProfile';
 import MisEntradas from '../pages/MisEntradas';
 import MisEventosCreados from '../pages/MisEventosCreados';
@@ -144,7 +142,7 @@ function App() {
             </RequireAuth>
           }
         />
-      
+
         {/* guest */}
         <Route
           exact

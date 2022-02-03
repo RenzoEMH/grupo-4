@@ -10,9 +10,9 @@ const LeftDetailCard = ({
             <div className="col-md-10">
               <h2 className="card-title">{title}</h2>
             </div>
-            <div class="col-md-2">
-              <button class="btn btn-danger">
-                <i class="bi bi-share"></i>
+            <div className="col-md-2">
+              <button className="btn btn-danger">
+                <i className="bi bi-share"></i>
               </button>
             </div>
           </div>
