@@ -87,7 +87,13 @@ const CreationTicket = () => {
               />
               <label className="custom-control-label" htmlFor="same-address">
                 He leido y acepto los
-                <a href="#"> Terminos y Condiciones.</a>
+                <span
+                  type="button"
+                  style={{ color: '#9f2d30', fontWeight: '700' }}
+                >
+                  {' '}
+                  Terminos y Condiciones.
+                </span>
               </label>
             </div>
             <div className="custom-control custom-checkbox" id="checkbox2">
