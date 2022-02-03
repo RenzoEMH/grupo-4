@@ -26464,4 +26464,237 @@ body {
   font-weight: 200;
 }
 
+.container-metod-payment {
+  display: flex;
+  flex-direction: column;
+}
+.container-metod-payment #row-principal {
+  flex-direction: row;
+  align-items: center;
+}
+.container-metod-payment .class-botones {
+  max-width: 500px;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+.container-metod-payment .class-botones .botones {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.container-metod-payment .class-botones .botones .boton-1 {
+  border: none;
+  border-radius: 5px;
+  background-color: #929292;
+  color: #E4EFE1;
+  font-size: 30px;
+  padding: 10px 30px 10px 30px;
+}
+.container-metod-payment .class-botones .botones .boton-2 {
+  border: none;
+  border-radius: 5px;
+  background-color: #9F2D30;
+  color: #E4EFE1;
+  padding: 10px;
+  font-size: 30px;
+  padding: 10px 30px 10px 30px;
+}
+.container-metod-payment .caja-right {
+  background-color: #fff;
+  max-height: 334px;
+  border-radius: 10px;
+  padding: 1em;
+  align-items: center;
+  max-width: 400px;
+  margin: auto;
+}
+.container-metod-payment .subtitle {
+  color: #fff;
+  margin-left: 50px;
+  margin-top: 20px;
+}
+.container-metod-payment .title {
+  color: #fff;
+  text-align: center;
+  margin-top: 30px;
+}
+.container-metod-payment .check-1 {
+  color: #fff;
+  opacity: 0.9;
+  margin-left: 50px;
+}
+.container-metod-payment .check-2 {
+  color: #fff;
+  margin-left: 50px;
+  margin-bottom: 20px;
+  margin-right: 50px;
+}
+.container-metod-payment #accordionExample {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.container-metod-payment .form-check-input[disabled] ~ .form-check-label, .container-metod-payment .form-check-input:disabled ~ .form-check-label {
+  opacity: 1;
+}
+
+.container-detalle-compra {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+.container-detalle-compra .title-page {
+  color: #fff;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.container-detalle-compra .fila-0 {
+  margin-left: 20px;
+}
+.container-detalle-compra .row {
+  display: flex;
+}
+.container-detalle-compra .fila-1 {
+  background-color: #9F2D30;
+  color: #fff;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  text-align: center;
+  align-items: center;
+}
+.container-detalle-compra .fila-1 p {
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.container-detalle-compra .fila-2 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.container-detalle-compra .fila-2 h3, .container-detalle-compra .fila-2 .h3 {
+  color: #fff;
+  margin-right: 50px;
+}
+.container-detalle-compra .fila-2 button {
+  border-radius: 10px;
+  background-color: #9F2D30;
+  border: none;
+  color: #fff;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+.container-detalle-compra .left {
+  background-color: #fff;
+}
+.container-detalle-compra .left .t-r-cabecera {
+  color: #9F2D30;
+  text-align: center;
+}
+.container-detalle-compra .left .codigo-qr {
+  text-align: center;
+}
+.container-detalle-compra .left .codigo-qr img {
+  width: 100px;
+  height: 100px;
+}
+.container-detalle-compra .left p {
+  font-size: 10px;
+}
+.container-detalle-compra .left hr {
+  height: 1px;
+  color: #000;
+}
+.container-detalle-compra .center {
+  display: flex;
+  flex-direction: row;
+  background-color: #C4C4C4;
+  min-width: 500px;
+}
+.container-detalle-compra .center .name-organizador {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  font-size: 13px;
+  margin: auto;
+}
+.container-detalle-compra .center .datos-rigt {
+  flex-direction: column;
+  align-items: center;
+}
+.container-detalle-compra .center .datos-rigt .linea {
+  background-color: #000;
+  max-width: 90%;
+  margin: 0 auto;
+}
+.container-detalle-compra .center .datos-rigt hr {
+  height: 5px;
+  background-color: black;
+  text-align: center;
+}
+.container-detalle-compra .center .datos-rigt .lugar {
+  font-size: 18;
+  color: #000;
+  text-align: center;
+  margin-top: 10px;
+}
+.container-detalle-compra .center .center-titulo {
+  text-align: center;
+  color: #000;
+}
+.container-detalle-compra .botton {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 90%;
+  margin: 0 auto;
+}
+.container-detalle-compra .botton p {
+  font-size: 15px;
+  color: #000;
+}
+.container-detalle-compra .botton .white {
+  color: white;
+}
+.container-detalle-compra .botton .red {
+  color: #9F2D30;
+}
+.container-detalle-compra .botton .linea2 {
+  background-color: #000;
+  margin: 0 auto;
+}
+.container-detalle-compra .right {
+  background-color: #fff;
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  display: flex;
+  flex-direction: column;
+}
+
+#container-fp {
+  margin-left: 500px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#container-fp .botones-fp {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+#container-fp .botones-fp .boton {
+  border: none;
+  border-radius: 5px;
+  background-color: #9F2D30;
+  color: #E4EFE1;
+  padding: 10px;
+}
+
 /*# sourceMappingURL=style.css.map */
