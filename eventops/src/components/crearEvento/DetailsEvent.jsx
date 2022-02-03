@@ -69,7 +69,7 @@ const DetailsEvent = () => {
                   </button>
                 </div>
               </div>
-              <div className="form-element" Style="padding-top: 14px">
+              <div className="form-element" style={{ paddingTop: '14px' }}>
                 <label>Imagen del Ticket</label>
                 <div className="image-ticket">
                   <button
@@ -82,7 +82,7 @@ const DetailsEvent = () => {
                   </button>
                 </div>
               </div>
-              <div className="col-md-3 mb-3" Style="margin-top: 15px">
+              <div className="col-md-3 mb-3" style={{ marginTop: '15px' }}>
                 <label htmlFor="address">Hora de Inicio</label>
                 <input type="time" id="inputMDEx1" className="form-control" />
               </div>

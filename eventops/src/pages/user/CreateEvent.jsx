@@ -19,12 +19,15 @@ const CreateEvent = () => {
       {page === 2 && <Ubicacion />}
       {page === 3 && <CreacionTickets />}
       {page === 4 && <Finalizado />}
-      <div className="col-md-12 order-md-1 container" Style="margin-top: 1rem">
+      <div
+        className="col-md-12 order-md-1 container"
+        style={{ marginTop: '1rem' }}
+      >
         <div className="row">
           {page === 1 && (
             <div
               className="col-md-6 order-md-1"
-              Style="display: flex; justify-content: flex-end"
+              style={{ display: 'flex', justifyContent: 'flex-end' }}
             >
               <button className="btn btn-light">Cancelar</button>
             </div>
@@ -32,7 +35,7 @@ const CreateEvent = () => {
           {(page === 2 || page === 3) && (
             <div
               className="col-md-6 order-md-1"
-              Style="display: flex; justify-content: flex-end"
+              style={{ display: 'flex', justifyContent: 'flex-end' }}
             >
               <button className="btn btn-light" onClick={goPrevPage}>
                 Atras
@@ -42,7 +45,7 @@ const CreateEvent = () => {
           {page === 4 && (
             <div
               className="col-md-6 order-md-1"
-              Style="display: flex; justify-content: flex-end"
+              style={{ display: 'flex', justifyContent: 'flex-end' }}
             >
               <button className="btn btn-light">Ir a Inicio</button>
             </div>
@@ -50,7 +53,7 @@ const CreateEvent = () => {
           {(page === 1 || page === 2) && (
             <div
               className="col-md-6 order-md-1"
-              Style="display: flex; justify-content: flex-start"
+              style={{ display: 'flex', justifyContent: 'flex-start' }}
             >
               <button className="btn btn-danger" onClick={goNextPage}>
                 Siguiente
@@ -60,7 +63,7 @@ const CreateEvent = () => {
           {page === 3 && (
             <div
               className="col-md-6 order-md-1"
-              Style="display: flex; justify-content: flex-start"
+              style={{ display: 'flex', justifyContent: 'flex-start' }}
             >
               <button className="btn btn-danger" onClick={goNextPage}>
                 Crear Evento
@@ -70,7 +73,7 @@ const CreateEvent = () => {
           {page === 4 && (
             <div
               className="col-md-6 order-md-1"
-              Style="display: flex; justify-content: flex-start"
+              style={{ display: 'flex', justifyContent: 'flex-start' }}
             >
               <button className="btn btn-danger">Crear otro Evento</button>
             </div>

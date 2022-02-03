@@ -84,7 +84,7 @@ const RigthDetailCard = ({
           </div>
           <div
             className="col-md-12 mt-4 pt-3"
-            Style="border-top: 4px solid #21262a"
+            style={{ borderTop: '4px solid #21262a' }}
           >
             <h4 className="card-title">{city}, PE</h4>
             <p>{address}</p>

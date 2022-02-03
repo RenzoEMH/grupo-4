@@ -13,13 +13,13 @@ const PaymentSummary = () => {
         <div className="col-md-3 summary" id="resumenPago">
           <div
             className="text-center"
-            Style="border-bottom: 2px solid black; margin-top: 1rem"
+            style={{ borderBottom: '2px solid black', marginTop: '1rem' }}
           >
             <h5>
               <b>Resumen de Pago</b>
             </h5>
           </div>
-          <div className="row" Style="margin-top: 1rem">
+          <div className="row" style={{ marginTop: '1rem' }}>
             <div className="col">
               <p>Subtotal:</p>
             </div>
@@ -33,7 +33,7 @@ const PaymentSummary = () => {
           </div>
           <div
             className="row"
-            Style="border-top: 4px solid #21262a; padding: 2vh 0"
+            style={{ borderTop: '4px solid #21262a', padding: '2vh 0' }}
           >
             <div className="col">
               <p>Total</p>

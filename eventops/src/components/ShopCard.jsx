@@ -11,15 +11,15 @@ const ShopCard = ({
   };
 
   return (
-    <div className="row border-bottom" Style="margin-top: 1rem">
-      <div className="row main align-items-center" Style="margin-bottom: 1rem">
+    <div className="row border-bottom mt-3">
+      <div className="row main align-items-center mb-3">
         <div className="col-md-6">
           <div className="row">
             <div className="col-md-4">
               <img alt={title} className="img-fluid" src={img} />
             </div>
             <div className="col-md-8">
-              <div className="row" Style="line-height: 15px">
+              <div className="row" style={{ lineHeight: '15px' }}>
                 <h6>{title}</h6>
                 <p>{city}</p>
                 <p>Lunes 20 de diciembre de 2021 5:00pm</p>
@@ -34,7 +34,7 @@ const ShopCard = ({
           <span type="button">
             <i className="bi bi-dash"></i>{' '}
           </span>
-          <span className="border" Style="padding: 0 0.5rem">
+          <span className="border" style={{ padding: '0 0.5rem' }}>
             {numberTickets}
           </span>
           <span type="button">

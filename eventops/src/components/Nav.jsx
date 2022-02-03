@@ -148,6 +148,20 @@ const Nav = () => {
                         </Link>
                       </li>
                       <li>
+                        <Link
+                          to="/carrito-compra"
+                          className="dropdown-item d-flex align-items-center gap-2"
+                        >
+                          <i
+                            style={{
+                              fontSize: '1.5rem',
+                            }}
+                            className="bi bi-cart-fill lh-1"
+                          ></i>
+                          Carrito
+                        </Link>
+                      </li>
+                      <li>
                         <span
                           style={{ cursor: 'pointer' }}
                           className="dropdown-item d-flex align-items-center gap-2"
@@ -209,4 +223,3 @@ const Nav = () => {
 };
 
 export default Nav;
-

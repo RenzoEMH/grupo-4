@@ -18,7 +18,7 @@ const ShopCart = () => {
     <main className="cuerpoCarrito">
       <div className="card" id="cardCarrito">
         <div className="col-md-12 cart">
-          <div className="row" Style="margin-bottom: 1rem">
+          <div className="row mb-3">
             <div className="col-md-10">
               <h3>Mi compra</h3>
             </div>
@@ -61,7 +61,7 @@ const ShopCart = () => {
         <div className="col-md-9"></div>
         <div
           className="col-md-3"
-          Style="display: flex; justify-content: center"
+          style={{ display: 'flex', justifyContent: 'center' }}
         >
           <button className="btn btn-danger">Pagar Ahora</button>
         </div>

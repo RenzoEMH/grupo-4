@@ -1,7 +1,7 @@
 import CategoryFilter from './CategoryFilter';
 import DateFilter from './DateFilter';
+import HomeSearchBox from './HomeSearchBox';
 import PriceFilter from './PriceFilter';
-import SearchBox from './SearchBox';
 
 const FilterAndSearchBar = () => {
   return (
@@ -15,7 +15,7 @@ const FilterAndSearchBar = () => {
             justify-content-md-between
           "
         >
-          <SearchBox />
+          <HomeSearchBox />
           <div className="d-flex justify-content-around">
             <PriceFilter />
             <CategoryFilter />
@@ -23,7 +23,6 @@ const FilterAndSearchBar = () => {
           </div>
         </div>
       </section>
-
     </>
   );
 };

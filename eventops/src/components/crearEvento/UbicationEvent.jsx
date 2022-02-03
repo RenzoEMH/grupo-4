@@ -64,13 +64,13 @@ const UbicactionEvent = () => {
                 <div
                   id="map-container-google-1"
                   className="z-depth-1-half map-container"
-                  Style="height: 100px"
+                  style={{ height: '100px' }}
                 >
                   <iframe
                     title="Mapa de crear evento"
                     src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed"
                     frameBorder="0"
-                    Style="border: 0"
+                    style={{ border: '0' }}
                     allowFullScreen
                   ></iframe>
                 </div>
