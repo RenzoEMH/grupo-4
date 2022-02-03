@@ -1,11 +1,13 @@
 import MisEntradasCard from '../components/MisEntradasCard';
 import eventos from '../utils/eventos';
+import FilterAndSearchMisEntradas from '../components/FilterAndSearchBar/FilterAndSearchMisEntradas';
 
 const MisEntradas = () => {
   return (
     <div className="App">
+      <h1 className="m-4">MIS ENTRADAS</h1>
+      <FilterAndSearchMisEntradas />
       <main className="eventops__main container d-flex flex-column flex-grow-1">
-        <h1 className="mb-4 text-start">Mis entradas</h1>
         <div className="d-flex flex-column flex-grow-1 gap-3">
           <section className="eventos-filtrados d-flex flex-grow-1">
             <div className="container">

@@ -1,5 +1,6 @@
 import EventCard from '../components/EventCard';
 import FilterAndSearchBarHome from '../components/FilterAndSearchBar/FilterAndSearchBarHome';
+
 import eventos from '../utils/eventos';
 import './_Home.scss'
 
@@ -35,7 +36,7 @@ const Home = () => {
         </div>
         <div className="carousel-inner">
           <div className="carousel-item active">
-            <img src={'https://www.eafit.edu.co/sinfonica/PublishingImages/ACC-Banner-VI-Concierto.jpg'} className="d-block w-100" alt="concierto gianmarco" />
+            <img src={'https://blogs.elespectador.com/wp-content/uploads/2014/09/PARA-BANNER-DEL-STREAMING-01.jpg'} className="d-block w-100" alt="concierto gianmarco" />
           </div>
           <div className="carousel-item">
             <img src={"https://blogs.elespectador.com/wp-content/uploads/2014/09/PARA-BANNER-DEL-STREAMING-01.jpg"} className="d-block w-100" alt="concierto B" />
@@ -66,6 +67,7 @@ const Home = () => {
      
 
       <FilterAndSearchBarHome />
+
       <main className="eventops__main container d-flex flex-column flex-grow-1">
         <h1 className="mb-4 text-start">Todos los eventos</h1>
         <div className="d-flex flex-column flex-grow-1 gap-3">
