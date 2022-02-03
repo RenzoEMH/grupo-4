@@ -1,3 +1,4 @@
+
 const Home = () => {
   return (
     <div className="App">
@@ -7,3 +8,4 @@ const Home = () => {
 };
 
 export default Home;
+

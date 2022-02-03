@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
-import CreateEvent from '../pages/user/CreateEvent';
 import Home from '../pages/Home';
 import ManageEvents from '../pages/user/ManageEvents';
 import Tickets from '../pages/user/Tickets';
@@ -19,6 +18,9 @@ import ManageBanner from '../pages/admin/ManageBanner';
 import RequireAuth from '../utils/RequireAuth';
 import HideIfLogged from '../utils/HideIfLogged';
 import SearchEvents from '../pages/SearchEvents';
+import EventDetail from '../pages/EventDetail';
+import ShopCart from '../pages/user/ShopCart';
+import CreateEvent from '../pages/user/CreateEvent';
 
 function App() {
   const { sesion } = useContext(SesionContext);
@@ -49,7 +51,7 @@ function App() {
         />
 
         {/* user */}
-        <Route
+        {/* <Route
           exact
           path="/crear-evento"
           element={
@@ -57,7 +59,7 @@ function App() {
               <CreateEvent />
             </RequireAuth>
           }
-        />
+        /> */}
         <Route
           exact
           path="/perfil"
@@ -122,6 +124,25 @@ function App() {
           element={
             <HideIfLogged>
               <PasswordRecovery />
+            </HideIfLogged>
+          }
+        />
+        <Route exact path="/evento-detalle" element={<EventDetail />} />
+        <Route
+          exact
+          path="/carrito-compra"
+          element={
+            <HideIfLogged>
+              <ShopCart />
+            </HideIfLogged>
+          }
+        />
+        <Route
+          exact
+          path="/crear-evento"
+          element={
+            <HideIfLogged>
+              <CreateEvent />
             </HideIfLogged>
           }
         />
