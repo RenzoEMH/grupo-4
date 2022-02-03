@@ -1,15 +1,12 @@
 import EventCard from '../components/EventCard';
 import FilterAndSearchBarHome from '../components/FilterAndSearchBar/FilterAndSearchBarHome';
 import eventos from '../utils/eventos';
-/* import SliderHome from '../components/SliderHome';
-import imgSlider from '../utils/imgSlider'; */
+import './_Home.scss'
 
 const Home = () => {
   return (
     <div className="App">
-      {/*       Slider Start */}
-
-      {/*       <div
+            <div
         id="carouselExampleIndicators"
         className="carousel slide"
         data-bs-ride="carousel"
@@ -36,9 +33,17 @@ const Home = () => {
             aria-label="Slide 3"
           ></button>
         </div>
-        {imgSlider.map((slider) => (
-          <SliderHome slider={slider} key={slider.id} />
-        ))}
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+            <img src={'https://www.eafit.edu.co/sinfonica/PublishingImages/ACC-Banner-VI-Concierto.jpg'} className="d-block w-100" alt="concierto gianmarco" />
+          </div>
+          <div className="carousel-item">
+            <img src={"https://blogs.elespectador.com/wp-content/uploads/2014/09/PARA-BANNER-DEL-STREAMING-01.jpg"} className="d-block w-100" alt="concierto B" />
+          </div>
+          <div className="carousel-item">
+            <img src={"https://tecinformamos.com/wp-content/uploads/2021/12/Coldplay2022_Peru_JPG.jpg"} className="d-block w-100" alt="concierto C" />
+          </div>
+        </div>
         <button
           className="carousel-control-prev"
           type="button"
@@ -57,9 +62,8 @@ const Home = () => {
           <span className="carousel-control-next-icon" aria-hidden="true"></span>
           <span className="visually-hidden">Next</span>
         </button>
-      </div> */}
-
-      {/*       Slider End */}
+      </div>
+     
 
       <FilterAndSearchBarHome />
       <main className="eventops__main container d-flex flex-column flex-grow-1">
