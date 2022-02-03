@@ -57,7 +57,7 @@ const eventos = [
   },
   {
     id: 8,
-    title: 'Colplay en Perú',
+    title: 'Coldplay en Perú',
     img: 'https://live.staticflickr.com/3677/14292292232_af0fc69ccc_h.jpg',
     date: '2022-02-15T21:00:00.000Z',
     price: 180.0,

@@ -41,10 +41,10 @@ const Nav = () => {
             {sesion ? (
               sesion.type === 'admin' ? (
                 <>
-                  <li className="nav-item btn btn-primary rounded-pill">
+                  <li className="nav-item btn btn-primary rounded-pill p-0">
                     <Link
                       to="/gestionar-banner"
-                      className="nav-link link-light"
+                      className="nav-link link-light p-3"
                     >
                       GESTIONAR BANNER
                     </Link>
@@ -85,8 +85,11 @@ const Nav = () => {
                 </>
               ) : (
                 <>
-                  <li className="nav-item btn btn-primary rounded-pill">
-                    <Link to="/crear-evento" className="nav-link link-light">
+                  <li className="nav-item btn btn-primary rounded-pill p-0">
+                    <Link
+                      to="/crear-evento"
+                      className="nav-link link-light p-3"
+                    >
                       CREAR EVENTO
                     </Link>
                   </li>
