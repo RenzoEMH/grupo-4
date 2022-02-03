@@ -1,11 +1,12 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
-import CreateEvent from '../pages/user/CreateEvent';
 import Home from '../pages/Home';
-import ManageEvents from '../pages/user/ManageEvents';
-import Tickets from '../pages/user/Tickets';
+/* import ManageEvents from '../pages/user/ManageEvents'; */
+/* import Tickets from '../pages/user/Tickets'; */
 import UserProfile from '../pages/user/UserProfile';
+import MisEntradas from '../pages/MisEntradas';
+import MisEventosCreados from '../pages/MisEventosCreados';
 import './App.scss';
 import { SesionContext } from '../utils/SesionContext';
 import { useContext } from 'react';
@@ -22,6 +23,9 @@ import SearchEvents from '../pages/SearchEvents';
 import Payment from '../pages/user/Payment';
 import PurchaseConfirmation from '../pages/user/PurchaseConfirmation';
 import FormPay from '../pages/user/FormPay';
+import EventDetail from '../pages/EventDetail';
+import ShopCart from '../pages/user/ShopCart';
+import CreateEvent from '../pages/user/CreateEvent';
 
 function App() {
   const { sesion } = useContext(SesionContext);
@@ -63,6 +67,15 @@ function App() {
         />
         <Route
           exact
+          path="/carrito-compra"
+          element={
+            <RequireAuth type="user">
+              <ShopCart />
+            </RequireAuth>
+          }
+        />
+        <Route
+          exact
           path="/perfil"
           element={
             <RequireAuth type="user">
@@ -75,7 +88,8 @@ function App() {
           path="/mis-entradas"
           element={
             <RequireAuth type="user">
-              <Tickets />
+              {/*               <Tickets /> */}
+              <MisEntradas />
             </RequireAuth>
           }
         />
@@ -84,7 +98,8 @@ function App() {
           path="/mis-eventos"
           element={
             <RequireAuth type="user">
-              <ManageEvents />
+              {/*               <ManageEvents /> */}
+              <MisEventosCreados />
             </RequireAuth>
           }
         />
@@ -158,6 +173,7 @@ function App() {
             </HideIfLogged>
           }
         />
+        <Route exact path="/evento-detalle" element={<EventDetail />} />
 
         {/* all */}
         <Route path="/not-found" element={<NotFound />} />

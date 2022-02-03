@@ -23,18 +23,18 @@ const Footer = () => {
                   marginTop: '0.9rem',
                 }}
               >
-                <a href="#" style={{ width: '1.5rem' }}>
+                <span style={{ width: '1.5rem' }}>
                   <i className="bi bi-facebook"></i>
-                </a>
-                <a href="#" style={{ width: '1.5rem' }}>
+                </span>
+                <span style={{ width: '1.5rem' }}>
                   <i className="bi bi-twitter"></i>
-                </a>
-                <a href="#" style={{ width: '1.5rem' }}>
+                </span>
+                <span style={{ width: '1.5rem' }}>
                   <i className="bi bi-instagram"></i>
-                </a>
-                <a href="#" style={{ width: '1.5rem' }}>
+                </span>
+                <span style={{ width: '1.5rem' }}>
                   <i className="bi bi-whatsapp"></i>
-                </a>
+                </span>
               </div>
             </div>
           </div>
@@ -43,16 +43,16 @@ const Footer = () => {
               <label or="address">Conócenos</label>
               <ul className="list-unstyled">
                 <li>
-                  <a href="#">Acerca de nosotros</a>
+                  <span>Acerca de nosotros</span>
                 </li>
                 <li>
-                  <a href="#">Preguntas frecuentes</a>
+                  <span>Preguntas frecuentes</span>
                 </li>
                 <li>
-                  <a href="#">Términos y condiciones</a>
+                  <span>Términos y condiciones</span>
                 </li>
                 <li>
-                  <a href="#">Políticas de privacidad</a>
+                  <span>Políticas de privacidad</span>
                 </li>
               </ul>
             </div>
@@ -62,13 +62,13 @@ const Footer = () => {
               <label or="address">Explora</label>
               <ul className="list-unstyled">
                 <li>
-                  <a href="#">Explora Eventops</a>
+                  <span>Explora Eventops</span>
                 </li>
                 <li>
-                  <a href="#">Danos tu opinión</a>
+                  <span>Danos tu opinión</span>
                 </li>
                 <li>
-                  <a href="#">Blog</a>
+                  <span>Blog</span>
                 </li>
               </ul>
             </div>
@@ -78,19 +78,19 @@ const Footer = () => {
               <label or="address">Categorías</label>
               <ul className="list-unstyled">
                 <li>
-                  <a href="#">Conciertos</a>
+                  <span>Conciertos</span>
                 </li>
                 <li>
-                  <a href="#">Salud y Bienestar</a>
+                  <span>Salud y Bienestar</span>
                 </li>
                 <li>
-                  <a href="#">Tecnologia</a>
+                  <span>Tecnologia</span>
                 </li>
                 <li>
-                  <a href="#">Deportes</a>
+                  <span>Deportes</span>
                 </li>
                 <li>
-                  <a href="#">Cine</a>
+                  <span>Cine</span>
                 </li>
               </ul>
             </div>

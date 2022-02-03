@@ -1,0 +1,141 @@
+@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css';
+
+.btn-danger,
+.btn-danger:hover {
+  background-color: #9f2d30 !important;
+  border: #9f2d30 !important;
+}
+
+.cuerpo {
+  margin-top: 1rem;
+  font-family: 'Roboto', sans-serif;
+
+  .accordion-button {
+    background-color: #9f2d30;
+    color: white;
+    font-size: 1.3rem;
+  }
+  .accordion-item {
+    background-color: #21262a;
+  }
+  label {
+    color: white;
+  }
+  .accordion-body {
+    margin-left: 80px;
+  }
+  .image-picker {
+    border: 1px solid black;
+    background-color: white;
+    height: 226px;
+    width: 400px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    border-radius: 3%;
+  }
+  .image-ticket {
+    border: 1px solid black;
+    background-color: white;
+    height: 169px;
+    width: 300px;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: relative;
+    margin-top: 0.1rem;
+    border-radius: 4%;
+  }
+  #crearEntrada {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .accordion {
+    border-bottom: 5px solid white;
+  }
+
+  @at-root #{&}__terminos {
+    margin-left: 100px;
+    margin-top: 2rem;
+    margin-right: 3.5rem;
+  }
+  a {
+    color: #9f2d30;
+    text-decoration: none;
+  }
+  file {
+    appearance: none;
+  }
+}
+
+// progress bar
+#progressbar {
+  text-align: center;
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  overflow: hidden;
+  color: white;
+}
+
+#progressbar .active {
+  color: #9f2d30;
+}
+
+#progressbar li {
+  list-style-type: none;
+  font-size: 14px;
+  width: 25%;
+  float: left;
+  position: relative;
+}
+
+#progressbar #account:before {
+  font-family: FontAwesome;
+  content: '\f044';
+}
+
+#progressbar #personal:before {
+  font-family: FontAwesome;
+  content: '\f041';
+}
+
+#progressbar #payment:before {
+  font-family: FontAwesome;
+  content: '\f09d';
+}
+
+#progressbar #confirm:before {
+  font-family: FontAwesome;
+  content: '\f00c';
+}
+
+#progressbar li:before {
+  width: 50px;
+  height: 50px;
+  line-height: 45px;
+  display: block;
+  font-size: 22px;
+  color: black;
+  background: white;
+  border-radius: 50%;
+  margin: 0 auto 10px auto;
+  padding: 2px;
+}
+
+#progressbar li:after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: lightgray;
+  position: absolute;
+  left: 0;
+  top: 25px;
+  z-index: -1;
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+  background: #9f2d30;
+}
