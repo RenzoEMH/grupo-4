@@ -85,7 +85,13 @@ const Register = () => {
               className="register__label"
               htmlFor="accept-terms-&-conditions"
             >
-              He leido y aceptop los <a href="#">Terminos y condiciones</a>
+              He leido y aceptop los{' '}
+              <span
+                type="button"
+                style={{ color: '#9f2d30', fontWeight: '700' }}
+              >
+                Terminos y condiciones
+              </span>
             </label>
           </div>
           <div className="d-grid mt-5 mb-3">

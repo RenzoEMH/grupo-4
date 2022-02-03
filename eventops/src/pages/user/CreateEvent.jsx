@@ -19,7 +19,7 @@ const CreateEvent = () => {
       {page === 2 && <Ubicacion />}
       {page === 3 && <CreacionTickets />}
       {page === 4 && <Finalizado />}
-      <div className="col-md-12 order-md-1" Style="margin-top: 1rem">
+      <div className="col-md-12 order-md-1 container" Style="margin-top: 1rem">
         <div className="row">
           {page === 1 && (
             <div

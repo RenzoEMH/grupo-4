@@ -16,7 +16,7 @@ const ShopCard = ({
         <div className="col-md-6">
           <div className="row">
             <div className="col-md-4">
-              <img className="img-fluid" src={img} />
+              <img alt={title} className="img-fluid" src={img} />
             </div>
             <div className="col-md-8">
               <div className="row" Style="line-height: 15px">
@@ -31,15 +31,15 @@ const ShopCard = ({
           {typeTicket} <span className="close"></span>
         </div>
         <div className="col-md-2 text-center">
-          <a href="#">
+          <span type="button">
             <i className="bi bi-dash"></i>{' '}
-          </a>
-          <a href="#" className="border" Style="padding: 0 0.5rem">
+          </span>
+          <span className="border" Style="padding: 0 0.5rem">
             {numberTickets}
-          </a>
-          <a href="#">
+          </span>
+          <span type="button">
             <i className="bi bi-plus"></i>{' '}
-          </a>
+          </span>
         </div>
         <div className="col-md-1 text-center">
           S/.{price} <span className="close"></span>

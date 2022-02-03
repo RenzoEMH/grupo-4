@@ -67,6 +67,7 @@ const UbicactionEvent = () => {
                   Style="height: 100px"
                 >
                   <iframe
+                    title="Mapa de crear evento"
                     src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed"
                     frameBorder="0"
                     Style="border: 0"

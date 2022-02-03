@@ -94,6 +94,7 @@ const RigthDetailCard = ({
             className="z-depth-1-half map-container col-md-12"
           >
             <iframe
+              title="Mapa evento"
               src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed"
               frameBorder="0"
               allowFullScreen

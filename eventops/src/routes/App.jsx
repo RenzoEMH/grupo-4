@@ -53,7 +53,7 @@ function App() {
         />
 
         {/* user */}
-        {/* <Route
+        <Route
           exact
           path="/crear-evento"
           element={
@@ -61,7 +61,16 @@ function App() {
               <CreateEvent />
             </RequireAuth>
           }
-        /> */}
+        />
+        <Route
+          exact
+          path="/carrito-compra"
+          element={
+            <RequireAuth type="user">
+              <ShopCart />
+            </RequireAuth>
+          }
+        />
         <Route
           exact
           path="/perfil"
@@ -76,8 +85,8 @@ function App() {
           path="/mis-entradas"
           element={
             <RequireAuth type="user">
-{/*               <Tickets /> */}
-              <MisEntradas/>
+              {/*               <Tickets /> */}
+              <MisEntradas />
             </RequireAuth>
           }
         />
@@ -87,7 +96,7 @@ function App() {
           element={
             <RequireAuth type="user">
               {/*               <ManageEvents /> */}
-              <MisEventosCreados/>
+              <MisEventosCreados />
             </RequireAuth>
           }
         />
@@ -132,24 +141,6 @@ function App() {
           }
         />
         <Route exact path="/evento-detalle" element={<EventDetail />} />
-        <Route
-          exact
-          path="/carrito-compra"
-          element={
-            <HideIfLogged>
-              <ShopCart />
-            </HideIfLogged>
-          }
-        />
-        <Route
-          exact
-          path="/crear-evento"
-          element={
-            <HideIfLogged>
-              <CreateEvent />
-            </HideIfLogged>
-          }
-        />
 
         {/* all */}
         <Route path="/not-found" element={<NotFound />} />

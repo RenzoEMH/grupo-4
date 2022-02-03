@@ -2,12 +2,12 @@ import EventCard from '../components/EventCard';
 import FilterAndSearchBarHome from '../components/FilterAndSearchBar/FilterAndSearchBarHome';
 
 import eventos from '../utils/eventos';
-import './_Home.scss'
+import './_Home.scss';
 
 const Home = () => {
   return (
     <div className="App">
-            <div
+      <div
         id="carouselExampleIndicators"
         className="carousel slide"
         data-bs-ride="carousel"
@@ -36,13 +36,29 @@ const Home = () => {
         </div>
         <div className="carousel-inner">
           <div className="carousel-item active">
-            <img src={'https://blogs.elespectador.com/wp-content/uploads/2014/09/PARA-BANNER-DEL-STREAMING-01.jpg'} className="d-block w-100" alt="concierto gianmarco" />
+            <img
+              src={
+                'https://blogs.elespectador.com/wp-content/uploads/2014/09/PARA-BANNER-DEL-STREAMING-01.jpg'
+              }
+              className="d-block w-100"
+              alt="concierto gianmarco"
+            />
           </div>
           <div className="carousel-item">
-            <img src={"https://blogs.elespectador.com/wp-content/uploads/2014/09/PARA-BANNER-DEL-STREAMING-01.jpg"} className="d-block w-100" alt="concierto B" />
+            <img
+              src={'https://i.ytimg.com/vi/rL5p3dXYaCU/maxresdefault.jpg'}
+              className="d-block w-100"
+              alt="concierto B"
+            />
           </div>
           <div className="carousel-item">
-            <img src={"https://tecinformamos.com/wp-content/uploads/2021/12/Coldplay2022_Peru_JPG.jpg"} className="d-block w-100" alt="concierto C" />
+            <img
+              src={
+                'https://tecinformamos.com/wp-content/uploads/2021/12/Coldplay2022_Peru_JPG.jpg'
+              }
+              className="d-block w-100"
+              alt="concierto C"
+            />
           </div>
         </div>
         <button
@@ -51,7 +67,10 @@ const Home = () => {
           data-bs-target="#carouselExampleIndicators"
           data-bs-slide="prev"
         >
-          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span
+            className="carousel-control-prev-icon"
+            aria-hidden="true"
+          ></span>
           <span className="visually-hidden">Previous</span>
         </button>
         <button
@@ -60,11 +79,13 @@ const Home = () => {
           data-bs-target="#carouselExampleIndicators"
           data-bs-slide="next"
         >
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span
+            className="carousel-control-next-icon"
+            aria-hidden="true"
+          ></span>
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-     
 
       <FilterAndSearchBarHome />
 
@@ -102,4 +123,3 @@ const Home = () => {
 };
 
 export default Home;
-
