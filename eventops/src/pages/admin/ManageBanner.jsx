@@ -12,7 +12,7 @@ const ManageBanner = () => {
           {slides
             .sort((a, b) => (a.order > b.order ? 1 : -1))
             .map((slide) => {
-              return <AdminBannerSlide slide={slide} />;
+              return <AdminBannerSlide slide={slide} key={slide.id} />;
             })}
         </div>
       </div>

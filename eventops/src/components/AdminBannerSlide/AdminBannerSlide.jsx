@@ -33,10 +33,10 @@ const AdminBannerSlide = ({ slide: { title, date, order } }) => {
         </div>
         <div className="options mt-3 mt-sm-0">
           <button className="btn btn-primary py-2">
-            <i class="bi bi-pencil-fill"></i>
+            <i className="bi bi-pencil-fill"></i>
           </button>
           <button className="btn btn-secondary py-2">
-            <i class="bi bi-trash-fill"></i>
+            <i className="bi bi-trash-fill"></i>
           </button>
         </div>
       </div>
