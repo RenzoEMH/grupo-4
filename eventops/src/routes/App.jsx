@@ -2,9 +2,11 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
 import Home from '../pages/Home';
-import ManageEvents from '../pages/user/ManageEvents';
-import Tickets from '../pages/user/Tickets';
+/* import ManageEvents from '../pages/user/ManageEvents'; */
+/* import Tickets from '../pages/user/Tickets'; */
 import UserProfile from '../pages/user/UserProfile';
+import MisEntradas from '../pages/MisEntradas';
+import MisEventosCreados from '../pages/MisEventosCreados';
 import './App.scss';
 import { SesionContext } from '../utils/SesionContext';
 import { useContext } from 'react';
@@ -74,7 +76,8 @@ function App() {
           path="/mis-entradas"
           element={
             <RequireAuth type="user">
-              <Tickets />
+{/*               <Tickets /> */}
+              <MisEntradas/>
             </RequireAuth>
           }
         />
@@ -83,7 +86,8 @@ function App() {
           path="/mis-eventos"
           element={
             <RequireAuth type="user">
-              <ManageEvents />
+              {/*               <ManageEvents /> */}
+              <MisEventosCreados/>
             </RequireAuth>
           }
         />
