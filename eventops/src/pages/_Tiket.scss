@@ -607,24 +607,40 @@ body {
     
 
   }
-  #container-fp{
-    margin-left:500px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    .botones-fp{
-      margin-top: 50px;
-      display:flex;
-      flex-direction: row;
-      justify-content: space-around;
-      .boton{
-        border:none;
-        border-radius: 5px;
-        background-color: #9F2D30;
-        color:#E4EFE1;
-        padding: 10px;
-      }
-    }
-
+  .eventops__main{
+    margin: 0 auto;
   }
-
+  #conteiner-fp{
+    display: flex;
+  }
+  .botones-fp{
+    margin-top: 50px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    .boton{
+      border:none;
+      border-radius: 5px;
+      background-color: #9F2D30;
+      color:#E4EFE1;
+      padding: 10px;
+    }
+  }
+  .img-responsive{
+    width: 10%;
+  }
+  .accordionExample{
+    background-color: #000;
+    
+  }
+  .accordion-item {
+    background-color: #21262a;
+  }
+  .letra{
+    color:#fff;
+    margin:0 auto;
+  }
+  .accordion-button {
+    background-color: #9f2d30;
+    color: white;
+  }
