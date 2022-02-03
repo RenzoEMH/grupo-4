@@ -45,7 +45,7 @@ const eventos = [
     img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Samsung%27s_Virtual_Reality_MWC_2016_Press_Conference_%2826666393696%29.jpg/1200px-Samsung%27s_Virtual_Reality_MWC_2016_Press_Conference_%2826666393696%29.jpg',
     date: '2022-02-17T21:00:00.000Z',
     price: 50.0,
-    category: 'Tecnologia',
+    category: 'Tecnología',
   },
   {
     id: 7,
@@ -57,7 +57,7 @@ const eventos = [
   },
   {
     id: 8,
-    title: 'Colplay en Perú',
+    title: 'Coldplay en Perú',
     img: 'https://live.staticflickr.com/3677/14292292232_af0fc69ccc_h.jpg',
     date: '2022-02-15T21:00:00.000Z',
     price: 180.0,
