@@ -10,7 +10,7 @@ const EventCard = ({ evento: { date, img, price, title } }) => {
       <div className="card">
         <img src={img} alt={title} className="card-img-top" />
         <div className="card-body">
-          <h5 className="card-main-text">{title}</h5>
+          <h5 className="card-main-text text-start">{title}</h5>
           <p className="card-text d-flex justify-content-center align-items-center gap-3">
             <span>
               <i style={{ fontSize: '1.35rem' }} className="bi bi-calendar"></i>

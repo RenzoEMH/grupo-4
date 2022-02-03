@@ -4,6 +4,7 @@ const RigthDetailCard = ({
   EventDetail: { title, date, typeTicket, price, city, address, owner },
 }) => {
   const navigate = useNavigate();
+
   return (
     <div className="col-md-4">
       <div className="card">
@@ -84,7 +85,7 @@ const RigthDetailCard = ({
           </div>
           <div className="col-md-12" id="btnComprar">
             <button
-              onClick={() => navigate('/metodo-pago')}
+              onClick={() => navigate('/carrito-compra')}
               className="btn btn-danger"
             >
               Comprar Ahora

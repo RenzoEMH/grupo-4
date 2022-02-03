@@ -5,10 +5,12 @@ import { useEffect } from 'react';
 import shopCart from '../../utils/shopCart';
 import { setShopCart } from '../../redux/features/cartSlice';
 import PaymentSummary from '../../components/PaymentSummary';
+import { useNavigate } from 'react-router-dom';
 
 const ShopCart = () => {
   const shopCartList = useSelector((state) => state.shopCart.cart);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(setShopCart(shopCart));
@@ -63,7 +65,12 @@ const ShopCart = () => {
           className="col-md-3"
           style={{ display: 'flex', justifyContent: 'center' }}
         >
-          <button className="btn btn-danger">Pagar Ahora</button>
+          <button
+            onClick={() => navigate('/metodo-pago')}
+            className="btn btn-danger"
+          >
+            Pagar Ahora
+          </button>
         </div>
       </div>
     </main>

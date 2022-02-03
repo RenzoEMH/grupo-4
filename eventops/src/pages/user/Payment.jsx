@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import '../_Tiket.scss';
 const Payment = () => {
   return (
-    <div className="container-metod-payment">
+    <div className="container-metod-payment container">
       <div className="row">
         <div className="title">
           <h1>MÉTODO DE PAGO</h1>
@@ -222,7 +222,7 @@ const Payment = () => {
         <div className="class-botones">
           <div className="botones">
             <div>
-              <Link to={'/evento-detalle'} className="btn btn-secondary py-3">
+              <Link to={'/carrito-compra'} className="btn btn-secondary py-3">
                 <b> Cancelar</b>
               </Link>
             </div>
