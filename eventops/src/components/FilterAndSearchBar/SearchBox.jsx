@@ -1,18 +1,47 @@
+import { useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import { setTitleSearch } from '../../redux/features/filtersSlice';
 
 const SearchBox = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [query, setQuery] = useState('');
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setQuery(searchParams.get('title') || '');
+    dispatch(setTitleSearch(searchParams.get('title') || ''));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    const query = e.target[1].value;
+    setSearchParams({
+      title: query,
+      sprice: searchParams.get('sprice') || '',
+      eprice: searchParams.get('eprice') || '',
+      category: searchParams.get('category') || '',
+      sdate: searchParams.get('sdate') || '',
+      edate: searchParams.get('edate') || '',
+    });
     dispatch(setTitleSearch(query));
   };
 
-  const handleEmpty = (e) => {
+  const handleChange = (e) => {
     const query = e.target.value;
-    query === '' && dispatch(setTitleSearch(query));
+    setQuery(query);
+    if (query === '') {
+      setSearchParams({
+        title: query,
+        sprice: searchParams.get('sprice') || '',
+        eprice: searchParams.get('eprice') || '',
+        category: searchParams.get('category') || '',
+        sdate: searchParams.get('sdate') || '',
+        edate: searchParams.get('edate') || '',
+      });
+      dispatch(setTitleSearch(query));
+    }
   };
 
   return (
@@ -25,11 +54,12 @@ const SearchBox = () => {
           <i className="bi bi-search"></i>
         </button>
         <input
-          onChange={(e) => handleEmpty(e)}
+          onChange={(e) => handleChange(e)}
           className="filter-search form-control border-0"
           type="search"
           placeholder="Buscar..."
           aria-label="Search"
+          value={query}
         />
       </div>
     </form>

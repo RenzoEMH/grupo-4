@@ -5,8 +5,10 @@ import {
   setCategory,
   setDates,
 } from '../../redux/features/filtersSlice';
+import { useSearchParams } from 'react-router-dom';
 
 const ActiveFiltersContainer = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const filters = useSelector((state) => state.filtros);
 
   return (
@@ -22,8 +24,18 @@ const ActiveFiltersContainer = () => {
               }.00 - Max: S/. ${
                 filters.maxPrice !== '' ? filters.maxPrice : '0'
               }.00`}
-              action={setPrices}
+              actionA={setPrices}
               payload={{ min: '', max: '' }}
+              actionB={() => {
+                setSearchParams({
+                  title: searchParams.get('title') || '',
+                  sprice: '',
+                  eprice: '',
+                  category: searchParams.get('category') || '',
+                  sdate: searchParams.get('sdate') || '',
+                  edate: searchParams.get('edate') || '',
+                });
+              }}
             />
           ) : null
         }
@@ -32,8 +44,18 @@ const ActiveFiltersContainer = () => {
           filters.category !== '' ? (
             <ActiveFilterPill
               texto={filters.category}
-              action={setCategory}
+              actionA={setCategory}
               payload={''}
+              actionB={() => {
+                setSearchParams({
+                  title: searchParams.get('title') || '',
+                  sprice: searchParams.get('sprice') || '',
+                  eprice: searchParams.get('eprice') || '',
+                  category: '',
+                  sdate: searchParams.get('sdate') || '',
+                  edate: searchParams.get('edate') || '',
+                });
+              }}
             />
           ) : null
         }
@@ -42,8 +64,18 @@ const ActiveFiltersContainer = () => {
           filters.minDate !== '' || filters.maxDate !== '' ? (
             <ActiveFilterPill
               texto={`Desde: ${filters.minDate} - Hasta: ${filters.maxDate}`}
-              action={setDates}
+              actionA={setDates}
               payload={{ min: '', max: '' }}
+              actionB={() => {
+                setSearchParams({
+                  title: searchParams.get('title') || '',
+                  sprice: searchParams.get('sprice') || '',
+                  eprice: searchParams.get('eprice') || '',
+                  category: searchParams.get('category') || '',
+                  sdate: '',
+                  edate: '',
+                });
+              }}
             />
           ) : null
         }

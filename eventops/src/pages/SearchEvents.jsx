@@ -7,7 +7,7 @@ import {
 import EventCard from '../components/EventCard';
 import FilterAndSearchBar from '../components/FilterAndSearchBar/FilterAndSearchBar';
 import misEventos from '../utils/eventos';
-import { load } from '../redux/features/filtersSlice';
+import { load, setLength } from '../redux/features/filtersSlice';
 
 const defaultDate = '0000-01-01T05:08:12.000Z';
 const perPage = 6;
@@ -29,7 +29,8 @@ const SearchEvents = () => {
 
   useEffect(() => {
     dispatch(setBothArrayEvents(misEventos));
-  }, [dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const minPrice = returnNumber(filters.minPrice);
@@ -49,6 +50,7 @@ const SearchEvents = () => {
           new Date(maxDate !== defaultDate ? maxDate : event.date)
     );
 
+    dispatch(setLength(events.length));
     dispatch(setFilteredEvents(events.slice(0, filters.page * perPage)));
   }, [dispatch, eventos.allEvents, filters]);
 
@@ -66,14 +68,17 @@ const SearchEvents = () => {
               </div>
             </div>
           </section>
-          {eventos.allEvents.length > filters.page * perPage ? (
+          {eventos.allEvents.length > filters.page * perPage &&
+          filters.length > filters.page * perPage ? (
             <button
               onClick={() => dispatch(load())}
               className="btn btn-primary btn-lg rounded-pill align-self-center px-5"
             >
               Cargar Más
             </button>
-          ) : null}
+          ) : (
+            <></>
+          )}
         </div>
       </main>
     </>

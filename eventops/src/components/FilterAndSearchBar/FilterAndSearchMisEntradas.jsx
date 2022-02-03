@@ -4,9 +4,9 @@ const FilterAndSearchMisEntradas = () => {
     return (
       <>
          {/*  filter mis entradas */}
-         <section class="filter-menu bg-primary my-3 py-3">
+         <section className="filter-menu bg-primary my-3 py-3">
           <div
-            class="
+            className="
               container
               d-flex
               flex-column flex-md-row
@@ -14,21 +14,21 @@ const FilterAndSearchMisEntradas = () => {
             "
           >
   
-            <form class="d-flex mb-3 mb-md-0">
+            <form className="d-flex mb-3 mb-md-0">
   
                 
             </form>
-            <div class="d-flex mx-auto">
-              <div class="btn-group">
+            <div className="d-flex mx-auto">
+              <div className="btn-group">
                 <button
-                  class="btn btn-primary d-flex align-items-center"
+                  className="btn btn-primary d-flex align-items-center"
                   type="button"
                   id="categoriasDropdown"
                   data-bs-toggle="dropdown"
                   data-bs-auto-close="outside"
                   aria-expanded="false"
                 >
-                  <span class="me-1 me-sm-2">
+                  <span className="me-1 me-sm-2">
                     <svg
                       width="23"
                       height="23"
@@ -42,8 +42,8 @@ const FilterAndSearchMisEntradas = () => {
                       />
                     </svg>
                   </span>
-                  <span class="d-none d-sm-block"> Categorias </span>
-                  <span class="ms-1 ms-sm-2">
+                  <span className="d-none d-sm-block"> Categorias </span>
+                  <span className="ms-1 ms-sm-2">
                     <svg
                       width="10"
                       height="5"
@@ -54,21 +54,21 @@ const FilterAndSearchMisEntradas = () => {
                       <path
                         d="M1 1L6.5 7L12 1"
                         stroke="#F8F8F8"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                   </span>
                 </button>
                 <div
-                  class="dropdown-menu dropdown-menu-end p-3 category-dropdown"
+                  className="dropdown-menu dropdown-menu-end p-3 category-dropdown"
                   aria-labelledby="categoriasDropdown"
                 >
-                  <form action="" class="register">
-                    <h4 class="text-center mb-3">Filtro por Categorias</h4>
+                  <form action="" className="register">
+                    <h4 className="text-center mb-3">Filtro por Categorias</h4>
                     <div
-                      class="
+                      className="
                         filter__pill-container
                         d-flex
                         justify-content-center
@@ -78,45 +78,45 @@ const FilterAndSearchMisEntradas = () => {
                       "
                     >
                       <button
-                        class="btn btn-outline-primary rounded-pill"
+                        className="btn btn-outline-primary rounded-pill"
                         type="button"
                       >
                         Concierto
                       </button>
                       <button
-                        class="btn btn-outline-primary rounded-pill"
+                        className="btn btn-outline-primary rounded-pill"
                         type="button"
                       >
                         Salud y Bienestar
                       </button>
                       <button
-                        class="btn btn-outline-primary rounded-pill"
+                        className="btn btn-outline-primary rounded-pill"
                         type="button"
                       >
                         Tecnología
                       </button>
                       <button
-                        class="btn btn-outline-primary rounded-pill"
+                        className="btn btn-outline-primary rounded-pill"
                         type="button"
                       >
                         Deportes
                       </button>
                       <button
-                        class="btn btn-outline-primary rounded-pill"
+                        className="btn btn-outline-primary rounded-pill"
                         type="button"
                       >
                         Cine
                       </button>
                     </div>
-                    <div class="d-flex gap-3">
+                    <div className="d-flex gap-3">
                       <button
-                        class="category-dropdown__btn btn btn-secondary flex-fill"
+                        className="category-dropdown__btn btn btn-secondary flex-fill"
                         type="button"
                       >
                         Limpiar
                       </button>
                       <button
-                        class="category-dropdown__btn btn btn-primary flex-fill"
+                        className="category-dropdown__btn btn btn-primary flex-fill"
                         type="submit"
                       >
                         Aplicar
@@ -125,16 +125,16 @@ const FilterAndSearchMisEntradas = () => {
                   </form>
                 </div>
               </div>
-              <div class="btn-group">
+              <div className="btn-group">
                 <button
-                  class="btn btn-primary d-flex align-items-center"
+                  className="btn btn-primary d-flex align-items-center"
                   type="button"
                   id="fechasDropdown"
                   data-bs-toggle="dropdown"
                   data-bs-auto-close="outside"
                   aria-expanded="false"
                 >
-                  <span class="me-1 me-sm-2">
+                  <span className="me-1 me-sm-2">
                     <svg
                       width="23"
                       height="23"
@@ -148,8 +148,8 @@ const FilterAndSearchMisEntradas = () => {
                       />
                     </svg>
                   </span>
-                  <span class="d-none d-sm-block"> Fechas </span>
-                  <span class="ms-1 ms-sm-2">
+                  <span className="d-none d-sm-block"> Fechas </span>
+                  <span className="ms-1 ms-sm-2">
                     <svg
                       width="10"
                       height="5"
@@ -160,46 +160,46 @@ const FilterAndSearchMisEntradas = () => {
                       <path
                         d="M1 1L6.5 7L12 1"
                         stroke="#F8F8F8"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                   </span>
                 </button>
                 <div
-                  class="dropdown-menu p-3 date-dropdown"
+                  className="dropdown-menu p-3 date-dropdown"
                   aria-labelledby="fechasDropdown"
                 >
-                  <form action="" class="register">
-                    <h4 class="text-center mb-3">Filtro por Fechas</h4>
-                    <div class="mb-3 d-flex align-items-center gap-3">
+                  <form action="" className="register">
+                    <h4 className="text-center mb-3">Filtro por Fechas</h4>
+                    <div className="mb-3 d-flex align-items-center gap-3">
                       <input
                         type="text"
-                        class="register__names form-control"
+                        className="register__names form-control"
                         id="dateBegin"
                         placeholder="Inicio..."
-                        onfocus="(this.type='date')"
-                        onblur="(this.type='text')"
+                        onFocus="(this.type='date')"
+                        onBlur="(this.type='text')"
                       />
                       <input
                         type="text"
-                        class="register__names form-control"
+                        className="register__names form-control"
                         id="dateEnd"
                         placeholder="Fin..."
-                        onfocus="(this.type='date')"
-                        onblur="(this.type='text')"
+                        onFocus="(this.type='date')"
+                        onBlur="(this.type='text')"
                       />
                     </div>
-                    <div class="d-flex gap-3">
+                    <div className="d-flex gap-3">
                       <button
-                        class="category-dropdown__btn btn btn-secondary flex-fill"
+                        className="category-dropdown__btn btn btn-secondary flex-fill"
                         type="button"
                       >
                         Limpiar
                       </button>
                       <button
-                        class="date-dropdown__btn btn btn-primary flex-fill"
+                        className="date-dropdown__btn btn btn-primary flex-fill"
                         type="submit"
                       >
                         Aplicar
@@ -208,16 +208,16 @@ const FilterAndSearchMisEntradas = () => {
                   </form>
                 </div>
               </div>
-              <div class="btn-group">
+              <div className="btn-group">
                 <button
-                  class="btn btn-primary d-flex align-items-center"
+                  className="btn btn-primary d-flex align-items-center"
                   type="button"
                   id="preciosDropdown"
                   data-bs-toggle="dropdown"
                   data-bs-auto-close="outside"
                   aria-expanded="false"
                 >
-                  <span class="me-1 me-sm-2">
+                  <span className="me-1 me-sm-2">
                     <svg
                       width="35"
                       height="35"
@@ -231,8 +231,8 @@ const FilterAndSearchMisEntradas = () => {
                       />
                     </svg>
                   </span>
-                  <span class="d-none d-sm-block"> Estados </span>
-                  <span class="ms-1 ms-sm-2">
+                  <span className="d-none d-sm-block"> Estados </span>
+                  <span className="ms-1 ms-sm-2">
                     <svg
                       width="10"
                       height="5"
@@ -243,36 +243,36 @@ const FilterAndSearchMisEntradas = () => {
                       <path
                         d="M1 1L6.5 7L12 1"
                         stroke="#F8F8F8"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
                   </span>
                 </button>
                 <div
-                  class="dropdown-menu p-3 price-dropdown"
+                  className="dropdown-menu p-3 price-dropdown"
                   aria-labelledby="preciosDropdown"
                 >
-                  <form action="" class="register">
-                    <h4 class="text-center mb-3">Filtro por Estado</h4>
-                    <div class="mb-3 d-flex justify-content-around gap-3">
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
-                        <label class="form-check-label" for="flexRadioDefault1">
+                  <form action="" className="register">
+                    <h4 className="text-center mb-3">Filtro por Estado</h4>
+                    <div className="mb-3 d-flex justify-content-around gap-3">
+                      <div className="form-check">
+                        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"></input>
+                        <label className="form-check-label" htmlFor="flexRadioDefault1">
                           Activo
                         </label>
                       </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked></input>
-                        <label class="form-check-label" for="flexRadioDefault2">
+                      <div className="form-check">
+                        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked></input>
+                        <label className="form-check-label" htmlFor="flexRadioDefault2">
                           Inactivo
                         </label>
                       </div>
                     </div>
-                    <div class="d-flex gap-3">
+                    <div className="d-flex gap-3">
                       <button
-                        class="price-dropdown__btn btn btn-primary flex-fill"
+                        className="price-dropdown__btn btn btn-primary flex-fill"
                         type="submit"
                       >
                         Aplicar 

@@ -20,7 +20,8 @@ const ActiveFilterPill = (prop) => {
       {prop.texto}
       <span
         onClick={() => {
-          dispatch(prop.action(prop.payload));
+          prop.actionB();
+          dispatch(prop.actionA(prop.payload));
         }}
         type="button"
         className="ms-2"

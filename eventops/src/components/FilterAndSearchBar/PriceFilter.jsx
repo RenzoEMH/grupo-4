@@ -1,19 +1,38 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import { setPrices } from '../../redux/features/filtersSlice';
 
 const PriceFilter = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [priceRange, setPriceRange] = useState({ min: '', max: '' });
-  const filters = useSelector((state) => state.filtros);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setPriceRange({ min: filters.minPrice, max: filters.maxPrice });
-  }, [filters.maxPrice, filters.minPrice]);
+    setPriceRange({
+      min: searchParams.get('sprice') || '',
+      max: searchParams.get('eprice') || '',
+    });
+    dispatch(
+      setPrices({
+        min: searchParams.get('sprice') || '',
+        max: searchParams.get('eprice') || '',
+      })
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   const handlePriceFilterSubmit = (e) => {
     e.preventDefault();
+    setSearchParams({
+      title: searchParams.get('title') || '',
+      sprice: priceRange.min,
+      eprice: priceRange.max,
+      category: searchParams.get('category') || '',
+      sdate: searchParams.get('sdate') || '',
+      edate: searchParams.get('edate') || '',
+    });
     dispatch(setPrices(priceRange));
   };
 
