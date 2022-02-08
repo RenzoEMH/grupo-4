@@ -1,12 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  setBothArrayEvents,
-  setFilteredEvents,
-} from '../redux/features/eventsSlice';
+import { setFilteredEvents } from '../redux/features/eventsSlice';
 import EventCard from '../components/EventCard';
 import FilterAndSearchBar from '../components/FilterAndSearchBar/FilterAndSearchBar';
-import misEventos from '../utils/eventos';
 import { load, setLength } from '../redux/features/filtersSlice';
 
 const defaultDate = '0000-01-01T05:08:12.000Z';
@@ -28,31 +24,26 @@ const SearchEvents = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setBothArrayEvents(misEventos));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
     const minPrice = returnNumber(filters.minPrice);
     const maxPrice = returnNumber(filters.maxPrice);
     const minDate = returnDate(filters.minDate);
     const maxDate = returnDate(filters.maxDate);
 
-    const events = eventos.allEvents.filter(
+    const events = eventos.events.filter(
       (event) =>
         event.title.toLowerCase().indexOf(filters.titleSearch.toLowerCase()) >=
           0 &&
-        event.price >= minPrice &&
-        event.price <= (maxPrice !== 0 ? maxPrice : event.price) &&
+        event.lowestPrice >= minPrice &&
+        event.lowestPrice <= (maxPrice !== 0 ? maxPrice : event.lowestPrice) &&
         event.category.indexOf(filters.category) >= 0 &&
-        new Date(event.date) >= new Date(minDate) &&
-        new Date(event.date) <=
-          new Date(maxDate !== defaultDate ? maxDate : event.date)
+        new Date(event.lowestDate) >= new Date(minDate) &&
+        new Date(event.lowestDate) <=
+          new Date(maxDate !== defaultDate ? maxDate : event.lowestDate)
     );
 
     dispatch(setLength(events.length));
     dispatch(setFilteredEvents(events.slice(0, filters.page * perPage)));
-  }, [dispatch, eventos.allEvents, filters]);
+  }, [dispatch, eventos.events, filters]);
 
   return (
     <>
@@ -62,13 +53,13 @@ const SearchEvents = () => {
           <section className="eventos-filtrados d-flex flex-grow-1">
             <div className="container">
               <div className="row row-cols-1 row-cols-md-3 g-4">
-                {eventos.filteredEvents.map((evento) => {
+                {eventos.filteredEvents?.map((evento) => {
                   return <EventCard evento={evento} key={evento.id} />;
                 })}
               </div>
             </div>
           </section>
-          {eventos.allEvents.length > filters.page * perPage &&
+          {eventos.events.length > filters.page * perPage &&
           filters.length > filters.page * perPage ? (
             <button
               onClick={() => dispatch(load())}
