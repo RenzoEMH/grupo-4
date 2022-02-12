@@ -5,7 +5,7 @@ import EventCard from '../components/EventCard';
 import FilterAndSearchBar from '../components/FilterAndSearchBar/FilterAndSearchBar';
 import { load, setLength } from '../redux/features/filtersSlice';
 
-const defaultDate = '0000-01-01T05:08:12.000Z';
+const defaultDate = '0000-01-01';
 const perPage = 6;
 
 const returnNumber = (string) => {
@@ -29,21 +29,20 @@ const SearchEvents = () => {
     const minDate = returnDate(filters.minDate);
     const maxDate = returnDate(filters.maxDate);
 
-    const events = eventos.events.filter(
+    const events = eventos.eventos.filter(
       (event) =>
         event.title.toLowerCase().indexOf(filters.titleSearch.toLowerCase()) >=
           0 &&
         event.lowestPrice >= minPrice &&
         event.lowestPrice <= (maxPrice !== 0 ? maxPrice : event.lowestPrice) &&
         event.category.indexOf(filters.category) >= 0 &&
-        new Date(event.lowestDate) >= new Date(minDate) &&
-        new Date(event.lowestDate) <=
-          new Date(maxDate !== defaultDate ? maxDate : event.lowestDate)
+        event.dates[0] >= minDate &&
+        event.dates[0] <= (maxDate !== defaultDate ? maxDate : event.dates[0])
     );
 
     dispatch(setLength(events.length));
     dispatch(setFilteredEvents(events.slice(0, filters.page * perPage)));
-  }, [dispatch, eventos.events, filters]);
+  }, [dispatch, eventos.eventos, filters]);
 
   return (
     <>
@@ -59,7 +58,7 @@ const SearchEvents = () => {
               </div>
             </div>
           </section>
-          {eventos.events.length > filters.page * perPage &&
+          {eventos.eventos.length > filters.page * perPage &&
           filters.length > filters.page * perPage ? (
             <button
               onClick={() => dispatch(load())}

@@ -10,6 +10,9 @@ export const eventsSlice = createSlice({
     setFilteredEvents: (state, { payload: events }) => {
       state.filteredEvents = [...events];
     },
+    addNewEvent: (state, { payload: newEvent }) => {
+      state.eventos.push({ ...newEvent });
+    },
   },
 });
 

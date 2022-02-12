@@ -23,7 +23,7 @@ import PurchaseConfirmation from '../pages/user/PurchaseConfirmation';
 import FormPay from '../pages/user/FormPay';
 import EventDetail from '../pages/EventDetail';
 import ShopCart from '../pages/user/ShopCart';
-import CreateEvent from '../pages/user/CreateEvent';
+import CreateEvent from '../pages/user/CreateEvent/CreateEvent';
 
 function App() {
   const { sesion } = useContext(SesionContext);

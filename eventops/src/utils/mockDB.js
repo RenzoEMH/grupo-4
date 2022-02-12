@@ -24,14 +24,17 @@ const usuarios = {
 };
 
 const eventos = {
-  events: [
+  eventos: [
     {
       id: 1,
       title: 'Salsa Colombiana',
       img: 'https://live.staticflickr.com/3815/11566089773_767a3c6f27_b.jpg',
-      lowestDate: '2022-02-14T21:00:00.000Z',
+      ticketImg: '',
+      startHour: '21:00',
+      endHour: '22:00',
       lowestPrice: 80.0,
       category: 'Conciertos',
+      ageRestriction: 'allAges',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborumnumquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentiumoptio, eaque rerum! Provident similique accusantium nemo autem.',
       infoExtra: 'info',
@@ -52,14 +55,7 @@ const eventos = {
           quantity: 10,
         },
       ],
-      dates: [
-        {
-          date: '2022-02-14T21:00:00.000Z',
-        },
-        {
-          date: '2022-02-15T21:00:00.000Z',
-        },
-      ],
+      dates: ['2022-02-14', '2022-02-15'],
       city: 'Lima',
       address: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       idOwner: 2,
@@ -69,9 +65,12 @@ const eventos = {
       id: 2,
       title: 'Teatro chino',
       img: 'https://c.pxhere.com/photos/db/b2/opera_chinese_stage_act_culture_traditional_makeup_performance-1261363.jpg!d',
-      lowestDate: '2022-02-16T21:00:00.000Z',
+      ticketImg: '',
+      startHour: '21:00',
+      endHour: '22:00',
       lowestPrice: 45.0,
       category: 'Teatro',
+      ageRestriction: 'allAges',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborumnumquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentiumoptio, eaque rerum! Provident similique accusantium nemo autem.',
       infoExtra: 'info',
@@ -92,14 +91,7 @@ const eventos = {
           quantity: 10,
         },
       ],
-      dates: [
-        {
-          date: '2022-02-16T21:00:00.000Z',
-        },
-        {
-          date: '2022-02-17T21:00:00.000Z',
-        },
-      ],
+      dates: ['2022-02-16', '2022-02-17'],
       city: 'Lima',
       address: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       idOwner: 2,
@@ -109,9 +101,12 @@ const eventos = {
       id: 3,
       title: 'Rock Alternativo',
       img: 'https://live.staticflickr.com/7908/32393579967_9b4471fc20_3k.jpg',
-      lowestDate: '2022-02-10T21:00:00.000Z',
+      ticketImg: '',
+      startHour: '21:00',
+      endHour: '22:00',
       lowestPrice: 90.0,
       category: 'Conciertos',
+      ageRestriction: 'allAges',
       description:
         'Luego de 2 años sin tener un concierto presencial, Adrián Bello vuelve con toda su banda y se presenta en el Centro de Convenciones Barranco. Todo lo que sube, Brasil, Explosion,Escondidos, entre otros, son algunos de los temas que el artistapodrá por fin tocar en vivo en un reencuentro muy especial con su público',
       infoExtra: 'info',
@@ -132,14 +127,7 @@ const eventos = {
           quantity: 10,
         },
       ],
-      dates: [
-        {
-          date: '2022-02-10T21:00:00.000Z',
-        },
-        {
-          date: '2022-02-11T21:00:00.000Z',
-        },
-      ],
+      dates: ['2022-02-10', '2022-02-11'],
       city: 'Lima',
       address: 'C.C Barranco - Av. República de Panamá 220, Barranco',
       idOwner: 2,
@@ -149,9 +137,12 @@ const eventos = {
       id: 4,
       title: 'Vuelve el voley',
       img: 'https://live.staticflickr.com/65535/48494810371_dbe87c2d6a_h.jpg',
-      lowestDate: '2022-02-14T21:00:00.000Z',
+      ticketImg: '',
+      startHour: '21:00',
+      endHour: '22:00',
       lowestPrice: 25.0,
       category: 'Deportes',
+      ageRestriction: 'allAges',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborumnumquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentiumoptio, eaque rerum! Provident similique accusantium nemo autem.',
       infoExtra: 'info',
@@ -172,14 +163,7 @@ const eventos = {
           quantity: 10,
         },
       ],
-      dates: [
-        {
-          date: '2022-02-14T21:00:00.000Z',
-        },
-        {
-          date: '2022-02-15T21:00:00.000Z',
-        },
-      ],
+      dates: ['2022-02-14', '2022-02-15'],
       city: 'Lima',
       address: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       idOwner: 2,
@@ -189,9 +173,12 @@ const eventos = {
       id: 5,
       title: 'Eva Ayllon - en vivo',
       img: 'https://live.staticflickr.com/8568/28375523481_b1cc3b1d69_k.jpg',
-      lowestDate: '2022-02-13T21:00:00.000Z',
+      ticketImg: '',
+      startHour: '21:00',
+      endHour: '22:00',
       lowestPrice: 60.0,
       category: 'Conciertos',
+      ageRestriction: 'allAges',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborumnumquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentiumoptio, eaque rerum! Provident similique accusantium nemo autem.',
       infoExtra: 'info',
@@ -212,14 +199,7 @@ const eventos = {
           quantity: 10,
         },
       ],
-      dates: [
-        {
-          date: '2022-02-13T21:00:00.000Z',
-        },
-        {
-          date: '2022-02-14T21:00:00.000Z',
-        },
-      ],
+      dates: ['2022-02-13', '2022-02-14'],
       city: 'Lima',
       address: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       idOwner: 2,
@@ -229,9 +209,12 @@ const eventos = {
       id: 6,
       title: 'Conferencia Samsung - 2022',
       img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Samsung%27s_Virtual_Reality_MWC_2016_Press_Conference_%2826666393696%29.jpg/1200px-Samsung%27s_Virtual_Reality_MWC_2016_Press_Conference_%2826666393696%29.jpg',
-      lowestDate: '2022-02-17T21:00:00.000Z',
+      ticketImg: '',
+      startHour: '21:00',
+      endHour: '22:00',
       lowestPrice: 50.0,
       category: 'Tecnología',
+      ageRestriction: 'allAges',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborumnumquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentiumoptio, eaque rerum! Provident similique accusantium nemo autem.',
       infoExtra: 'info',
@@ -252,14 +235,7 @@ const eventos = {
           quantity: 10,
         },
       ],
-      dates: [
-        {
-          date: '2022-02-17T21:00:00.000Z',
-        },
-        {
-          date: '2022-02-18T21:00:00.000Z',
-        },
-      ],
+      dates: ['2022-02-17', '2022-02-18'],
       city: 'Lima',
       address: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       idOwner: 2,
@@ -269,9 +245,12 @@ const eventos = {
       id: 7,
       title: 'Wiñaypacha',
       img: 'https://larepublica.pe/resizer/dQP-3xWkUCy6mPmReHtaIiz76kw=/1250x735/top/smart/cloudfront-us-east-1.images.arcpublishing.com/gruporepublica/NUPZJOLKARFNPNKV2LIJGIOSEQ.jpg',
-      lowestDate: '2022-02-11T21:00:00.000Z',
+      ticketImg: '',
+      startHour: '21:00',
+      endHour: '22:00',
       lowestPrice: 30.0,
       category: 'Cine',
+      ageRestriction: 'allAges',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborumnumquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentiumoptio, eaque rerum! Provident similique accusantium nemo autem.',
       infoExtra: 'info',
@@ -292,14 +271,7 @@ const eventos = {
           quantity: 10,
         },
       ],
-      dates: [
-        {
-          date: '2022-02-11T21:00:00.000Z',
-        },
-        {
-          date: '2022-02-12T21:00:00.000Z',
-        },
-      ],
+      dates: ['2022-02-11', '2022-02-12'],
       city: 'Lima',
       address: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       idOwner: 2,
@@ -309,9 +281,12 @@ const eventos = {
       id: 8,
       title: 'Coldplay en Perú',
       img: 'https://live.staticflickr.com/3677/14292292232_af0fc69ccc_h.jpg',
-      lowestDate: '2022-02-15T21:00:00.000Z',
+      ticketImg: '',
+      startHour: '21:00',
+      endHour: '22:00',
       lowestPrice: 180.0,
       category: 'Conciertos',
+      ageRestriction: 'allAges',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborumnumquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentiumoptio, eaque rerum! Provident similique accusantium nemo autem.',
       infoExtra: 'info',
@@ -332,14 +307,7 @@ const eventos = {
           quantity: 10,
         },
       ],
-      dates: [
-        {
-          date: '2022-02-15T21:00:00.000Z',
-        },
-        {
-          date: '2022-02-16T21:00:00.000Z',
-        },
-      ],
+      dates: ['2022-02-15', '2022-02-16'],
       city: 'Lima',
       address: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       idOwner: 2,
@@ -349,9 +317,12 @@ const eventos = {
       id: 9,
       title: 'La salud psicológica en los tiempos del Covid - 19',
       img: 'https://i.ytimg.com/vi/NvpGEjE1xU0/maxresdefault.jpg',
-      lowestDate: '2022-02-14T21:00:00.000Z',
+      ticketImg: '',
+      startHour: '21:00',
+      endHour: '22:00',
       lowestPrice: 45.0,
       category: 'Salud y Bienestar',
+      ageRestriction: 'allAges',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborumnumquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentiumoptio, eaque rerum! Provident similique accusantium nemo autem.',
       infoExtra: 'info',
@@ -372,14 +343,7 @@ const eventos = {
           quantity: 10,
         },
       ],
-      dates: [
-        {
-          date: '2022-02-14T21:00:00.000Z',
-        },
-        {
-          date: '2022-02-15T21:00:00.000Z',
-        },
-      ],
+      dates: ['2022-02-14', '2022-02-15'],
       city: 'Lima',
       address: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       idOwner: 2,
@@ -422,7 +386,7 @@ const shopCart = {
       title: 'Salsa Colombiana',
       img: 'https://live.staticflickr.com/3815/11566089773_767a3c6f27_b.jpg',
       city: 'Lima',
-      date: '2022-02-14T21:00:00.000Z',
+      date: '2022-02-14',
       typeTicket: 'Platinum',
       price: 120.0,
       numberTickets: '1',
@@ -433,7 +397,7 @@ const shopCart = {
       title: 'Rock Alternativo',
       img: 'https://live.staticflickr.com/7908/32393579967_9b4471fc20_3k.jpg',
       city: 'Arequipa',
-      date: '2022-02-14T21:00:00.000Z',
+      date: '2022-02-14',
       typeTicket: 'VIP',
       price: 90.0,
       numberTickets: '2',
@@ -444,7 +408,7 @@ const shopCart = {
       title: 'Vuelve el voley',
       img: 'https://live.staticflickr.com/65535/48494810371_dbe87c2d6a_h.jpg',
       city: 'Lima',
-      date: '2022-02-14T21:00:00.000Z',
+      date: '2022-02-14',
       typeTicket: 'General',
       price: 60.0,
       numberTickets: '1',
