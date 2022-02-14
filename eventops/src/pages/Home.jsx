@@ -1,7 +1,7 @@
-import EventCard from '../components/EventCard';
+// import EventCard from '../components/EventCard';
 import FilterAndSearchBarHome from '../components/FilterAndSearchBar/FilterAndSearchBarHome';
 
-import eventos from '../utils/eventos';
+// import eventos from '../utils/eventos';
 import './_Home.scss';
 
 const Home = () => {
@@ -95,9 +95,9 @@ const Home = () => {
           <section className="eventos-filtrados d-flex flex-grow-1">
             <div className="container">
               <div className="row row-cols-1 row-cols-md-3 g-4 mb-4">
-                {eventos.map((evento) => (
+                {/* {eventos.map((evento) => (
                   <EventCard evento={evento} key={evento.id} />
-                ))}
+                ))} */}
               </div>
             </div>
           </section>
@@ -110,9 +110,9 @@ const Home = () => {
           <section className="eventos-filtrados d-flex flex-grow-1">
             <div className="container">
               <div className="row row-cols-1 row-cols-md-3 g-4">
-                {eventos.map((evento) => (
+                {/* {eventos.map((evento) => (
                   <EventCard evento={evento} key={evento.id} />
-                ))}
+                ))} */}
               </div>
             </div>
           </section>

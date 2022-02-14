@@ -9,6 +9,7 @@ export const filtersSlice = createSlice({
     category: '',
     minDate: '',
     maxDate: '',
+    state: '',
     page: 1,
     length: 0,
   },
@@ -31,6 +32,10 @@ export const filtersSlice = createSlice({
       state.maxDate = dateRange.max;
       state.page = 1;
     },
+    setState: (state, { payload: newState }) => {
+      state.state = newState;
+      state.page = 1;
+    },
     load: (state) => {
       state.page += 1;
     },
@@ -46,6 +51,7 @@ export const {
   setPrices,
   setCategory,
   setDates,
+  setState,
   load,
   setLength,
 } = filtersSlice.actions;

@@ -10,9 +10,12 @@ export const eventsSlice = createSlice({
     setFilteredEvents: (state, { payload: events }) => {
       state.filteredEvents = [...events];
     },
+    addNewEvent: (state, { payload: newEvent }) => {
+      state.eventos.push({ ...newEvent });
+    },
   },
 });
 
-export const { setBothArrayEvents, setFilteredEvents } = eventsSlice.actions;
+export const { setFilteredEvents, addNewEvent } = eventsSlice.actions;
 
 export default eventsSlice.reducer;

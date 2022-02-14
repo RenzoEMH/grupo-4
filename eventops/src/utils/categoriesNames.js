@@ -5,6 +5,7 @@ const categoryNames = [
   'Tecnología',
   'Cine',
   'Salud y Bienestar',
+  'Otros',
 ];
 
 export default categoryNames;
