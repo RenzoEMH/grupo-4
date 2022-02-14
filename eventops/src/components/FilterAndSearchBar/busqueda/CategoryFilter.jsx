@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import { setCategory } from '../../redux/features/filtersSlice';
-import categorias from '../../utils/categoriesNames';
+import { setCategory } from '../../../redux/features/filtersSlice';
+import categorias from '../../../utils/categoriesNames';
 import CategoryRadioOption from './CategoryRadioOption';
 import './_CategoryFilter.scss';
 

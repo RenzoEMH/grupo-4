@@ -16,6 +16,6 @@ export const eventsSlice = createSlice({
   },
 });
 
-export const { setBothArrayEvents, setFilteredEvents } = eventsSlice.actions;
+export const { setFilteredEvents, addNewEvent } = eventsSlice.actions;
 
 export default eventsSlice.reducer;

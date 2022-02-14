@@ -2,21 +2,12 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilteredEvents } from '../redux/features/eventsSlice';
 import EventCard from '../components/EventCard';
-import FilterAndSearchBar from '../components/FilterAndSearchBar/FilterAndSearchBar';
+import FilterAndSearchBar from '../components/FilterAndSearchBar/busqueda/FilterAndSearchBar';
 import { load, setLength } from '../redux/features/filtersSlice';
+import returnNumber from '../utils/returnNumber';
+import { defaultDate, returnDate } from '../utils/returnDate';
 
-const defaultDate = '0000-01-01';
 const perPage = 6;
-
-const returnNumber = (string) => {
-  const number = parseInt(string === '' ? '0' : string);
-  return number;
-};
-
-const returnDate = (string) => {
-  const date = string === '' ? defaultDate : string;
-  return date;
-};
 
 const SearchEvents = () => {
   const eventos = useSelector((state) => state.eventos);

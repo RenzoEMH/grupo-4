@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import dateFormatter from '../utils/dateFormatter';
 
-const MisEntradasCard = ({ evento: { date, img, title } }) => {
+const MisEntradasCard = ({ evento: { dates, img, title, startHour } }) => {
   const navigate = useNavigate();
 
   return (
@@ -36,7 +36,7 @@ const MisEntradasCard = ({ evento: { date, img, title } }) => {
             <span>
               <i style={{ fontSize: '1.35rem' }} className="bi bi-calendar"></i>
             </span>
-            {dateFormatter(date)}
+            {dateFormatter(dates[0], startHour)}
           </p>
           <div className="card-detail text-dark">
             <button className="card-button bg-secondary">MI TICKET</button>

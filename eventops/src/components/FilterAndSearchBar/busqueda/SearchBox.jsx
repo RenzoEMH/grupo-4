@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import { setTitleSearch } from '../../redux/features/filtersSlice';
+import { setTitleSearch } from '../../../redux/features/filtersSlice';
 
 const SearchBox = () => {
   const [searchParams, setSearchParams] = useSearchParams();

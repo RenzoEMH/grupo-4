@@ -1,7 +1,4 @@
-import CategoryFilter from './CategoryFilter';
-import DateFilter from './DateFilter';
 import HomeSearchBox from './HomeSearchBox';
-import PriceFilter from './PriceFilter';
 
 const FilterAndSearchBar = () => {
   return (
@@ -17,9 +14,9 @@ const FilterAndSearchBar = () => {
         >
           <HomeSearchBox />
           <div className="d-flex justify-content-around">
-            <PriceFilter />
+            {/* <PriceFilter />
             <CategoryFilter />
-            <DateFilter />
+            <DateFilter /> */}
           </div>
         </div>
       </section>

@@ -17,7 +17,7 @@ const LogIn = () => {
     if (user !== null) {
       navigate('/');
       user.password === 'user'
-        ? setSesion({ type: 'user' })
+        ? setSesion({ type: 'user', id: 2 })
         : setSesion({ type: 'admin' });
     }
   };

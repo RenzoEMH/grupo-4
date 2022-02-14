@@ -1,12 +1,23 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { resetPage } from '../../redux/features/singleEventSlice';
 import ProgressBar from './ProgressBar';
 
 const FinishCreate = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(resetPage());
   };
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetPage());
+    };
+  }, [dispatch]);
 
   return (
     <form onSubmit={(e) => handleSubmit(e)}>

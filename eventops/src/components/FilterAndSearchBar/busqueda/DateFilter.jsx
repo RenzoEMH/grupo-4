@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import { setDates } from '../../redux/features/filtersSlice';
+import { setDates } from '../../../redux/features/filtersSlice';
 
 const DateFilter = () => {
   const [searchParams, setSearchParams] = useSearchParams();

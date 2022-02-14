@@ -6,8 +6,8 @@ const verificarLocalStorage = (keys) => {
 
 const createPreload = () => {
   const preloadObject = {};
-  for (let [key, value] of Object.entries(mockDB)) {
-    preloadObject[`${key}`] = value;
+  for (let [key] of Object.entries(mockDB)) {
+    preloadObject[`${key}`] = JSON.parse(localStorage.getItem(key));
   }
   return preloadObject;
 };

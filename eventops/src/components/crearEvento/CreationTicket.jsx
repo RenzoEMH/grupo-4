@@ -1,12 +1,42 @@
-import { useDispatch } from 'react-redux';
-import { nextPage, prevPage } from '../../redux/features/singleEventSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  nextPage,
+  prevPage,
+  resetAllAtribute,
+  setAtribute,
+} from '../../redux/features/singleEventSlice';
+import { addNewEvent } from '../../redux/features/eventsSlice';
 import ProgressBar from './ProgressBar';
+import TicketType from './TicketType';
+import { SesionContext } from '../../utils/SesionContext';
+import { useContext } from 'react';
+
+const getLowestPrice = (arrayTypeTickets) => {
+  const lowestPrice = arrayTypeTickets.reduce((prev, curr) =>
+    prev.price < curr.price ? prev : curr
+  );
+  return lowestPrice;
+};
 
 const CreationTicket = () => {
+  const evento = useSelector((state) => state.singleEvent.singleEvent);
+  const { sesion } = useContext(SesionContext);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(
+      setAtribute({ key: 'id', value: Math.floor(Math.random() * 10000) + 1 })
+    );
+    dispatch(setAtribute({ key: 'idOwner', value: sesion.id }));
+    dispatch(
+      setAtribute({
+        key: 'lowestPrice',
+        value: getLowestPrice(evento.typeTicket),
+      })
+    );
+    dispatch(addNewEvent({ ...evento }));
+    dispatch(resetAllAtribute());
     dispatch(nextPage());
   };
 
@@ -15,85 +45,54 @@ const CreationTicket = () => {
       <ProgressBar />
       <div className="accordion-item">
         <h1 className="accordion-button ">Creación de Entradas</h1>
-        <div className="accordion-body">
-          <div className="col-md-12 order-md-1">
-            <div className="row">
-              <div className="col-md-2 order-md-1">
-                <div className="mb-3">
-                  <select
-                    className="form-select d-block w-100"
-                    id="state"
-                    required
-                  >
-                    <option value="">Soles</option>
-                    <option>Dolares</option>
-                  </select>
-                </div>
-              </div>
-              <div className="col-md-9 order-md-1">
-                <div className="mb-3" id="crearEntrada">
-                  <button className="btn btn-danger">Crear Entrada</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-12 order-md-1">
-            <div className="row">
-              <div className="col-md-7 order-md-1">
-                <div className="mb-3">
-                  <label htmlFor="address">Nombre de la Entrada</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Ej. VIP, General "
-                    required
-                  />
-                </div>
-              </div>
-              <div className="col-md-2 order-md-1">
-                <div className="mb-3">
-                  <label htmlFor="address">Cantidad disponible</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="0 "
-                    required
-                  />
-                </div>
-              </div>
-              <div className="col-md-2 order-md-1">
-                <div className="mb-3">
-                  <label htmlFor="address">Precio</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="0 "
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-8 order-md-1">
-            <div className="row">
+        <div className="container">
+          <div className="row border-bottom py-3">
+            <div className="col-md-3 order-md-1">
               <div className="mb-3">
-                <label htmlFor="address">
-                  Finalización de la venta de entradas
-                </label>
                 <select
                   className="form-select d-block w-100"
                   id="state"
-                  required
+                  // required
                 >
-                  <option value="">
-                    Hasta 1 hora antes que empiece el evento
-                  </option>
-                  <option>Hasta que empiece el evento</option>
-                  <option>Hasta 1 dia antes que empiece el evento</option>
+                  <option value="">Soles</option>
+                  <option>Dolares</option>
                 </select>
               </div>
             </div>
+            <div className="col-md-9 order-md-1">
+              <div className="mb-3" id="crearEntrada">
+                <button
+                  onClick={() => {
+                    dispatch(
+                      setAtribute({
+                        key: 'typeTicket',
+                        value: [
+                          ...evento.typeTicket,
+                          {
+                            type: '',
+                            price: 0,
+                            quantity: 0,
+                          },
+                        ],
+                      })
+                    );
+                  }}
+                  type="button"
+                  className="btn btn-danger"
+                >
+                  Crear Entrada
+                </button>
+              </div>
+            </div>
           </div>
+          {evento.typeTicket.map((ticketType, index) => (
+            <TicketType
+              ticket={ticketType}
+              all={evento.typeTicket}
+              index={index}
+              key={index}
+            />
+          ))}
           <div className="cuerpo__terminos">
             <div className="col-md-12 order-md-1">
               <div className="custom-control custom-checkbox">

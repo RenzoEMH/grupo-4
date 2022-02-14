@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import { setPrices } from '../../redux/features/filtersSlice';
+import { setPrices } from '../../../redux/features/filtersSlice';
 
 const PriceFilter = () => {
   const [searchParams, setSearchParams] = useSearchParams();

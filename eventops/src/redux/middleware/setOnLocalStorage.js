@@ -3,7 +3,7 @@ const setOnLocalStorage = (store, action) => {
     case 'eventos/addNewEvent':
       localStorage.setItem(
         'eventos',
-        JSON.stringify({ eventos: store.getState().eventos })
+        JSON.stringify({ eventos: store.getState().eventos.eventos })
       );
       break;
 

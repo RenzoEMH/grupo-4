@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import dateFormatter from '../utils/dateFormatter';
 
-const EventosCreadosCard = ({ evento: { date, img, title } }) => {
+const EventosCreadosCard = ({
+  evento: { dates, img, title, startHour, state },
+}) => {
   const navigate = useNavigate();
 
   return (
@@ -14,23 +16,38 @@ const EventosCreadosCard = ({ evento: { date, img, title } }) => {
             <span>
               <i style={{ fontSize: '1.35rem' }} className="bi bi-calendar"></i>
             </span>
-            {dateFormatter(date)}
+            {dateFormatter(dates[0], startHour)}
           </p>
           <div className="card-detail text-dark">
-            <div className="card-state">
-              {/* <img src="img/g-state.png" width="20" /> */}
-              <span
-                style={{
-                  width: '1rem',
-                  height: '1rem',
-                  backgroundColor: 'lightgreen',
-                  border: '2px solid green',
-                  borderRadius: '100%',
-                  marginRight: '0.5rem',
-                }}
-              ></span>
-              ACTIVO
-            </div>
+            {state === 'active' ? (
+              <div className="card-state">
+                <span
+                  style={{
+                    width: '1rem',
+                    height: '1rem',
+                    backgroundColor: 'green',
+                    border: '2px solid lightgreen',
+                    borderRadius: '100%',
+                    marginRight: '0.5rem',
+                  }}
+                ></span>
+                ACTIVO
+              </div>
+            ) : (
+              <div className="card-state">
+                <span
+                  style={{
+                    width: '1rem',
+                    height: '1rem',
+                    backgroundColor: 'red',
+                    border: '2px solid lightpink',
+                    borderRadius: '100%',
+                    marginRight: '0.5rem',
+                  }}
+                ></span>
+                INACTIVO
+              </div>
+            )}
 
             <button
               onClick={() => navigate('/evento-detalle')}

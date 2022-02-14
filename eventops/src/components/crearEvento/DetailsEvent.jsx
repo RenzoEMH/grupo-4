@@ -79,7 +79,7 @@ const DetailsEvent = () => {
                       setAtribute({ key: 'title', value: e.target.value })
                     )
                   }
-                  required
+                  //required
                 />
               </div>
               <div className="mb-3">
@@ -92,7 +92,7 @@ const DetailsEvent = () => {
                       setAtribute({ key: 'category', value: e.target.value })
                     )
                   }
-                  required
+                  //required
                 >
                   <option value="">Elige una categoría para tu Evento</option>
                   {categoryNames.map((category, index) => (
@@ -216,7 +216,7 @@ const DetailsEvent = () => {
                   className="custom-control-input"
                   value="allAges"
                   checked={evento.ageRestriction === 'allAges'}
-                  required
+                  //required
                   onChange={(e) =>
                     dispatch(
                       setAtribute({
@@ -238,7 +238,7 @@ const DetailsEvent = () => {
                   className="custom-control-input"
                   value="withAdult"
                   checked={evento.ageRestriction === 'withAdult'}
-                  required
+                  //required
                   onChange={(e) =>
                     dispatch(
                       setAtribute({
@@ -260,7 +260,7 @@ const DetailsEvent = () => {
                   className="custom-control-input"
                   value="adultOnly"
                   checked={evento.ageRestriction === 'adultOnly'}
-                  required
+                  //required
                   onChange={(e) =>
                     dispatch(
                       setAtribute({

@@ -1,13 +1,13 @@
 import { useSelector } from 'react-redux';
-import ActiveFilterPill from './ActiveFilterPill';
+import ActiveFilterPill from '../busqueda/ActiveFilterPill';
 import {
-  setPrices,
   setCategory,
   setDates,
-} from '../../redux/features/filtersSlice';
+  setState,
+} from '../../../redux/features/filtersSlice';
 import { useSearchParams } from 'react-router-dom';
 
-const ActiveFiltersContainer = () => {
+const ActiveFiltersContainerGeneral = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const filters = useSelector((state) => state.filtros);
 
@@ -15,30 +15,6 @@ const ActiveFiltersContainer = () => {
     <section className="container d-flex align-items-center mb-4">
       <span>Filtros:</span>
       <div className="filter__pill-container d-flex flex-wrap">
-        {
-          // price pill
-          filters.minPrice !== '' || filters.maxPrice !== '' ? (
-            <ActiveFilterPill
-              texto={`Min: S/. ${
-                filters.minPrice !== '' ? filters.minPrice : '0'
-              }.00 - Max: S/. ${
-                filters.maxPrice !== '' ? filters.maxPrice : '0'
-              }.00`}
-              actionA={setPrices}
-              payload={{ min: '', max: '' }}
-              actionB={() => {
-                setSearchParams({
-                  title: searchParams.get('title') || '',
-                  sprice: '',
-                  eprice: '',
-                  category: searchParams.get('category') || '',
-                  sdate: searchParams.get('sdate') || '',
-                  edate: searchParams.get('edate') || '',
-                });
-              }}
-            />
-          ) : null
-        }
         {
           // category pill
           filters.category !== '' ? (
@@ -48,12 +24,10 @@ const ActiveFiltersContainer = () => {
               payload={''}
               actionB={() => {
                 setSearchParams({
-                  title: searchParams.get('title') || '',
-                  sprice: searchParams.get('sprice') || '',
-                  eprice: searchParams.get('eprice') || '',
                   category: '',
                   sdate: searchParams.get('sdate') || '',
                   edate: searchParams.get('edate') || '',
+                  state: searchParams.get('state') || '',
                 });
               }}
             />
@@ -68,12 +42,28 @@ const ActiveFiltersContainer = () => {
               payload={{ min: '', max: '' }}
               actionB={() => {
                 setSearchParams({
-                  title: searchParams.get('title') || '',
-                  sprice: searchParams.get('sprice') || '',
-                  eprice: searchParams.get('eprice') || '',
                   category: searchParams.get('category') || '',
                   sdate: '',
                   edate: '',
+                  state: searchParams.get('state') || '',
+                });
+              }}
+            />
+          ) : null
+        }
+        {
+          // state pill
+          filters.state !== '' ? (
+            <ActiveFilterPill
+              texto={filters.state === 'active' ? 'Activo' : 'Inactivo'}
+              actionA={setState}
+              payload={''}
+              actionB={() => {
+                setSearchParams({
+                  category: searchParams.get('category') || '',
+                  sdate: searchParams.get('sdate') || '',
+                  edate: searchParams.get('edate') || '',
+                  state: '',
                 });
               }}
             />
@@ -84,4 +74,4 @@ const ActiveFiltersContainer = () => {
   );
 };
 
-export default ActiveFiltersContainer;
+export default ActiveFiltersContainerGeneral;
