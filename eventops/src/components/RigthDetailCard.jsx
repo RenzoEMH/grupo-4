@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 const RigthDetailCard = ({
-  EventDetail: { title, date, typeTicket, price, city, address, owner },
+  EventDetail: { title, lowestDate, typeTicket, city, address, ownerName },
 }) => {
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ const RigthDetailCard = ({
           <div className="row">
             <div className="col-md-8">
               <p>
-                {typeTicket.general}: S/. {price.general}
+                {typeTicket[0].type}: S/. {typeTicket[0].price}
               </p>
             </div>
             <div className="col-md-4">
@@ -35,7 +35,7 @@ const RigthDetailCard = ({
           <div className="row">
             <div className="col-md-8">
               <p>
-                {typeTicket.vip}: S/. {price.vip}
+                {typeTicket[1].type}: S/. {typeTicket[1].price}
               </p>
             </div>
             <div className="col-md-4">
@@ -52,7 +52,7 @@ const RigthDetailCard = ({
           <div className="row">
             <div className="col-md-8">
               <p>
-                {typeTicket.platinum}: S/. {price.platinum}
+                {typeTicket[2].type}: S/. {typeTicket[2].price}
               </p>
             </div>
             <div className="col-md-4">
@@ -116,7 +116,7 @@ const RigthDetailCard = ({
               </div>
               <div className="col-md-9 mt-2">
                 <h6>Organizado por:</h6>
-                <p>{owner}</p>
+                <p>{ownerName}</p>
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import LeftDetailCard from '../components/LeftDetailCard';
 import RigthDetailCard from '../components/RigthDetailCard';
-import eventDetail from '../utils/eventDetail';
+import mockDB from '../utils/mockDB';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { detailCard } from '../redux/features/eventDetailSlice';
@@ -11,21 +11,27 @@ const EventDetail = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(detailCard(eventDetail));
+    dispatch(detailCard(mockDB));
   }, [dispatch]);
 
   return (
     <main className="detalles_cuerpo">
       <section>
         <div className="row row-cols-1 row-cols-md-2 g-4">
-          {eventDetailList.map((eventDetail) => {
+          {eventDetailList.map((mockDB) => {
             return (
-              <LeftDetailCard EventDetail={eventDetail} key={eventDetail.id} />
+              <LeftDetailCard
+                EventDetail={mockDB.eventos}
+                key={mockDB.eventos.id}
+              />
             );
           })}
-          {eventDetailList.map((eventDetail) => {
+          {eventDetailList.map((mockDB) => {
             return (
-              <RigthDetailCard EventDetail={eventDetail} key={eventDetail.id} />
+              <RigthDetailCard
+                EventDetail={mockDB.eventos}
+                key={mockDB.eventos.id}
+              />
             );
           })}
         </div>

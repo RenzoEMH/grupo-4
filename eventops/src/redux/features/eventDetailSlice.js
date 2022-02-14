@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const eventDetailSlice = createSlice({
-  name: 'eventDetail',
+  name: 'mockDB',
   initialState: {
-    eventDetail: [],
+    mockDB: [],
   },
   reducers: {
-    detailCard: (state, { payload: eventDetail }) => {
-      state.eventDetail = [...eventDetail];
+    detailCard: (state, { payload: mockDB }) => {
+      state.mockDB = [...mockDB];
     },
   },
 });
