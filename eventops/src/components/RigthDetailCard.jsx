@@ -1,102 +1,39 @@
-import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { SesionContext } from '../utils/SesionContext';
+import AddTicketsCard from './AddTicketsCard';
 
-const RigthDetailCard = ({
-  EventDetail: { title, date, typeTicket, price, city, address, owner },
-}) => {
+const RigthDetailCard = () => {
+  const { eventoId } = useParams();
+  const evento = useSelector((state) =>
+    state.eventos.eventos.find((evento) => evento.id === parseInt(eventoId))
+  );
+  const { sesion } = useContext(SesionContext);
   const navigate = useNavigate();
 
   return (
     <div className="col-md-4">
       <div className="card">
         <div className="card-body detail-eventops-body">
-          <h3 className="card-title">{title}</h3>
-          <p className="card-text detail-eventops-text">
-            Fecha: Lunes 20 de diciembre, 2021 <br />
-            Hora: 5:00pm
-          </p>
-          <h4 className="card-title">Entradas</h4>
-          <div className="row">
-            <div className="col-md-8">
-              <p>
-                {typeTicket.general}: S/. {price.general}
-              </p>
+          <h3 className="card-title">{evento.title}</h3>
+          {sesion?.type === 'user' && <AddTicketsCard />}
+          {!sesion && (
+            <div className="pt-3 pb-4 d-flex justify-content-center">
+              <button
+                onClick={() => navigate('/iniciar-sesion')}
+                className="btn btn-primary btn-lg"
+              >
+                Inicie Sesión
+              </button>
             </div>
-            <div className="col-md-4">
-              <select className="form-select d-block h-60" id="state" required>
-                <option value="">0</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-8">
-              <p>
-                {typeTicket.vip}: S/. {price.vip}
-              </p>
-            </div>
-            <div className="col-md-4">
-              <select className="form-select d-block h-60" id="state" required>
-                <option value="">0</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-8">
-              <p>
-                {typeTicket.platinum}: S/. {price.platinum}
-              </p>
-            </div>
-            <div className="col-md-4">
-              <select className="form-select d-block h-60" id="state" required>
-                <option value="">0</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-            </div>
-          </div>
-          <div className="custom-control custom-checkbox" id="checkbox2">
-            <div className="row">
-              <div className="col-md-1">
-                <input
-                  type="checkbox"
-                  className="custom-control-input"
-                  id="save-info"
-                />
-              </div>
-              <div className="col-md-11">
-                <p className="terminos">
-                  Te informamos que tus datos personales seran compartidos con
-                  el organizador del evento
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-12" id="btnComprar">
-            <button
-              onClick={() => navigate('/carrito-compra')}
-              className="btn btn-danger"
-            >
-              Comprar Ahora
-            </button>
-          </div>
+          )}
           <div
-            className="col-md-12 mt-4 pt-3"
+            className="col-md-12 pt-3"
             style={{ borderTop: '4px solid #21262a' }}
           >
-            <h4 className="card-title">{city}, PE</h4>
-            <p>{address}</p>
+            <h4 className="card-title">{evento.city}, PE</h4>
+            <p>{evento.address}</p>
           </div>
           <div
             id="map-container-google-1"
@@ -116,7 +53,7 @@ const RigthDetailCard = ({
               </div>
               <div className="col-md-9 mt-2">
                 <h6>Organizado por:</h6>
-                <p>{owner}</p>
+                {/* <p>{owner}</p> */}
               </div>
             </div>
           </div>

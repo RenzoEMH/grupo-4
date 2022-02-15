@@ -8,37 +8,36 @@ import {
 import { addNewEvent } from '../../redux/features/eventsSlice';
 import ProgressBar from './ProgressBar';
 import TicketType from './TicketType';
-import { SesionContext } from '../../utils/SesionContext';
-import { useContext } from 'react';
+import { useEffect } from 'react';
 
 const getLowestPrice = (arrayTypeTickets) => {
   const lowestPrice = arrayTypeTickets.reduce((prev, curr) =>
     prev.price < curr.price ? prev : curr
   );
-  return lowestPrice;
+  return lowestPrice.price || 0;
 };
 
 const CreationTicket = () => {
   const evento = useSelector((state) => state.singleEvent.singleEvent);
-  const { sesion } = useContext(SesionContext);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(
-      setAtribute({ key: 'id', value: Math.floor(Math.random() * 10000) + 1 })
-    );
-    dispatch(setAtribute({ key: 'idOwner', value: sesion.id }));
-    dispatch(
-      setAtribute({
-        key: 'lowestPrice',
-        value: getLowestPrice(evento.typeTicket),
-      })
-    );
     dispatch(addNewEvent({ ...evento }));
     dispatch(resetAllAtribute());
     dispatch(nextPage());
   };
+
+  useEffect(() => {
+    const lowest = getLowestPrice(evento.typeTicket);
+    lowest > 0 &&
+      dispatch(
+        setAtribute({
+          key: 'lowestPrice',
+          value: lowest,
+        })
+      );
+  }, [dispatch, evento.typeTicket]);
 
   return (
     <form onSubmit={(e) => handleSubmit(e)}>

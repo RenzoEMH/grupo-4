@@ -1,15 +1,18 @@
 import { useEffect } from 'react';
+import { useContext } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { nextPage, setAtribute } from '../../redux/features/singleEventSlice';
 import categoryNames from '../../utils/categoriesNames';
 import dateRange from '../../utils/dateRange';
+import { SesionContext } from '../../utils/SesionContext';
 import EventoImgModal from './EventoImgModal';
 import ProgressBar from './ProgressBar';
 
 const DetailsEvent = () => {
   const evento = useSelector((state) => state.singleEvent.singleEvent);
+  const { sesion } = useContext(SesionContext);
   const [dateTimes, setDateTimes] = useState({
     lowestDate: evento.dates[0] ? evento.dates[0] : '',
     highestDate: evento.dates[evento.dates.length - 1]
@@ -20,6 +23,11 @@ const DetailsEvent = () => {
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(setAtribute({ key: 'id', value: Date.now() }));
+    dispatch(setAtribute({ key: 'idOwner', value: sesion.id }));
+  }, [dispatch, sesion.id]);
 
   useEffect(() => {
     if (

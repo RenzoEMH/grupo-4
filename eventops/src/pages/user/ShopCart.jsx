@@ -1,20 +1,12 @@
 import './ShopCart.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ShopCard from '../../components/ShopCard';
-import { useEffect } from 'react';
-import shopCart from '../../utils/shopCart';
-import { setShopCart } from '../../redux/features/cartSlice';
 import PaymentSummary from '../../components/PaymentSummary';
 import { useNavigate } from 'react-router-dom';
 
 const ShopCart = () => {
   const shopCartList = useSelector((state) => state.shopCart.cart);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    dispatch(setShopCart(shopCart));
-  }, [dispatch]);
 
   return (
     <main className="cuerpoCarrito">

@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import Footer from '../components/Footer';
-import Nav from '../components/Nav';
+import Footer from '../components/Footer/Footer';
+import Nav from '../components/Nav/Nav';
 import Home from '../pages/Home';
 import UserProfile from '../pages/user/UserProfile';
 import MisEntradas from '../pages/MisEntradas';
@@ -171,7 +171,11 @@ function App() {
             </HideIfLogged>
           }
         />
-        <Route exact path="/evento-detalle" element={<EventDetail />} />
+        <Route
+          exact
+          path="/evento-detalle/:eventoId"
+          element={<EventDetail />}
+        />
 
         {/* all */}
         <Route path="/not-found" element={<NotFound />} />
