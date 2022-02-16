@@ -1,5 +1,5 @@
 import './_EventCard.scss';
-import dateFormatter from '../utils/dateFormatter';
+import dateFormatter from '../../utils/dateFormatter';
 import { useNavigate } from 'react-router-dom';
 
 const EventCard = ({

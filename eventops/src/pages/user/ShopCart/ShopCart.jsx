@@ -1,7 +1,7 @@
 import './ShopCart.scss';
 import { useSelector } from 'react-redux';
-import ShopCard from '../../components/ShopCard';
-import PaymentSummary from '../../components/PaymentSummary';
+import ShopCard from '../../../components/ShopCard';
+import PaymentSummary from '../../../components/PaymentSummary';
 import { useNavigate } from 'react-router-dom';
 
 const ShopCart = () => {

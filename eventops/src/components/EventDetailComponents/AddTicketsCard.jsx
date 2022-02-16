@@ -1,19 +1,19 @@
-import { useContext } from 'react';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import { useMemo } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fuseCarts } from '../redux/features/cartSlice';
-import dateOnlyFormatter from '../utils/dateOnlyFormatter';
-import hourOnlyFormatter from '../utils/hourOnlyFormatter';
-import { SesionContext } from '../utils/SesionContext';
+import { fuseCarts } from '../../redux/features/cartSlice';
+import dateOnlyFormatter from '../../utils/dateOnlyFormatter';
+import hourOnlyFormatter from '../../utils/hourOnlyFormatter';
+import { SesionContext } from '../../utils/SesionContext';
 
 const setupCart = (evento, idSesion) => {
   const cart = evento.typeTicket.map((tTycket) => {
     return {
       id: Math.floor(Math.random() * 10000) + 1,
       city: evento.city,
-      date: '',
+      date: tTycket.date,
       hour: evento.startHour,
       idUsuario: idSesion,
       idEvento: evento.id,
@@ -33,26 +33,34 @@ const AddTicketsCard = () => {
     state.eventos.eventos.find((evento) => evento.id === parseInt(eventoId))
   );
   const { sesion } = useContext(SesionContext);
-  const [cart, setCart] = useState([...setupCart(evento, sesion.id)]);
-  const [errorDate, setErrorDate] = useState(false);
+  const cart = useMemo(
+    () => [...setupCart(evento, sesion.id)],
+    [evento, sesion.id]
+  );
+  const [filterCart, setFilterCart] = useState([...cart]);
+  const [filterDate, setFilterDate] = useState(cart[0].date);
   const [errorTicket, setErrorTicket] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  /**
-   * si solo hay una fecha en el evento, poner esa fecha para todos los tickets
-   */
   useEffect(() => {
-    evento.dates.length === 1 &&
-      setCart([...cart.map((item) => (item.date = evento.dates[0]))]);
-  }, [cart, evento.dates]);
+    const crt = cart.filter((itemCrt) => itemCrt.date === filterDate);
+
+    setFilterCart(crt);
+  }, [cart, filterDate]);
+
+  const findQuantity = (eventTTickets, cartTTicket, cartTDate) => {
+    const quantity = eventTTickets.find(
+      (item) => item.type === cartTTicket && item.date === cartTDate
+    ).quantity;
+    return quantity;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const cartItems = cart.filter((item) => item.amount > 0);
+    const cartItems = filterCart.filter((item) => item.amount > 0);
     cartItems.length === 0 && setErrorTicket(true);
-    e.target[0].value === 'DEFAULT' && setErrorDate(true);
-    if (cartItems.length > 0 && e.target[0].value !== 'DEFAULT') {
+    if (cartItems.length > 0) {
       dispatch(fuseCarts([...cartItems]));
       navigate('/carrito-compra');
     }
@@ -72,37 +80,28 @@ const AddTicketsCard = () => {
           <select
             id="date"
             className="form-select d-block w-100"
-            defaultValue={'DEFAULT'}
+            defaultValue={evento.dates[0]}
             onChange={(e) => {
-              setErrorDate(false);
-              setCart([
-                ...cart.map((item) => {
-                  return { ...item, date: e.target.value };
-                }),
-              ]);
+              setFilterDate(e.target.value);
             }}
           >
-            <option value="DEFAULT" disabled>
-              Elige una fecha
-            </option>
             {evento.dates.map((date, index) => (
               <option value={date} key={`${date}${index}`}>
                 {date}
               </option>
             ))}
           </select>
-          {errorDate && (
-            <div className="invalid-feedback d-block">
-              Debe seleccionar una fecha
-            </div>
-          )}
         </div>
       )}
       <h4 className="card-title">Entradas</h4>
-      {cart.map((item, i) => (
+      {filterCart.map((item, i) => (
         <div className="row mb-3" key={`${item.id}${item.title}`}>
           <div className="col-md-8">
-            <label>{`${item.typeTicket} (${evento.typeTicket[i].quantity} disp.):`}</label>
+            <label>{`${item.typeTicket} (${findQuantity(
+              [...evento.typeTicket],
+              item.typeTicket,
+              item.date
+            )} disp.):`}</label>
             <p className="m-0">S/. {item.price}.00</p>
           </div>
           <div className="col-md-4">
@@ -115,9 +114,14 @@ const AddTicketsCard = () => {
                 setErrorTicket(false);
                 e.target.value !== '' &&
                   e.target.value >= 0 &&
-                  e.target.value <= evento.typeTicket[i].quantity &&
-                  setCart([
-                    ...cart.map((unit) => {
+                  e.target.value <=
+                    findQuantity(
+                      [...evento.typeTicket],
+                      item.typeTicket,
+                      item.date
+                    ) &&
+                  setFilterCart([
+                    ...filterCart.map((unit) => {
                       return item.id === unit.id
                         ? { ...unit, amount: parseInt(e.target.value) }
                         : { ...unit };

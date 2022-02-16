@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { SesionContext } from '../utils/SesionContext';
+import { SesionContext } from '../../utils/SesionContext';
 import AddTicketsCard from './AddTicketsCard';
 
 const RigthDetailCard = () => {

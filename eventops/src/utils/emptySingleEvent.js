@@ -10,7 +10,7 @@ const emptySingleEvent = {
   ageRestriction: '',
   description: '',
   infoExtra: '',
-  typeTicket: [{ type: '', price: 0, quantity: 0 }],
+  typeTicket: [{ type: '', price: 0, quantity: 0, date: '' }],
   currency: '',
   dates: [],
   city: '',
