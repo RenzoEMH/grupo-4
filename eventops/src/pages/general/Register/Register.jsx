@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './_Register.scss';
-import { addNewUser } from '../redux/features/usersSlice';
+import { addNewUser } from '../../../redux/features/usersSlice';
 import {
   resetAllAtribute,
   setAtribute,
-} from '../redux/features/singleUserSlice';
+} from '../../../redux/features/singleUserSlice';
 
 const Register = () => {
   const usuario = useSelector((state) => state.singleUser.singleUser);
