@@ -1,8 +1,7 @@
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { SesionContext } from '../utils/SesionContext';
 import { useSelector } from 'react-redux';
-
+import { SesionContext } from '../../../utils/SesionContext';
 import './_LogIn.scss';
 
 const LogIn = () => {

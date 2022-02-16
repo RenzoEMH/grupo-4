@@ -1,9 +1,9 @@
 import './_EventCard.scss';
-import dateFormatter from '../utils/dateFormatter';
+import dateFormatter from '../../utils/dateFormatter';
 import { useNavigate } from 'react-router-dom';
 
 const EventCard = ({
-  evento: { dates, img, lowestPrice, title, startHour },
+  evento: { id, dates, img, lowestPrice, title, startHour },
 }) => {
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ const EventCard = ({
           <div className="card-detail text-dark">
             S/. {lowestPrice}.00
             <button
-              onClick={() => navigate('/evento-detalle')}
+              onClick={() => navigate(`/evento-detalle/${id}`)}
               className="card-button"
             >
               DETALLES

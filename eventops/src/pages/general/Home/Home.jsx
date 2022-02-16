@@ -1,5 +1,5 @@
 // import EventCard from '../components/EventCard';
-import FilterAndSearchBarHome from '../components/FilterAndSearchBar/FilterAndSearchBarHome';
+import FilterAndSearchBarHome from '../../../components/FilterAndSearchBar/FilterAndSearchBarHome';
 
 // import eventos from '../utils/eventos';
 import './_Home.scss';

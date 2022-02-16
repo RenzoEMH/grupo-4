@@ -1,8 +1,10 @@
 import { useDispatch } from 'react-redux';
 import { removeCard } from '../redux/features/cartSlice';
+import dateOnlyFormatter from '../utils/dateOnlyFormatter';
+import hourOnlyFormatter from '../utils/hourOnlyFormatter';
 
 const ShopCard = ({
-  ShopCard: { id, date, img, price, title, city, typeTicket, numberTickets },
+  ShopCard: { id, date, hour, img, price, title, city, typeTicket, amount },
 }) => {
   const dispatch = useDispatch();
 
@@ -22,7 +24,9 @@ const ShopCard = ({
               <div className="row" style={{ lineHeight: '15px' }}>
                 <h6>{title}</h6>
                 <p>{city}</p>
-                <p>Lunes 20 de diciembre de 2021 5:00pm</p>
+                <p>
+                  {dateOnlyFormatter(date)} {hourOnlyFormatter(hour)}
+                </p>
               </div>
             </div>
           </div>
@@ -35,14 +39,14 @@ const ShopCard = ({
             <i className="bi bi-dash"></i>{' '}
           </span>
           <span className="border" style={{ padding: '0 0.5rem' }}>
-            {numberTickets}
+            {amount}
           </span>
           <span type="button">
             <i className="bi bi-plus"></i>{' '}
           </span>
         </div>
         <div className="col-md-1 text-center">
-          S/.{price} <span className="close"></span>
+          S/.{price * amount}.00 <span className="close"></span>
         </div>
         <div className="col-md-1 text-center">
           <span

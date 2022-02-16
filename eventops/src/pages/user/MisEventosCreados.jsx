@@ -1,25 +1,18 @@
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import FilterAndSearchBarGeneral from '../components/FilterAndSearchBar/general/FilterAndSearchBarGeneral';
-import MisEntradasCard from '../components/MisEntradasCard';
-import { setFilteredEvents } from '../redux/features/eventsSlice';
-import { load, setLength } from '../redux/features/filtersSlice';
-import { defaultDate, returnDate } from '../utils/returnDate';
-import { SesionContext } from '../utils/SesionContext';
+import EventosCreadosCard from '../../components/EventCards/EventosCreadosCard';
+import FilterAndSearchBarGeneral from '../../components/FilterAndSearchBar/general/FilterAndSearchBarGeneral';
+import { setFilteredEvents } from '../../redux/features/eventsSlice';
+import { load, setLength } from '../../redux/features/filtersSlice';
+import { defaultDate, returnDate } from '../../utils/returnDate';
+import { SesionContext } from '../../utils/SesionContext';
 
 const perPage = 6;
-
-const filterByTickets = (idEvento, idUsuario, arrayTickets) => {
-  const hasTicket = arrayTickets.some(
-    (ticket) => ticket.idUsuario === idUsuario && ticket.idEvento === idEvento
-  );
-  return hasTicket;
-};
 
 const MisEntradas = () => {
   const { sesion } = useContext(SesionContext);
   const eventos = useSelector((state) => state.eventos);
-  const entradas = useSelector((state) => state.tickets.tickets);
   const filters = useSelector((state) => state.filtros);
   const dispatch = useDispatch();
 
@@ -29,7 +22,7 @@ const MisEntradas = () => {
 
     const events = eventos.eventos.filter(
       (event) =>
-        filterByTickets(event.id, sesion.id, entradas) &&
+        event.idOwner === sesion.id &&
         event.category.indexOf(filters.category) >= 0 &&
         event.dates[0] >= minDate &&
         event.dates[0] <=
@@ -44,7 +37,7 @@ const MisEntradas = () => {
 
   return (
     <div className="App">
-      <h1 className="m-4">MIS ENTRADAS</h1>
+      <h1 className="m-4">MIS EVENTOS CREADOS</h1>
       <FilterAndSearchBarGeneral />
       <main className="eventops__main container d-flex flex-column flex-grow-1">
         <div className="d-flex flex-column flex-grow-1 gap-3">
@@ -52,7 +45,7 @@ const MisEntradas = () => {
             <div className="container">
               <div className="row row-cols-1 row-cols-md-3 g-4 mb-4">
                 {eventos.filteredEvents?.map((evento) => (
-                  <MisEntradasCard evento={evento} key={evento.id} />
+                  <EventosCreadosCard evento={evento} key={evento.id} />
                 ))}
               </div>
             </div>

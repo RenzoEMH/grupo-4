@@ -1,28 +1,28 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import Footer from '../components/Footer';
-import Nav from '../components/Nav';
-import Home from '../pages/Home';
+import Footer from '../components/Footer/Footer';
+import Nav from '../components/Nav/Nav';
+import Home from '../pages/general/Home/Home';
 import UserProfile from '../pages/user/UserProfile';
-import MisEntradas from '../pages/MisEntradas';
-import MisEventosCreados from '../pages/MisEventosCreados';
+import MisEntradas from '../pages/user/MisEntradas';
+import MisEventosCreados from '../pages/user/MisEventosCreados';
 import './App.scss';
 import { SesionContext } from '../utils/SesionContext';
 import { useContext } from 'react';
-import NotFound from '../pages/NotFound';
-import LogIn from '../pages/LogIn';
-import Register from '../pages/Register';
-import PasswordRecovery from '../pages/PasswordRecovery';
+import NotFound from '../pages/general/NotFound/NotFound';
+import LogIn from '../pages/general/Login/LogIn';
+import Register from '../pages/general/Register/Register';
+import PasswordRecovery from '../pages/general/PasswordRecovery/PasswordRecovery';
 import ManageEventsApproval from '../pages/admin/ManageEventsApproval';
 import misRutas from '../utils/routesNames';
 import ManageBanner from '../pages/admin/ManageBanner';
 import RequireAuth from '../utils/RequireAuth';
 import HideIfLogged from '../utils/HideIfLogged';
-import SearchEvents from '../pages/SearchEvents';
+import SearchEvents from '../pages/general/SearchEvents/SearchEvents';
 import Payment from '../pages/user/Payment';
 import PurchaseConfirmation from '../pages/user/PurchaseConfirmation';
 import FormPay from '../pages/user/FormPay';
-import EventDetail from '../pages/EventDetail';
-import ShopCart from '../pages/user/ShopCart';
+import EventDetail from '../pages/general/EventDetail/EventDetail';
+import ShopCart from '../pages/user/ShopCart/ShopCart';
 import CreateEvent from '../pages/user/CreateEvent/CreateEvent';
 
 function App() {
@@ -171,7 +171,11 @@ function App() {
             </HideIfLogged>
           }
         />
-        <Route exact path="/evento-detalle" element={<EventDetail />} />
+        <Route
+          exact
+          path="/evento-detalle/:eventoId"
+          element={<EventDetail />}
+        />
 
         {/* all */}
         <Route path="/not-found" element={<NotFound />} />

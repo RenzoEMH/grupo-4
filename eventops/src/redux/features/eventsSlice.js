@@ -11,6 +11,17 @@ export const eventsSlice = createSlice({
       state.filteredEvents = [...events];
     },
     addNewEvent: (state, { payload: newEvent }) => {
+      const dates = [...newEvent.dates];
+      const tTickets = [...newEvent.typeTicket];
+      const fullTTicket = dates
+        .map((date) => {
+          return tTickets.map((tTicket) => {
+            return { ...tTicket, date: date };
+          });
+        })
+        .reduce((acc, currVal) => acc.concat(currVal));
+      console.log(state, fullTTicket);
+      newEvent.typeTicket = [...fullTTicket];
       state.eventos.push({ ...newEvent });
     },
   },

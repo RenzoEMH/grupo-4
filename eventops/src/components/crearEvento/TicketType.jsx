@@ -35,14 +35,15 @@ const TicketType = ({ ticket: { type, price, quantity }, all, index }) => {
             type="number"
             className="form-control"
             placeholder="0 "
-            value={price}
+            min="0"
+            value={quantity}
             onChange={(e) =>
               dispatch(
                 setAtribute({
                   key: 'typeTicket',
                   value: all.map((tType, i) =>
                     i === index
-                      ? { ...tType, price: parseInt(e.target.value) }
+                      ? { ...tType, quantity: parseInt(e.target.value) }
                       : tType
                   ),
                 })
@@ -59,14 +60,15 @@ const TicketType = ({ ticket: { type, price, quantity }, all, index }) => {
             type="number"
             className="form-control"
             placeholder="0 "
-            value={quantity}
+            min="0"
+            value={price}
             onChange={(e) =>
               dispatch(
                 setAtribute({
                   key: 'typeTicket',
                   value: all.map((tType, i) =>
                     i === index
-                      ? { ...tType, quantity: parseInt(e.target.value) }
+                      ? { ...tType, price: parseInt(e.target.value) }
                       : tType
                   ),
                 })

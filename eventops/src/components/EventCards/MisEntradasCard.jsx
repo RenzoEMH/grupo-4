@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import dateFormatter from '../utils/dateFormatter';
+import dateFormatter from '../../utils/dateFormatter';
 
 const MisEntradasCard = ({ evento: { dates, img, title, startHour } }) => {
   const navigate = useNavigate();
