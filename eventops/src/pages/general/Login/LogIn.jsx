@@ -1,24 +1,34 @@
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { SesionContext } from '../../../utils/SesionContext';
 import './_LogIn.scss';
 
 const LogIn = () => {
   const [user, setUser] = useState(null);
   const { setSesion } = useContext(SesionContext);
+  const usuarios = useSelector((state) => state.usuarios);
   const navigate = useNavigate();
+  const users = usuarios.usuarios;
 
   const onInputChange = (inputName) => (inputValue) => {
     setUser({ ...user, [inputName]: inputValue.target.value });
+    console.log(user);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (user !== null) {
-      navigate('/');
-      user.password === 'user'
-        ? setSesion({ type: 'user', id: 2 })
-        : setSesion({ type: 'admin' });
+      for (let i = 0; i < users.length; i++) {
+        if (
+          user.password === users[i].password &&
+          user.email === users[i].Correo
+        ) {
+          setSesion({ type: 'user', id: users[i].id });
+          navigate('/');
+          break;
+        }
+      }
     }
   };
 
@@ -47,7 +57,7 @@ const LogIn = () => {
       </header>
       <section className="simple__main d-grid col-10 col-lg-4 mx-auto">
         <h2 className="simple__subtitle mb-5">Iniciar Sesión</h2>
-        <form onSubmit={handleSubmit} className="login">
+        <form onSubmit={(e) => handleSubmit(e)} className="login">
           <div className="mb-4">
             <input
               type="email"

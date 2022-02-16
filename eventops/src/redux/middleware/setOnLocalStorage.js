@@ -6,6 +6,11 @@ const setOnLocalStorage = (store, action) => {
         JSON.stringify({ eventos: store.getState().eventos.eventos })
       );
       break;
+    case 'usuarios/addNewUser':
+      localStorage.setItem(
+        'usuarios',
+        JSON.stringify({ usuarios: store.getState().usuarios.usuarios })
+      );
 
     default:
       console.log(action.type);
