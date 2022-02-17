@@ -22,6 +22,7 @@ const Register = () => {
         value: 'user',
       })
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSubmit = (e) => {

@@ -24,6 +24,7 @@ import FormPay from '../pages/user/FormPay';
 import EventDetail from '../pages/general/EventDetail/EventDetail';
 import ShopCart from '../pages/user/ShopCart/ShopCart';
 import CreateEvent from '../pages/user/CreateEvent/CreateEvent';
+import EditEvent from '../pages/user/EditEvent/EditEvent';
 
 function App() {
   const { sesion } = useContext(SesionContext);
@@ -60,6 +61,15 @@ function App() {
           element={
             <RequireAuth type="user">
               <CreateEvent />
+            </RequireAuth>
+          }
+        />
+        <Route
+          exact
+          path="/editar-evento/:eventoId"
+          element={
+            <RequireAuth type="user">
+              <EditEvent />
             </RequireAuth>
           }
         />

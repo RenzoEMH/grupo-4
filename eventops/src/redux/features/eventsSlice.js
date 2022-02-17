@@ -20,7 +20,6 @@ export const eventsSlice = createSlice({
           });
         })
         .reduce((acc, currVal) => acc.concat(currVal));
-      console.log(state, fullTTicket);
       newEvent.typeTicket = [...fullTTicket];
       state.eventos.push({ ...newEvent });
     },

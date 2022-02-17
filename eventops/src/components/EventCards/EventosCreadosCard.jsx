@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import dateFormatter from '../../utils/dateFormatter';
 
 const EventosCreadosCard = ({
-  evento: { dates, img, title, startHour, state },
+  evento: { id, dates, img, title, startHour, state },
 }) => {
   const navigate = useNavigate();
 
@@ -50,7 +50,7 @@ const EventosCreadosCard = ({
             )}
 
             <button
-              onClick={() => navigate('/evento-detalle')}
+              onClick={() => navigate(`/evento-detalle/${id}`)}
               className="card-button"
             >
               DETALLES

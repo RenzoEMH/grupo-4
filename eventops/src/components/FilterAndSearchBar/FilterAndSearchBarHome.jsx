@@ -1,6 +1,6 @@
 import HomeSearchBox from './HomeSearchBox';
 
-const FilterAndSearchBar = () => {
+const FilterAndSearchBarHome = () => {
   return (
     <>
       <section className="filter-menu bg-primary my-4 py-3">
@@ -24,4 +24,4 @@ const FilterAndSearchBar = () => {
   );
 };
 
-export default FilterAndSearchBar;
+export default FilterAndSearchBarHome;
