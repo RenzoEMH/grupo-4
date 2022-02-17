@@ -62,7 +62,8 @@ const obtainCapped = (fCart, event) => {
     const quantity = event.typeTicket.find(
       (element) =>
         element.type === item.typeTicket && element.date === item.date
-    ).quantity;
+    )?.quantity;
+    console.log(quantity);
     return item.amount >= quantity ? { ...item, amount: quantity } : item;
   });
   return capped;

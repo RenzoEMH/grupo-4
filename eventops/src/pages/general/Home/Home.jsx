@@ -1,10 +1,11 @@
-// import EventCard from '../components/EventCard';
+import EventCard from '../../../components/EventCards/EventCard';
+import { useSelector } from 'react-redux';
 import FilterAndSearchBarHome from '../../../components/FilterAndSearchBar/FilterAndSearchBarHome';
-
-// import eventos from '../utils/eventos';
 import './_Home.scss';
 
 const Home = () => {
+  const eventos = useSelector((state) => state.eventos.eventos);
+
   return (
     <div className="App">
       <div
@@ -90,14 +91,16 @@ const Home = () => {
       <FilterAndSearchBarHome />
 
       <main className="eventops__main container d-flex flex-column flex-grow-1">
-        <h1 className="mb-4 text-start">Todos los eventos</h1>
+        <h1 className="mb-4 text-start">Eventos mas populares</h1>
         <div className="d-flex flex-column flex-grow-1 gap-3">
           <section className="eventos-filtrados d-flex flex-grow-1">
             <div className="container">
               <div className="row row-cols-1 row-cols-md-3 g-4 mb-4">
-                {/* {eventos.map((evento) => (
-                  <EventCard evento={evento} key={evento.id} />
-                ))} */}
+                {eventos
+                  .map((evento) => (
+                    <EventCard evento={evento} key={evento.id} />
+                  ))
+                  .filter((event, i) => i < 6)}
               </div>
             </div>
           </section>
@@ -110,9 +113,14 @@ const Home = () => {
           <section className="eventos-filtrados d-flex flex-grow-1">
             <div className="container">
               <div className="row row-cols-1 row-cols-md-3 g-4">
-                {/* {eventos.map((evento) => (
-                  <EventCard evento={evento} key={evento.id} />
-                ))} */}
+                {eventos
+                  .map((evento) => (
+                    <EventCard evento={evento} key={evento.id} />
+                  ))
+                  .sort((a, b) =>
+                    a.props.evento.dates[0] > b.props.evento.dates[0] ? 1 : -1
+                  )
+                  .filter((event, i) => i < 6)}
               </div>
             </div>
           </section>

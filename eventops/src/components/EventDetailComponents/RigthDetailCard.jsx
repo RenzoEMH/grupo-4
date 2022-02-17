@@ -32,7 +32,7 @@ const RigthDetailCard = () => {
             className="col-md-12 pt-3"
             style={{ borderTop: '4px solid #21262a' }}
           >
-            <h4 className="card-title">{evento.city}, PE</h4>
+            <h4 className="card-title">{evento.city.split(',', 1)}, Peru</h4>
             <p>{evento.address}</p>
           </div>
           <div
@@ -41,7 +41,13 @@ const RigthDetailCard = () => {
           >
             <iframe
               title="Mapa evento"
-              src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed"
+              src={`https://maps.google.com/maps?q=${
+                evento.address.length !== 0
+                  ? `${evento.address.replaceAll(' ', '+')},`
+                  : ''
+              }${
+                evento.city.length !== 0 ? evento.city : 'Lima,Lima'
+              }&t=&z=13&ie=UTF8&iwloc=&output=embed`}
               frameBorder="0"
               allowFullScreen
             ></iframe>

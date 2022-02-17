@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './_Register.scss';
 import { addNewUser } from '../../../redux/features/usersSlice';
 import {
-  resetAllAtribute,
+  resetAllAtributes,
   setAtribute,
 } from '../../../redux/features/singleUserSlice';
 
@@ -28,7 +28,7 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addNewUser({ ...usuario }));
-    dispatch(resetAllAtribute());
+    dispatch(resetAllAtributes());
     e.target[3].value = '';
     e.target[5].value = '';
   };

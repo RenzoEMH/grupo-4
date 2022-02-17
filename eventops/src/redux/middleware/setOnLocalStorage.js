@@ -6,6 +6,12 @@ const setOnLocalStorage = (store, action) => {
         JSON.stringify({ eventos: store.getState().eventos.eventos })
       );
       break;
+    case 'eventos/saveEditEvent':
+      localStorage.setItem(
+        'eventos',
+        JSON.stringify({ eventos: store.getState().eventos.eventos })
+      );
+      break;
     case 'shopCart/setCart':
       localStorage.setItem(
         'shopCart',
@@ -13,6 +19,12 @@ const setOnLocalStorage = (store, action) => {
       );
       break;
     case 'shopCart/updateTicketAmount':
+      localStorage.setItem(
+        'shopCart',
+        JSON.stringify({ cart: store.getState().shopCart.cart })
+      );
+      break;
+    case 'shopCart/removeTicketFromCart':
       localStorage.setItem(
         'shopCart',
         JSON.stringify({ cart: store.getState().shopCart.cart })
