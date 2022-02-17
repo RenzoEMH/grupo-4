@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom';
 import '../_Tiket.scss';
 import { useSelector } from 'react-redux';
+import { useContext } from 'react';
+import { SesionContext } from '../../utils/SesionContext';
 
 const Payment = () => {
-  const shopCart = useSelector((state) => state.shopCart.cart);
+  const { sesion } = useContext(SesionContext);
+  const shopCart = useSelector((state) =>
+    state.shopCart.cart.filter((cartItem) => cartItem.idUsuario === sesion.id)
+  );
   console.log(shopCart);
   let totalFare = 0;
   for (let i = 0; i < shopCart.length; i++) {

@@ -43,7 +43,9 @@ const FormPay = () => {
   const users = useSelector((state) => state.usuarios.usuarios);
   const sale = useSelector((state) => state.singleSale.singleSale);
   const tickets = useSelector((state) => state.tickets.tickets);
-  const shopCart = useSelector((state) => state.shopCart.cart);
+  const shopCart = useSelector((state) =>
+    state.shopCart.cart.filter((cartItem) => cartItem.idUsuario === sesion.id)
+  );
   const dispatch = useDispatch();
 
   let username = '';
@@ -92,6 +94,7 @@ const FormPay = () => {
     );
     dispatch(setAtribute({ key: 'cardType', value: 'VISA' }));
     dispatch(setAtribute({ key: 'totalFare', value: fare }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   //Volvemos los datos del shopcart en tickets
   const ticketsLocal = shopCart.map((cartItem) => {
@@ -124,7 +127,7 @@ const FormPay = () => {
     console.log(sale);
     console.log(creditCard);
     if (creditCard !== null) {
-      creditCards.map((card) => {
+      creditCards.forEach((card) => {
         if (
           creditCard.numberCard === card.numberCard &&
           creditCard.expiryDate === card.expiryDate &&

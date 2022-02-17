@@ -11,7 +11,8 @@ const perPage = 6;
 
 const filterByTickets = (idEvento, idUsuario, arrayTickets) => {
   const hasTicket = arrayTickets.some(
-    (ticket) => ticket.idUsuario === idUsuario && ticket.idEvento === idEvento
+    (ticket) =>
+      ticket.idUsuario === idUsuario && ticket.evento.idEvento === idEvento
   );
   return hasTicket;
 };
@@ -51,8 +52,8 @@ const MisEntradas = () => {
           <section className="eventos-filtrados d-flex flex-grow-1">
             <div className="container">
               <div className="row row-cols-1 row-cols-md-3 g-4 mb-4">
-                {eventos.setFilteredEvents?.length &&
-                  eventos.filteredEvents.map((evento) => (
+                {eventos.filteredEvents?.length &&
+                  eventos.filteredEvents?.map((evento) => (
                     <MisEntradasCard evento={evento} key={evento.id} />
                   ))}
               </div>

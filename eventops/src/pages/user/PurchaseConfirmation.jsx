@@ -7,7 +7,7 @@ const PurchaseConfirmation = () => {
   const { id } = useParams();
   const sales = useSelector((state) => state.sales.sales);
   let saleFilter = sales.filter((sale) => {
-    return sale.id == id;
+    return sale.id === parseInt(id);
   });
 
   return (
