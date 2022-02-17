@@ -135,7 +135,7 @@ function App() {
 
         <Route
           exact
-          path="/confirmacion-compra"
+          path="/confirmacion-compra/:id"
           element={
             <RequireAuth type="user">
               <PurchaseConfirmation />

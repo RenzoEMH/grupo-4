@@ -1,6 +1,15 @@
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router';
 import '../_Tiket.scss';
+import { useSelector } from 'react-redux';
+
 const PurchaseConfirmation = () => {
+  const { id } = useParams();
+  const sales = useSelector((state) => state.sales.sales);
+  let saleFilter = sales.filter((sale) => {
+    return sale.id == id;
+  });
+
   return (
     <div
       className="container d-flex flex-column justify-content-center"
@@ -8,58 +17,28 @@ const PurchaseConfirmation = () => {
     >
       <main className="confirmacion-compra__main">
         <section className="principal">
-          <h1 className="text-center text-light">DETALLE COMPRA</h1>
-
-          <div clas="logos">
-            <div className="sub-logos">
-              <div className="logo-eventops">
-                <span
-                  style={{ color: '#9f2d30', fontWeight: '700' }}
-                  className="eventops__title navbar-brand"
-                >
-                  EVEN<span>TOPS</span>
-                </span>
-              </div>
-              <div className="logo-pago">
-                <img src="imagenes/logo-payu.png" alt="" />
-              </div>
-            </div>
-          </div>
-
+          <h2 className="text-center text-light">DETALLE COMPRA</h2>
           <section className="linea">
             <div>
               <hr />
             </div>
           </section>
-
-          <section className="pago-autorizado">
-            <div className="logo-pay">
-              <img src="imagenes/icono.png" alt="" />
-            </div>
-            <div className="tipo">
-              <h3>AUTORIZADO</h3>
-            </div>
-            <div className="logo-pay">
-              <img src="imagenes/visa.png" alt="" />
-            </div>
-          </section>
-
           <div className="detalle">
             <div className="subgrupo">
               <div className="texto">
-                <h4>Nro. Pedido:</h4>
+                <h4>Token:</h4>
               </div>
               <div className="valor-texto" id="nro-pedido">
-                <h4>741582</h4>
+                <h4>{saleFilter[0].token}</h4>
               </div>
             </div>
 
             <div className="subgrupo">
               <div className="texto">
-                <h4>Código Autorización:</h4>
+                <h4>Nº Transacción / Referencia:</h4>
               </div>
               <div className="valor-texto" id="codigo-autorizacion">
-                <h4>5784521</h4>
+                <h4>{saleFilter[0].numberTransaction}</h4>
               </div>
             </div>
 
@@ -68,16 +47,16 @@ const PurchaseConfirmation = () => {
                 <h4>Nro. Tarjeta:</h4>
               </div>
               <div className="valor-texto" id="nro-tarjeta">
-                <h4>4517*****1287</h4>
+                <h4>{saleFilter[0].cardNumber}</h4>
               </div>
             </div>
 
             <div className="subgrupo">
               <div className="texto">
-                <h4>Importe Autorizado:</h4>
+                <h4>Cliente:</h4>
               </div>
               <div className="valor-texto" id="cant-importe">
-                <h4>S/. 37.00</h4>
+                <h4>{saleFilter[0].client}</h4>
               </div>
             </div>
 
@@ -86,98 +65,37 @@ const PurchaseConfirmation = () => {
                 <h4>Fecha de Operación:</h4>
               </div>
               <div className="valor-texto" id="fecha-reserva">
-                <h4>15/12/2021 10:00 PM</h4>
+                <h4>{saleFilter[0].paymentDate}</h4>
               </div>
             </div>
 
             <div className="subgrupo">
               <div className="texto">
-                <h4>Comercio:</h4>
+                <h4>Tipo de tarjeta:</h4>
               </div>
               <div className="valor-texto" id="nombre-comercio">
-                <h4>EVENTOPS</h4>
+                <h4>{saleFilter[0].cardType}</h4>
               </div>
             </div>
 
             <div className="subgrupo">
               <div className="texto">
-                <h4>Términos y Condiciones:</h4>
+                <h4>Importe Total:</h4>
               </div>
-              <div className="enlace-texto" id="terminos-condiciones">
-                <span type="button">eventops.com/terminos</span>
-              </div>
-            </div>
-
-            <div className="subgrupo">
-              <div className="texto">
-                <h4>Cliente:</h4>
-              </div>
-              <div className="valor-texto" id="nombre-cliente">
-                <h4>ROBERTO FERNANDEZ</h4>
-              </div>
-            </div>
-
-            <div className="subgrupo">
-              <div className="texto">
-                <h4>Cliente:</h4>
-              </div>
-              <div className="enlace-texto" id="email">
-                <p>roberto@gmail.com</p>
-              </div>
-            </div>
-
-            <div className="subgrupo">
-              <div className="texto">
-                <h4>Cantidad:</h4>
-              </div>
-              <div className="valor-texto" id="cantidad">
-                <h4>1</h4>
-              </div>
-            </div>
-
-            <div className="subgrupo">
-              <div className="texto">
-                <h4>Descripción:</h4>
-              </div>
-              <div className="valor-texto" id="descripcion">
-                <h4>Rerserva de Evento</h4>
-              </div>
-            </div>
-
-            <div className="subgrupo">
-              <div className="texto">
-                <h4>Importe:</h4>
-              </div>
-              <div className="valor-texto" id="importe">
-                <h4>S/. 36.00</h4>
-              </div>
-            </div>
-
-            <div className="subgrupo">
-              <div className="texto">
-                <h4>Gasto Operativo:</h4>
-              </div>
-              <div className="valor-texto" id="operativo">
-                <h4>S/. 1.00</h4>
-              </div>
-            </div>
-            <div className="subgrupo">
-              <div className="texto">
-                <h4>Importe Total (Depósito/ Balance):</h4>
-              </div>
-              <div className="valor-texto" id="total">
-                <h4>S/. 37.00</h4>
+              <div className="valor-texto" id="terminos-condiciones">
+                <h4>{saleFilter[0].totalFare}</h4>
               </div>
             </div>
           </div>
+
           <div className="botones">
             <div>
-              <Link to={'/'} className="btn btn-secondary py-2">
+              <Link to={'/'} className="btn btn-secondary">
                 Regresas Home
               </Link>
             </div>
             <div>
-              <Link to={'/mis-entradas'} className="boton">
+              <Link to={'/mis-entradas'} className="btn btn-danger">
                 Ver mis Entradas
               </Link>
             </div>

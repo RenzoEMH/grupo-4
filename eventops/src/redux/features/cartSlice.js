@@ -6,6 +6,11 @@ export const cartSlice = createSlice({
     cart: [],
   },
   reducers: {
+    removeCard: (state, { payload: id }) => {
+      state.cart = [...state.cart].filter((item) => {
+        return item.id !== id;
+      });
+    },
     setCart: (state, { payload: shopCart }) => {
       state.cart = [...shopCart];
     },
@@ -17,10 +22,18 @@ export const cartSlice = createSlice({
         return item.id !== id;
       });
     },
+    emptyCart: (state) => {
+      state.cart = [];
+    },
   },
 });
 
-export const { setCart, updateTicketAmount, removeTicketFromCart } =
-  cartSlice.actions;
+export const {
+  setCart,
+  updateTicketAmount,
+  removeTicketFromCart,
+  removeCard,
+  emptyCart,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
