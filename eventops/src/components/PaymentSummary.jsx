@@ -1,4 +1,26 @@
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useContext } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { SesionContext } from '../utils/SesionContext';
+
 const PaymentSummary = () => {
+  const { sesion } = useContext(SesionContext);
+  const shopCartList = useSelector((state) =>
+    state.shopCart.cart.filter((item) => item.idUsuario === sesion.id)
+  );
+  const [subTotal, setSubTotal] = useState(
+    shopCartList.reduce((prev, curr) => prev + curr.price, 0)
+  );
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setSubTotal(
+      shopCartList.reduce((prev, curr) => prev + curr.price * curr.amount, 0)
+    );
+  }, [shopCartList]);
+
   return (
     <div className="inferiorCarrito">
       <div className="row">
@@ -7,7 +29,14 @@ const PaymentSummary = () => {
             <p>¿Aun quieres seguir comprando otras entradas de Eventos?</p>
           </div>
           <div>
-            <button className="btn btn-danger">Seguir comprando</button>
+            <button
+              onClick={() => {
+                navigate('/busqueda');
+              }}
+              className="btn btn-danger"
+            >
+              Seguir comprando
+            </button>
           </div>
         </div>
         <div className="col-md-3 summary" id="resumenPago">
@@ -23,7 +52,10 @@ const PaymentSummary = () => {
             <div className="col">
               <p>Subtotal:</p>
             </div>
-            <div className="col text-right">S/. 270.00</div>
+            <div className="col text-right">
+              S/. {subTotal}
+              .00
+            </div>
           </div>
           <div className="row">
             <div className="col">
@@ -39,7 +71,7 @@ const PaymentSummary = () => {
               <p>Total</p>
             </div>
             <div className="col text-right">
-              <p>S/. 270.00</p>
+              <p>S/. {subTotal}.00</p>
             </div>
           </div>
         </div>

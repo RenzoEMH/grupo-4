@@ -2,14 +2,16 @@ import { useNavigate } from 'react-router-dom';
 import dateFormatter from '../../utils/dateFormatter';
 
 const EventosCreadosCard = ({
-  evento: { dates, img, title, startHour, state },
+  evento: { id, dates, img, title, startHour, state },
 }) => {
   const navigate = useNavigate();
 
   return (
     <div className="col-12 col-md-6 col-lg-4 ">
       <div className="card">
-        <img src={img} alt={title} className="card-img-top" />
+        <div className="contenedor-imagen">
+          <img src={img} alt={title} className="card-img-top" />
+        </div>
         <div className="card-body">
           <h5 className="card-main-text text-start">{title}</h5>
           <p className="card-text d-flex justify-content-center align-items-center gap-3">
@@ -50,7 +52,7 @@ const EventosCreadosCard = ({
             )}
 
             <button
-              onClick={() => navigate('/evento-detalle')}
+              onClick={() => navigate(`/evento-detalle/${id}`)}
               className="card-button"
             >
               DETALLES

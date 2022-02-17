@@ -10,7 +10,9 @@ const EventCard = ({
   return (
     <div className="col-12 col-md-6 col-lg-4">
       <div className="card">
-        <img src={img} alt={title} className="card-img-top" />
+        <div className="contenedor-imagen">
+          <img src={img} alt={title} className="card-img-top" />
+        </div>
         <div className="card-body">
           <h5 className="card-main-text text-start">{title}</h5>
           <p className="card-text d-flex justify-content-center align-items-center gap-3">

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import dateFormatter from '../../utils/dateFormatter';
 
-const MisEntradasCard = ({ evento: { dates, img, title, startHour } }) => {
+const MisEntradasCard = ({ evento: { id, dates, img, title, startHour } }) => {
   const navigate = useNavigate();
 
   return (
@@ -29,7 +29,9 @@ const MisEntradasCard = ({ evento: { dates, img, title, startHour } }) => {
           ></span>
           ACTIVO
         </div>
-        <img src={img} alt={title} className="card-img-top" />
+        <div className="contenedor-imagen">
+          <img src={img} alt={title} className="card-img-top" />
+        </div>
         <div className="card-body">
           <h5 className="card-main-text text-start">{title}</h5>
           <p className="card-text d-flex justify-content-center align-items-center gap-3">
@@ -41,7 +43,7 @@ const MisEntradasCard = ({ evento: { dates, img, title, startHour } }) => {
           <div className="card-detail text-dark">
             <button className="card-button bg-secondary">MI TICKET</button>
             <button
-              onClick={() => navigate('/evento-detalle')}
+              onClick={() => navigate(`/evento-detalle/${id}`)}
               className="card-button"
             >
               DETALLES

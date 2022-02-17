@@ -6,6 +6,36 @@ const setOnLocalStorage = (store, action) => {
         JSON.stringify({ eventos: store.getState().eventos.eventos })
       );
       break;
+    case 'eventos/saveEditEvent':
+      localStorage.setItem(
+        'eventos',
+        JSON.stringify({ eventos: store.getState().eventos.eventos })
+      );
+      break;
+    case 'shopCart/setCart':
+      localStorage.setItem(
+        'shopCart',
+        JSON.stringify({ cart: store.getState().shopCart.cart })
+      );
+      break;
+    case 'shopCart/emptyCart':
+      localStorage.setItem(
+        'shopCart',
+        JSON.stringify({ cart: store.getState().shopCart.cart })
+      );
+      break;
+    case 'shopCart/updateTicketAmount':
+      localStorage.setItem(
+        'shopCart',
+        JSON.stringify({ cart: store.getState().shopCart.cart })
+      );
+      break;
+    case 'shopCart/removeTicketFromCart':
+      localStorage.setItem(
+        'shopCart',
+        JSON.stringify({ cart: store.getState().shopCart.cart })
+      );
+      break;
     case 'usuarios/addNewUser':
       localStorage.setItem(
         'usuarios',
@@ -24,12 +54,7 @@ const setOnLocalStorage = (store, action) => {
         JSON.stringify({ tickets: store.getState().tickets.tickets })
       );
       break;
-    case 'shopCart/emptyCart':
-      localStorage.setItem(
-        'shopCart',
-        JSON.stringify({ cart: store.getState().shopCart.cart })
-      );
-      break;
+
     default:
       console.log(action.type);
       break;

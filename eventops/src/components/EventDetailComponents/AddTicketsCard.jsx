@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fuseCarts } from '../../redux/features/cartSlice';
+import { setCart } from '../../redux/features/cartSlice';
 import dateOnlyFormatter from '../../utils/dateOnlyFormatter';
 import hourOnlyFormatter from '../../utils/hourOnlyFormatter';
 import { SesionContext } from '../../utils/SesionContext';
@@ -27,11 +27,54 @@ const setupCart = (evento, idSesion) => {
   return cart;
 };
 
+/**
+ * Combines ticket amount of same ticket type and date of specific event for logged user in both storeCart and localCart
+ * @param {*} storeCart
+ * @param {*} shopCart
+ * @returns cart with combined ticket amounts from both storeCart and localCart
+ */
+const obtainUnique = (storeCart, shopCart) => {
+  return storeCart.map((item) => {
+    const matchIndex = shopCart.findIndex(
+      (object) =>
+        item.idUsuario === object.idUsuario &&
+        item.idEvento === object.idEvento &&
+        item.date === object.date &&
+        item.typeTicket === object.typeTicket
+    );
+    if (matchIndex >= 0) {
+      const fuseValue = item.amount + shopCart[matchIndex].amount;
+      shopCart.splice(matchIndex, 1);
+      return { ...item, amount: fuseValue };
+    }
+    return item;
+  });
+};
+
+/**
+ *
+ * @param {*} fCart
+ * @param {*} event
+ * @returns
+ */
+const obtainCapped = (fCart, event) => {
+  const capped = fCart.map((item) => {
+    const quantity = event.typeTicket.find(
+      (element) =>
+        element.type === item.typeTicket && element.date === item.date
+    )?.quantity;
+    console.log(quantity);
+    return item.amount >= quantity ? { ...item, amount: quantity } : item;
+  });
+  return capped;
+};
+
 const AddTicketsCard = () => {
   const { eventoId } = useParams();
   const evento = useSelector((state) =>
     state.eventos.eventos.find((evento) => evento.id === parseInt(eventoId))
   );
+  const rCart = useSelector((state) => state.shopCart.cart);
   const { sesion } = useContext(SesionContext);
   const cart = useMemo(
     () => [...setupCart(evento, sesion.id)],
@@ -61,7 +104,9 @@ const AddTicketsCard = () => {
     const cartItems = filterCart.filter((item) => item.amount > 0);
     cartItems.length === 0 && setErrorTicket(true);
     if (cartItems.length > 0) {
-      dispatch(fuseCarts([...cartItems]));
+      const fusedCart = [...obtainUnique(rCart, cartItems), ...cartItems];
+      const cappedCart = [...obtainCapped(fusedCart, evento)];
+      dispatch(setCart([...cappedCart]));
       navigate('/carrito-compra');
     }
   };

@@ -3,9 +3,14 @@ import { useSelector } from 'react-redux';
 import ShopCard from '../../../components/ShopCard';
 import PaymentSummary from '../../../components/PaymentSummary';
 import { useNavigate } from 'react-router-dom';
+import { SesionContext } from '../../../utils/SesionContext';
+import { useContext } from 'react';
 
 const ShopCart = () => {
-  const shopCartList = useSelector((state) => state.shopCart.cart);
+  const { sesion } = useContext(SesionContext);
+  const shopCartList = useSelector((state) =>
+    state.shopCart.cart.filter((item) => item.idUsuario === sesion.id)
+  );
   const navigate = useNavigate();
 
   return (

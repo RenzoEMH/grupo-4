@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  nextPage,
-  prevPage,
-  resetAllAtributes,
-  setAtribute,
+  nextEditPage,
+  prevEditPage,
+  resetEditAllAtributes,
+  setEditAtribute,
 } from '../../redux/features/singleEventSlice';
-import { addNewEvent } from '../../redux/features/eventsSlice';
-import ProgressBar from './ProgressBar';
-import TicketType from './TicketType';
+import { saveEditEvent } from '../../redux/features/eventsSlice';
 import { useEffect } from 'react';
+import EditProgressBar from './EditProgressBar';
+import EditTicketType from './EditTicketType';
 
 const getLowestPrice = (arrayTypeTickets) => {
   const lowestPrice = arrayTypeTickets.reduce((prev, curr) =>
@@ -17,22 +17,22 @@ const getLowestPrice = (arrayTypeTickets) => {
   return lowestPrice.price || 0;
 };
 
-const CreationTicket = () => {
-  const evento = useSelector((state) => state.singleEvent.singleEvent);
+const EditCreationTicket = () => {
+  const evento = useSelector((state) => state.singleEvent.editSingleEvent);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addNewEvent({ ...evento }));
-    dispatch(resetAllAtributes());
-    dispatch(nextPage());
+    dispatch(saveEditEvent({ ...evento }));
+    dispatch(resetEditAllAtributes());
+    dispatch(nextEditPage());
   };
 
   useEffect(() => {
     const lowest = getLowestPrice(evento.typeTicket);
     lowest > 0 &&
       dispatch(
-        setAtribute({
+        setEditAtribute({
           key: 'lowestPrice',
           value: lowest,
         })
@@ -41,7 +41,7 @@ const CreationTicket = () => {
 
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
-      <ProgressBar />
+      <EditProgressBar />
       <div className="accordion-item">
         <h1 className="accordion-button ">Creación de Entradas</h1>
         <div className="container">
@@ -63,7 +63,7 @@ const CreationTicket = () => {
                 <button
                   onClick={() => {
                     dispatch(
-                      setAtribute({
+                      setEditAtribute({
                         key: 'typeTicket',
                         value: [
                           ...evento.typeTicket,
@@ -85,7 +85,7 @@ const CreationTicket = () => {
             </div>
           </div>
           {evento.typeTicket.map((ticketType, index) => (
-            <TicketType
+            <EditTicketType
               ticket={ticketType}
               all={evento.typeTicket}
               index={index}
@@ -138,7 +138,7 @@ const CreationTicket = () => {
             <button
               type="button"
               className="btn btn-light"
-              onClick={() => dispatch(prevPage())}
+              onClick={() => dispatch(prevEditPage())}
             >
               Atras
             </button>
@@ -148,7 +148,7 @@ const CreationTicket = () => {
             style={{ display: 'flex', justifyContent: 'flex-start' }}
           >
             <button type="submit" className="btn btn-danger">
-              Crear Evento
+              Guardar
             </button>
           </div>
         </div>
@@ -157,4 +157,4 @@ const CreationTicket = () => {
   );
 };
 
-export default CreationTicket;
+export default EditCreationTicket;

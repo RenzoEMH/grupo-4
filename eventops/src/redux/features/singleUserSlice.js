@@ -10,12 +10,12 @@ export const singleUserSlice = createSlice({
     setAtribute: (state, { payload: atribute }) => {
       state.singleUser[`${atribute.key}`] = atribute.value;
     },
-    resetAllAtribute: (state) => {
+    resetAllAtributes: (state) => {
       state.singleUser = { ...emptySingleUser };
     },
   },
 });
 
-export const { setAtribute, resetAllAtribute } = singleUserSlice.actions;
+export const { setAtribute, resetAllAtributes } = singleUserSlice.actions;
 
 export default singleUserSlice.reducer;

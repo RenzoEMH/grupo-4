@@ -1,15 +1,53 @@
-import { useDispatch } from 'react-redux';
-import { removeCard } from '../redux/features/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  removeTicketFromCart,
+  updateTicketAmount,
+} from '../redux/features/cartSlice';
 import dateOnlyFormatter from '../utils/dateOnlyFormatter';
 import hourOnlyFormatter from '../utils/hourOnlyFormatter';
 
 const ShopCard = ({
-  ShopCard: { id, date, hour, img, price, title, city, typeTicket, amount },
+  ShopCard: {
+    id,
+    date,
+    hour,
+    img,
+    price,
+    title,
+    city,
+    typeTicket,
+    amount,
+    idEvento,
+  },
 }) => {
+  const evento = useSelector((state) =>
+    state.eventos.eventos.find((evento) => evento.id === parseInt(idEvento))
+  );
+  const rCart = useSelector((state) => state.shopCart.cart);
   const dispatch = useDispatch();
 
-  const removeElement = (id) => {
-    dispatch(removeCard(id));
+  const removeElement = () => {
+    dispatch(removeTicketFromCart(id));
+  };
+
+  const changeAmount = (ticket) => {
+    dispatch(updateTicketAmount(ticket));
+  };
+
+  const add = () => {
+    const maxAmount = evento.typeTicket.find(
+      (tType) => tType.type === typeTicket && tType.date === date
+    ).quantity;
+    if (amount < maxAmount) {
+      const index = rCart.findIndex((item) => item.id === id);
+      changeAmount({ index: index, amount: amount + 1 });
+    }
+  };
+  const subtract = () => {
+    if (amount !== 0) {
+      const index = rCart.findIndex((item) => item.id === id);
+      changeAmount({ index: index, amount: amount - 1 });
+    }
   };
 
   return (
@@ -35,13 +73,13 @@ const ShopCard = ({
           {typeTicket} <span className="close"></span>
         </div>
         <div className="col-md-2 text-center">
-          <span type="button">
+          <span onClick={() => subtract()} type="button">
             <i className="bi bi-dash"></i>{' '}
           </span>
-          <span className="border" style={{ padding: '0 0.5rem' }}>
+          <span style={{ padding: '0 0.5rem', userSelect: 'none' }}>
             {amount}
           </span>
-          <span type="button">
+          <span onClick={() => add()} type="button">
             <i className="bi bi-plus"></i>{' '}
           </span>
         </div>
@@ -52,7 +90,7 @@ const ShopCard = ({
           <span
             type="button"
             onClick={() => {
-              removeElement(id);
+              removeElement();
             }}
           >
             <i className="bi bi-trash-fill"></i>
