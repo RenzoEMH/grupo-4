@@ -11,7 +11,25 @@ const setOnLocalStorage = (store, action) => {
         'usuarios',
         JSON.stringify({ usuarios: store.getState().usuarios.usuarios })
       );
-
+      break;
+    case 'sales/addNewSale':
+      localStorage.setItem(
+        'sales',
+        JSON.stringify({ sales: store.getState().sales.sales })
+      );
+      break;
+    case 'tickets/setAllTickets':
+      localStorage.setItem(
+        'tickets',
+        JSON.stringify({ tickets: store.getState().tickets.tickets })
+      );
+      break;
+    case 'shopCart/emptyCart':
+      localStorage.setItem(
+        'shopCart',
+        JSON.stringify({ cart: store.getState().shopCart.cart })
+      );
+      break;
     default:
       console.log(action.type);
       break;

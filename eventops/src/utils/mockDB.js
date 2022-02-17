@@ -573,9 +573,14 @@ const tickets = {
     {
       id: 1,
       idUsuario: 2,
-      idEvento: 2,
-      quantity: 2,
-      typeTicket: 'General',
+      evento: [
+        {
+          idEvento: 2,
+          typeTicket: 'General',
+          dateEvent: '2022-02-16',
+          quantity: 2,
+        },
+      ],
       idTransaction: '1',
     },
   ],
@@ -585,12 +590,14 @@ const sales = {
   sales: [
     {
       id: 1,
-      token: 'AB123456',
-      client: 'BCP',
-      cardNumber: '0123456789',
-      paymentDate: '2022-02-05T21:00:00.000Z',
-      cardType: 'debito',
+      token: '12345678',
+      numberTransaction: 'ASD54F1V8WO6H4H5',
+      client: 'Luis Enrique',
+      cardNumber: '369874521123654',
+      paymentDate: '2022-02-15',
+      cardType: 'VISA',
       idUser: 2,
+      totalFare: 90,
     },
   ],
 };
@@ -665,6 +672,27 @@ const slides = {
   ],
 };
 
+const creditCard = {
+  creditCard: [
+    {
+      numberCard: '369874521123654',
+      expiryDate: '10/25',
+      CVV: '123',
+      name: 'Renzo',
+      lastname: 'Manrique',
+      email: 'renzo.manrique@gmail.com',
+    },
+    {
+      numberCard: '369874521123655',
+      expiryDate: '10/26',
+      CVV: '789',
+      name: 'Pedro',
+      lastname: 'Perez',
+      email: 'pedro.perez@gmail.com',
+    },
+  ],
+};
+
 const mockDB = {
   usuarios,
   eventos,
@@ -672,6 +700,7 @@ const mockDB = {
   sales,
   shopCart,
   slides,
+  creditCard,
 };
 
 export default mockDB;

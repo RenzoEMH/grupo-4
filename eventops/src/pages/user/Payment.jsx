@@ -1,6 +1,14 @@
 import { Link } from 'react-router-dom';
 import '../_Tiket.scss';
+import { useSelector } from 'react-redux';
+
 const Payment = () => {
+  const shopCart = useSelector((state) => state.shopCart.cart);
+  console.log(shopCart);
+  let totalFare = 0;
+  for (let i = 0; i < shopCart.length; i++) {
+    totalFare = totalFare + shopCart[i].price * shopCart[i].amount;
+  }
   return (
     <div className="container-metod-payment container">
       <div className="row">
@@ -169,33 +177,25 @@ const Payment = () => {
 
         <div className="col-md-4" id="col-right">
           <div className="caja-right">
+            {shopCart.map((cart) => {
+              return (
+                <div key={cart.id}>
+                  <div>
+                    <strong>{cart.title}</strong>
+                  </div>
+                  <div className="row">
+                    <div className="col-md-5">{cart.date}</div>
+                    <div className="col-md-4">
+                      {cart.amount} x {cart.typeTicket}
+                    </div>
+                    <div className="col-md-3">
+                      S/.{cart.price * cart.amount}.00
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
             <div>
-              <h5>
-                ROCK AND ROLL: <br />
-                Peru
-              </h5>
-            </div>
-            <div className="row">
-              <div className="col-md-6">
-                <span>
-                  <i className="bi bi-calendar-check"></i>
-                </span>{' '}
-                Domingo 19 de diciembre
-              </div>
-              <div className="col-md-6">
-                <span>
-                  <i className="bi bi-alarm"></i>
-                </span>{' '}
-                19:00 pm
-              </div>
-            </div>
-            <div clas="row">
-              <h5>Virtual</h5>
-            </div>
-            <div>
-              <h5>Mi compra</h5>
-            </div>
-            <div className="row">
               <table className="table">
                 <thead>
                   <tr>
@@ -205,14 +205,16 @@ const Payment = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>2 x General</td>
-                    <td>S/. 50.00 PEN</td>
+                    <td>
+                      <strong>Subtotal</strong>
+                    </td>
+                    <td>S/. {totalFare}.00</td>
                   </tr>
                   <tr>
                     <td>
-                      <span></span> Total
+                      <strong>Total</strong>
                     </td>
-                    <td>S/. 50.00</td>
+                    <td>S/. {totalFare}.00</td>
                   </tr>
                 </tbody>
               </table>
