@@ -2,9 +2,7 @@ import './_EventCard.scss';
 import dateFormatter from '../../utils/dateFormatter';
 import { useNavigate } from 'react-router-dom';
 
-const EventCard = ({
-  evento: { id, dates, img, lowestPrice, title, startHour },
-}) => {
+const EventCard = ({ evento: { _id, dates, img, lowestPrice, title } }) => {
   const navigate = useNavigate();
 
   return (
@@ -19,12 +17,12 @@ const EventCard = ({
             <span>
               <i style={{ fontSize: '1.35rem' }} className="bi bi-calendar"></i>
             </span>
-            {dateFormatter(dates[0], startHour)}
+            {dateFormatter(dates)}
           </p>
           <div className="card-detail text-dark">
             S/. {lowestPrice}.00
             <button
-              onClick={() => navigate(`/evento-detalle/${id}`)}
+              onClick={() => navigate(`/evento-detalle/${_id}`)}
               className="card-button"
             >
               DETALLES

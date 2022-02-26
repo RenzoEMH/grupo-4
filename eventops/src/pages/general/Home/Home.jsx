@@ -1,10 +1,25 @@
-import EventCard from '../../../components/EventCards/EventCard';
+import _ from 'lodash';
 import { useSelector } from 'react-redux';
+import EventCard from '../../../components/EventCards/EventCard';
 import FilterAndSearchBarHome from '../../../components/FilterAndSearchBar/FilterAndSearchBarHome';
 import './_Home.scss';
 
 const Home = () => {
   const eventos = useSelector((state) => state.eventos.eventos);
+
+  const getSortedEventsCards = () => {
+    const eventsClone = _.cloneDeep(eventos);
+    const sortedEventsCards = eventsClone
+      .map((evento) => <EventCard evento={evento} key={evento._id} />)
+      .sort((a, b) =>
+        a.props.evento.dates.sort((a, b) => a.date > b.date)[0].date >
+        b.props.evento.dates.sort((a, b) => a.date > b.date)[0].date
+          ? 1
+          : -1
+      )
+      .filter((event, i) => i < 6);
+    return sortedEventsCards;
+  };
 
   return (
     <div className="App">
@@ -98,7 +113,7 @@ const Home = () => {
               <div className="row row-cols-1 row-cols-md-3 g-4 mb-4">
                 {eventos
                   .map((evento) => (
-                    <EventCard evento={evento} key={evento.id} />
+                    <EventCard evento={evento} key={evento._id} />
                   ))
                   .filter((event, i) => i < 6)}
               </div>
@@ -113,14 +128,7 @@ const Home = () => {
           <section className="eventos-filtrados d-flex flex-grow-1">
             <div className="container">
               <div className="row row-cols-1 row-cols-md-3 g-4">
-                {eventos
-                  .map((evento) => (
-                    <EventCard evento={evento} key={evento.id} />
-                  ))
-                  .sort((a, b) =>
-                    a.props.evento.dates[0] > b.props.evento.dates[0] ? 1 : -1
-                  )
-                  .filter((event, i) => i < 6)}
+                {getSortedEventsCards()}
               </div>
             </div>
           </section>

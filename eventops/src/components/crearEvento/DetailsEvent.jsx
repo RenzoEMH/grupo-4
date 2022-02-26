@@ -1,65 +1,44 @@
 import { useEffect } from 'react';
 import { useContext } from 'react';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { nextPage, setAtribute } from '../../redux/features/singleEventSlice';
 import categoryNames from '../../utils/categoriesNames';
-import dateRange from '../../utils/dateRange';
 import { SesionContext } from '../../utils/SesionContext';
+import EventDate from './EventDate';
 import EventoImgModal from './EventoImgModal';
 import ProgressBar from './ProgressBar';
 
 const DetailsEvent = () => {
   const evento = useSelector((state) => state.singleEvent.singleEvent);
   const { sesion } = useContext(SesionContext);
-  const [dateTimes, setDateTimes] = useState({
-    lowestDate: evento.dates[0] ? evento.dates[0] : '',
-    highestDate: evento.dates[evento.dates.length - 1]
-      ? evento.dates[evento.dates.length - 1]
-      : '',
-    startHour: evento.startHour,
-    endHour: evento.endHour,
-  });
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(setAtribute({ key: 'id', value: Date.now() }));
-    dispatch(setAtribute({ key: 'idOwner', value: sesion.id }));
-  }, [dispatch, sesion.id]);
-
-  useEffect(() => {
-    if (
-      dateTimes.lowestDate !== '' &&
-      dateTimes.highestDate !== '' &&
-      dateTimes.startHour !== '' &&
-      dateTimes.endHour !== ''
-    ) {
-      const allDates = dateRange(
-        new Date(dateTimes.lowestDate),
-        new Date(dateTimes.highestDate)
-      ).map((date) => date.toISOString().slice(0, 10));
-
-      dispatch(
-        setAtribute({
-          key: 'startHour',
-          value: dateTimes.startHour,
-        })
-      );
-      dispatch(setAtribute({ key: 'endHour', value: dateTimes.endHour }));
-      dispatch(setAtribute({ key: 'dates', value: allDates }));
+    if (!evento.idOwner) {
+      dispatch(setAtribute({ key: '_id', value: Date.now() }));
+      dispatch(setAtribute({ key: 'idOwner', value: sesion.id }));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    dateTimes.endHour,
-    dateTimes.highestDate,
-    dateTimes.lowestDate,
-    dateTimes.startHour,
-  ]);
+  }, [dispatch, evento.idOwner, sesion.id]);
 
-  const handleDateChange = (data, key) => {
-    setDateTimes({ ...dateTimes, [key]: data });
+  const handleAddDate = () => {
+    dispatch(
+      setAtribute({
+        key: 'dates',
+        value: [
+          ...evento.dates,
+          {
+            _id: Math.floor(Math.random() * 100000) + 1,
+            date: '',
+            startHour: '',
+            endHour: '',
+            isEditable: true,
+            ticketCategories: [],
+          },
+        ],
+      })
+    );
   };
 
   const handleSubmit = (e) => {
@@ -68,13 +47,13 @@ const DetailsEvent = () => {
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form onSubmit={handleSubmit}>
       <ProgressBar />
       <div className="accordion-item">
         <h1 className="accordion-button">Detalles del Evento</h1>
         <div className="container">
           <div className="row">
-            <div className="col-lg-6 order-lg-1">
+            <div className="col-lg-7 order-lg-1">
               <div className="mb-3">
                 <label htmlFor="address">Nombre del Evento</label>
                 <input
@@ -115,7 +94,7 @@ const DetailsEvent = () => {
                 <textarea
                   className="form-control"
                   aria-label="With textarea"
-                  rows="4"
+                  rows="3"
                   placeholder="Escribe un parráfo corto que describa lo mejor posible tu evento. "
                   value={evento.description}
                   onChange={(e) =>
@@ -133,7 +112,7 @@ const DetailsEvent = () => {
                 <textarea
                   className="form-control"
                   aria-label="With textarea"
-                  rows="6"
+                  rows="4"
                   placeholder="Detalla toda la información extra de tu evento. "
                   value={evento.infoExtra}
                   onChange={(e) =>
@@ -143,72 +122,27 @@ const DetailsEvent = () => {
                   }
                 ></textarea>
               </div>
-              <div className="row">
-                <div className="col-7">
-                  <div className="mb-3">
-                    <label htmlFor="address">Fecha de Inicio</label>
-                    <input
-                      className="form-control"
-                      type="text"
-                      onFocus={(e) => {
-                        e.target.type = 'date';
-                      }}
-                      onBlur={(e) => {
-                        e.target.type = 'text';
-                      }}
-                      value={dateTimes.lowestDate}
-                      onChange={(e) =>
-                        handleDateChange(e.target.value, 'lowestDate')
-                      }
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label htmlFor="address">Fecha de Fin</label>
-                    <input
-                      className="form-control"
-                      type="text"
-                      onFocus={(e) => {
-                        e.target.type = 'date';
-                      }}
-                      onBlur={(e) => {
-                        e.target.type = 'text';
-                      }}
-                      value={dateTimes.highestDate}
-                      onChange={(e) =>
-                        handleDateChange(e.target.value, 'highestDate')
-                      }
-                    />
-                  </div>
+              <div className="mb-3">
+                <div className="row border-bottom py-3">
+                  <button
+                    onClick={handleAddDate}
+                    type="button"
+                    className="btn btn-primary"
+                  >
+                    Agregar Fecha
+                  </button>
                 </div>
-                <div className="col-5">
-                  <div className="mb-3">
-                    <label htmlFor="address">Hora de Inicio</label>
-                    <input
-                      type="time"
-                      id="inputMDEx1"
-                      className="form-control"
-                      value={dateTimes.startHour}
-                      onChange={(e) =>
-                        handleDateChange(e.target.value, 'startHour')
-                      }
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label htmlFor="address">Hora de Fin</label>
-                    <input
-                      type="time"
-                      id="inputMDEx1"
-                      className="form-control"
-                      value={dateTimes.endHour}
-                      onChange={(e) =>
-                        handleDateChange(e.target.value, 'endHour')
-                      }
-                    />
-                  </div>
-                </div>
+                {evento.dates.map((dateItem, index) => (
+                  <EventDate
+                    dateItem={dateItem}
+                    index={index}
+                    allDates={evento.dates}
+                    key={index}
+                  />
+                ))}
               </div>
             </div>
-            <div className="col-lg-6 order-lg-2">
+            <div className="col-lg-5 order-lg-2">
               <EventoImgModal property={evento.img} type={'Evento'} />
               <EventoImgModal property={evento.ticketImg} type={'Ticket'} />
             </div>

@@ -11,7 +11,7 @@ const EventDetail = () => {
   const { eventoId } = useParams();
   const { sesion } = useContext(SesionContext);
   const evento = useSelector((state) =>
-    state.eventos.eventos.find((evento) => evento.id === parseInt(eventoId))
+    state.eventos.eventos.find((evento) => evento._id === parseInt(eventoId))
   );
 
   return (

@@ -1,8 +1,30 @@
-import { useDispatch } from 'react-redux';
-import { setAtribute } from '../../redux/features/singleEventSlice';
+const TicketType = ({
+  ticket: { type, price, quantity },
+  all,
+  setTickets,
+  index,
+}) => {
+  const handleOnChangeType = (e) => {
+    setTickets([
+      ...all.map((tType, i) =>
+        i === index ? { ...tType, [`${e.target.name}`]: e.target.value } : tType
+      ),
+    ]);
+  };
 
-const TicketType = ({ ticket: { type, price, quantity }, all, index }) => {
-  const dispatch = useDispatch();
+  const handleOnChangeNumber = (e) => {
+    setTickets([
+      ...all.map((tType, i) =>
+        i === index
+          ? { ...tType, [`${e.target.name}`]: parseInt(e.target.value) }
+          : tType
+      ),
+    ]);
+  };
+
+  const handleOnClickDelete = () => {
+    setTickets([...all.filter((tType, i) => index !== i)]);
+  };
 
   return (
     <div className="row border-bottom py-4">
@@ -14,16 +36,8 @@ const TicketType = ({ ticket: { type, price, quantity }, all, index }) => {
             className="form-control"
             placeholder="Ej. VIP, General "
             value={type}
-            onChange={(e) =>
-              dispatch(
-                setAtribute({
-                  key: 'typeTicket',
-                  value: all.map((tType, i) =>
-                    i === index ? { ...tType, type: e.target.value } : tType
-                  ),
-                })
-              )
-            }
+            name={'type'}
+            onChange={handleOnChangeType}
             // required
           />
         </div>
@@ -37,18 +51,8 @@ const TicketType = ({ ticket: { type, price, quantity }, all, index }) => {
             placeholder="0 "
             min="0"
             value={quantity}
-            onChange={(e) =>
-              dispatch(
-                setAtribute({
-                  key: 'typeTicket',
-                  value: all.map((tType, i) =>
-                    i === index
-                      ? { ...tType, quantity: parseInt(e.target.value) }
-                      : tType
-                  ),
-                })
-              )
-            }
+            name={'quantity'}
+            onChange={handleOnChangeNumber}
             // required
           />
         </div>
@@ -62,35 +66,15 @@ const TicketType = ({ ticket: { type, price, quantity }, all, index }) => {
             placeholder="0 "
             min="0"
             value={price}
-            onChange={(e) =>
-              dispatch(
-                setAtribute({
-                  key: 'typeTicket',
-                  value: all.map((tType, i) =>
-                    i === index
-                      ? { ...tType, price: parseInt(e.target.value) }
-                      : tType
-                  ),
-                })
-              )
-            }
+            name={'price'}
+            onChange={handleOnChangeNumber}
             // required
           />
         </div>
       </div>
       <div className="col-md-2 order-md-1 d-flex justify-content-center align-items-center">
         {all.length > 1 ? (
-          <span
-            onClick={() =>
-              dispatch(
-                setAtribute({
-                  key: 'typeTicket',
-                  value: all.filter((tType, i) => index !== i),
-                })
-              )
-            }
-            type="button"
-          >
+          <span onClick={handleOnClickDelete} type="button">
             <i className="bi bi-trash-fill"></i>
           </span>
         ) : (

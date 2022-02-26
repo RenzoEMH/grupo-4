@@ -50,8 +50,11 @@ const hourAMPM = [
   '11',
 ];
 
-const dateFormatter = (stringDate, time) => {
-  const date = new Date(stringDate);
+const dateFormatter = (dates) => {
+  const { date: lowestDate, startHour: time } = [...dates].sort((a, b) =>
+    a.date > b.date ? 1 : -1
+  )[0];
+  const date = new Date(lowestDate);
   const [hours, minutes] = time.split(':');
   return `${daysText[date.getDay()]} ${date.getDate() + 1} ${
     monthText[date.getMonth()]

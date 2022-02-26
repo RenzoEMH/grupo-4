@@ -6,6 +6,7 @@ import FilterAndSearchBar from '../../../components/FilterAndSearchBar/busqueda/
 import { load, setLength } from '../../../redux/features/filtersSlice';
 import returnNumber from '../../../utils/returnNumber';
 import { defaultDate, returnDate } from '../../../utils/returnDate';
+import getEarliestDate from '../../../utils/getEarliestDate';
 
 const perPage = 6;
 
@@ -27,8 +28,9 @@ const SearchEvents = () => {
         event.lowestPrice >= minPrice &&
         event.lowestPrice <= (maxPrice !== 0 ? maxPrice : event.lowestPrice) &&
         event.category.indexOf(filters.category) >= 0 &&
-        event.dates[0] >= minDate &&
-        event.dates[0] <= (maxDate !== defaultDate ? maxDate : event.dates[0])
+        getEarliestDate(event.dates) >= minDate &&
+        getEarliestDate(event.dates) <=
+          (maxDate !== defaultDate ? maxDate : getEarliestDate(event.dates))
     );
 
     dispatch(setLength(events.length));
@@ -44,7 +46,7 @@ const SearchEvents = () => {
             <div className="container">
               <div className="row row-cols-1 row-cols-md-3 g-4">
                 {eventos.filteredEvents?.map((evento) => {
-                  return <EventCard evento={evento} key={evento.id} />;
+                  return <EventCard evento={evento} key={evento._id} />;
                 })}
               </div>
             </div>

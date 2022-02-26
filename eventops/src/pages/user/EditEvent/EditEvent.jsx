@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import EditCreationTicket from '../../../components/EditEvent/EditCreationTicket';
@@ -10,15 +11,22 @@ const EditEvent = () => {
   const page = useSelector((state) => state.singleEvent.editPage);
   const { eventoId } = useParams();
   const evento = useSelector((state) =>
-    state.eventos.eventos.find(({ id }) => id === parseInt(eventoId))
+    state.eventos.eventos.find(({ _id }) => _id === parseInt(eventoId))
   );
   const dispatch = useDispatch();
-  dispatch(
-    setAllEditAtributes({
-      ...evento,
-      typeTicket: [{ type: '', price: 0, quantity: 0, date: '' }],
-    })
-  );
+
+  useEffect(() => {
+    if (Object.keys(evento).length !== 0) {
+      dispatch(
+        setAllEditAtributes({
+          ...evento,
+          dates: evento.dates.map((date) => {
+            return { ...date, ticketCategories: [] };
+          }),
+        })
+      );
+    }
+  }, [dispatch, evento]);
 
   return (
     <main className="cuerpo">

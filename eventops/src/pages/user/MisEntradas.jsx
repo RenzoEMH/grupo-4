@@ -1,11 +1,12 @@
 import { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { setFilteredEvents } from '../../redux/features/eventsSlice';
 import FilterAndSearchBarGeneral from '../../components/FilterAndSearchBar/general/FilterAndSearchBarGeneral';
 import MisEntradasCard from '../../components/EventCards/MisEntradasCard';
-import { setFilteredEvents } from '../../redux/features/eventsSlice';
 import { load, setLength } from '../../redux/features/filtersSlice';
 import { defaultDate, returnDate } from '../../utils/returnDate';
 import { SesionContext } from '../../utils/SesionContext';
+import getEarliestDate from '../../utils/getEarliestDate';
 
 const perPage = 6;
 
@@ -30,11 +31,11 @@ const MisEntradas = () => {
 
     const events = eventos.eventos.filter(
       (event) =>
-        filterByTickets(event.id, sesion.id, entradas) &&
+        filterByTickets(event._id, sesion.id, entradas) &&
         event.category.indexOf(filters.category) >= 0 &&
-        event.dates[0] >= minDate &&
-        event.dates[0] <=
-          (maxDate !== defaultDate ? maxDate : event.dates[0]) &&
+        getEarliestDate(event.dates) >= minDate &&
+        getEarliestDate(event.dates) <=
+          (maxDate !== defaultDate ? maxDate : getEarliestDate(event.dates)) &&
         (event.state === filters.state || filters.state === '')
     );
 
@@ -54,7 +55,7 @@ const MisEntradas = () => {
               <div className="row row-cols-1 row-cols-md-3 g-4 mb-4">
                 {eventos.filteredEvents?.length &&
                   eventos.filteredEvents?.map((evento) => (
-                    <MisEntradasCard evento={evento} key={evento.id} />
+                    <MisEntradasCard evento={evento} key={evento._id} />
                   ))}
               </div>
             </div>

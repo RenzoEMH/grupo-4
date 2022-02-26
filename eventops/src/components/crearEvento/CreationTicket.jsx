@@ -1,46 +1,42 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
-  nextPage,
+  addNewSingleEvent,
   prevPage,
-  resetAllAtributes,
-  setAtribute,
 } from '../../redux/features/singleEventSlice';
-import { addNewEvent } from '../../redux/features/eventsSlice';
+import { useState } from 'react';
 import ProgressBar from './ProgressBar';
 import TicketType from './TicketType';
-import { useEffect } from 'react';
 
-const getLowestPrice = (arrayTypeTickets) => {
-  const lowestPrice = arrayTypeTickets.reduce((prev, curr) =>
-    prev.price < curr.price ? prev : curr
-  );
-  return lowestPrice.price || 0;
+const newTicket = () => {
+  return {
+    _id: Math.floor(Math.random() * 100000) + 1,
+    type: '',
+    price: 0,
+    quantity: 0,
+    sold: 0,
+  };
 };
 
 const CreationTicket = () => {
-  const evento = useSelector((state) => state.singleEvent.singleEvent);
+  const [tickets, setTickets] = useState([{ ...newTicket() }]);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addNewEvent({ ...evento }));
-    dispatch(resetAllAtributes());
-    dispatch(nextPage());
+    dispatch(addNewSingleEvent(tickets));
   };
 
-  useEffect(() => {
-    const lowest = getLowestPrice(evento.typeTicket);
-    lowest > 0 &&
-      dispatch(
-        setAtribute({
-          key: 'lowestPrice',
-          value: lowest,
-        })
-      );
-  }, [dispatch, evento.typeTicket]);
+  const handleOnClickAddTicket = () => {
+    setTickets([
+      ...tickets,
+      {
+        ...newTicket(),
+      },
+    ]);
+  };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form onSubmit={handleSubmit}>
       <ProgressBar />
       <div className="accordion-item">
         <h1 className="accordion-button ">Creación de Entradas</h1>
@@ -48,9 +44,10 @@ const CreationTicket = () => {
           <div className="row border-bottom py-3">
             <div className="col-md-3 order-md-1">
               <div className="mb-3">
+                <label htmlFor="currency">Moneda</label>
                 <select
                   className="form-select d-block w-100"
-                  id="state"
+                  id="currency"
                   // required
                 >
                   <option value="">Soles</option>
@@ -58,36 +55,21 @@ const CreationTicket = () => {
                 </select>
               </div>
             </div>
-            <div className="col-md-9 order-md-1">
-              <div className="mb-3" id="crearEntrada">
-                <button
-                  onClick={() => {
-                    dispatch(
-                      setAtribute({
-                        key: 'typeTicket',
-                        value: [
-                          ...evento.typeTicket,
-                          {
-                            type: '',
-                            price: 0,
-                            quantity: 0,
-                          },
-                        ],
-                      })
-                    );
-                  }}
-                  type="button"
-                  className="btn btn-danger"
-                >
-                  Crear Entrada
-                </button>
-              </div>
+            <div className="col-md-9 order-md-1 d-md-flex justify-content-md-end align-items-md-center">
+              <button
+                type="button"
+                className="btn btn-primary col-12 col-md-4"
+                onClick={handleOnClickAddTicket}
+              >
+                Agregar Entrada
+              </button>
             </div>
           </div>
-          {evento.typeTicket.map((ticketType, index) => (
+          {tickets.map((ticketType, index) => (
             <TicketType
               ticket={ticketType}
-              all={evento.typeTicket}
+              all={tickets}
+              setTickets={setTickets}
               index={index}
               key={index}
             />

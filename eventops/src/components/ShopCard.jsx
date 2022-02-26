@@ -10,6 +10,7 @@ const ShopCard = ({
   ShopCard: {
     id,
     date,
+    dateId,
     hour,
     img,
     price,
@@ -17,11 +18,12 @@ const ShopCard = ({
     city,
     typeTicket,
     amount,
+    categoryId,
     idEvento,
   },
 }) => {
   const evento = useSelector((state) =>
-    state.eventos.eventos.find((evento) => evento.id === parseInt(idEvento))
+    state.eventos.eventos.find((evento) => evento._id === parseInt(idEvento))
   );
   const rCart = useSelector((state) => state.shopCart.cart);
   const dispatch = useDispatch();
@@ -35,8 +37,11 @@ const ShopCard = ({
   };
 
   const add = () => {
-    const maxAmount = evento.typeTicket.find(
-      (tType) => tType.type === typeTicket && tType.date === date
+    const categories = [
+      ...evento.dates.find((date) => date._id === dateId).ticketCategories,
+    ];
+    const maxAmount = categories.find(
+      (category) => category._id === categoryId
     ).quantity;
     if (amount < maxAmount) {
       const index = rCart.findIndex((item) => item.id === id);
@@ -73,13 +78,13 @@ const ShopCard = ({
           {typeTicket} <span className="close"></span>
         </div>
         <div className="col-md-2 text-center">
-          <span onClick={() => subtract()} type="button">
+          <span onClick={subtract} type="button">
             <i className="bi bi-dash"></i>{' '}
           </span>
           <span style={{ padding: '0 0.5rem', userSelect: 'none' }}>
             {amount}
           </span>
-          <span onClick={() => add()} type="button">
+          <span onClick={add} type="button">
             <i className="bi bi-plus"></i>{' '}
           </span>
         </div>
@@ -87,12 +92,7 @@ const ShopCard = ({
           S/.{price * amount}.00 <span className="close"></span>
         </div>
         <div className="col-md-1 text-center">
-          <span
-            type="button"
-            onClick={() => {
-              removeElement();
-            }}
-          >
+          <span type="button" onClick={removeElement}>
             <i className="bi bi-trash-fill"></i>
           </span>
         </div>
