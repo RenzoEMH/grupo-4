@@ -8,7 +8,6 @@ import { setAtribute } from '../../redux/features/singleEventSlice';
  * @returns componente de modal
  */
 const EventoImgModal = ({ property, type }) => {
-  // const evento = useSelector((state) => state.singleEvent.singleEvent);
   const dispatch = useDispatch();
   const [imgURL, setImgURL] = useState(property);
 

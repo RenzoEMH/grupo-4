@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import EventShareModal from './EventShareModal';
 
 const ageRestrictionText = (ageRestriction) => {
   switch (ageRestriction) {
@@ -27,13 +28,8 @@ const LeftDetailCard = () => {
             <div className="col-md-10">
               <h2 className="card-title">{evento.title}</h2>
             </div>
-            <div className="col-md-2">
-              <button className="btn btn-danger">
-                <i className="bi bi-share"></i>
-              </button>
-            </div>
+            <EventShareModal evento={evento} />
           </div>
-
           <p className="card-text detail-eventops-text">{evento.description}</p>
           <h4 className="card-title">Información Adicional</h4>
           <p className="card-text detail-eventops-text">
