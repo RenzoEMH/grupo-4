@@ -1,4 +1,5 @@
-import dateFormatter from '../../utils/dateFormatter';
+import dateOnlyFormatter from '../../utils/dateOnlyFormatter';
+
 const AdminBannerSlide = ({ slide: { title, date, order } }) => {
   return (
     <section
@@ -28,7 +29,7 @@ const AdminBannerSlide = ({ slide: { title, date, order } }) => {
           </p>
           <p className="m-0">
             <span className="fw-bold">Se mostrara desde:</span>{' '}
-            {dateFormatter(date)}
+            {dateOnlyFormatter(date)}
           </p>
         </div>
         <div className="options mt-3 mt-sm-0">

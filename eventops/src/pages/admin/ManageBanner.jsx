@@ -1,8 +1,11 @@
+import { useSelector } from 'react-redux';
+import { selectSlides } from '../../redux/features/slidesSlice';
 import AdminBannerSlide from '../../components/AdminBannerSlide/AdminBannerSlide';
 import SlideCreatorModal from '../../components/SlideCreatorModal/SlideCreatorModal';
-import slides from '../../utils/adminBannerSlides';
 
 const ManageBanner = () => {
+  const slides = useSelector(selectSlides);
+
   return (
     <main className="eventops__main d-flex flex-grow-1 container">
       <div className="mt-3 d-flex flex-column col-12 col-lg-8 mx-auto">

@@ -11,6 +11,7 @@ import singleUserReducer from '../redux/features/singleUserSlice';
 import usuariosReducer from '../redux/features/usersSlice';
 import salesReducer from '../redux/features/salesSlice';
 import singleSaleReducer from '../redux/features/singleSaleSlice';
+import slidesReducer from '../redux/features/slidesSlice';
 
 export default configureStore({
   reducer: {
@@ -24,6 +25,7 @@ export default configureStore({
     singleUser: singleUserReducer,
     sales: salesReducer,
     singleSale: singleSaleReducer,
+    slides: slidesReducer,
   },
   preloadedState: loadStateFromLocalStorage(),
   middleware: (getDefaultMiddleware) =>
