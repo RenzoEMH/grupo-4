@@ -7,29 +7,23 @@ import './_LogIn.scss';
 const LogIn = () => {
   const [user, setUser] = useState(null);
   const { setSesion } = useContext(SesionContext);
-  const usuarios = useSelector((state) => state.usuarios);
+  const usuarios = useSelector((state) => state.usuarios.usuarios);
   const navigate = useNavigate();
-  const users = usuarios.usuarios;
 
   const onInputChange = (inputName) => (inputValue) => {
     setUser({ ...user, [inputName]: inputValue.target.value });
-    console.log(user);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (user !== null) {
-      for (let i = 0; i < users.length; i++) {
-        if (
-          user.password === users[i].password &&
-          user.email === users[i].Correo
-        ) {
-          setSesion({ type: 'user', id: users[i].id });
-          navigate('/');
-          break;
-        }
-      }
-    }
+    if (!user) return;
+    const userFound = usuarios.find(
+      (oneUser) =>
+        oneUser.password === user.password && oneUser.Correo === user.email
+    );
+    if (!userFound) return;
+    setSesion({ type: userFound.type, id: userFound.id });
+    navigate('/');
   };
 
   return (
