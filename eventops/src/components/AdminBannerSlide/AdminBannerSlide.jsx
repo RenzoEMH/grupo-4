@@ -1,6 +1,14 @@
+import { useDispatch } from 'react-redux';
+import { removeSlide } from '../../redux/features/slidesSlice';
 import dateOnlyFormatter from '../../utils/dateOnlyFormatter';
 
-const AdminBannerSlide = ({ slide: { title, date, order } }) => {
+const AdminBannerSlide = ({ slide: { id, title, date, order } }) => {
+  const dispatch = useDispatch();
+
+  const handleClickDelete = () => {
+    dispatch(removeSlide(id));
+  };
+
   return (
     <section
       className="
@@ -36,7 +44,11 @@ const AdminBannerSlide = ({ slide: { title, date, order } }) => {
           <button className="btn btn-primary py-2">
             <i className="bi bi-pencil-fill"></i>
           </button>
-          <button className="btn btn-secondary py-2">
+          <button
+            onClick={handleClickDelete}
+            type="button"
+            className="btn btn-secondary py-2"
+          >
             <i className="bi bi-trash-fill"></i>
           </button>
         </div>

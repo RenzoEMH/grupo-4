@@ -12,7 +12,7 @@ const ManageBanner = () => {
         <h2 className="text-center mt-4">Gestionar Banner</h2>
         <SlideCreatorModal />
         <div>
-          {slides
+          {[...slides]
             .sort((a, b) => (a.order > b.order ? 1 : -1))
             .map((slide) => {
               return <AdminBannerSlide slide={slide} key={slide.id} />;
