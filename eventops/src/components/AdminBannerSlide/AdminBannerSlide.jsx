@@ -1,12 +1,26 @@
 import { useDispatch } from 'react-redux';
-import { removeSlide } from '../../redux/features/slidesSlice';
+import {
+  loadSlideToEdit,
+  manageDeleteSlide,
+} from '../../redux/features/slidesSlice';
 import dateOnlyFormatter from '../../utils/dateOnlyFormatter';
 
-const AdminBannerSlide = ({ slide: { id, title, date, order } }) => {
+const AdminBannerSlide = ({ slide: { id, title, date, order, eventId } }) => {
   const dispatch = useDispatch();
 
+  const handleClickEdit = () => {
+    const slideToEdit = {
+      id,
+      title,
+      date,
+      order,
+      eventId,
+    };
+    dispatch(loadSlideToEdit(slideToEdit));
+  };
+
   const handleClickDelete = () => {
-    dispatch(removeSlide(id));
+    dispatch(manageDeleteSlide(id));
   };
 
   return (
@@ -41,7 +55,13 @@ const AdminBannerSlide = ({ slide: { id, title, date, order } }) => {
           </p>
         </div>
         <div className="options mt-3 mt-sm-0">
-          <button className="btn btn-primary py-2">
+          <button
+            onClick={handleClickEdit}
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#slideEditorModal"
+            className="btn btn-primary py-2"
+          >
             <i className="bi bi-pencil-fill"></i>
           </button>
           <button

@@ -54,6 +54,24 @@ const setOnLocalStorage = (store, action) => {
         JSON.stringify({ tickets: store.getState().tickets.tickets })
       );
       break;
+    case 'slides/addNewSlide':
+      localStorage.setItem(
+        'slides',
+        JSON.stringify({ slides: store.getState().slides.slides })
+      );
+      break;
+    case 'slides/saveEditSlide':
+      localStorage.setItem(
+        'slides',
+        JSON.stringify({ slides: store.getState().slides.slides })
+      );
+      break;
+    case 'slides/removeSlide':
+      localStorage.setItem(
+        'slides',
+        JSON.stringify({ slides: store.getState().slides.slides })
+      );
+      break;
 
     default:
       console.log(action.type);

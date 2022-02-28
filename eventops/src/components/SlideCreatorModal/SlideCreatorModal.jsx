@@ -57,6 +57,7 @@ const SlideCreatorModal = () => {
       date: formRef.current[1].value,
       order: parseInt(formRef.current[2].value),
       img: evento?.img || '',
+      eventId: formRef.current[0].value,
     };
 
     const { isValid, formErrors } = slideIsValid(slide);
@@ -94,7 +95,7 @@ const SlideCreatorModal = () => {
                   className="modal-title text-center fw-bold"
                   id="slideModalLabel"
                 >
-                  Nuevo Slider
+                  Nuevo Slide
                 </h4>
               </div>
               <div className="modal-body text-dark">
