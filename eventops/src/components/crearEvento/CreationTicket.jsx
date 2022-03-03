@@ -7,6 +7,35 @@ import { useState } from 'react';
 import ProgressBar from './ProgressBar';
 import TicketType from './TicketType';
 
+const errors = {
+  currency: 'Debe escoger un tipo de moneda',
+  ticketCategories:
+    'Ingrese todo los datos sobre la(s) categoria(s) de ticket(s) del evento',
+};
+
+const eventTicketsDetailsAreValid = (details) => {
+  const validation = { isValid: true, formErrors: {} };
+
+  if (details.currency === '') {
+    validation.isValid = false;
+    validation.formErrors.currency = errors.currency;
+  }
+
+  if (
+    details.ticketCategories.some(
+      (ticketCategory) =>
+        !ticketCategory.type ||
+        !ticketCategory.price ||
+        !ticketCategory.quantity
+    )
+  ) {
+    validation.isValid = false;
+    validation.formErrors.ticketCategories = errors.ticketCategories;
+  }
+
+  return validation;
+};
+
 const newTicket = () => {
   return {
     _id: Math.floor(Math.random() * 100000) + 1,
@@ -19,11 +48,22 @@ const newTicket = () => {
 
 const CreationTicket = () => {
   const [tickets, setTickets] = useState([{ ...newTicket() }]);
+  const [formErrors, setFormErrors] = useState({});
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addNewSingleEvent(tickets));
+    const { isValid, formErrors } = eventTicketsDetailsAreValid({
+      currency: e.target[0].value,
+      ticketCategories: tickets,
+    });
+
+    if (isValid) {
+      dispatch(addNewSingleEvent(tickets));
+      setFormErrors({});
+    } else {
+      setFormErrors(formErrors);
+    }
   };
 
   const handleOnClickAddTicket = () => {
@@ -45,14 +85,15 @@ const CreationTicket = () => {
             <div className="col-md-3 order-md-1">
               <div className="mb-3">
                 <label htmlFor="currency">Moneda</label>
-                <select
-                  className="form-select d-block w-100"
-                  id="currency"
-                  // required
-                >
-                  <option value="">Soles</option>
-                  <option>Dolares</option>
+                <select className="form-select d-block w-100" id="currency">
+                  <option value="S/.">Soles</option>
+                  <option value="$">Dolares</option>
                 </select>
+                {!!formErrors && (
+                  <div className="invalid-feedback d-block">
+                    {formErrors.currency}
+                  </div>
+                )}
               </div>
             </div>
             <div className="col-md-9 order-md-1 d-md-flex justify-content-md-end align-items-md-center">
@@ -74,6 +115,11 @@ const CreationTicket = () => {
               key={index}
             />
           ))}
+          {!!formErrors && (
+            <div className="invalid-feedback d-block">
+              {formErrors.currency}
+            </div>
+          )}
           <div className="cuerpo__terminos">
             <div className="col-md-12 order-md-1">
               <div className="custom-control custom-checkbox">
@@ -81,6 +127,7 @@ const CreationTicket = () => {
                   type="checkbox"
                   className="custom-control-input"
                   id="same-address"
+                  required
                 />
                 <label className="custom-control-label" htmlFor="same-address">
                   He leido y acepto los
@@ -98,6 +145,7 @@ const CreationTicket = () => {
                   type="checkbox"
                   className="custom-control-input"
                   id="save-info"
+                  required
                 />
                 <label className="custom-control-label" htmlFor="save-info">
                   Certifico la veracidad de la información ingresada y asumo la

@@ -9,9 +9,32 @@ import cityDepartmentNames from '../../utils/cityDepartmentNames';
 import ProgressBar from './ProgressBar';
 import { useMemo } from 'react';
 import { useEffect } from 'react';
+import { useState } from 'react';
+
+const errors = {
+  city: 'Debe escoger una ciudad',
+  address: 'Ingrese la dirección del evento',
+};
+
+const eventUbicationIsValid = (details) => {
+  const validation = { isValid: true, formErrors: {} };
+
+  if (details.city === '') {
+    validation.isValid = false;
+    validation.formErrors.city = errors.city;
+  }
+
+  if (details.address === '') {
+    validation.isValid = false;
+    validation.formErrors.address = errors.address;
+  }
+
+  return validation;
+};
 
 const UbicactionEvent = () => {
   const evento = useSelector((state) => state.singleEvent.singleEvent);
+  const [formErrors, setFormErrors] = useState({});
   const dispatch = useDispatch();
 
   const debouncedChangeAddressHandler = useMemo(() => {
@@ -29,7 +52,14 @@ const UbicactionEvent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(nextPage());
+    const { isValid, formErrors } = eventUbicationIsValid(evento);
+
+    if (isValid) {
+      dispatch(nextPage());
+      setFormErrors({});
+    } else {
+      setFormErrors(formErrors);
+    }
   };
 
   return (
@@ -45,7 +75,7 @@ const UbicactionEvent = () => {
                 <select
                   className="form-select d-block w-100"
                   id="city"
-                  value={evento.city}
+                  defaultValue={'DEFAULT'}
                   onChange={(e) => {
                     dispatch(
                       setAtribute({ key: 'city', value: e.target.value })
@@ -53,7 +83,9 @@ const UbicactionEvent = () => {
                   }}
                   //required
                 >
-                  <option value="">Elige una ciudad</option>
+                  <option value={'DEFAULT'} disabled>
+                    Elige una ciudad
+                  </option>
                   {cityDepartmentNames.map((cityDepartment, index) => (
                     <option
                       value={cityDepartment}
@@ -63,6 +95,11 @@ const UbicactionEvent = () => {
                     </option>
                   ))}
                 </select>
+                {!!formErrors && (
+                  <div className="invalid-feedback d-block">
+                    {formErrors.city}
+                  </div>
+                )}
               </div>
               <div className="mb-3">
                 <label htmlFor="address">Dirección del Evento</label>
@@ -74,6 +111,11 @@ const UbicactionEvent = () => {
                   onChange={debouncedChangeAddressHandler}
                   //required
                 />
+                {!!formErrors && (
+                  <div className="invalid-feedback d-block">
+                    {formErrors.address}
+                  </div>
+                )}
               </div>
               <div className="mb-3">
                 <label htmlFor="address">Referencia</label>

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useState } from 'react';
 import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -9,9 +10,57 @@ import EventDate from './EventDate';
 import EventoImgModal from './EventoImgModal';
 import ProgressBar from './ProgressBar';
 
+const errors = {
+  title: 'Debe ingresar un titulo para el evento',
+  category: 'Escoja una categoría',
+  description: 'Escriba la descripcion de su evento',
+  dates: 'Ingrese todo los datos sobre la(s) fecha(s) del evento',
+  img: 'Debe ingresar el url de la foto',
+  ageRestriction: 'Selecctione una de las restricciones de edad',
+};
+
+const eventDetailsAreValid = (details) => {
+  const validation = { isValid: true, formErrors: {} };
+
+  if (details.title === '') {
+    validation.isValid = false;
+    validation.formErrors.title = errors.title;
+  }
+
+  if (details.category === '') {
+    validation.isValid = false;
+    validation.formErrors.category = errors.category;
+  }
+
+  if (details.description === '') {
+    validation.isValid = false;
+    validation.formErrors.description = errors.description;
+  }
+
+  if (
+    details.dates.some((date) => !date.date || !date.startHour || !date.endHour)
+  ) {
+    validation.isValid = false;
+    validation.formErrors.dates = errors.dates;
+  }
+
+  if (details.img === '') {
+    validation.isValid = false;
+    validation.formErrors.img = errors.img;
+  }
+
+  if (details.ageRestriction === '') {
+    validation.isValid = false;
+    validation.formErrors.ageRestriction = errors.ageRestriction;
+  }
+
+  return validation;
+};
+
 const DetailsEvent = () => {
   const evento = useSelector((state) => state.singleEvent.singleEvent);
   const { sesion } = useContext(SesionContext);
+  const [formErrors, setFormErrors] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -43,7 +92,15 @@ const DetailsEvent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(nextPage());
+
+    const { isValid, formErrors } = eventDetailsAreValid(evento);
+
+    if (isValid) {
+      dispatch(nextPage());
+      setFormErrors({});
+    } else {
+      setFormErrors(formErrors);
+    }
   };
 
   return (
@@ -66,8 +123,12 @@ const DetailsEvent = () => {
                       setAtribute({ key: 'title', value: e.target.value })
                     )
                   }
-                  //required
                 />
+                {!!formErrors && (
+                  <div className="invalid-feedback d-block">
+                    {formErrors.title}
+                  </div>
+                )}
               </div>
               <div className="mb-3">
                 <label htmlFor="address">Categoría del Evento</label>
@@ -79,7 +140,6 @@ const DetailsEvent = () => {
                       setAtribute({ key: 'category', value: e.target.value })
                     )
                   }
-                  //required
                 >
                   <option value="">Elige una categoría para tu Evento</option>
                   {categoryNames.map((category, index) => (
@@ -88,6 +148,11 @@ const DetailsEvent = () => {
                     </option>
                   ))}
                 </select>
+                {!!formErrors && (
+                  <div className="invalid-feedback d-block">
+                    {formErrors.category}
+                  </div>
+                )}
               </div>
               <div className="mb-3">
                 <label htmlFor="address">Descripción del Evento</label>
@@ -106,6 +171,11 @@ const DetailsEvent = () => {
                     )
                   }
                 ></textarea>
+                {!!formErrors && (
+                  <div className="invalid-feedback d-block">
+                    {formErrors.description}
+                  </div>
+                )}
               </div>
               <div className="mb-3">
                 <label htmlFor="address">Información Adicional</label>
@@ -140,10 +210,18 @@ const DetailsEvent = () => {
                     key={index}
                   />
                 ))}
+                {!!formErrors && (
+                  <div className="invalid-feedback d-block">
+                    {formErrors.dates}
+                  </div>
+                )}
               </div>
             </div>
             <div className="col-lg-5 order-lg-2">
               <EventoImgModal property={evento.img} type={'Evento'} />
+              {!!formErrors && (
+                <div className="invalid-feedback d-block">{formErrors.img}</div>
+              )}
               <EventoImgModal property={evento.ticketImg} type={'Ticket'} />
             </div>
           </div>
@@ -217,6 +295,11 @@ const DetailsEvent = () => {
                 </label>
               </div>
             </div>
+            {!!formErrors && (
+              <div className="invalid-feedback d-block">
+                {formErrors.ageRestriction}
+              </div>
+            )}
           </div>
         </div>
       </div>
