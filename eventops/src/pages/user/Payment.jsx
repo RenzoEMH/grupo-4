@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import '../_Tiket.scss';
 import { useSelector } from 'react-redux';
-import { useContext } from 'react';
-import { SesionContext } from '../../utils/SesionContext';
+import parseJwt from '../../utils/ParseJwt';
 
 const Payment = () => {
-  const { sesion } = useContext(SesionContext);
+  const token = useSelector((state) => state.usuarios.token);
+  const sesion = parseJwt(token);
   const shopCart = useSelector((state) =>
-    state.shopCart.cart.filter((cartItem) => cartItem.idUsuario === sesion.id)
+    state.shopCart.cart.filter((cartItem) => cartItem.idUsuario === sesion._id)
   );
   console.log(shopCart);
   let totalFare = 0;

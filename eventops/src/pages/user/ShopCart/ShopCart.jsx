@@ -3,13 +3,13 @@ import { useSelector } from 'react-redux';
 import ShopCard from '../../../components/ShopCard';
 import PaymentSummary from '../../../components/PaymentSummary';
 import { useNavigate } from 'react-router-dom';
-import { SesionContext } from '../../../utils/SesionContext';
-import { useContext } from 'react';
+import parseJwt from '../../../utils/ParseJwt';
 
 const ShopCart = () => {
-  const { sesion } = useContext(SesionContext);
+  const token = useSelector((state) => state.usuarios.token);
+  const sesion = parseJwt(token);
   const shopCartList = useSelector((state) =>
-    state.shopCart.cart.filter((item) => item.idUsuario === sesion.id)
+    state.shopCart.cart.filter((item) => item.idUsuario === sesion._id)
   );
   const navigate = useNavigate();
 

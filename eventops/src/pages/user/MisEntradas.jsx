@@ -1,12 +1,12 @@
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilteredEvents } from '../../redux/features/eventsSlice';
 import FilterAndSearchBarGeneral from '../../components/FilterAndSearchBar/general/FilterAndSearchBarGeneral';
 import MisEntradasCard from '../../components/EventCards/MisEntradasCard';
 import { load, setLength } from '../../redux/features/filtersSlice';
 import { defaultDate, returnDate } from '../../utils/returnDate';
-import { SesionContext } from '../../utils/SesionContext';
 import getEarliestDate from '../../utils/getEarliestDate';
+import parseJwt from '../../utils/ParseJwt';
 
 const perPage = 6;
 
@@ -19,7 +19,8 @@ const filterByTickets = (idEvento, idUsuario, arrayTickets) => {
 };
 
 const MisEntradas = () => {
-  const { sesion } = useContext(SesionContext);
+  const token = useSelector((state) => state.usuarios.token);
+  const sesion = parseJwt(token);
   const eventos = useSelector((state) => state.eventos);
   const entradas = useSelector((state) => state.tickets.tickets);
   const filters = useSelector((state) => state.filtros);
@@ -31,7 +32,7 @@ const MisEntradas = () => {
 
     const events = eventos.eventos.filter(
       (event) =>
-        filterByTickets(event._id, sesion.id, entradas) &&
+        filterByTickets(event._id, sesion._id, entradas) &&
         event.category.indexOf(filters.category) >= 0 &&
         getEarliestDate(event.dates) >= minDate &&
         getEarliestDate(event.dates) <=

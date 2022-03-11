@@ -3,6 +3,7 @@ const API_SERVER = 'http://localhost:5000';
 const ENDPOINTS = {
   GET_ALL: '/api/users',
   CREATE: '/api/users/create',
+  LOGIN: '/api/login',
 };
 
 export const getAllUsers = () => {
@@ -33,6 +34,27 @@ export const createUser = (user) => {
       .then((data) => {
         console.log('user', data);
         resolve(true);
+      })
+      .catch((err) => {
+        reject({ error: err });
+      });
+  });
+};
+
+export const login = (user) => {
+  const path = `${API_SERVER}${ENDPOINTS.LOGIN}`;
+
+  return new Promise((resolve, reject) => {
+    fetch(path, {
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        resolve({ token: data.token });
       })
       .catch((err) => {
         reject({ error: err });

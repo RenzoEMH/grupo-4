@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { SesionContext } from '../utils/SesionContext';
+import parseJwt from '../utils/ParseJwt';
 
 const PaymentSummary = () => {
-  const { sesion } = useContext(SesionContext);
+  const token = useSelector((state) => state.usuarios.token);
+  const sesion = parseJwt(token);
   const shopCartList = useSelector((state) =>
-    state.shopCart.cart.filter((item) => item.idUsuario === sesion.id)
+    state.shopCart.cart.filter((item) => item.idUsuario === sesion._id)
   );
   const [subTotal, setSubTotal] = useState(
     shopCartList.reduce((prev, curr) => prev + curr.price, 0)

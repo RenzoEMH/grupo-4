@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useMemo } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { setCart } from '../../redux/features/cartSlice';
 import dateOnlyFormatter from '../../utils/dateOnlyFormatter';
 import hourOnlyFormatter from '../../utils/hourOnlyFormatter';
-import { SesionContext } from '../../utils/SesionContext';
+import parseJwt from '../../utils/ParseJwt';
 
 const setupCart = (evento, idSesion) => {
   const cart = [];
@@ -82,10 +82,11 @@ const AddTicketsCard = () => {
     state.eventos.eventos.find((evento) => evento._id === parseInt(eventoId))
   );
   const rCart = useSelector((state) => state.shopCart.cart);
-  const { sesion } = useContext(SesionContext);
+  const token = useSelector((state) => state.usuarios.token);
+  const sesion = parseJwt(token);
   const cart = useMemo(
-    () => [...setupCart(evento, sesion.id)],
-    [evento, sesion.id]
+    () => [...setupCart(evento, sesion._id)],
+    [evento, sesion._id]
   );
   const [filterCart, setFilterCart] = useState([...cart]);
   const [filterDate, setFilterDate] = useState(cart[0].date);

@@ -1,15 +1,17 @@
-import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { SesionContext } from '../../utils/SesionContext';
+import { useSelector } from 'react-redux';
+import parseJwt from '../../utils/ParseJwt';
 import './_Nav.scss';
 
 const Nav = () => {
-  const { sesion, setSesion } = useContext(SesionContext);
+  const token = useSelector((state) => state.usuarios.token);
+  const sesion = parseJwt(token);
   const navigate = useNavigate();
 
   const cerrarSesion = () => {
     navigate('/');
-    setSesion(null);
+    localStorage.setItem('infoUser', null);
+    window.location.replace('');
   };
 
   return (

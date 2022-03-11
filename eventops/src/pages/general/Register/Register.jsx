@@ -2,11 +2,7 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './_Register.scss';
-// import { addNewUser } from '../../../redux/features/usersSlice';
-import {
-  getAllUsersAsync,
-  createUserAsync,
-} from '../../../redux/features/usersSlice';
+import { createUserAsync } from '../../../redux/features/usersSlice';
 import {
   resetAllAtributes,
   setAtribute,
@@ -17,7 +13,6 @@ const Register = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllUsersAsync());
     dispatch(
       setAtribute({ key: 'id', value: Math.floor(Math.random() * 10000) + 1 })
     );
@@ -46,7 +41,6 @@ const Register = () => {
 
     console.log(newUser);
     dispatch(createUserAsync(newUser));
-    // dispatch(addNewUser({ ...usuario }));
     dispatch(resetAllAtributes());
     e.target[3].value = '';
     e.target[5].value = '';
