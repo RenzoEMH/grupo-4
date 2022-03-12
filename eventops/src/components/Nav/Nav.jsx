@@ -1,17 +1,18 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import parseJwt from '../../utils/ParseJwt';
 import './_Nav.scss';
+import { setToken } from '../../redux/features/usersSlice';
 
 const Nav = () => {
   const token = useSelector((state) => state.usuarios.token);
   const sesion = parseJwt(token);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const cerrarSesion = () => {
-    navigate('/');
-    localStorage.setItem('infoUser', null);
-    window.location.replace('');
+    dispatch(setToken(null));
+    navigate('/', { replace: true });
   };
 
   return (

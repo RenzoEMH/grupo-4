@@ -8,7 +8,7 @@ const PaymentSummary = () => {
   const token = useSelector((state) => state.usuarios.token);
   const sesion = parseJwt(token);
   const shopCartList = useSelector((state) =>
-    state.shopCart.cart.filter((item) => item.idUsuario === sesion._id)
+    state.shopCart.cart.filter((item) => item.idUsuario === sesion?._id)
   );
   const [subTotal, setSubTotal] = useState(
     shopCartList.reduce((prev, curr) => prev + curr.price, 0)

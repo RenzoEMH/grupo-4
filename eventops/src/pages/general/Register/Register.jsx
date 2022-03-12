@@ -39,7 +39,6 @@ const Register = () => {
       estado: true,
     };
 
-    console.log(newUser);
     dispatch(createUserAsync(newUser));
     dispatch(resetAllAtributes());
     e.target[3].value = '';

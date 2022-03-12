@@ -85,7 +85,7 @@ const AddTicketsCard = () => {
   const token = useSelector((state) => state.usuarios.token);
   const sesion = parseJwt(token);
   const cart = useMemo(
-    () => [...setupCart(evento, sesion._id)],
+    () => [...setupCart(evento, sesion?._id)],
     [evento, sesion._id]
   );
   const [filterCart, setFilterCart] = useState([...cart]);

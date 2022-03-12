@@ -72,6 +72,18 @@ const setOnLocalStorage = (store, action) => {
         JSON.stringify({ slides: store.getState().slides.slides })
       );
       break;
+    case 'usuarios/setToken':
+      localStorage.setItem(
+        'infoUser',
+        JSON.stringify({ token: store.getState().usuarios.token })
+      );
+      break;
+    case 'login/fulfilled':
+      localStorage.setItem(
+        'infoUser',
+        JSON.stringify({ token: store.getState().usuarios.token })
+      );
+      break;
 
     default:
       console.log(action.type);

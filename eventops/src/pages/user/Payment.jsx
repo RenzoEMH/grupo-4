@@ -7,7 +7,7 @@ const Payment = () => {
   const token = useSelector((state) => state.usuarios.token);
   const sesion = parseJwt(token);
   const shopCart = useSelector((state) =>
-    state.shopCart.cart.filter((cartItem) => cartItem.idUsuario === sesion._id)
+    state.shopCart.cart.filter((cartItem) => cartItem.idUsuario === sesion?._id)
   );
   console.log(shopCart);
   let totalFare = 0;

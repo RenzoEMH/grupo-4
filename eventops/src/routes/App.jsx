@@ -128,7 +128,7 @@ function App() {
           exact
           path="/busqueda"
           element={
-            sesion?.type === 'usuario' ? (
+            sesion?.type !== 'usuario' ? (
               <Navigate to="/not-found" replace />
             ) : (
               <SearchEvents />
@@ -171,9 +171,9 @@ function App() {
           exact
           path="/iniciar-sesion"
           element={
-            // <HideIfLogged>
-            <LogIn />
-            // </HideIfLogged>
+            <HideIfLogged>
+              <LogIn />
+            </HideIfLogged>
           }
         />
         <Route

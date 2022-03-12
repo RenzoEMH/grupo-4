@@ -34,19 +34,17 @@ export const usersSlice = createSlice({
       .addCase(getAllUsersAsync.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getAllUsersAsync.fulfilled, (state, action) => {
+      .addCase(getAllUsersAsync.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.users = action.payload;
+        state.users = payload;
       })
-      .addCase(createUserAsync.fulfilled, (state, action) => {
-        state.created = action.payload;
+      .addCase(createUserAsync.fulfilled, (state, { payload }) => {
+        state.created = payload;
       })
-      .addCase(loginAsync.fulfilled, (state, action) => {
-        const { token } = action.payload;
+      .addCase(loginAsync.fulfilled, (state, { payload }) => {
+        const { token } = payload;
         state.loggued = true;
         state.token = token;
-        console.log('EN REDUX');
-        localStorage.setItem('infoUser', JSON.stringify(action.payload));
       });
   },
 });

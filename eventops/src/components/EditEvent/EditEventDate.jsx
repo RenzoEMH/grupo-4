@@ -22,7 +22,6 @@ const EditEventDate = ({
   };
 
   const handleOnClickDeleteDate = () => {
-    console.log(index);
     dispatch(
       setAtribute({
         key: 'dates',

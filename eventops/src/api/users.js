@@ -32,7 +32,6 @@ export const createUser = (user) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('user', data);
         resolve(true);
       })
       .catch((err) => {

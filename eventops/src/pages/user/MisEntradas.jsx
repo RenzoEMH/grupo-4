@@ -32,7 +32,7 @@ const MisEntradas = () => {
 
     const events = eventos.eventos.filter(
       (event) =>
-        filterByTickets(event._id, sesion._id, entradas) &&
+        filterByTickets(event._id, sesion?._id, entradas) &&
         event.category.indexOf(filters.category) >= 0 &&
         getEarliestDate(event.dates) >= minDate &&
         getEarliestDate(event.dates) <=
