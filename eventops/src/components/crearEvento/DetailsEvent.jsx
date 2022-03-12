@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { nextPage, setAtribute } from '../../redux/features/singleEventSlice';
 import categoryNames from '../../utils/categoriesNames';
-import { SesionContext } from '../../utils/SesionContext';
+import parseJwt from '../../utils/ParseJwt';
 import EventDate from './EventDate';
 import EventoImgModal from './EventoImgModal';
 import ProgressBar from './ProgressBar';
@@ -59,7 +58,8 @@ const eventDetailsAreValid = (details) => {
 
 const DetailsEvent = () => {
   const evento = useSelector((state) => state.singleEvent.singleEvent);
-  const { sesion } = useContext(SesionContext);
+  const token = useSelector((state) => state.usuarios.token);
+  const sesion = parseJwt(token);
   const [formErrors, setFormErrors] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -67,9 +67,9 @@ const DetailsEvent = () => {
   useEffect(() => {
     if (!evento.idOwner) {
       dispatch(setAtribute({ key: '_id', value: Date.now() }));
-      dispatch(setAtribute({ key: 'idOwner', value: sesion.id }));
+      dispatch(setAtribute({ key: 'idOwner', value: sesion._id }));
     }
-  }, [dispatch, evento.idOwner, sesion.id]);
+  }, [dispatch, evento.idOwner, sesion._id]);
 
   const handleAddDate = () => {
     dispatch(

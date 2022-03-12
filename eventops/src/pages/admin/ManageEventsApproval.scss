@@ -1,0 +1,23 @@
+#sideBar {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+#manageInfo {
+  margin-top: 70px;
+  max-width: 70%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.list-group {
+  margin-top: 50px;
+  width: 80%;
+  border-radius: 15px;
+}
+#btn-actions {
+  button {
+    border-color: black !important;
+    border-width: 1px !important;
+  }
+}

@@ -1,15 +1,15 @@
-import { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { SesionContext } from '../../utils/SesionContext';
 import AddTicketsCard from './AddTicketsCard';
+import parseJwt from '../../utils/ParseJwt';
 
 const RigthDetailCard = () => {
   const { eventoId } = useParams();
   const evento = useSelector((state) =>
     state.eventos.eventos.find((evento) => evento._id === parseInt(eventoId))
   );
-  const { sesion } = useContext(SesionContext);
+  const token = useSelector((state) => state.usuarios.token);
+  const sesion = parseJwt(token);
   const navigate = useNavigate();
 
   return (
@@ -17,7 +17,7 @@ const RigthDetailCard = () => {
       <div className="card">
         <div className="card-body detail-eventops-body">
           <h3 className="card-title">{evento.title}</h3>
-          {sesion?.type === 'user' && <AddTicketsCard />}
+          {sesion?.type === 'usuario' && <AddTicketsCard />}
           {!sesion && (
             <div className="pt-3 pb-4 d-flex justify-content-center">
               <button

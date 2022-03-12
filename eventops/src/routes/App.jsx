@@ -6,8 +6,8 @@ import UserProfile from '../pages/user/UserProfile';
 import MisEntradas from '../pages/user/MisEntradas';
 import MisEventosCreados from '../pages/user/MisEventosCreados';
 import './App.scss';
-import { SesionContext } from '../utils/SesionContext';
-import { useContext } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import NotFound from '../pages/general/NotFound/NotFound';
 import LogIn from '../pages/general/Login/LogIn';
 import Register from '../pages/general/Register/Register';
@@ -25,10 +25,23 @@ import EventDetail from '../pages/general/EventDetail/EventDetail';
 import ShopCart from '../pages/user/ShopCart/ShopCart';
 import CreateEvent from '../pages/user/CreateEvent/CreateEvent';
 import EditEvent from '../pages/user/EditEvent/EditEvent';
+import parseJwt from '../utils/ParseJwt';
+import { setToken } from '../redux/features/usersSlice';
 
 function App() {
-  const { sesion } = useContext(SesionContext);
   const route = useLocation();
+  const token = useSelector((state) => state.usuarios.token);
+  const sesion = parseJwt(token);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const localStorageToken = window.localStorage.getItem('infoUser');
+    if (localStorageToken && localStorageToken !== 'null') {
+      const parseToken = JSON.parse(localStorageToken);
+      const { token: recoverToken } = parseToken;
+      dispatch(setToken(recoverToken));
+    }
+  }, [dispatch]);
 
   return (
     <div className="eventops d-flex flex-column">
@@ -59,7 +72,7 @@ function App() {
           exact
           path="/crear-evento"
           element={
-            <RequireAuth type="user">
+            <RequireAuth type="usuario">
               <CreateEvent />
             </RequireAuth>
           }
@@ -68,7 +81,7 @@ function App() {
           exact
           path="/editar-evento/:eventoId"
           element={
-            <RequireAuth type="user">
+            <RequireAuth type="usuario">
               <EditEvent />
             </RequireAuth>
           }
@@ -77,7 +90,7 @@ function App() {
           exact
           path="/carrito-compra"
           element={
-            <RequireAuth type="user">
+            <RequireAuth type="usuario">
               <ShopCart />
             </RequireAuth>
           }
@@ -86,7 +99,7 @@ function App() {
           exact
           path="/perfil"
           element={
-            <RequireAuth type="user">
+            <RequireAuth type="usuario">
               <UserProfile />
             </RequireAuth>
           }
@@ -95,7 +108,7 @@ function App() {
           exact
           path="/mis-entradas"
           element={
-            <RequireAuth type="user">
+            <RequireAuth type="usuario">
               {/*               <Tickets /> */}
               <MisEntradas />
             </RequireAuth>
@@ -105,7 +118,7 @@ function App() {
           exact
           path="/mis-eventos"
           element={
-            <RequireAuth type="user">
+            <RequireAuth type="usuario">
               {/*               <ManageEvents /> */}
               <MisEventosCreados />
             </RequireAuth>
@@ -115,7 +128,7 @@ function App() {
           exact
           path="/busqueda"
           element={
-            sesion?.type === 'admin' ? (
+            sesion?.type === 'usuario' ? (
               <Navigate to="/not-found" replace />
             ) : (
               <SearchEvents />
@@ -127,7 +140,7 @@ function App() {
           exact
           path="/metodo-pago"
           element={
-            <RequireAuth type="user">
+            <RequireAuth type="usuario">
               <Payment />
             </RequireAuth>
           }
@@ -137,7 +150,7 @@ function App() {
           exact
           path="/confirmacion-compra/:id"
           element={
-            <RequireAuth type="user">
+            <RequireAuth type="usuario">
               <PurchaseConfirmation />
             </RequireAuth>
           }
@@ -147,7 +160,7 @@ function App() {
           exact
           path="/form-pago"
           element={
-            <RequireAuth type="user">
+            <RequireAuth type="usuario">
               <FormPay />
             </RequireAuth>
           }
@@ -158,9 +171,9 @@ function App() {
           exact
           path="/iniciar-sesion"
           element={
-            <HideIfLogged>
-              <LogIn />
-            </HideIfLogged>
+            // <HideIfLogged>
+            <LogIn />
+            // </HideIfLogged>
           }
         />
         <Route

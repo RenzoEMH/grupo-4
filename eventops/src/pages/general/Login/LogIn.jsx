@@ -1,29 +1,42 @@
-import { useContext, useState } from 'react';
+// import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { SesionContext } from '../../../utils/SesionContext';
+// import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+// import { SesionContext } from '../../../utils/SesionContext';
+import { loginAsync } from '../../../redux/features/usersSlice';
+// import parseJwt from '../../../utils/ParseJwt';
 import './_LogIn.scss';
 
 const LogIn = () => {
   const [user, setUser] = useState(null);
-  const { setSesion } = useContext(SesionContext);
-  const usuarios = useSelector((state) => state.usuarios.usuarios);
+  // const { setSesion } = useContext(SesionContext);
+  // const usuarios = useSelector((state) => state.usuarios.usuarios);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // const loggued = useSelector(selectUserLoggued);
+  // const token = useSelector((state) => state.usuarios.token);
+  // const sesion = parseJwt(token);
 
   const onInputChange = (inputName) => (inputValue) => {
     setUser({ ...user, [inputName]: inputValue.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!user) return;
-    const userFound = usuarios.find(
-      (oneUser) =>
-        oneUser.password === user.password && oneUser.Correo === user.email
-    );
-    if (!userFound) return;
-    setSesion({ type: userFound.type, id: userFound.id });
-    navigate('/');
+
+    const { elements } = e.target;
+    const userLogin = {
+      email: elements[0].value,
+      password: elements[1].value,
+    };
+    // dispatch(loginAsync(userLogin));
+    try {
+      await dispatch(loginAsync(userLogin)).unwrap();
+      navigate('/');
+      // history.push('/');
+    } catch (err) {}
+    // navigate('/');
   };
 
   return (

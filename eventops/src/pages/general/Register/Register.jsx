@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './_Register.scss';
-import { addNewUser } from '../../../redux/features/usersSlice';
+import { createUserAsync } from '../../../redux/features/usersSlice';
 import {
   resetAllAtributes,
   setAtribute,
@@ -27,10 +27,24 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addNewUser({ ...usuario }));
+    const { elements } = e.target;
+    const newUser = {
+      name: elements[0].value,
+      lastname: elements[1].value,
+      email: elements[2].value,
+      password: elements[4].value,
+      photo: '',
+      dni: '',
+      type: 'usuario',
+      estado: true,
+    };
+
+    console.log(newUser);
+    dispatch(createUserAsync(newUser));
     dispatch(resetAllAtributes());
     e.target[3].value = '';
     e.target[5].value = '';
+    e.target[6].checked = false;
   };
 
   return (
@@ -132,6 +146,7 @@ const Register = () => {
               type="checkbox"
               value=""
               id="accept-terms-&-conditions"
+              required
             />
             <label
               className="register__label"

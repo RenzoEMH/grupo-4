@@ -1,13 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState, useContext, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import '../_Tiket.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import mockDB from '../../utils/mockDB';
 import { setAllTickets } from '../../redux/features/ticketsSlice';
-import { SesionContext } from '../../utils/SesionContext';
 import { emptyCart } from '../../redux/features/cartSlice';
 import { setAtribute } from '../../redux/features/singleSaleSlice';
 import { addNewSale } from '../../redux/features/salesSlice';
+import parseJwt from '../../utils/ParseJwt';
 
 /**
  * Combines ticket amount of same ticket type and date of specific event for logged user in both storeCart and localCart
@@ -36,7 +36,8 @@ const obtainUnique = (arrayTicketRedux, arrayTicketLocal) => {
 };
 
 const FormPay = () => {
-  const { sesion } = useContext(SesionContext);
+  const token = useSelector((state) => state.usuarios.token);
+  const sesion = parseJwt(token);
   const creditCards = mockDB.creditCard.creditCard;
   const navigate = useNavigate();
   const [creditCard, setcreditCard] = useState(null);
@@ -44,7 +45,7 @@ const FormPay = () => {
   const sale = useSelector((state) => state.singleSale.singleSale);
   const tickets = useSelector((state) => state.tickets.tickets);
   const shopCart = useSelector((state) =>
-    state.shopCart.cart.filter((cartItem) => cartItem.idUsuario === sesion.id)
+    state.shopCart.cart.filter((cartItem) => cartItem.idUsuario === sesion._id)
   );
   const dispatch = useDispatch();
 
@@ -54,7 +55,7 @@ const FormPay = () => {
   let IDtransaction = Math.floor(Math.random() * 100000) + 1;
   //Obtenemos el nombre del usuario de la sesion
   for (let i = 0; i < users.length; i++) {
-    if (users[i].id === sesion.id) {
+    if (users[i].id === sesion._id) {
       username = users[i].Nombres + ' ' + users[i].apellidos;
     }
   }
@@ -67,7 +68,7 @@ const FormPay = () => {
     dispatch(
       setAtribute({ key: 'id', value: Math.floor(Math.random() * 10000) + 1 })
     );
-    dispatch(setAtribute({ key: 'idUser', value: sesion.id }));
+    dispatch(setAtribute({ key: 'idUser', value: sesion._id }));
     dispatch(
       setAtribute({
         key: 'numberTransaction',
@@ -100,7 +101,7 @@ const FormPay = () => {
   const ticketsLocal = shopCart.map((cartItem) => {
     const ticketObject = {
       id: Math.floor(Math.random() * 10000) + 1,
-      idUsuario: sesion.id,
+      idUsuario: sesion._id,
       idTransaction: Math.floor(Math.random() * 10000) + 1,
       evento: {
         idEvento: cartItem.idEvento,
