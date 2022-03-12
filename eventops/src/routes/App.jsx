@@ -171,9 +171,9 @@ function App() {
           exact
           path="/iniciar-sesion"
           element={
-            <HideIfLogged>
-              <LogIn />
-            </HideIfLogged>
+            // <HideIfLogged>
+            <LogIn />
+            // </HideIfLogged>
           }
         />
         <Route

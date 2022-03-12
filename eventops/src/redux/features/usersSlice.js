@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getAllUsers, createUser, login } from '../../api/users';
 
-const initialState = {};
+const initialState = { loggued: false };
 
 export const getAllUsersAsync = createAsyncThunk('users/getAll', async () => {
   const response = await getAllUsers();
@@ -43,9 +43,9 @@ export const usersSlice = createSlice({
       })
       .addCase(loginAsync.fulfilled, (state, action) => {
         const { token } = action.payload;
-        state.token = token;
         state.loggued = true;
-
+        state.token = token;
+        console.log('EN REDUX');
         localStorage.setItem('infoUser', JSON.stringify(action.payload));
       });
   },
@@ -54,6 +54,6 @@ export const usersSlice = createSlice({
 export const { setToken } = usersSlice.actions;
 
 export const selectUsers = (state) => state.usuarios.users;
-export const selectUserLoggued = (state) => state.user.loggued;
+export const selectUserLoggued = (state) => state.usuarios.loggued;
 
 export default usersSlice.reducer;
