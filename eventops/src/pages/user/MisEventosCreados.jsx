@@ -23,7 +23,7 @@ const MisEntradas = () => {
 
     const events = eventos.eventos.filter(
       (event) =>
-        event.idOwner === sesion?._id &&
+        event.idOwner === sesion?.id &&
         event.category.indexOf(filters.category) >= 0 &&
         getEarliestDate(event.dates) >= minDate &&
         getEarliestDate(event.dates) <=

@@ -1,11 +1,18 @@
 import _ from 'lodash';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import EventCard from '../../../components/EventCards/EventCard';
 import FilterAndSearchBarHome from '../../../components/FilterAndSearchBar/FilterAndSearchBarHome';
+import { getAllEventsAsync } from '../../../redux/features/eventsSlice';
 import './_Home.scss';
 
 const Home = () => {
   const eventos = useSelector((state) => state.eventos.eventos);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllEventsAsync());
+  }, [dispatch]);
 
   const getSortedEventsCards = () => {
     const eventsClone = _.cloneDeep(eventos);

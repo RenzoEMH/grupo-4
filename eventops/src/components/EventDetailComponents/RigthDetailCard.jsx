@@ -6,7 +6,7 @@ import parseJwt from '../../utils/ParseJwt';
 const RigthDetailCard = () => {
   const { eventoId } = useParams();
   const evento = useSelector((state) =>
-    state.eventos.eventos.find((evento) => evento._id === parseInt(eventoId))
+    state.eventos.eventos.find((evento) => evento._id === eventoId)
   );
   const token = useSelector((state) => state.usuarios.token);
   const sesion = parseJwt(token);

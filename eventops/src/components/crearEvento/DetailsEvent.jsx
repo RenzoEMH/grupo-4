@@ -67,9 +67,9 @@ const DetailsEvent = () => {
   useEffect(() => {
     if (!evento.idOwner) {
       dispatch(setAtribute({ key: '_id', value: Date.now() }));
-      dispatch(setAtribute({ key: 'idOwner', value: sesion?._id }));
+      dispatch(setAtribute({ key: 'idOwner', value: sesion?.id }));
     }
-  }, [dispatch, evento.idOwner, sesion._id]);
+  }, [dispatch, evento.idOwner, sesion.id]);
 
   const handleAddDate = () => {
     dispatch(

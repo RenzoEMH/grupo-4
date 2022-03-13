@@ -4,10 +4,10 @@ import parseJwt from './ParseJwt';
 
 const HideIfLogged = ({ children }) => {
   const token = useSelector((state) => state.usuarios.token);
-  const sesion = parseJwt(token) || {};
+  const sesion = parseJwt(token);
 
   //for the routes we don't want to show when logged in
-  if (!!Object.keys(sesion).length) return <Navigate to="/" replace />;
+  if (token && !!Object.keys(sesion).length) return <Navigate to="/" replace />;
 
   return children;
 };

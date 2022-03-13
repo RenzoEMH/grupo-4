@@ -79,14 +79,14 @@ const obtainCapped = (fCart, event) => {
 const AddTicketsCard = () => {
   const { eventoId } = useParams();
   const evento = useSelector((state) =>
-    state.eventos.eventos.find((evento) => evento._id === parseInt(eventoId))
+    state.eventos.eventos.find((evento) => evento._id === eventoId)
   );
   const rCart = useSelector((state) => state.shopCart.cart);
   const token = useSelector((state) => state.usuarios.token);
   const sesion = parseJwt(token);
   const cart = useMemo(
-    () => [...setupCart(evento, sesion?._id)],
-    [evento, sesion._id]
+    () => [...setupCart(evento, sesion?.id)],
+    [evento, sesion.id]
   );
   const [filterCart, setFilterCart] = useState([...cart]);
   const [filterDate, setFilterDate] = useState(cart[0].date);

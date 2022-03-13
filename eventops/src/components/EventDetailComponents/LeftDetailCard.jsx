@@ -16,7 +16,7 @@ const ageRestrictionText = (ageRestriction) => {
 const LeftDetailCard = () => {
   const { eventoId } = useParams();
   const evento = useSelector((state) =>
-    state.eventos.eventos.find((evento) => evento._id === parseInt(eventoId))
+    state.eventos.eventos.find((evento) => evento._id === eventoId)
   );
 
   return (

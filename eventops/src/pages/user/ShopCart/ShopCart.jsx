@@ -9,7 +9,7 @@ const ShopCart = () => {
   const token = useSelector((state) => state.usuarios.token);
   const sesion = parseJwt(token);
   const shopCartList = useSelector((state) =>
-    state.shopCart.cart.filter((item) => item.idUsuario === sesion?._id)
+    state.shopCart.cart.filter((item) => item.idUsuario === sesion?.id)
   );
   const navigate = useNavigate();
 

@@ -1,11 +1,9 @@
 import { useDispatch } from 'react-redux';
-import {
-  addNewSingleEvent,
-  prevPage,
-} from '../../redux/features/singleEventSlice';
+import { prevPage } from '../../redux/features/singleEventSlice';
 import { useState } from 'react';
 import ProgressBar from './ProgressBar';
 import TicketType from './TicketType';
+import { createEventAsync } from '../../redux/features/eventsSlice';
 
 const errors = {
   currency: 'Debe escoger un tipo de moneda',
@@ -59,7 +57,7 @@ const CreationTicket = () => {
     });
 
     if (isValid) {
-      dispatch(addNewSingleEvent(tickets));
+      dispatch(createEventAsync(tickets));
       setFormErrors({});
     } else {
       setFormErrors(formErrors);
@@ -117,7 +115,7 @@ const CreationTicket = () => {
           ))}
           {!!formErrors && (
             <div className="invalid-feedback d-block">
-              {formErrors.currency}
+              {formErrors.ticketCategories}
             </div>
           )}
           <div className="cuerpo__terminos">

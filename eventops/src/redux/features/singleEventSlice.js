@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import emptySingleEvent from '../../utils/emptySingleEvent';
-import { addNewEvent, saveEditEvent } from '../../redux/features/eventsSlice';
+import { saveEditEvent } from '../../redux/features/eventsSlice';
 import getLowestPrice from '../../utils/getLowestPrice';
 
 export const singleEventSlice = createSlice({
@@ -68,21 +68,28 @@ export const selectPage = (state) => state.singleEvent.page;
 export const selectEditedSingleEvent = (state) =>
   state.singleEvent.editSingleEvent;
 
-export const addNewSingleEvent = (ticketCategories) => (dispatch, getState) => {
-  const currentSingleEvent = selectSingleEvent(getState());
-  const lowestPrice = getLowestPrice(ticketCategories);
-  const completeDates = currentSingleEvent.dates.map((date) => {
-    return { ...date, ticketCategories: [...ticketCategories] };
-  });
-  const newSingleEvent = {
-    ...currentSingleEvent,
-    dates: [...completeDates],
-    lowestPrice,
-  };
-  dispatch(addNewEvent(newSingleEvent));
-  dispatch(resetAllAtributes());
-  dispatch(nextPage());
-};
+// export const addNewSingleEvent = (ticketCategories) => (dispatch, getState) => {
+//   const currentSingleEvent = selectSingleEvent(getState());
+//   const lowestPrice = getLowestPrice(ticketCategories);
+//   const completeDates = currentSingleEvent.dates.map((date) => {
+//     return { ...date, ticketCategories: [...ticketCategories] };
+//   });
+//   const newSingleEvent = {
+//     ...currentSingleEvent,
+//     dates: [...completeDates],
+//     lowestPrice,
+//   };
+//   delete newSingleEvent._id;
+//   newSingleEvent.dates.forEach((date) => {
+//     delete date._id;
+//     date.ticketCategories.forEach((category) => {
+//       delete category._id;
+//     });
+//   });
+//   dispatch(addNewEvent(newSingleEvent));
+//   dispatch(resetAllAtributes());
+//   dispatch(nextPage());
+// };
 
 export const saveEditedSingleEvent =
   (ticketCategories) => (dispatch, getState) => {
