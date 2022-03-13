@@ -5,18 +5,23 @@ import EditCreationTicket from '../../../components/EditEvent/EditCreationTicket
 import EditEventDetails from '../../../components/EditEvent/EditEventDetails';
 import EditEventUbication from '../../../components/EditEvent/EditEventUbication';
 import FinishEdit from '../../../components/EditEvent/FinishEdit';
+import { getAllEventsAsync } from '../../../redux/features/eventsSlice';
 import { setAllEditAtributes } from '../../../redux/features/singleEventSlice';
 
 const EditEvent = () => {
+  const dispatch = useDispatch();
   const page = useSelector((state) => state.singleEvent.editPage);
   const { eventoId } = useParams();
   const evento = useSelector((state) =>
-    state.eventos.eventos.find(({ _id }) => _id === parseInt(eventoId))
+    state.eventos.eventos.find(({ _id }) => _id === eventoId)
   );
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (Object.keys(evento).length !== 0) {
+    dispatch(getAllEventsAsync());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (evento && Object.keys(evento).length !== 0) {
       dispatch(
         setAllEditAtributes({
           ...evento,

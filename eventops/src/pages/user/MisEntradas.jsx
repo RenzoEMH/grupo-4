@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilteredEvents } from '../../redux/features/eventsSlice';
+import {
+  getAllEventsAsync,
+  setFilteredEvents,
+} from '../../redux/features/eventsSlice';
 import FilterAndSearchBarGeneral from '../../components/FilterAndSearchBar/general/FilterAndSearchBarGeneral';
 import MisEntradasCard from '../../components/EventCards/MisEntradasCard';
 import { load, setLength } from '../../redux/features/filtersSlice';
@@ -25,6 +28,13 @@ const MisEntradas = () => {
   const entradas = useSelector((state) => state.tickets.tickets);
   const filters = useSelector((state) => state.filtros);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      dispatch(getAllEventsAsync());
+    };
+    fetchData();
+  }, [dispatch]);
 
   useEffect(() => {
     const minDate = returnDate(filters.minDate);
@@ -54,10 +64,9 @@ const MisEntradas = () => {
           <section className="eventos-filtrados d-flex flex-grow-1">
             <div className="container">
               <div className="row row-cols-1 row-cols-md-3 g-4 mb-4">
-                {eventos.filteredEvents?.length &&
-                  eventos.filteredEvents?.map((evento) => (
-                    <MisEntradasCard evento={evento} key={evento._id} />
-                  ))}
+                {eventos.filteredEvents?.map((evento) => (
+                  <MisEntradasCard evento={evento} key={evento._id} />
+                ))}
               </div>
             </div>
           </section>

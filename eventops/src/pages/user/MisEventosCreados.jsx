@@ -2,7 +2,10 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import EventosCreadosCard from '../../components/EventCards/EventosCreadosCard';
 import FilterAndSearchBarGeneral from '../../components/FilterAndSearchBar/general/FilterAndSearchBarGeneral';
-import { setFilteredEvents } from '../../redux/features/eventsSlice';
+import {
+  getAllEventsAsync,
+  setFilteredEvents,
+} from '../../redux/features/eventsSlice';
 import { load, setLength } from '../../redux/features/filtersSlice';
 import getEarliestDate from '../../utils/getEarliestDate';
 import { defaultDate, returnDate } from '../../utils/returnDate';
@@ -16,6 +19,13 @@ const MisEntradas = () => {
   const eventos = useSelector((state) => state.eventos);
   const filters = useSelector((state) => state.filtros);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      dispatch(getAllEventsAsync());
+    };
+    fetchData();
+  }, [dispatch]);
 
   useEffect(() => {
     const minDate = returnDate(filters.minDate);
