@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import emptySingleEvent from '../../utils/emptySingleEvent';
-import { saveEditEvent } from '../../redux/features/eventsSlice';
-import getLowestPrice from '../../utils/getLowestPrice';
+// import { saveEditEvent } from '../../redux/features/eventsSlice';
+// import getLowestPrice from '../../utils/getLowestPrice';
 
 export const singleEventSlice = createSlice({
   name: 'singleEvent',
@@ -68,44 +68,21 @@ export const selectPage = (state) => state.singleEvent.page;
 export const selectEditedSingleEvent = (state) =>
   state.singleEvent.editSingleEvent;
 
-// export const addNewSingleEvent = (ticketCategories) => (dispatch, getState) => {
-//   const currentSingleEvent = selectSingleEvent(getState());
-//   const lowestPrice = getLowestPrice(ticketCategories);
-//   const completeDates = currentSingleEvent.dates.map((date) => {
-//     return { ...date, ticketCategories: [...ticketCategories] };
-//   });
-//   const newSingleEvent = {
-//     ...currentSingleEvent,
-//     dates: [...completeDates],
-//     lowestPrice,
-//   };
-//   delete newSingleEvent._id;
-//   newSingleEvent.dates.forEach((date) => {
-//     delete date._id;
-//     date.ticketCategories.forEach((category) => {
-//       delete category._id;
+// export const saveEditedSingleEvent =
+//   (ticketCategories) => (dispatch, getState) => {
+//     const currentEditedSingleEvent = selectEditedSingleEvent(getState());
+//     const lowestPrice = getLowestPrice(ticketCategories);
+//     const completeDates = currentEditedSingleEvent.dates.map((date) => {
+//       return { ...date, ticketCategories: [...ticketCategories] };
 //     });
-//   });
-//   dispatch(addNewEvent(newSingleEvent));
-//   dispatch(resetAllAtributes());
-//   dispatch(nextPage());
-// };
-
-export const saveEditedSingleEvent =
-  (ticketCategories) => (dispatch, getState) => {
-    const currentEditedSingleEvent = selectEditedSingleEvent(getState());
-    const lowestPrice = getLowestPrice(ticketCategories);
-    const completeDates = currentEditedSingleEvent.dates.map((date) => {
-      return { ...date, ticketCategories: [...ticketCategories] };
-    });
-    const editedSingleEvent = {
-      ...currentEditedSingleEvent,
-      dates: [...completeDates],
-      lowestPrice,
-    };
-    dispatch(saveEditEvent(editedSingleEvent));
-    dispatch(resetEditAllAtributes());
-    dispatch(nextEditPage());
-  };
+//     const editedSingleEvent = {
+//       ...currentEditedSingleEvent,
+//       dates: [...completeDates],
+//       lowestPrice,
+//     };
+//     dispatch(saveEditEvent(editedSingleEvent));
+//     dispatch(resetEditAllAtributes());
+//     dispatch(nextEditPage());
+//   };
 
 export default singleEventSlice.reducer;

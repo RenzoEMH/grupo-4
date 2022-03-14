@@ -1,9 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { createEvent, getAllEvents } from '../../api/events';
+import { createEvent, getAllEvents, updateEvent } from '../../api/events';
 import getLowestPrice from '../../utils/getLowestPrice';
 import {
+  nextEditPage,
   nextPage,
   resetAllAtributes,
+  resetEditAllAtributes,
+  selectEditedSingleEvent,
   selectSingleEvent,
 } from './singleEventSlice';
 
@@ -49,18 +52,47 @@ export const createEventAsync = createAsyncThunk(
   }
 );
 
+export const updateEventAsync = createAsyncThunk(
+  'events/update',
+  async (ticketCategories, { dispatch, getState, rejectWithValue }) => {
+    const currentEditedSingleEvent = selectEditedSingleEvent(getState());
+    const lowestPrice = getLowestPrice(ticketCategories);
+    const completeDates = currentEditedSingleEvent.dates.map((date) => {
+      return { ...date, ticketCategories: [...ticketCategories] };
+    });
+    const editedSingleEvent = {
+      ...currentEditedSingleEvent,
+      dates: [...completeDates],
+      lowestPrice,
+    };
+
+    delete editedSingleEvent._id;
+    editedSingleEvent.dates.forEach((date) => {
+      delete date._id;
+      date.ticketCategories.forEach((category) => {
+        delete category._id;
+      });
+    });
+    try {
+      const response = await updateEvent({
+        id: currentEditedSingleEvent._id,
+        ...editedSingleEvent,
+      });
+      dispatch(resetEditAllAtributes());
+      dispatch(nextEditPage());
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
 export const eventsSlice = createSlice({
   name: 'eventos',
   initialState,
   reducers: {
     setFilteredEvents: (state, { payload: events }) => {
       state.filteredEvents = [...events];
-    },
-    saveEditEvent: (state, { payload: editedEvent }) => {
-      const index = state.eventos.findIndex(
-        (event) => event._id === editedEvent._id
-      );
-      state.eventos[index] = { ...editedEvent };
     },
   },
   extraReducers: (builder) => {
@@ -77,12 +109,17 @@ export const eventsSlice = createSlice({
       })
       .addCase(createEventAsync.rejected, (state, { payload }) => {
         state.error = payload;
+      })
+      .addCase(updateEventAsync.fulfilled, (state, { payload }) => {
+        state.edited = payload;
+      })
+      .addCase(updateEventAsync.rejected, (state, { payload }) => {
+        state.editError = payload;
       });
   },
 });
 
-export const { setFilteredEvents, addNewEvent, saveEditEvent } =
-  eventsSlice.actions;
+export const { setFilteredEvents } = eventsSlice.actions;
 
 export const selectEvents = (state) => state.eventos.eventos;
 

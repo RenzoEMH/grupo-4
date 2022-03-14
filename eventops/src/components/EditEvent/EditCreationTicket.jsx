@@ -1,11 +1,9 @@
 import { useDispatch } from 'react-redux';
-import {
-  saveEditedSingleEvent,
-  prevEditPage,
-} from '../../redux/features/singleEventSlice';
+import { prevEditPage } from '../../redux/features/singleEventSlice';
 import { useState } from 'react';
 import EditProgressBar from './EditProgressBar';
 import EditTicketType from './EditTicketType';
+import { updateEventAsync } from '../../redux/features/eventsSlice';
 
 const newTicket = () => {
   return {
@@ -23,7 +21,7 @@ const EditCreationTicket = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(saveEditedSingleEvent(tickets));
+    dispatch(updateEventAsync(tickets));
   };
 
   const handleOnClickAddTicket = () => {
