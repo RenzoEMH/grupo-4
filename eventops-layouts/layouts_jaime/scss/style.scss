@@ -628,3 +628,38 @@ body {
 
   }
 
+  .col-left{
+    background-color: #c4c4c4;
+    max-width: 280px;
+    img{
+      width: 80px;
+      height: 80px;
+    }
+    .mi-perfil{
+      border-right: 7px solid #9F2D30;
+    }
+    .fila1-1{
+      display:flex;
+      flex-wrap:wrap;
+    }
+    
+  }
+  .col-right{
+    align-items: center;
+    
+    img{
+      width: 200px;
+      height: 180px;
+    }
+  }
+  .col-mid{
+    .boton-actualizar{
+      display: flex;
+      justify-content: center;      
+    }
+    input::placeholder{
+      color:white;
+    }
+  }
+  
+
