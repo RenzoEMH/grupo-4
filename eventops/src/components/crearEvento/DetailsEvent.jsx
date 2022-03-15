@@ -5,8 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { nextPage, setAtribute } from '../../redux/features/singleEventSlice';
 import categoryNames from '../../utils/categoriesNames';
 import parseJwt from '../../utils/ParseJwt';
+import CloudinaryImgModal from './CloudinaryImgModal';
 import EventDate from './EventDate';
-import EventoImgModal from './EventoImgModal';
+// import EventoImgModal from './EventoImgModal';
 import ProgressBar from './ProgressBar';
 
 const errors = {
@@ -218,11 +219,13 @@ const DetailsEvent = () => {
               </div>
             </div>
             <div className="col-lg-5 order-lg-2">
-              <EventoImgModal property={evento.img} type={'Evento'} />
+              {/* <EventoImgModal property={evento.img} type={'Evento'} /> */}
+              <CloudinaryImgModal property={evento.img} type={'Evento'} />
               {!!formErrors && (
                 <div className="invalid-feedback d-block">{formErrors.img}</div>
               )}
-              <EventoImgModal property={evento.ticketImg} type={'Ticket'} />
+              {/* <EventoImgModal property={evento.ticketImg} type={'Ticket'} /> */}
+              <CloudinaryImgModal property={evento.ticketImg} type={'Ticket'} />
             </div>
           </div>
           <div className="mb-1">

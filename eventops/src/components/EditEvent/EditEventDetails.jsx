@@ -6,7 +6,8 @@ import {
   setEditAtribute,
 } from '../../redux/features/singleEventSlice';
 import categoryNames from '../../utils/categoriesNames';
-import EventoImgModal from '../crearEvento/EventoImgModal';
+// import EventoImgModal from '../crearEvento/EventoImgModal';
+import EditCloudinaryImgModal from './EditCloudinaryImgModal';
 import EditEventDate from './EditEventDate';
 import EditProgressBar from './EditProgressBar';
 
@@ -216,11 +217,16 @@ const EditEventDetails = () => {
               </div>
             </div>
             <div className="col-lg-5 order-lg-2">
-              <EventoImgModal property={evento.img} type={'Evento'} />
+              {/* <EventoImgModal property={evento.img} type={'Evento'} /> */}
+              <EditCloudinaryImgModal property={evento.img} type={'Evento'} />
               {!!formErrors && (
                 <div className="invalid-feedback d-block">{formErrors.img}</div>
               )}
-              <EventoImgModal property={evento.ticketImg} type={'Ticket'} />
+              {/* <EventoImgModal property={evento.ticketImg} type={'Ticket'} /> */}
+              <EditCloudinaryImgModal
+                property={evento.ticketImg}
+                type={'Ticket'}
+              />
             </div>
           </div>
           <div className="mb-1">

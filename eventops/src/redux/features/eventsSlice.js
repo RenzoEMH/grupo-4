@@ -45,7 +45,7 @@ export const createEventAsync = createAsyncThunk(
       const response = await createEvent(newSingleEvent);
       dispatch(resetAllAtributes());
       dispatch(nextPage());
-      return response;
+      return response.data;
     } catch (error) {
       return rejectWithValue(error);
     }

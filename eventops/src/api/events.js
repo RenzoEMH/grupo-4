@@ -20,10 +20,15 @@ export const getAllEvents = async () => {
 };
 
 export const createEvent = async (event) => {
+  const token = JSON.parse(localStorage.getItem('infoUser')).token;
   const url = `${API_SERVER}${ENDPOINTS.CREATE}`;
 
   try {
-    const response = await axios.post(url, event);
+    const response = await axios.post(url, event, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response;
   } catch (error) {
     console.log(error);
@@ -31,10 +36,15 @@ export const createEvent = async (event) => {
 };
 
 export const updateEvent = async ({ id, ...event }) => {
+  const token = JSON.parse(localStorage.getItem('infoUser')).token;
   const url = `${API_SERVER}${ENDPOINTS.UPDATE}/${id}`;
 
   try {
-    const response = await axios.put(url, event);
+    const response = await axios.put(url, event, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response;
   } catch (error) {
     console.log(error);

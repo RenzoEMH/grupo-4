@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import emptySingleEvent from '../../utils/emptySingleEvent';
-// import { saveEditEvent } from '../../redux/features/eventsSlice';
-// import getLowestPrice from '../../utils/getLowestPrice';
 
 export const singleEventSlice = createSlice({
   name: 'singleEvent',
@@ -67,22 +65,5 @@ export const selectSingleEvent = (state) => state.singleEvent.singleEvent;
 export const selectPage = (state) => state.singleEvent.page;
 export const selectEditedSingleEvent = (state) =>
   state.singleEvent.editSingleEvent;
-
-// export const saveEditedSingleEvent =
-//   (ticketCategories) => (dispatch, getState) => {
-//     const currentEditedSingleEvent = selectEditedSingleEvent(getState());
-//     const lowestPrice = getLowestPrice(ticketCategories);
-//     const completeDates = currentEditedSingleEvent.dates.map((date) => {
-//       return { ...date, ticketCategories: [...ticketCategories] };
-//     });
-//     const editedSingleEvent = {
-//       ...currentEditedSingleEvent,
-//       dates: [...completeDates],
-//       lowestPrice,
-//     };
-//     dispatch(saveEditEvent(editedSingleEvent));
-//     dispatch(resetEditAllAtributes());
-//     dispatch(nextEditPage());
-//   };
 
 export default singleEventSlice.reducer;
