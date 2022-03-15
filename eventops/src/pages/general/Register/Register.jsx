@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './_Register.scss';
 import { createUserAsync } from '../../../redux/features/usersSlice';
@@ -7,21 +7,86 @@ import {
   resetAllAtributes,
   setAtribute,
 } from '../../../redux/features/singleUserSlice';
+import { getAllUsersAsync } from '../../../redux/features/usersSlice';
+import validator from 'validator';
+
+const errors = {
+  email: 'Debe ingresar un correo válido - Ej: ejemplo@gmail.com',
+  password:
+    'La contraseña debe tener minimo 8 caracteres incluidos minúsculas, mayúsculas, números y simbolos',
+  confirmEmail: 'Los correos deben coincidir',
+  confirmPassword: 'Las contraseñas deben coincidir',
+  emailNotValid: 'Este correo ya esta registrado',
+};
+
+const registerUserIsValid = (e, registerUser, users) => {
+  const validation = { isValid: true, formErrors: {} };
+
+  users.forEach((user) => {
+    if (user.email === registerUser.email) {
+      validation.isValid = false;
+      validation.formErrors.emailNotValid = errors.emailNotValid;
+    }
+  });
+
+  if (registerUser.email !== '') {
+    let posicionArroba = registerUser.email.lastIndexOf('@');
+    let posicionPunto = registerUser.email.lastIndexOf('.');
+    if (
+      !(
+        posicionArroba < posicionPunto &&
+        posicionArroba > 0 &&
+        registerUser.email.indexOf('@@') == -1 &&
+        posicionPunto > 2 &&
+        registerUser.email.length - posicionPunto > 2
+      )
+    ) {
+      validation.isValid = false;
+      validation.formErrors.email = errors.email;
+    }
+  }
+  if (
+    !validator.isStrongPassword(registerUser.password, {
+      minLength: 8,
+      minLowercase: 1,
+      minUppercase: 1,
+      minNumbers: 1,
+      minSymbols: 1,
+    })
+  ) {
+    validation.isValid = false;
+    validation.formErrors.password = errors.password;
+  }
+  if (e.target[3].value !== registerUser.email) {
+    validation.isValid = false;
+    validation.formErrors.confirmEmail = errors.confirmEmail;
+  }
+  if (e.target[5].value !== registerUser.password) {
+    validation.isValid = false;
+    validation.formErrors.confirmPassword = errors.confirmPassword;
+  }
+  return validation;
+};
 
 const Register = () => {
   const usuario = useSelector((state) => state.singleUser.singleUser);
   const dispatch = useDispatch();
+  const [formErrors, setFormErrors] = useState({});
+  // const [modalCreated, setModalCreated] = useState(false);
+  const users = useSelector((state) => state.usuarios.users);
+  // const userCreated = useSelector((state) => state.usuarios.created);
 
   useEffect(() => {
-    dispatch(
-      setAtribute({ key: 'id', value: Math.floor(Math.random() * 10000) + 1 })
-    );
-    dispatch(
-      setAtribute({
-        key: 'type',
-        value: 'user',
-      })
-    );
+    dispatch(getAllUsersAsync());
+    // dispatch(
+    //   setAtribute({ key: 'id', value: Math.floor(Math.random() * 10000) + 1 })
+    // );
+    // dispatch(
+    //   setAtribute({
+    //     key: 'type',
+    //     value: 'user',
+    //   })
+    // );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -38,13 +103,20 @@ const Register = () => {
       type: 'usuario',
       estado: true,
     };
-
-    console.log(newUser);
-    dispatch(createUserAsync(newUser));
-    dispatch(resetAllAtributes());
-    e.target[3].value = '';
-    e.target[5].value = '';
-    e.target[6].checked = false;
+    const { isValid, formErrors } = registerUserIsValid(e, newUser, users);
+    if (isValid) {
+      dispatch(createUserAsync(newUser));
+      dispatch(resetAllAtributes());
+      e.target[3].value = '';
+      e.target[5].value = '';
+      e.target[6].checked = false;
+      setFormErrors({});
+      // if (userCreated) {
+      //   setModalCreated(true);
+      // }
+    } else {
+      setFormErrors(formErrors);
+    }
   };
 
   return (
@@ -73,7 +145,6 @@ const Register = () => {
         </header>
         <section className="simple__main d-grid col-10 col-lg-6 mx-auto">
           <h2 className="simple__subtitle mb-5">Registrate</h2>
-
           <div className="mb-4 d-flex gap-4">
             <input
               type="text"
@@ -84,6 +155,7 @@ const Register = () => {
               onChange={(e) =>
                 dispatch(setAtribute({ key: 'Nombres', value: e.target.value }))
               }
+              required
             />
             <input
               type="text"
@@ -96,6 +168,7 @@ const Register = () => {
                   setAtribute({ key: 'apellidos', value: e.target.value })
                 )
               }
+              required
             />
           </div>
           <div className="mb-4">
@@ -103,12 +176,21 @@ const Register = () => {
               type="email"
               className="register__mail form-control"
               id="email"
-              placeholder="Tu email"
+              placeholder="Tu email - Ej: ejemplo@gmail.com"
               value={usuario.Correo}
               onChange={(e) =>
                 dispatch(setAtribute({ key: 'Correo', value: e.target.value }))
               }
+              required
             />
+            {!!formErrors && (
+              <div className="invalid-feedback d-block">{formErrors.email}</div>
+            )}
+            {!!formErrors && (
+              <div className="invalid-feedback d-block">
+                {formErrors.emailNotValid}
+              </div>
+            )}
           </div>
           <div className="mb-4">
             <input
@@ -116,7 +198,13 @@ const Register = () => {
               className="register__mail form-control"
               id="confirm-email"
               placeholder="Confirma tu email"
+              required
             />
+            {!!formErrors && (
+              <div className="invalid-feedback d-block">
+                {formErrors.confirmEmail}
+              </div>
+            )}
           </div>
           <div className="mb-4">
             <input
@@ -130,7 +218,13 @@ const Register = () => {
                   setAtribute({ key: 'password', value: e.target.value })
                 )
               }
+              required
             />
+            {!!formErrors && (
+              <div className="invalid-feedback d-block">
+                {formErrors.password}
+              </div>
+            )}
           </div>
           <div className="mb-4">
             <input
@@ -138,7 +232,13 @@ const Register = () => {
               className="register__password form-control"
               id="confirm-contrasena"
               placeholder="Confirma la contraseña"
+              required
             />
+            {!!formErrors && (
+              <div className="invalid-feedback d-block">
+                {formErrors.confirmPassword}
+              </div>
+            )}
           </div>
           <div className="mb-5">
             <input
