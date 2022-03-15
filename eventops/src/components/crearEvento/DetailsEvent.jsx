@@ -236,7 +236,6 @@ const DetailsEvent = () => {
                   className="custom-control-input"
                   value="allAges"
                   checked={evento.ageRestriction === 'allAges'}
-                  //required
                   onChange={(e) =>
                     dispatch(
                       setAtribute({
@@ -258,7 +257,6 @@ const DetailsEvent = () => {
                   className="custom-control-input"
                   value="withAdult"
                   checked={evento.ageRestriction === 'withAdult'}
-                  //required
                   onChange={(e) =>
                     dispatch(
                       setAtribute({
@@ -280,7 +278,6 @@ const DetailsEvent = () => {
                   className="custom-control-input"
                   value="adultOnly"
                   checked={evento.ageRestriction === 'adultOnly'}
-                  //required
                   onChange={(e) =>
                     dispatch(
                       setAtribute({

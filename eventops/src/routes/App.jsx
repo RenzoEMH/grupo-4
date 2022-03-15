@@ -116,7 +116,7 @@ function App() {
           exact
           path="/busqueda"
           element={
-            sesion?.type !== 'usuario' ? (
+            sesion && sesion.type !== 'usuario' ? (
               <Navigate to="/not-found" replace />
             ) : (
               <SearchEvents />

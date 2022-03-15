@@ -81,7 +81,6 @@ const UbicactionEvent = () => {
                       setAtribute({ key: 'city', value: e.target.value })
                     );
                   }}
-                  //required
                 >
                   <option value={'DEFAULT'} disabled>
                     Elige una ciudad
@@ -109,7 +108,6 @@ const UbicactionEvent = () => {
                   placeholder="Ej. Avenida Javier Prado Este 4200"
                   defaultValue={evento.address}
                   onChange={debouncedChangeAddressHandler}
-                  //required
                 />
                 {!!formErrors && (
                   <div className="invalid-feedback d-block">
@@ -132,7 +130,6 @@ const UbicactionEvent = () => {
                       })
                     );
                   }}
-                  //required
                 />
               </div>
             </div>

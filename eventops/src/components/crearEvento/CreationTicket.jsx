@@ -56,6 +56,7 @@ const CreationTicket = () => {
       ticketCategories: tickets,
     });
 
+    console.log(isValid);
     if (isValid) {
       dispatch(createEventAsync(tickets));
       setFormErrors({});

@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { setAtribute } from '../../redux/features/singleEventSlice';
+import { setEditAtribute } from '../../redux/features/singleEventSlice';
 
 const EditEventDate = ({
   dateItem: { date, startHour, endHour },
@@ -10,7 +10,7 @@ const EditEventDate = ({
 
   const handleOnChangeDateProperty = (e) => {
     dispatch(
-      setAtribute({
+      setEditAtribute({
         key: 'dates',
         value: allDates.map((dateElement, i) =>
           i === index
@@ -23,7 +23,7 @@ const EditEventDate = ({
 
   const handleOnClickDeleteDate = () => {
     dispatch(
-      setAtribute({
+      setEditAtribute({
         key: 'dates',
         value: allDates.filter((dateElement, i) => index !== i),
       })
