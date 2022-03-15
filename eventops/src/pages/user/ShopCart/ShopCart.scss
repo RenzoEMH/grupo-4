@@ -1,0 +1,31 @@
+#cardCarrito {
+  width: 85%;
+  margin: 1.5rem auto;
+  background-color: #21262a;
+  color: white;
+  border: #21262a;
+  #cabeceraCarrito {
+    background-color: #9f2d30;
+    .row {
+      margin: 1rem auto;
+    }
+  }
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.inferiorCarrito {
+  width: 85%;
+  margin: 1.5rem auto;
+  color: white;
+  #resumenPago {
+    background-color: white;
+    color: black;
+  }
+}
+#btnPagar {
+  width: 85%;
+  margin: 1.5rem auto;
+}

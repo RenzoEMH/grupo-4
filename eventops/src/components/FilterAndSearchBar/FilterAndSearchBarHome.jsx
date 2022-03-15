@@ -1,9 +1,6 @@
-import CategoryFilter from './CategoryFilter';
-import DateFilter from './DateFilter';
 import HomeSearchBox from './HomeSearchBox';
-import PriceFilter from './PriceFilter';
 
-const FilterAndSearchBar = () => {
+const FilterAndSearchBarHome = () => {
   return (
     <>
       <section className="filter-menu bg-primary my-4 py-3">
@@ -17,9 +14,9 @@ const FilterAndSearchBar = () => {
         >
           <HomeSearchBox />
           <div className="d-flex justify-content-around">
-            <PriceFilter />
+            {/* <PriceFilter />
             <CategoryFilter />
-            <DateFilter />
+            <DateFilter /> */}
           </div>
         </div>
       </section>
@@ -27,4 +24,4 @@ const FilterAndSearchBar = () => {
   );
 };
 
-export default FilterAndSearchBar;
+export default FilterAndSearchBarHome;

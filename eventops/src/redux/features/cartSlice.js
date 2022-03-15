@@ -6,17 +6,34 @@ export const cartSlice = createSlice({
     cart: [],
   },
   reducers: {
-    setShopCart: (state, { payload: shopCart }) => {
-      state.cart = [...shopCart];
-    },
     removeCard: (state, { payload: id }) => {
       state.cart = [...state.cart].filter((item) => {
         return item.id !== id;
       });
     },
+    setCart: (state, { payload: shopCart }) => {
+      state.cart = [...shopCart];
+    },
+    updateTicketAmount: (state, { payload: ticket }) => {
+      state.cart[ticket.index].amount = ticket.amount;
+    },
+    removeTicketFromCart: (state, { payload: id }) => {
+      state.cart = [...state.cart].filter((item) => {
+        return item.id !== id;
+      });
+    },
+    emptyCart: (state) => {
+      state.cart = [];
+    },
   },
 });
 
-export const { setShopCart, removeCard } = cartSlice.actions;
+export const {
+  setCart,
+  updateTicketAmount,
+  removeTicketFromCart,
+  removeCard,
+  emptyCart,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

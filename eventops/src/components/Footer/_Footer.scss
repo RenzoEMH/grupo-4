@@ -1,0 +1,29 @@
+.footer {
+  font-size: 1rem;
+  color: black;
+  border-top: 1px solid white;
+  padding-top: 1.6rem;
+  background-color: white;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-around;
+  background-color: #21262a;
+  ul {
+    margin-top: 0.6rem;
+  }
+  li {
+    list-style: none;
+  }
+  label {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #9f2d30;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  span {
+    color: white;
+  }
+}

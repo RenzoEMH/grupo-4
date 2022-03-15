@@ -1,66 +1,144 @@
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  nextPage,
+  prevPage,
+  setAtribute,
+} from '../../redux/features/singleEventSlice';
+import debounce from 'lodash.debounce';
+import cityDepartmentNames from '../../utils/cityDepartmentNames';
+import ProgressBar from './ProgressBar';
+import { useMemo } from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+
+const errors = {
+  city: 'Debe escoger una ciudad',
+  address: 'Ingrese la dirección del evento',
+};
+
+const eventUbicationIsValid = (details) => {
+  const validation = { isValid: true, formErrors: {} };
+
+  if (details.city === '') {
+    validation.isValid = false;
+    validation.formErrors.city = errors.city;
+  }
+
+  if (details.address === '') {
+    validation.isValid = false;
+    validation.formErrors.address = errors.address;
+  }
+
+  return validation;
+};
+
 const UbicactionEvent = () => {
+  const evento = useSelector((state) => state.singleEvent.singleEvent);
+  const [formErrors, setFormErrors] = useState({});
+  const dispatch = useDispatch();
+
+  const debouncedChangeAddressHandler = useMemo(() => {
+    const changeAddressHandler = (event) => {
+      dispatch(setAtribute({ key: 'address', value: event.target.value }));
+    };
+    return debounce(changeAddressHandler, 1500);
+  }, [dispatch]);
+
+  useEffect(() => {
+    return () => {
+      debouncedChangeAddressHandler.cancel();
+    };
+  }, [debouncedChangeAddressHandler]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { isValid, formErrors } = eventUbicationIsValid(evento);
+
+    if (isValid) {
+      dispatch(nextPage());
+      setFormErrors({});
+    } else {
+      setFormErrors(formErrors);
+    }
+  };
+
   return (
-    <div className="accordion-item">
-      <h1 className="accordion-button">Ubicación del Evento</h1>
-      <div className="accordion-body">
-        <div className="col-md-12 order-md-1">
+    <form onSubmit={(e) => handleSubmit(e)}>
+      <ProgressBar />
+      <div className="accordion-item">
+        <h1 className="accordion-button">Ubicación del Evento</h1>
+        <div className="container">
           <div className="row">
-            <div className="col-md-6 order-md-1">
+            <div className="col-lg-6 order-lg-1">
               <div className="mb-3">
-                <label htmlFor="address">Ciudad</label>
+                <label htmlFor="city">Ciudad</label>
                 <select
                   className="form-select d-block w-100"
-                  id="state"
-                  required
+                  id="city"
+                  defaultValue={'DEFAULT'}
+                  onChange={(e) => {
+                    dispatch(
+                      setAtribute({ key: 'city', value: e.target.value })
+                    );
+                  }}
+                  //required
                 >
-                  <option value="">Elige una ciudad</option>
-                  <option>Lima</option>
-                  <option>Arequipa</option>
-                  <option>Cuzco</option>
-                  <option>Piura</option>
-                  <option>Tacna</option>
-                  <option>Puno</option>
-                  <option>Madre de Dios</option>
-                  <option>Cajamarca</option>
-                  <option>San Martin</option>
-                  <option>Loreto</option>
-                  <option>Ayacucho</option>
-                  <option>Tumbes</option>
+                  <option value={'DEFAULT'} disabled>
+                    Elige una ciudad
+                  </option>
+                  {cityDepartmentNames.map((cityDepartment, index) => (
+                    <option
+                      value={cityDepartment}
+                      key={`${cityDepartment}${index}`}
+                    >
+                      {cityDepartment.split(',')[0].replace('+', ' ')}
+                    </option>
+                  ))}
                 </select>
+                {!!formErrors && (
+                  <div className="invalid-feedback d-block">
+                    {formErrors.city}
+                  </div>
+                )}
               </div>
               <div className="mb-3">
-                <label htmlFor="address">Dirección</label>
+                <label htmlFor="address">Dirección del Evento</label>
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Escribe la dirección del Evento "
-                  required
+                  placeholder="Ej. Avenida Javier Prado Este 4200"
+                  defaultValue={evento.address}
+                  onChange={debouncedChangeAddressHandler}
+                  //required
                 />
+                {!!formErrors && (
+                  <div className="invalid-feedback d-block">
+                    {formErrors.address}
+                  </div>
+                )}
               </div>
               <div className="mb-3">
                 <label htmlFor="address">Referencia</label>
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Ej. Al frente del metro de Lima "
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="address">
-                  Plataforma del evento (Eventos virtuales)
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Ej. Facebook (Solo para eventos virtuales) "
-                  required
+                  placeholder="Ej. Al frente del metro de Lima"
+                  value={evento.refference}
+                  onChange={(e) => {
+                    dispatch(
+                      setAtribute({
+                        key: 'refference',
+                        value: e.target.value,
+                      })
+                    );
+                  }}
+                  //required
                 />
               </div>
             </div>
-            <div className="col-md-6 order-md-2">
+            <div className="col-lg-6 order-lg-2">
               <div className="mb-3">
-                <label htmlFor="address">Coloca el punto en el mapa</label>
+                <label htmlFor="address">Mapa de ubicación del evento</label>
                 <div
                   id="map-container-google-1"
                   className="z-depth-1-half map-container"
@@ -68,7 +146,13 @@ const UbicactionEvent = () => {
                 >
                   <iframe
                     title="Mapa de crear evento"
-                    src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                    src={`https://maps.google.com/maps?q=${
+                      evento.address.length !== 0
+                        ? `${evento.address.replaceAll(' ', '+')},`
+                        : ''
+                    }${
+                      evento.city.length !== 0 ? evento.city : 'Lima,Lima'
+                    }&t=&z=13&ie=UTF8&iwloc=&output=embed`}
                     frameBorder="0"
                     style={{ border: '0' }}
                     allowFullScreen
@@ -79,7 +163,34 @@ const UbicactionEvent = () => {
           </div>
         </div>
       </div>
-    </div>
+      <div
+        className="col-md-12 order-md-1 container"
+        style={{ marginTop: '1rem' }}
+      >
+        <div className="row">
+          <div
+            className="col-md-6 order-md-1"
+            style={{ display: 'flex', justifyContent: 'flex-end' }}
+          >
+            <button
+              type="button"
+              className="btn btn-light"
+              onClick={() => dispatch(prevPage())}
+            >
+              Atras
+            </button>
+          </div>
+          <div
+            className="col-md-6 order-md-1"
+            style={{ display: 'flex', justifyContent: 'flex-start' }}
+          >
+            <button type="submit" className="btn btn-danger">
+              Siguiente
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
   );
 };
 

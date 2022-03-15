@@ -1,62 +1,252 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import '../_Tiket.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import mockDB from '../../utils/mockDB';
+import { setAllTickets } from '../../redux/features/ticketsSlice';
+import { emptyCart } from '../../redux/features/cartSlice';
+import { setAtribute } from '../../redux/features/singleSaleSlice';
+import { addNewSale } from '../../redux/features/salesSlice';
+import parseJwt from '../../utils/ParseJwt';
+
+/**
+ * Combines ticket amount of same ticket type and date of specific event for logged user in both storeCart and localCart
+ * @param {*} arrayTicketRedux
+ * @param {*} arrayTicketLocal
+ * @returns cart with combined ticket amounts from both storeCart and localCart
+ */
+const obtainUnique = (arrayTicketRedux, arrayTicketLocal) => {
+  return arrayTicketRedux.map((item) => {
+    const matchIndex = arrayTicketLocal.findIndex(
+      (object) =>
+        item.idUsuario === object.idUsuario &&
+        item.evento.idEvento === object.evento.idEvento &&
+        item.evento.dateEvent === object.evento.dateEvent &&
+        item.evento.typeTicket === object.evento.typeTicket
+    );
+    if (matchIndex >= 0) {
+      const fuseValue =
+        item.evento.quantity + arrayTicketLocal[matchIndex].evento.quantity;
+      const itemEvento = { ...item.evento, quantity: fuseValue };
+      arrayTicketLocal.splice(matchIndex, 1);
+      return { ...item, evento: itemEvento };
+    }
+    return item;
+  });
+};
+
 const FormPay = () => {
-    return(
-        <div className="container d-flex flex-column" Id="container-fp">
-        <main className="eventops__main">
+  const token = useSelector((state) => state.usuarios.token);
+  const sesion = parseJwt(token);
+  const creditCards = mockDB.creditCard.creditCard;
+  const navigate = useNavigate();
+  const [creditCard, setcreditCard] = useState(null);
+  const users = useSelector((state) => state.usuarios.usuarios);
+  const sale = useSelector((state) => state.singleSale.singleSale);
+  const tickets = useSelector((state) => state.tickets.tickets);
+  const shopCart = useSelector((state) =>
+    state.shopCart.cart.filter((cartItem) => cartItem.idUsuario === sesion?.id)
+  );
+  const dispatch = useDispatch();
+
+  let username = '';
+  let fare = 0;
+  let numero = '';
+  let IDtransaction = Math.floor(Math.random() * 100000) + 1;
+  //Obtenemos el nombre del usuario de la sesion
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].id === sesion?.id) {
+      username = users[i].Nombres + ' ' + users[i].apellidos;
+    }
+  }
+  //Obtenemos el monto total a pagar
+  for (let i = 0; i < shopCart.length; i++) {
+    fare = fare + shopCart[i].price * shopCart[i].amount;
+  }
+  //Llenamos los datos del compra (sale)
+  useEffect(() => {
+    dispatch(
+      setAtribute({ key: 'id', value: Math.floor(Math.random() * 10000) + 1 })
+    );
+    dispatch(setAtribute({ key: 'idUser', value: sesion?.id }));
+    dispatch(
+      setAtribute({
+        key: 'numberTransaction',
+        value: IDtransaction,
+      })
+    );
+    dispatch(
+      setAtribute({
+        key: 'token',
+        value: Math.floor(Math.random() * 10000) + 1,
+      })
+    );
+    dispatch(
+      setAtribute({
+        key: 'paymentDate',
+        value: Date(Date.now()),
+      })
+    );
+    dispatch(
+      setAtribute({
+        key: 'client',
+        value: username,
+      })
+    );
+    dispatch(setAtribute({ key: 'cardType', value: 'VISA' }));
+    dispatch(setAtribute({ key: 'totalFare', value: fare }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  //Volvemos los datos del shopcart en tickets
+  const ticketsLocal = shopCart.map((cartItem) => {
+    const ticketObject = {
+      id: Math.floor(Math.random() * 10000) + 1,
+      idUsuario: sesion?.id,
+      idTransaction: Math.floor(Math.random() * 10000) + 1,
+      evento: {
+        idEvento: cartItem.idEvento,
+        typeTicket: cartItem.typeTicket,
+        dateEvent: cartItem.date,
+        quantity: cartItem.amount,
+      },
+    };
+    return ticketObject;
+  });
+  //Se llena los datos de la tarjeta de credito
+  const onInputChange = (inputName) => (inputValue) => {
+    setcreditCard({ ...creditCard, [inputName]: inputValue.target.value });
+    console.log(creditCard);
+  };
+  //Se llena el numero de la tarjeta en la boleta de compra (sale)
+  if (creditCard) {
+    numero = creditCard.numberCard;
+    dispatch(setAtribute({ key: 'cardNumber', value: numero }));
+  }
+  // HandleSubmit del boton Pagar
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(sale);
+    console.log(creditCard);
+    if (creditCard !== null) {
+      creditCards.forEach((card) => {
+        if (
+          creditCard.numberCard === card.numberCard &&
+          creditCard.expiryDate === card.expiryDate &&
+          creditCard.CVV === card.CVV
+        ) {
+          const allTickets = [
+            ...obtainUnique(tickets, ticketsLocal),
+            ...ticketsLocal,
+          ];
+          console.log(allTickets);
+          dispatch(setAllTickets(allTickets));
+          dispatch(emptyCart());
+          dispatch(addNewSale({ ...sale }));
+          navigate('/confirmacion-compra/' + sale.id);
+        }
+      });
+    }
+  };
+
+  return (
+    <div className="container d-flex flex-column" id="container-fp">
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <main className="eventops__main row">
           <div id="container-datos-tarjeta">
             <h1 className="text-center text-light">EVENTOPS</h1>
             <div className="input-group mb-3">
-              <span className="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-card-heading" viewBox="0 0 16 16">
-                <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
-                <path d="M3 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0-5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1z"/>
-              </svg></span>
-              <input type="text" className="form-control" placeholder="Nro. Tarjeta" aria-label="Username" aria-describedby="basic-addon1"/>
+              <span className="input-group-text" id="basic-addon1">
+                <i className="bi bi-credit-card-2-front"></i>
+              </span>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Nro. Tarjeta"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+                id="numberCard"
+                // value={sale.cardNumber}
+                onChange={onInputChange('numberCard')}
+              />
             </div>
-                    
+
             <div className="input-group mb-3">
-              <span className="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-calendar-event" viewBox="0 0 16 16">
-                <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
-                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-              </svg></span>
-              <input type="text" className="form-control" placeholder="MM/AA" aria-label="CVV"/>
-              <span className="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-credit-card" viewBox="0 0 16 16">
-                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"/>
-                <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"/>
-              </svg></span>
-              <input type="text" className="form-control" placeholder="CVV" aria-label="Server"/>
+              <span className="input-group-text">
+                <i className="bi bi-calendar-event"></i>
+              </span>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="MM/AA"
+                aria-label="CVV"
+                id="expiryDate"
+                onChange={onInputChange('expiryDate')}
+              />
+              <span className="input-group-text">
+                <i className="bi bi-credit-card"></i>
+              </span>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="CVV"
+                aria-label="Server"
+                id="CVV"
+                onChange={onInputChange('CVV')}
+              />
             </div>
             <div className="input-group mb-3">
-              <span className="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16">
-                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-              </svg></span>
-              <input type="text" className="form-control" placeholder="Nombres" aria-label="CVV"/>
-              <span className="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16">
-                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-              </svg></span>
-              <input type="text" className="form-control" placeholder="Apellidos" aria-label="Server"/>
+              <span className="input-group-text">
+                <i className="bi bi-person-fill"></i>
+              </span>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Nombres"
+                aria-label="CVV"
+                id="name"
+                onChange={onInputChange('name')}
+              />
+              <span className="input-group-text">
+                <i className="bi bi-person-fill"></i>
+              </span>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Apellidos"
+                aria-label="Server"
+                id="lastname"
+                onChange={onInputChange('lastname')}
+              />
             </div>
             <div className="input-group">
-              <span className="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-envelope" viewBox="0 0 16 16">
-                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
-              </svg></span>
-              <input type="text" className="form-control" placeholder="Email" aria-label="Server"/>
+              <span className="input-group-text">
+                <i className="bi bi-envelope-fill"></i>
+              </span>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Email"
+                aria-label="Server"
+                id="email"
+                onChange={onInputChange('email')}
+              />
             </div>
           </div>
           <div className="botones-fp">
             <div>
-                <Link to={'/metodo-pago'} className="btn btn-secondary py-2">
-                    Atras
-                </Link>
+              <Link to={'/metodo-pago'} className="btn btn-secondary py-2">
+                Atras
+              </Link>
             </div>
             <div>
-                <Link to={'/confirmacion-compra'} className="btn btn-primary py-2">
-                    Pagar
-                </Link>
+              <button className="login__btn btn btn-primary " type="submit">
+                Pagar
+              </button>
             </div>
           </div>
         </main>
-      </div>  
-    );
+      </form>
+    </div>
+  );
 };
 export default FormPay;

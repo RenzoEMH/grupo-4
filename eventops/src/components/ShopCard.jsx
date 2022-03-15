@@ -1,13 +1,58 @@
-import { useDispatch } from 'react-redux';
-import { removeCard } from '../redux/features/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  removeTicketFromCart,
+  updateTicketAmount,
+} from '../redux/features/cartSlice';
+import dateOnlyFormatter from '../utils/dateOnlyFormatter';
+import hourOnlyFormatter from '../utils/hourOnlyFormatter';
 
 const ShopCard = ({
-  ShopCard: { id, date, img, price, title, city, typeTicket, numberTickets },
+  ShopCard: {
+    id,
+    date,
+    dateId,
+    hour,
+    img,
+    price,
+    title,
+    city,
+    typeTicket,
+    amount,
+    categoryId,
+    idEvento,
+  },
 }) => {
+  const evento = useSelector((state) =>
+    state.eventos.eventos.find((evento) => evento._id === parseInt(idEvento))
+  );
+  const rCart = useSelector((state) => state.shopCart.cart);
   const dispatch = useDispatch();
 
-  const removeElement = (id) => {
-    dispatch(removeCard(id));
+  const removeElement = () => {
+    dispatch(removeTicketFromCart(id));
+  };
+
+  const changeAmount = (ticket) => {
+    dispatch(updateTicketAmount(ticket));
+  };
+
+  const add = () => {
+    const categories = [
+      ...evento.dates.find((date) => date._id === dateId).ticketCategories,
+    ];
+    const maxAmount = categories.find(
+      (category) => category._id === categoryId
+    ).quantity;
+    if (amount < maxAmount) {
+      const index = rCart.findIndex((item) => item.id === id);
+      changeAmount({ index: index, amount: amount + 1 });
+    }
+  };
+  const subtract = () => {
+    if (amount !== 0) {
+      const index = rCart.findIndex((item) => item.id === id);
+      changeAmount({ index: index, amount: amount - 1 });
+    }
   };
 
   return (
@@ -22,7 +67,9 @@ const ShopCard = ({
               <div className="row" style={{ lineHeight: '15px' }}>
                 <h6>{title}</h6>
                 <p>{city}</p>
-                <p>Lunes 20 de diciembre de 2021 5:00pm</p>
+                <p>
+                  {dateOnlyFormatter(date)} {hourOnlyFormatter(hour)}
+                </p>
               </div>
             </div>
           </div>
@@ -31,26 +78,21 @@ const ShopCard = ({
           {typeTicket} <span className="close"></span>
         </div>
         <div className="col-md-2 text-center">
-          <span type="button">
+          <span onClick={subtract} type="button">
             <i className="bi bi-dash"></i>{' '}
           </span>
-          <span className="border" style={{ padding: '0 0.5rem' }}>
-            {numberTickets}
+          <span style={{ padding: '0 0.5rem', userSelect: 'none' }}>
+            {amount}
           </span>
-          <span type="button">
+          <span onClick={add} type="button">
             <i className="bi bi-plus"></i>{' '}
           </span>
         </div>
         <div className="col-md-1 text-center">
-          S/.{price} <span className="close"></span>
+          S/.{price * amount}.00 <span className="close"></span>
         </div>
         <div className="col-md-1 text-center">
-          <span
-            type="button"
-            onClick={() => {
-              removeElement(id);
-            }}
-          >
+          <span type="button" onClick={removeElement}>
             <i className="bi bi-trash-fill"></i>
           </span>
         </div>

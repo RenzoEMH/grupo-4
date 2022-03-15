@@ -50,13 +50,17 @@ const hourAMPM = [
   '11',
 ];
 
-const dateFormatter = (string) => {
-  const date = new Date(string);
-  return `${daysText[date.getDay()]} ${date.getDate()} ${
+const dateFormatter = (dates) => {
+  const { date: lowestDate, startHour: time } = [...dates].sort((a, b) =>
+    a.date > b.date ? 1 : -1
+  )[0];
+  const date = new Date(lowestDate);
+  const [hours, minutes] = time.split(':');
+  return `${daysText[date.getDay()]} ${date.getDate() + 1} ${
     monthText[date.getMonth()]
-  } - ${hourAMPM[date.getHours()]}:${
-    date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
-  } ${date.getHours() >= 11 ? 'PM' : 'AM'}`;
+  } - ${hourAMPM[parseInt(hours)]}:${minutes} ${
+    parseInt(hours) >= 11 ? 'PM' : 'AM'
+  }`;
 };
 
 export default dateFormatter;

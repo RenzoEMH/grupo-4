@@ -1,13 +1,13 @@
-import { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
-import { SesionContext } from './SesionContext';
+import { useSelector } from 'react-redux';
+import parseJwt from './ParseJwt';
 
 const HideIfLogged = ({ children }) => {
-  const { sesion } = useContext(SesionContext);
-  const sesionExist = sesion ? true : false;
+  const token = useSelector((state) => state.usuarios.token);
+  const sesion = parseJwt(token);
 
   //for the routes we don't want to show when logged in
-  if (sesionExist) return <Navigate to="/not-found" />;
+  if (token && !!Object.keys(sesion).length) return <Navigate to="/" replace />;
 
   return children;
 };
