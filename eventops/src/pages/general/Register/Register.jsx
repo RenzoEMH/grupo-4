@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './_Register.scss';
@@ -72,21 +72,11 @@ const Register = () => {
   const usuario = useSelector((state) => state.singleUser.singleUser);
   const dispatch = useDispatch();
   const [formErrors, setFormErrors] = useState({});
-  // const [modalCreated, setModalCreated] = useState(false);
+  const navigate = useNavigate();
   const users = useSelector((state) => state.usuarios.users);
-  // const userCreated = useSelector((state) => state.usuarios.created);
 
   useEffect(() => {
     dispatch(getAllUsersAsync());
-    // dispatch(
-    //   setAtribute({ key: 'id', value: Math.floor(Math.random() * 10000) + 1 })
-    // );
-    // dispatch(
-    //   setAtribute({
-    //     key: 'type',
-    //     value: 'user',
-    //   })
-    // );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -111,9 +101,7 @@ const Register = () => {
       e.target[5].value = '';
       e.target[6].checked = false;
       setFormErrors({});
-      // if (userCreated) {
-      //   setModalCreated(true);
-      // }
+      navigate('/usuario-creado');
     } else {
       setFormErrors(formErrors);
     }
