@@ -25,7 +25,10 @@ import ShopCart from '../pages/user/ShopCart/ShopCart';
 import CreateEvent from '../pages/user/CreateEvent/CreateEvent';
 import EditEvent from '../pages/user/EditEvent/EditEvent';
 import parseJwt from '../utils/ParseJwt';
-
+import ConfirmUserCreated from '../pages/general/Register/ConfirmUserCreated';
+import ConfirmUser from '../pages/general/Register/ConfirmUser';
+import SetNewPassword from '../pages/general/PasswordRecovery/SetNewPassword';
+import ConfirmPasswordRecovery from '../pages/general/PasswordRecovery/ConfirmPasswordRecovery';
 function App() {
   const route = useLocation();
   const token = useSelector((state) => state.usuarios.token);
@@ -179,6 +182,42 @@ function App() {
           element={
             <HideIfLogged>
               <PasswordRecovery />
+            </HideIfLogged>
+          }
+        />
+        <Route
+          exact
+          path="/reestablecer-password"
+          element={
+            <HideIfLogged>
+              <SetNewPassword />
+            </HideIfLogged>
+          }
+        />
+        <Route
+          exact
+          path="/confirmar-password"
+          element={
+            <HideIfLogged>
+              <ConfirmPasswordRecovery />
+            </HideIfLogged>
+          }
+        />
+        <Route
+          exact
+          path="/usuario-creado"
+          element={
+            <HideIfLogged>
+              <ConfirmUserCreated />
+            </HideIfLogged>
+          }
+        />
+        <Route
+          exact
+          path="/usuario-habilitado"
+          element={
+            <HideIfLogged>
+              <ConfirmUser />
             </HideIfLogged>
           }
         />

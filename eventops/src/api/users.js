@@ -4,6 +4,7 @@ const ENDPOINTS = {
   GET_ALL: '/api/users',
   CREATE: '/api/users/create',
   LOGIN: '/api/login',
+  UPDATE: '/api/users/update',
 };
 
 export const getAllUsers = () => {
@@ -25,6 +26,27 @@ export const createUser = (user) => {
   return new Promise((resolve, reject) => {
     fetch(path, {
       method: 'POST',
+      body: JSON.stringify(user),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        resolve(true);
+      })
+      .catch((err) => {
+        reject({ error: err });
+      });
+  });
+};
+
+export const updateUser = ({ id, ...user }) => {
+  const path = `${API_SERVER}${ENDPOINTS.UPDATE}/${id}`;
+  console.log(id, user);
+  return new Promise((resolve, reject) => {
+    fetch(path, {
+      method: 'PUT',
       body: JSON.stringify(user),
       headers: {
         'Content-Type': 'application/json',
