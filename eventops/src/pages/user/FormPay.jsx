@@ -45,7 +45,7 @@ const FormPay = () => {
   const sale = useSelector((state) => state.singleSale.singleSale);
   const tickets = useSelector((state) => state.tickets.tickets);
   const shopCart = useSelector((state) =>
-    state.shopCart.cart.filter((cartItem) => cartItem.idUsuario === sesion._id)
+    state.shopCart.cart.filter((cartItem) => cartItem.idUsuario === sesion?.id)
   );
   const dispatch = useDispatch();
 
@@ -55,7 +55,7 @@ const FormPay = () => {
   let IDtransaction = Math.floor(Math.random() * 100000) + 1;
   //Obtenemos el nombre del usuario de la sesion
   for (let i = 0; i < users.length; i++) {
-    if (users[i].id === sesion._id) {
+    if (users[i].id === sesion?.id) {
       username = users[i].Nombres + ' ' + users[i].apellidos;
     }
   }
@@ -68,7 +68,7 @@ const FormPay = () => {
     dispatch(
       setAtribute({ key: 'id', value: Math.floor(Math.random() * 10000) + 1 })
     );
-    dispatch(setAtribute({ key: 'idUser', value: sesion._id }));
+    dispatch(setAtribute({ key: 'idUser', value: sesion?.id }));
     dispatch(
       setAtribute({
         key: 'numberTransaction',
@@ -101,7 +101,7 @@ const FormPay = () => {
   const ticketsLocal = shopCart.map((cartItem) => {
     const ticketObject = {
       id: Math.floor(Math.random() * 10000) + 1,
-      idUsuario: sesion._id,
+      idUsuario: sesion?.id,
       idTransaction: Math.floor(Math.random() * 10000) + 1,
       evento: {
         idEvento: cartItem.idEvento,

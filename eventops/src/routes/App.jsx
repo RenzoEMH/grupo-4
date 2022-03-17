@@ -6,8 +6,7 @@ import UserProfile from '../pages/user/UserProfile';
 import MisEntradas from '../pages/user/MisEntradas';
 import MisEventosCreados from '../pages/user/MisEventosCreados';
 import './App.scss';
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import NotFound from '../pages/general/NotFound/NotFound';
 import LogIn from '../pages/general/Login/LogIn';
 import Register from '../pages/general/Register/Register';
@@ -26,7 +25,6 @@ import ShopCart from '../pages/user/ShopCart/ShopCart';
 import CreateEvent from '../pages/user/CreateEvent/CreateEvent';
 import EditEvent from '../pages/user/EditEvent/EditEvent';
 import parseJwt from '../utils/ParseJwt';
-import { setToken } from '../redux/features/usersSlice';
 import ConfirmUserCreated from '../pages/general/Register/ConfirmUserCreated';
 import ConfirmUser from '../pages/general/Register/ConfirmUser';
 import SetNewPassword from '../pages/general/PasswordRecovery/SetNewPassword';
@@ -35,16 +33,6 @@ function App() {
   const route = useLocation();
   const token = useSelector((state) => state.usuarios.token);
   const sesion = parseJwt(token);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const localStorageToken = window.localStorage.getItem('infoUser');
-    if (localStorageToken && localStorageToken !== 'null') {
-      const parseToken = JSON.parse(localStorageToken);
-      const { token: recoverToken } = parseToken;
-      dispatch(setToken(recoverToken));
-    }
-  }, [dispatch]);
 
   return (
     <div className="eventops d-flex flex-column">
@@ -131,7 +119,7 @@ function App() {
           exact
           path="/busqueda"
           element={
-            sesion?.type === 'usuario' ? (
+            sesion && sesion.type !== 'usuario' ? (
               <Navigate to="/not-found" replace />
             ) : (
               <SearchEvents />
@@ -174,9 +162,9 @@ function App() {
           exact
           path="/iniciar-sesion"
           element={
-            // <HideIfLogged>
-            <LogIn />
-            // </HideIfLogged>
+            <HideIfLogged>
+              <LogIn />
+            </HideIfLogged>
           }
         />
         <Route

@@ -1,11 +1,38 @@
 import { useDispatch } from 'react-redux';
-import {
-  saveEditedSingleEvent,
-  prevEditPage,
-} from '../../redux/features/singleEventSlice';
+import { prevEditPage } from '../../redux/features/singleEventSlice';
 import { useState } from 'react';
 import EditProgressBar from './EditProgressBar';
 import EditTicketType from './EditTicketType';
+import { updateEventAsync } from '../../redux/features/eventsSlice';
+
+const errors = {
+  currency: 'Debe escoger un tipo de moneda',
+  ticketCategories:
+    'Ingrese todo los datos sobre la(s) categoria(s) de ticket(s) del evento',
+};
+
+const eventTicketsDetailsAreValid = (details) => {
+  const validation = { isValid: true, formErrors: {} };
+
+  if (details.currency === '') {
+    validation.isValid = false;
+    validation.formErrors.currency = errors.currency;
+  }
+
+  if (
+    details.ticketCategories.some(
+      (ticketCategory) =>
+        !ticketCategory.type ||
+        !ticketCategory.price ||
+        !ticketCategory.quantity
+    )
+  ) {
+    validation.isValid = false;
+    validation.formErrors.ticketCategories = errors.ticketCategories;
+  }
+
+  return validation;
+};
 
 const newTicket = () => {
   return {
@@ -19,11 +46,22 @@ const newTicket = () => {
 
 const EditCreationTicket = () => {
   const [tickets, setTickets] = useState([{ ...newTicket() }]);
+  const [formErrors, setFormErrors] = useState({});
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(saveEditedSingleEvent(tickets));
+    const { isValid, formErrors } = eventTicketsDetailsAreValid({
+      currency: e.target[0].value,
+      ticketCategories: tickets,
+    });
+
+    if (isValid) {
+      dispatch(updateEventAsync(tickets));
+      setFormErrors({});
+    } else {
+      setFormErrors(formErrors);
+    }
   };
 
   const handleOnClickAddTicket = () => {
@@ -45,14 +83,15 @@ const EditCreationTicket = () => {
             <div className="col-md-3 order-md-1">
               <div className="mb-3">
                 <label htmlFor="currency">Moneda</label>
-                <select
-                  className="form-select d-block w-100"
-                  id="currency"
-                  // required
-                >
-                  <option value="">Soles</option>
-                  <option>Dolares</option>
+                <select className="form-select d-block w-100" id="currency">
+                  <option value="S/.">Soles</option>
+                  <option value="$">Dolares</option>
                 </select>
+                {!!formErrors && (
+                  <div className="invalid-feedback d-block">
+                    {formErrors.currency}
+                  </div>
+                )}
               </div>
             </div>
             <div className="col-md-9 order-md-1 d-md-flex justify-content-md-end align-items-md-center">
@@ -74,6 +113,11 @@ const EditCreationTicket = () => {
               key={index}
             />
           ))}
+          {!!formErrors && (
+            <div className="invalid-feedback d-block">
+              {formErrors.ticketCategories}
+            </div>
+          )}
           <div className="cuerpo__terminos">
             <div className="col-md-12 order-md-1">
               <div className="custom-control custom-checkbox">

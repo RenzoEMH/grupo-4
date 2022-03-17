@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -5,14 +6,64 @@ import {
   setEditAtribute,
 } from '../../redux/features/singleEventSlice';
 import categoryNames from '../../utils/categoriesNames';
-import EventoImgModal from '../crearEvento/EventoImgModal';
+// import EventoImgModal from '../crearEvento/EventoImgModal';
+import EditCloudinaryImgModal from './EditCloudinaryImgModal';
 import EditEventDate from './EditEventDate';
 import EditProgressBar from './EditProgressBar';
 
+const errors = {
+  title: 'Debe ingresar un titulo para el evento',
+  category: 'Escoja una categoría',
+  description: 'Escriba la descripcion de su evento',
+  dates: 'Ingrese todo los datos sobre la(s) fecha(s) del evento',
+  img: 'Debe ingresar el url de la foto',
+  ageRestriction: 'Selecctione una de las restricciones de edad',
+};
+
+const eventDetailsAreValid = (details) => {
+  const validation = { isValid: true, formErrors: {} };
+
+  if (details.title === '') {
+    validation.isValid = false;
+    validation.formErrors.title = errors.title;
+  }
+
+  if (details.category === '') {
+    validation.isValid = false;
+    validation.formErrors.category = errors.category;
+  }
+
+  if (details.description === '') {
+    validation.isValid = false;
+    validation.formErrors.description = errors.description;
+  }
+
+  if (
+    details.dates.some((date) => !date.date || !date.startHour || !date.endHour)
+  ) {
+    validation.isValid = false;
+    validation.formErrors.dates = errors.dates;
+  }
+
+  if (details.img === '') {
+    validation.isValid = false;
+    validation.formErrors.img = errors.img;
+  }
+
+  if (details.ageRestriction === '') {
+    validation.isValid = false;
+    validation.formErrors.ageRestriction = errors.ageRestriction;
+  }
+
+  return validation;
+};
+
 const EditEventDetails = () => {
   const evento = useSelector((state) => state.singleEvent.editSingleEvent);
+  const [formErrors, setFormErrors] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleAddDate = () => {
     dispatch(
       setEditAtribute({
@@ -34,7 +85,15 @@ const EditEventDetails = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(nextEditPage());
+
+    const { isValid, formErrors } = eventDetailsAreValid(evento);
+
+    if (isValid) {
+      dispatch(nextEditPage());
+      setFormErrors({});
+    } else {
+      setFormErrors(formErrors);
+    }
   };
 
   return (
@@ -57,8 +116,12 @@ const EditEventDetails = () => {
                       setEditAtribute({ key: 'title', value: e.target.value })
                     )
                   }
-                  //required
                 />
+                {!!formErrors && (
+                  <div className="invalid-feedback d-block">
+                    {formErrors.title}
+                  </div>
+                )}
               </div>
               <div className="mb-3">
                 <label htmlFor="address">Categoría del Evento</label>
@@ -73,7 +136,6 @@ const EditEventDetails = () => {
                       })
                     )
                   }
-                  //required
                 >
                   <option value="">Elige una categoría para tu Evento</option>
                   {categoryNames.map((category, index) => (
@@ -82,6 +144,11 @@ const EditEventDetails = () => {
                     </option>
                   ))}
                 </select>
+                {!!formErrors && (
+                  <div className="invalid-feedback d-block">
+                    {formErrors.category}
+                  </div>
+                )}
               </div>
               <div className="mb-3">
                 <label htmlFor="address">Descripción del Evento</label>
@@ -100,6 +167,11 @@ const EditEventDetails = () => {
                     )
                   }
                 ></textarea>
+                {!!formErrors && (
+                  <div className="invalid-feedback d-block">
+                    {formErrors.description}
+                  </div>
+                )}
               </div>
               <div className="mb-3">
                 <label htmlFor="address">Información Adicional</label>
@@ -137,11 +209,24 @@ const EditEventDetails = () => {
                     key={index}
                   />
                 ))}
+                {!!formErrors && (
+                  <div className="invalid-feedback d-block">
+                    {formErrors.dates}
+                  </div>
+                )}
               </div>
             </div>
             <div className="col-lg-5 order-lg-2">
-              <EventoImgModal property={evento.img} type={'Evento'} />
-              <EventoImgModal property={evento.ticketImg} type={'Ticket'} />
+              {/* <EventoImgModal property={evento.img} type={'Evento'} /> */}
+              <EditCloudinaryImgModal property={evento.img} type={'Evento'} />
+              {!!formErrors && (
+                <div className="invalid-feedback d-block">{formErrors.img}</div>
+              )}
+              {/* <EventoImgModal property={evento.ticketImg} type={'Ticket'} /> */}
+              <EditCloudinaryImgModal
+                property={evento.ticketImg}
+                type={'Ticket'}
+              />
             </div>
           </div>
           <div className="mb-1">
@@ -155,7 +240,6 @@ const EditEventDetails = () => {
                   className="custom-control-input"
                   value="allAges"
                   checked={evento.ageRestriction === 'allAges'}
-                  //required
                   onChange={(e) =>
                     dispatch(
                       setEditAtribute({
@@ -177,7 +261,6 @@ const EditEventDetails = () => {
                   className="custom-control-input"
                   value="withAdult"
                   checked={evento.ageRestriction === 'withAdult'}
-                  //required
                   onChange={(e) =>
                     dispatch(
                       setEditAtribute({
@@ -199,7 +282,6 @@ const EditEventDetails = () => {
                   className="custom-control-input"
                   value="adultOnly"
                   checked={evento.ageRestriction === 'adultOnly'}
-                  //required
                   onChange={(e) =>
                     dispatch(
                       setEditAtribute({
@@ -214,6 +296,11 @@ const EditEventDetails = () => {
                 </label>
               </div>
             </div>
+            {!!formErrors && (
+              <div className="invalid-feedback d-block">
+                {formErrors.ageRestriction}
+              </div>
+            )}
           </div>
         </div>
       </div>

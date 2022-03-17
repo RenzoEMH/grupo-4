@@ -1,22 +1,29 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import EditButtonBar from '../../../components/EventDetailComponents/EditButtonBar';
 import LeftDetailCard from '../../../components/EventDetailComponents/LeftDetailCard';
 import RigthDetailCard from '../../../components/EventDetailComponents/RigthDetailCard';
+import { getAllEventsAsync } from '../../../redux/features/eventsSlice';
 import parseJwt from '../../../utils/ParseJwt';
 import './EventDetail.scss';
 
 const EventDetail = () => {
+  const dispatch = useDispatch();
   const { eventoId } = useParams();
   const token = useSelector((state) => state.usuarios.token);
   const sesion = parseJwt(token);
   const evento = useSelector((state) =>
-    state.eventos.eventos.find((evento) => evento._id === parseInt(eventoId))
+    state.eventos.eventos.find((evento) => evento._id === eventoId)
   );
+
+  useEffect(() => {
+    dispatch(getAllEventsAsync());
+  }, [dispatch]);
 
   return (
     <>
-      {sesion?._id === evento.idOwner && <EditButtonBar />}
+      {sesion?.id === evento?.idOwner && <EditButtonBar />}
       <main className="detalles_cuerpo">
         <section>
           <div className="row row-cols-1 row-cols-md-2 g-4">

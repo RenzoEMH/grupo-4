@@ -1,28 +1,18 @@
-// import { useContext, useState } from 'react';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-// import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-// import { SesionContext } from '../../../utils/SesionContext';
 import { loginAsync } from '../../../redux/features/usersSlice';
-// import parseJwt from '../../../utils/ParseJwt';
 import './_LogIn.scss';
 
 const LogIn = () => {
   const [user, setUser] = useState(null);
-  // const { setSesion } = useContext(SesionContext);
-  // const usuarios = useSelector((state) => state.usuarios.usuarios);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const loggued = useSelector(selectUserLoggued);
-  // const token = useSelector((state) => state.usuarios.token);
-  // const sesion = parseJwt(token);
 
   const onInputChange = (inputName) => (inputValue) => {
     setUser({ ...user, [inputName]: inputValue.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const { elements } = e.target;
@@ -30,13 +20,7 @@ const LogIn = () => {
       email: elements[0].value,
       password: elements[1].value,
     };
-    // dispatch(loginAsync(userLogin));
-    try {
-      await dispatch(loginAsync(userLogin)).unwrap();
-      navigate('/');
-      // history.push('/');
-    } catch (err) {}
-    // navigate('/');
+    dispatch(loginAsync(userLogin));
   };
 
   return (

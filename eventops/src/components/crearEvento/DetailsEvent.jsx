@@ -5,8 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { nextPage, setAtribute } from '../../redux/features/singleEventSlice';
 import categoryNames from '../../utils/categoriesNames';
 import parseJwt from '../../utils/ParseJwt';
+import CloudinaryImgModal from './CloudinaryImgModal';
 import EventDate from './EventDate';
-import EventoImgModal from './EventoImgModal';
+// import EventoImgModal from './EventoImgModal';
 import ProgressBar from './ProgressBar';
 
 const errors = {
@@ -67,9 +68,9 @@ const DetailsEvent = () => {
   useEffect(() => {
     if (!evento.idOwner) {
       dispatch(setAtribute({ key: '_id', value: Date.now() }));
-      dispatch(setAtribute({ key: 'idOwner', value: sesion._id }));
+      dispatch(setAtribute({ key: 'idOwner', value: sesion?.id }));
     }
-  }, [dispatch, evento.idOwner, sesion._id]);
+  }, [dispatch, evento.idOwner, sesion.id]);
 
   const handleAddDate = () => {
     dispatch(
@@ -218,11 +219,13 @@ const DetailsEvent = () => {
               </div>
             </div>
             <div className="col-lg-5 order-lg-2">
-              <EventoImgModal property={evento.img} type={'Evento'} />
+              {/* <EventoImgModal property={evento.img} type={'Evento'} /> */}
+              <CloudinaryImgModal property={evento.img} type={'Evento'} />
               {!!formErrors && (
                 <div className="invalid-feedback d-block">{formErrors.img}</div>
               )}
-              <EventoImgModal property={evento.ticketImg} type={'Ticket'} />
+              {/* <EventoImgModal property={evento.ticketImg} type={'Ticket'} /> */}
+              <CloudinaryImgModal property={evento.ticketImg} type={'Ticket'} />
             </div>
           </div>
           <div className="mb-1">
@@ -236,7 +239,6 @@ const DetailsEvent = () => {
                   className="custom-control-input"
                   value="allAges"
                   checked={evento.ageRestriction === 'allAges'}
-                  //required
                   onChange={(e) =>
                     dispatch(
                       setAtribute({
@@ -258,7 +260,6 @@ const DetailsEvent = () => {
                   className="custom-control-input"
                   value="withAdult"
                   checked={evento.ageRestriction === 'withAdult'}
-                  //required
                   onChange={(e) =>
                     dispatch(
                       setAtribute({
@@ -280,7 +281,6 @@ const DetailsEvent = () => {
                   className="custom-control-input"
                   value="adultOnly"
                   checked={evento.ageRestriction === 'adultOnly'}
-                  //required
                   onChange={(e) =>
                     dispatch(
                       setAtribute({

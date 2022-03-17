@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getAllUsers, createUser, updateUser, login } from '../../api/users';
 
-const initialState = { loggued: false };
+const initialState = {};
 
 export const getAllUsersAsync = createAsyncThunk('users/getAll', async () => {
   const response = await getAllUsers();
@@ -37,31 +37,24 @@ export const usersSlice = createSlice({
     setToken: (state, { payload: token }) => {
       state.token = token;
     },
-    // disableUser: (state, action) => {
-    //   state.idUser = action.payload;
-    //   state.showModalDisableUser = true;
-    // },
-    // hideModalDisableUser: (state) => {
-    //   state.showModalDisableUser = false;
-    // },
   },
   extraReducers: (builder) => {
     builder
       .addCase(getAllUsersAsync.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getAllUsersAsync.fulfilled, (state, action) => {
+      .addCase(getAllUsersAsync.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.users = action.payload;
+        state.users = payload;
       })
-      .addCase(createUserAsync.fulfilled, (state, action) => {
-        state.created = action.payload;
+      .addCase(createUserAsync.fulfilled, (state, { payload }) => {
+        state.created = payload;
       })
-      .addCase(loginAsync.fulfilled, (state, action) => {
-        const { token } = action.payload;
+      .addCase(loginAsync.fulfilled, (state, { payload }) => {
+        const { token } = payload;
         state.loggued = true;
         state.token = token;
-        localStorage.setItem('infoUser', JSON.stringify(action.payload));
+        localStorage.setItem('infoUser', JSON.stringify(payload));
       })
       .addCase(updateUserAsync.pending, (state) => {
         state.updatedUser = false;
@@ -82,8 +75,5 @@ export const {
 
 export const selectUsers = (state) => state.usuarios.users;
 export const selectUserLoggued = (state) => state.usuarios.loggued;
-// export const selectShowModalDisableUser = (state) =>
-//   state.usuarios.showModalDisableUser;
-// export const selectIdUser = (state) => state.usuarios.idUser;
 
 export default usersSlice.reducer;

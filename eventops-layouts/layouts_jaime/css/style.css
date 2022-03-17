@@ -1,4 +1,3 @@
-
 @charset "UTF-8";
 /*!
  * Bootstrap v5.1.3 (https://getbootstrap.com/)
@@ -26696,6 +26695,38 @@ body {
   background-color: #9F2D30;
   color: #E4EFE1;
   padding: 10px;
+}
+
+.col-left {
+  background-color: #c4c4c4;
+  max-width: 280px;
+}
+.col-left img {
+  width: 80px;
+  height: 80px;
+}
+.col-left .mi-perfil {
+  border-right: 7px solid #9F2D30;
+}
+.col-left .fila1-1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-right {
+  align-items: center;
+}
+.col-right img {
+  width: 200px;
+  height: 180px;
+}
+
+.col-mid .boton-actualizar {
+  display: flex;
+  justify-content: center;
+}
+.col-mid input::placeholder {
+  color: white;
 }
 
 /*# sourceMappingURL=style.css.map */

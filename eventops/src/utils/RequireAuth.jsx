@@ -7,7 +7,8 @@ const RequireAuth = ({ children, type }) => {
   const sesion = parseJwt(token);
 
   //if user type doesn't match, go to not found
-  if (sesion?.type !== type) return <Navigate to="/not-found" />;
+  if (!token || (!!Object.keys(sesion).length && sesion.type !== type))
+    return <Navigate to="/not-found" replace />;
 
   return children;
 };

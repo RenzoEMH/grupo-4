@@ -6,12 +6,34 @@ import {
 } from '../../redux/features/singleEventSlice';
 import debounce from 'lodash.debounce';
 import cityDepartmentNames from '../../utils/cityDepartmentNames';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useEffect } from 'react';
 import EditProgressBar from './EditProgressBar';
 
+const errors = {
+  city: 'Debe escoger una ciudad',
+  address: 'Ingrese la dirección del evento',
+};
+
+const eventUbicationIsValid = (details) => {
+  const validation = { isValid: true, formErrors: {} };
+
+  if (details.city === '') {
+    validation.isValid = false;
+    validation.formErrors.city = errors.city;
+  }
+
+  if (details.address === '') {
+    validation.isValid = false;
+    validation.formErrors.address = errors.address;
+  }
+
+  return validation;
+};
+
 const EditEventUbication = () => {
   const evento = useSelector((state) => state.singleEvent.editSingleEvent);
+  const [formErrors, setFormErrors] = useState({});
   const dispatch = useDispatch();
 
   const debouncedChangeAddressHandler = useMemo(() => {
@@ -29,7 +51,14 @@ const EditEventUbication = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(nextEditPage());
+    const { isValid, formErrors } = eventUbicationIsValid(evento);
+
+    if (isValid) {
+      dispatch(nextEditPage());
+      setFormErrors({});
+    } else {
+      setFormErrors(formErrors);
+    }
   };
 
   return (
@@ -51,7 +80,6 @@ const EditEventUbication = () => {
                       setEditAtribute({ key: 'city', value: e.target.value })
                     );
                   }}
-                  //required
                 >
                   <option value="">Elige una ciudad</option>
                   {cityDepartmentNames.map((cityDepartment, index) => (
@@ -63,6 +91,11 @@ const EditEventUbication = () => {
                     </option>
                   ))}
                 </select>
+                {!!formErrors && (
+                  <div className="invalid-feedback d-block">
+                    {formErrors.city}
+                  </div>
+                )}
               </div>
               <div className="mb-3">
                 <label htmlFor="address">Dirección del Evento</label>
@@ -72,8 +105,12 @@ const EditEventUbication = () => {
                   placeholder="Ej. Avenida Javier Prado Este 4200"
                   defaultValue={evento.address}
                   onChange={debouncedChangeAddressHandler}
-                  //required
                 />
+                {!!formErrors && (
+                  <div className="invalid-feedback d-block">
+                    {formErrors.address}
+                  </div>
+                )}
               </div>
               <div className="mb-3">
                 <label htmlFor="address">Referencia</label>
@@ -90,7 +127,6 @@ const EditEventUbication = () => {
                       })
                     );
                   }}
-                  //required
                 />
               </div>
             </div>
