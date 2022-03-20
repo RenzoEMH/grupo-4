@@ -214,7 +214,7 @@ function App() {
         />
         <Route
           exact
-          path="/usuario-habilitado"
+          path="/:id/verify/:token"
           element={
             <HideIfLogged>
               <ConfirmUser />

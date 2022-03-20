@@ -1,5 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getAllUsers, createUser, updateUser, login } from '../../api/users';
+import {
+  getAllUsers,
+  createUser,
+  updateUser,
+  login,
+  verifyEmail,
+} from '../../api/users';
 
 const initialState = {};
 
@@ -29,6 +35,14 @@ export const loginAsync = createAsyncThunk('login', async (user) => {
   const response = await login(user);
   return response;
 });
+
+export const verifyEmailAsync = createAsyncThunk(
+  'users/verify',
+  async (param) => {
+    const response = await verifyEmail(param.id, param.token);
+    return response;
+  }
+);
 
 export const usersSlice = createSlice({
   name: 'usuarios',
@@ -62,16 +76,13 @@ export const usersSlice = createSlice({
       .addCase(updateUserAsync.fulfilled, (state, action) => {
         state.updatedUser = action.payload;
       });
+    // .addCase(verifyEmailAsync.fulfilled, (state, { payload }) => {
+    //   state.verified = payload;
+    // });
   },
 });
 
-export const {
-  setToken,
-  showInfoUser,
-  hideModalDisableUser,
-  hideModalInfoUser,
-  disableUser,
-} = usersSlice.actions;
+export const { setToken } = usersSlice.actions;
 
 export const selectUsers = (state) => state.usuarios.users;
 export const selectUserLoggued = (state) => state.usuarios.loggued;

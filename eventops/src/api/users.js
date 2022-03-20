@@ -43,7 +43,6 @@ export const createUser = (user) => {
 
 export const updateUser = ({ id, ...user }) => {
   const path = `${API_SERVER}${ENDPOINTS.UPDATE}/${id}`;
-  console.log(id, user);
   return new Promise((resolve, reject) => {
     fetch(path, {
       method: 'PUT',
@@ -76,6 +75,20 @@ export const login = (user) => {
       .then((response) => response.json())
       .then((data) => {
         resolve({ token: data.token });
+      })
+      .catch((err) => {
+        reject({ error: err });
+      });
+  });
+};
+
+export const verifyEmail = (id, token) => {
+  const path = `${API_SERVER}/api/users/${id}/verify/${token}`;
+  return new Promise((resolve, reject) => {
+    fetch(path)
+      .then((response) => response.json())
+      .then((data) => {
+        resolve(true);
       })
       .catch((err) => {
         reject({ error: err });

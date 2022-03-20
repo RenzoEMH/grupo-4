@@ -92,6 +92,7 @@ const Register = () => {
       dni: '',
       type: 'usuario',
       estado: true,
+      verified: false,
     };
     const { isValid, formErrors } = registerUserIsValid(e, newUser, users);
     if (isValid) {

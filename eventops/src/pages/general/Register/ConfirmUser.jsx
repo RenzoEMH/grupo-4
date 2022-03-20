@@ -1,6 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import '../PasswordRecovery/_PasswordRecovery.scss';
+import { verifyEmailAsync } from '../../../redux/features/usersSlice';
 const ConfirmUser = () => {
+  const param = useParams();
+  const dispatch = useDispatch();
+  console.log(param.id, param.token);
+  dispatch(verifyEmailAsync(param));
+
   return (
     <div className="simple container text-center d-flex flex-column gap-5">
       <header className="simple__top mt-4">
