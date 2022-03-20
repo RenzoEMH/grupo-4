@@ -5,6 +5,8 @@ import {
   updateUser,
   login,
   verifyEmail,
+  generateLinkPass,
+  setNewPassword,
 } from '../../api/users';
 
 const initialState = {};
@@ -44,6 +46,22 @@ export const verifyEmailAsync = createAsyncThunk(
   }
 );
 
+export const generateLinkPassAsync = createAsyncThunk(
+  'users/generate_reset_pass',
+  async (email) => {
+    const response = await generateLinkPass(email);
+    return response;
+  }
+);
+
+export const setNewPasswordAsync = createAsyncThunk(
+  'users/set_new_password',
+  async (param) => {
+    const response = await setNewPassword(param);
+    return response;
+  }
+);
+
 export const usersSlice = createSlice({
   name: 'usuarios',
   initialState,
@@ -76,8 +94,11 @@ export const usersSlice = createSlice({
       .addCase(updateUserAsync.fulfilled, (state, action) => {
         state.updatedUser = action.payload;
       });
+    // .addCase(verifyEmailAsync.pending, (state) => {
+    //   state.verifiedUser = false;
+    // })
     // .addCase(verifyEmailAsync.fulfilled, (state, { payload }) => {
-    //   state.verified = payload;
+    //   state.verifiedUser = payload;
     // });
   },
 });

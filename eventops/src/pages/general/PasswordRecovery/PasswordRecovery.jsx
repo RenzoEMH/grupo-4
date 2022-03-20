@@ -1,7 +1,18 @@
 import { Link } from 'react-router-dom';
 import './_PasswordRecovery.scss';
+import { useDispatch } from 'react-redux';
+import { generateLinkPassAsync } from '../../../redux/features/usersSlice';
 
 const PasswordRecovery = () => {
+  const dispatch = useDispatch();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { elements } = e.target;
+    const correo = {
+      email: elements[0].value,
+    };
+    dispatch(generateLinkPassAsync(correo));
+  };
   return (
     <div className="simple container text-center d-flex flex-column gap-5">
       <header className="simple__top mt-4">
@@ -27,7 +38,11 @@ const PasswordRecovery = () => {
       </header>
       <section className="simple__main d-grid col-10 col-lg-5 mx-auto">
         <h2 className="simple__subtitle mb-5">Recuperar Contraseña</h2>
-        <form action="" className="password-recovery">
+        <form
+          onSubmit={(e) => handleSubmit(e)}
+          action=""
+          className="password-recovery"
+        >
           <div className="mb-4">
             <p className="password-recovery__text">
               Te enviaremos las instrucciones para cambiar tu contraseña al

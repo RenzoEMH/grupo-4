@@ -1,7 +1,23 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import './_PasswordRecovery.scss';
+import { useDispatch } from 'react-redux';
+import { setNewPasswordAsync } from '../../../redux/features/usersSlice';
 
 const SetNewPassword = () => {
+  const navigate = useNavigate();
+  let param = useParams();
+  const dispatch = useDispatch();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { elements } = e.target;
+    param = {
+      password: elements[0].value,
+      id: param.id,
+      token: param.token,
+    };
+    dispatch(setNewPasswordAsync(param));
+    navigate('/confirmar-password');
+  };
   return (
     <div className="simple container text-center d-flex flex-column gap-5">
       <header className="simple__top mt-4">
@@ -27,7 +43,11 @@ const SetNewPassword = () => {
       </header>
       <section className="simple__main d-grid col-10 col-lg-5 mx-auto">
         <h2 className="simple__subtitle mb-5">Crear nueva contraseña</h2>
-        <form action="" className="password-recovery">
+        <form
+          onSubmit={(e) => handleSubmit(e)}
+          action=""
+          className="password-recovery"
+        >
           <div className="mb-4">
             <p className="password-recovery__text">
               Ingrese una nueva contraseña para su cuenta.
