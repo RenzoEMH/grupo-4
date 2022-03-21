@@ -1,17 +1,58 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import './_PasswordRecovery.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { generateLinkPassAsync } from '../../../redux/features/usersSlice';
+import { getAllUsersAsync } from '../../../redux/features/usersSlice';
+
+const errors = {
+  correo: 'El correo ingresado no se encuentra registrado',
+};
+
+const emailIsValid = (email, users) => {
+  const validation = { isValid: true, formErrors: {} };
+  console.log(email, users);
+
+  users.forEach((user) => {
+    if (user.email === email) {
+      validation.isValid = true;
+      validation.formErrors.emailNotValid = '';
+      return validation;
+    } else {
+      validation.isValid = false;
+      validation.formErrors.emailNotValid = errors.correo;
+    }
+  });
+
+  return validation;
+};
 
 const PasswordRecovery = () => {
+  const [formErrors, setFormErrors] = useState({});
+  const [sendEmail, setSendEmail] = useState(false);
   const dispatch = useDispatch();
+  const users = useSelector((state) => state.usuarios.users);
+
+  useEffect(() => {
+    dispatch(getAllUsersAsync());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
     const { elements } = e.target;
     const correo = {
       email: elements[0].value,
     };
-    dispatch(generateLinkPassAsync(correo));
+    const { isValid, formErrors } = emailIsValid(correo.email, users);
+    console.log(isValid, formErrors);
+    if (isValid) {
+      dispatch(generateLinkPassAsync(correo));
+      setSendEmail(true);
+      setFormErrors(null);
+    } else {
+      setSendEmail(null);
+      setFormErrors(formErrors);
+    }
   };
   return (
     <div className="simple container text-center d-flex flex-column gap-5">
@@ -54,6 +95,16 @@ const PasswordRecovery = () => {
               id="email"
               placeholder="Tu email"
             />
+            {formErrors !== null && (
+              <div className="invalid-feedback d-block">
+                {formErrors.emailNotValid}
+              </div>
+            )}
+            {sendEmail !== null && (
+              <div className="valid-feedback d-block">
+                Se envio el correo para recuperar contraseña
+              </div>
+            )}
           </div>
           <div className="d-grid mt-5 mb-3">
             <button

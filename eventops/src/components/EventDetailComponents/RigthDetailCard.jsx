@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import AddTicketsCard from './AddTicketsCard';
 import parseJwt from '../../utils/ParseJwt';
+import ChangeStateEvent from './ChangeStateEvent';
 
 const RigthDetailCard = () => {
   const { eventoId } = useParams();
@@ -63,6 +64,7 @@ const RigthDetailCard = () => {
               </div>
             </div>
           </div>
+          {sesion?.type === 'admin' && <ChangeStateEvent evento={evento} />}
         </div>
       </div>
     </div>

@@ -83,7 +83,8 @@ export const usersSlice = createSlice({
         state.created = payload;
       })
       .addCase(loginAsync.fulfilled, (state, { payload }) => {
-        const { token } = payload;
+        const { token } = payload.data;
+        state.errorLogin = payload.data;
         state.loggued = true;
         state.token = token;
         localStorage.setItem('infoUser', JSON.stringify(payload));
@@ -93,13 +94,10 @@ export const usersSlice = createSlice({
       })
       .addCase(updateUserAsync.fulfilled, (state, action) => {
         state.updatedUser = action.payload;
+      })
+      .addCase(verifyEmailAsync.fulfilled, (state, { payload }) => {
+        state.verifiedUser = payload;
       });
-    // .addCase(verifyEmailAsync.pending, (state) => {
-    //   state.verifiedUser = false;
-    // })
-    // .addCase(verifyEmailAsync.fulfilled, (state, { payload }) => {
-    //   state.verifiedUser = payload;
-    // });
   },
 });
 
@@ -107,5 +105,7 @@ export const { setToken } = usersSlice.actions;
 
 export const selectUsers = (state) => state.usuarios.users;
 export const selectUserLoggued = (state) => state.usuarios.loggued;
+export const userVerified = (state) => state.usuarios.verifiedUser;
+export const errorLogin = (state) => state.usuarios.errorLogin;
 
 export default usersSlice.reducer;

@@ -1,7 +1,17 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { getAllEventsAsync } from '../../redux/features/eventsSlice';
 import FilterAndSearchBarHome from '../FilterAndSearchBar/FilterAndSearchBarHome';
 const EventsTable = () => {
   const eventos = useSelector((state) => state.eventos.eventos);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllEventsAsync());
+  }, [dispatch]);
+
   return (
     <>
       <FilterAndSearchBarHome />
@@ -24,14 +34,12 @@ const EventsTable = () => {
               <td>{evento.state}</td>
               <td>
                 <div className="btn-group" id="btn-actions">
-                  <button type="button" className="btn btn-light">
-                    <i className="bi bi-check-circle-fill"></i>
-                  </button>
-                  <button type="button" className="btn btn-light">
-                    <i className="bi bi-pencil-square"></i>
-                  </button>
-                  <button type="button" className="btn btn-light">
-                    <i className="bi bi-trash-fill"></i>
+                  <button
+                    onClick={() => navigate(`/evento-detalle/${evento._id}`)}
+                    type="button"
+                    className="btn btn-light"
+                  >
+                    <i className="bi bi-pencil-square"> Editar</i>
                   </button>
                 </div>
               </td>

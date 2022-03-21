@@ -75,7 +75,8 @@ export const login = (user) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        resolve({ token: data.token });
+        // resolve({ token: data.token });
+        resolve({ data });
       })
       .catch((err) => {
         reject({ error: err });
@@ -89,7 +90,7 @@ export const verifyEmail = (id, token) => {
     fetch(path)
       .then((response) => response.json())
       .then((data) => {
-        resolve(true);
+        resolve({ data });
       })
       .catch((err) => {
         reject({ error: err });
@@ -100,7 +101,6 @@ export const verifyEmail = (id, token) => {
 export const generateLinkPass = (email) => {
   const path = `${API_SERVER}${ENDPOINTS.LINK_PASS}`;
   return new Promise((resolve, reject) => {
-    console.log(email, path);
     fetch(path, {
       method: 'POST',
       body: JSON.stringify(email),
@@ -110,7 +110,6 @@ export const generateLinkPass = (email) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         resolve(true);
       })
       .catch((err) => {
@@ -126,7 +125,6 @@ export const setNewPassword = (param) => {
     password: param.password,
   };
   return new Promise((resolve, reject) => {
-    console.log(param, path);
     fetch(path, {
       method: 'POST',
       body: JSON.stringify(pass),
@@ -136,7 +134,6 @@ export const setNewPassword = (param) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         resolve(true);
       })
       .catch((err) => {

@@ -1,9 +1,39 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import './_PasswordRecovery.scss';
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 import { setNewPasswordAsync } from '../../../redux/features/usersSlice';
+import validator from 'validator';
+
+const errors = {
+  password:
+    'La contraseña debe tener minimo 8 caracteres incluidos minúsculas, mayúsculas, números y simbolos',
+  confirmPassword: 'Las contraseñas deben coincidir',
+};
+
+const newPasswordIsValid = (e, password) => {
+  const validation = { isValid: true, formErrors: {} };
+  if (
+    !validator.isStrongPassword(password, {
+      minLength: 8,
+      minLowercase: 1,
+      minUppercase: 1,
+      minNumbers: 1,
+      minSymbols: 1,
+    })
+  ) {
+    validation.isValid = false;
+    validation.formErrors.password = errors.password;
+  }
+  if (e.target[1].value !== password) {
+    validation.isValid = false;
+    validation.formErrors.confirmPassword = errors.confirmPassword;
+  }
+  return validation;
+};
 
 const SetNewPassword = () => {
+  const [formErrors, setFormErrors] = useState({});
   const navigate = useNavigate();
   let param = useParams();
   const dispatch = useDispatch();
@@ -15,8 +45,13 @@ const SetNewPassword = () => {
       id: param.id,
       token: param.token,
     };
-    dispatch(setNewPasswordAsync(param));
-    navigate('/confirmar-password');
+    const { isValid, formErrors } = newPasswordIsValid(e, param.password);
+    if (isValid) {
+      dispatch(setNewPasswordAsync(param));
+      navigate('/confirmar-password');
+    } else {
+      setFormErrors(formErrors);
+    }
   };
   return (
     <div className="simple container text-center d-flex flex-column gap-5">
@@ -58,6 +93,11 @@ const SetNewPassword = () => {
               id="password"
               placeholder="Contraseña"
             />
+            {!!formErrors && (
+              <div className="invalid-feedback d-block">
+                {formErrors.password}
+              </div>
+            )}
             <br />
             <input
               type="password"
@@ -65,6 +105,11 @@ const SetNewPassword = () => {
               id="confirmPassword"
               placeholder="Confirma nueva contraseña"
             />
+            {!!formErrors && (
+              <div className="invalid-feedback d-block">
+                {formErrors.confirmPassword}
+              </div>
+            )}
           </div>
           <div className="d-grid mt-5 mb-3">
             <button

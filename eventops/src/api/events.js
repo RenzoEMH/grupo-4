@@ -38,9 +38,9 @@ export const createEvent = async (event) => {
 export const updateEvent = async ({ id, ...event }) => {
   const token = JSON.parse(localStorage.getItem('infoUser')).token;
   const url = `${API_SERVER}${ENDPOINTS.UPDATE}/${id}`;
-
   try {
     const response = await axios.put(url, event, {
+      body: JSON.stringify(event),
       headers: {
         Authorization: `Bearer ${token}`,
       },
