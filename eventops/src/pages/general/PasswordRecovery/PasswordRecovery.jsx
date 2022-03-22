@@ -29,7 +29,7 @@ const emailIsValid = (email, users) => {
 
 const PasswordRecovery = () => {
   const [formErrors, setFormErrors] = useState({});
-  const [sendEmail, setSendEmail] = useState(false);
+  const [sendEmail, setSendEmail] = useState(null);
   const dispatch = useDispatch();
   const users = useSelector((state) => state.usuarios.users);
 

@@ -69,6 +69,9 @@ export const usersSlice = createSlice({
     setToken: (state, { payload: token }) => {
       state.token = token;
     },
+    setUsersFiltered: (state, { payload: users }) => {
+      state.filteredUsers = [...users];
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -101,7 +104,7 @@ export const usersSlice = createSlice({
   },
 });
 
-export const { setToken } = usersSlice.actions;
+export const { setToken, setUsersFiltered } = usersSlice.actions;
 
 export const selectUsers = (state) => state.usuarios.users;
 export const selectUserLoggued = (state) => state.usuarios.loggued;
