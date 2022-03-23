@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { loginAsync } from '../../../redux/features/usersSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { errorLogin, loginAsync } from '../../../redux/features/usersSlice';
 import './_LogIn.scss';
 
 const LogIn = () => {
   const [user, setUser] = useState(null);
   const dispatch = useDispatch();
+  const error = useSelector(errorLogin);
 
   const onInputChange = (inputName) => (inputValue) => {
     setUser({ ...user, [inputName]: inputValue.target.value });
@@ -68,6 +69,9 @@ const LogIn = () => {
               onChange={onInputChange('password')}
               required
             />
+            {error && (
+              <div className="invalid-feedback d-block">{error.message}</div>
+            )}
           </div>
           <div className="d-grid mt-5 mb-3">
             <button

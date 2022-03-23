@@ -11,7 +11,7 @@ const ManageEventsApproval = () => {
   };
 
   return (
-    <main className="body_admin">
+    <main className="body_admin mx-3">
       <section className="row row-cols-1 row-cols-md-2 g-4">
         <div className="col-md-3" id="sideBar">
           <div className="list-group">

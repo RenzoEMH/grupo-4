@@ -12,8 +12,18 @@ export const filtersSlice = createSlice({
     state: '',
     page: 1,
     length: 0,
+    nameUser: '',
+    stateUser: 'true',
+    emailUser: '',
+    idUser: '',
   },
   reducers: {
+    setNameUser: (state, { payload: name }) => {
+      state.nameUser = name;
+    },
+    setStateUser: (state, { payload: stateUser }) => {
+      state.stateUser = stateUser;
+    },
     setTitleSearch: (state, { payload: query }) => {
       state.titleSearch = query;
       state.page = 1;
@@ -47,6 +57,8 @@ export const filtersSlice = createSlice({
 });
 
 export const {
+  setNameUser,
+  setStateUser,
   setTitleSearch,
   setPrices,
   setCategory,

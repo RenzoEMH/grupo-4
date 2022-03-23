@@ -87,6 +87,14 @@ export const updateEventAsync = createAsyncThunk(
   }
 );
 
+export const updateStateEventAsync = createAsyncThunk(
+  'events/updateState',
+  async (evento) => {
+    const response = await updateEvent({ id: evento._id, ...evento });
+    return response.data;
+  }
+);
+
 export const eventsSlice = createSlice({
   name: 'eventos',
   initialState,

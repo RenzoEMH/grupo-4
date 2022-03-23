@@ -1,5 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getAllUsers, createUser, updateUser, login } from '../../api/users';
+import {
+  getAllUsers,
+  createUser,
+  updateUser,
+  login,
+  verifyEmail,
+  generateLinkPass,
+  setNewPassword,
+} from '../../api/users';
 
 const initialState = {};
 
@@ -30,12 +38,39 @@ export const loginAsync = createAsyncThunk('login', async (user) => {
   return response;
 });
 
+export const verifyEmailAsync = createAsyncThunk(
+  'users/verify',
+  async (param) => {
+    const response = await verifyEmail(param.id, param.token);
+    return response;
+  }
+);
+
+export const generateLinkPassAsync = createAsyncThunk(
+  'users/generate_reset_pass',
+  async (email) => {
+    const response = await generateLinkPass(email);
+    return response;
+  }
+);
+
+export const setNewPasswordAsync = createAsyncThunk(
+  'users/set_new_password',
+  async (param) => {
+    const response = await setNewPassword(param);
+    return response;
+  }
+);
+
 export const usersSlice = createSlice({
   name: 'usuarios',
   initialState,
   reducers: {
     setToken: (state, { payload: token }) => {
       state.token = token;
+    },
+    setUsersFiltered: (state, { payload: users }) => {
+      state.filteredUsers = [...users];
     },
   },
   extraReducers: (builder) => {
@@ -51,7 +86,8 @@ export const usersSlice = createSlice({
         state.created = payload;
       })
       .addCase(loginAsync.fulfilled, (state, { payload }) => {
-        const { token } = payload;
+        const { token } = payload.data;
+        state.errorLogin = payload.data;
         state.loggued = true;
         state.token = token;
         localStorage.setItem('infoUser', JSON.stringify(payload));
@@ -61,19 +97,18 @@ export const usersSlice = createSlice({
       })
       .addCase(updateUserAsync.fulfilled, (state, action) => {
         state.updatedUser = action.payload;
+      })
+      .addCase(verifyEmailAsync.fulfilled, (state, { payload }) => {
+        state.verifiedUser = payload;
       });
   },
 });
 
-export const {
-  setToken,
-  showInfoUser,
-  hideModalDisableUser,
-  hideModalInfoUser,
-  disableUser,
-} = usersSlice.actions;
+export const { setToken, setUsersFiltered } = usersSlice.actions;
 
 export const selectUsers = (state) => state.usuarios.users;
 export const selectUserLoggued = (state) => state.usuarios.loggued;
+export const userVerified = (state) => state.usuarios.verifiedUser;
+export const errorLogin = (state) => state.usuarios.errorLogin;
 
 export default usersSlice.reducer;

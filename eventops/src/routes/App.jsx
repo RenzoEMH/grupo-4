@@ -187,7 +187,7 @@ function App() {
         />
         <Route
           exact
-          path="/reestablecer-password"
+          path="/password-reset/:id/:token"
           element={
             <HideIfLogged>
               <SetNewPassword />
@@ -214,7 +214,7 @@ function App() {
         />
         <Route
           exact
-          path="/usuario-habilitado"
+          path="/:id/verify/:token"
           element={
             <HideIfLogged>
               <ConfirmUser />
