@@ -42,7 +42,7 @@ const FilterUserState = () => {
                 type="radio"
                 className="form-check-input"
                 value="true"
-                checked={selectedValue == 'true'}
+                checked={selectedValue === 'true'}
                 onChange={(e) => setSelectedValue(e.target.value)}
               ></input>
               <label className="form-check-label" htmlFor="active">
@@ -56,7 +56,7 @@ const FilterUserState = () => {
                 type="radio"
                 className="form-check-input"
                 value="false"
-                checked={selectedValue == 'false'}
+                checked={selectedValue === 'false'}
                 onChange={(e) => setSelectedValue(e.target.value)}
               ></input>
               <label className="form-check-label" htmlFor="inactive">

@@ -37,7 +37,7 @@ const UsersTable = () => {
           (user.name.toLowerCase().indexOf(userFilter.toLowerCase()) >= 0 ||
             user.email.toLowerCase().indexOf(userFilter.toLowerCase()) >= 0 ||
             user._id.toLowerCase().indexOf(userFilter.toLowerCase()) >= 0) &&
-          user.estado.toString() == userState
+          user.estado.toString() === userState
       );
       dispatch(setUsersFiltered(usersFiltered));
     }

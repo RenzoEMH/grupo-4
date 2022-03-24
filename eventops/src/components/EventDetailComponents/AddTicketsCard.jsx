@@ -65,10 +65,12 @@ const obtainUnique = (storeCart, shopCart) => {
  */
 const obtainCapped = (fCart, event) => {
   const capped = fCart.map((item) => {
-    const categories = [
-      ...event.dates.find((date) => date._id === item.dateId)?.ticketCategories,
-    ];
-    const quantity = categories.find(
+    const matchedDate = {
+      ...event.dates.find((dateItem) => dateItem._id === item.dateId),
+    };
+    if (!!!Object.keys(matchedDate).length) return item;
+    const categories = [...matchedDate.ticketCategories];
+    const quantity = categories?.find(
       (element) => element._id === item.categoryId
     )?.quantity;
     return item.amount >= quantity ? { ...item, amount: quantity } : item;

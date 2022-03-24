@@ -23,7 +23,7 @@ const ShopCard = ({
   },
 }) => {
   const evento = useSelector((state) =>
-    state.eventos.eventos.find((evento) => evento._id === parseInt(idEvento))
+    state.eventos.eventos.find((evento) => evento._id === idEvento)
   );
   const rCart = useSelector((state) => state.shopCart.cart);
   const dispatch = useDispatch();
@@ -37,6 +37,7 @@ const ShopCard = ({
   };
 
   const add = () => {
+    console.log(evento);
     const categories = [
       ...evento.dates.find((date) => date._id === dateId).ticketCategories,
     ];
