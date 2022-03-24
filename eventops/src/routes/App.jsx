@@ -17,9 +17,7 @@ import ManageBanner from '../pages/admin/ManageBanner';
 import RequireAuth from '../utils/RequireAuth';
 import HideIfLogged from '../utils/HideIfLogged';
 import SearchEvents from '../pages/general/SearchEvents/SearchEvents';
-import Payment from '../pages/user/Payment';
 import PurchaseConfirmation from '../pages/user/PurchaseConfirmation';
-import FormPay from '../pages/user/FormPay';
 import EventDetail from '../pages/general/EventDetail/EventDetail';
 import ShopCart from '../pages/user/ShopCart/ShopCart';
 import CreateEvent from '../pages/user/CreateEvent/CreateEvent';
@@ -129,30 +127,10 @@ function App() {
 
         <Route
           exact
-          path="/metodo-pago"
-          element={
-            <RequireAuth type="usuario">
-              <Payment />
-            </RequireAuth>
-          }
-        />
-
-        <Route
-          exact
-          path="/confirmacion-compra/:id"
+          path="/confirmacion-compra"
           element={
             <RequireAuth type="usuario">
               <PurchaseConfirmation />
-            </RequireAuth>
-          }
-        />
-
-        <Route
-          exact
-          path="/form-pago"
-          element={
-            <RequireAuth type="usuario">
-              <FormPay />
             </RequireAuth>
           }
         />
