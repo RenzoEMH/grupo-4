@@ -1,37 +1,3 @@
-const tickets = {
-  tickets: [
-    {
-      id: 1,
-      idUsuario: 2,
-      evento: [
-        {
-          idEvento: 2,
-          idDate: 4,
-          idCategory: 2,
-          quantity: 2,
-        },
-      ],
-      idTransaction: '1',
-    },
-  ],
-};
-
-const sales = {
-  sales: [
-    {
-      id: 1,
-      token: '12345678',
-      numberTransaction: 'ASD54F1V8WO6H4H5',
-      client: 'Luis Enrique',
-      cardNumber: '369874521123654',
-      paymentDate: '2022-02-15',
-      cardType: 'VISA',
-      idUser: 2,
-      totalFare: 90,
-    },
-  ],
-};
-
 const shopCart = {
   cart: [],
 };
@@ -66,8 +32,6 @@ const slides = {
 };
 
 const mockDB = {
-  tickets,
-  sales,
   shopCart,
   slides,
 };
