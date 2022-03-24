@@ -36,7 +36,7 @@ const registerUserIsValid = (e, registerUser, users) => {
       !(
         posicionArroba < posicionPunto &&
         posicionArroba > 0 &&
-        registerUser.email.indexOf('@@') == -1 &&
+        registerUser.email.indexOf('@@') === -1 &&
         posicionPunto > 2 &&
         registerUser.email.length - posicionPunto > 2
       )
