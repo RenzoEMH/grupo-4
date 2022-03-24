@@ -14,8 +14,6 @@ const ShopCart = () => {
   );
   const [subTotal, setSubTotal] = useState();
   const [description, setDescription] = useState('');
-  // const navigate = useNavigate();
-  console.log(subTotal, '||', description);
   const dispatch = useDispatch();
 
   let handler = window.ePayco.checkout.configure({
@@ -47,37 +45,16 @@ const ShopCart = () => {
 
   const openPayment = () => {
     let data = {
-      //Parametros compra (obligatorio)
       name: 'EVENTOPS',
       description: description,
-      // invoice: '1234',
       currency: 'usd',
       amount: subTotal,
       tax_base: '0',
       tax: '0',
       country: 'pe',
       lang: 'es',
-
-      //Onpage="false" - Standard="true"
       external: 'false',
-
-      //Atributos opcionales
-      // extra1: 'extra1',
-      // extra2: 'extra2',
-      // extra3: 'extra3',
-      // confirmation: 'http://secure2.payco.co/prueba_curl.php',
-      confirmation: 'http://localhost:5000/epayco/confirmation',
       response: `${process.env.REACT_APP_BASE_URL}confirmacion-compra`,
-
-      //Atributos cliente
-      name_billing: '',
-      // address_billing: 'Carrera 19 numero 14 91',
-      // type_doc_billing: 'cc',
-      // mobilephone_billing: '3050000000',
-      // number_doc_billing: '100000000',
-
-      //atributo deshabilitación metodo de pago
-      // methodsDisable: ['TDC', 'PSE', 'SP', 'CASH', 'DP'],
     };
 
     handler.open(data);
@@ -132,11 +109,7 @@ const ShopCart = () => {
           className="col-md-3"
           style={{ display: 'flex', justifyContent: 'center' }}
         >
-          <button
-            // onClick={() => navigate('/metodo-pago')}
-            onClick={openPayment}
-            className="btn btn-danger"
-          >
+          <button onClick={openPayment} className="btn btn-danger">
             Pagar Ahora
           </button>
         </div>
