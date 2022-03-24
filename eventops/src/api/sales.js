@@ -1,14 +1,23 @@
 import axios from 'axios';
 
-const EPAYCO_API_SERVER = 'https://secure.epayco.co/validation/v1/reference/';
+const API_SERVER = 'http://localhost:5000';
 
-export const getEpaycoSale = async (id) => {
-  const url = `${EPAYCO_API_SERVER}${id}`;
+const ENDPOINTS = {
+  CREATE: '/api/sales/create',
+};
+
+export const createSale = async (data) => {
+  const token = JSON.parse(localStorage.getItem('infoUser')).token;
+  const url = `${API_SERVER}${ENDPOINTS.CREATE}`;
 
   try {
-    const response = await axios.get(url);
-    if (!response.data.success)
-      throw new Error('Codigo de transacción no valido');
-    return { ...response.data.data, token: id };
-  } catch (error) {}
+    const response = await axios.post(url, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    return error.response;
+  }
 };
