@@ -36,4 +36,6 @@ export const {
   emptyCart,
 } = cartSlice.actions;
 
+export const selectCart = (state) => state.shopCart.cart;
+
 export default cartSlice.reducer;

@@ -107,6 +107,7 @@ export const usersSlice = createSlice({
 export const { setToken, setUsersFiltered } = usersSlice.actions;
 
 export const selectUsers = (state) => state.usuarios.users;
+export const selectToken = (state) => state.usuarios.token;
 export const selectUserLoggued = (state) => state.usuarios.loggued;
 export const userVerified = (state) => state.usuarios.verifiedUser;
 export const errorLogin = (state) => state.usuarios.errorLogin;

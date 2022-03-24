@@ -1,14 +1,27 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getEpaycoSale } from '../../api/sales';
+import { createSale } from '../../api/sales';
+import parseJwt from '../../utils/ParseJwt';
+import { emptyCart, selectCart } from './cartSlice';
+import { selectToken } from './usersSlice';
 
-export const getEpaycoSaleAsync = createAsyncThunk(
+export const createSaleAsync = createAsyncThunk(
   'sales/getEpaycoSale',
-  async (id, { rejectWithValue }) => {
+  async (id, { dispatch, getState, rejectWithValue }) => {
+    const cart = selectCart(getState());
+    const token = selectToken(getState());
+    const sesion = parseJwt(token);
+    const saleData = {
+      id,
+      cart,
+      userId: sesion.id,
+    };
     try {
-      const response = await getEpaycoSale(id);
-      return response;
+      const { status, data } = await createSale(saleData);
+      if (status !== 200) throw new Error(data.error);
+      dispatch(emptyCart());
+      return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -25,16 +38,18 @@ export const salesSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getEpaycoSaleAsync.pending, (state) => {
-        state.isSearching = true;
+      .addCase(createSaleAsync.pending, (state) => {
+        state.isCreating = true;
+        state.createdSale = null;
+        state.saleError = null;
       })
-      .addCase(getEpaycoSaleAsync.fulfilled, (state, { payload }) => {
-        state.isSearching = false;
-        state.ePaycoSale = payload;
+      .addCase(createSaleAsync.fulfilled, (state, { payload }) => {
+        state.isCreating = false;
+        state.createdSale = payload;
       })
-      .addCase(getEpaycoSaleAsync.rejected, (state, { payload }) => {
-        state.isSearching = false;
-        state.ePaycoError = payload;
+      .addCase(createSaleAsync.rejected, (state, { payload: message }) => {
+        state.isCreating = false;
+        state.saleError = message;
       });
   },
 });
@@ -42,8 +57,8 @@ export const salesSlice = createSlice({
 export const { addNewSale } = salesSlice.actions;
 
 // selector
-export const selectIsSearching = (state) => state.sales.isSearching;
-export const selectePaycoSale = (state) => state.sales.ePaycoSale;
-export const selectePaycoError = (state) => state.sales.ePaycoError;
+export const selectIsCreating = (state) => state.sales.isCreating;
+export const selectCreatedSale = (state) => state.sales.createdSale;
+export const selectSaleError = (state) => state.sales.saleError;
 
 export default salesSlice.reducer;
