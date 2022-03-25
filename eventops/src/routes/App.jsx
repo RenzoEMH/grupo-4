@@ -27,6 +27,7 @@ import ConfirmUserCreated from '../pages/general/Register/ConfirmUserCreated';
 import ConfirmUser from '../pages/general/Register/ConfirmUser';
 import SetNewPassword from '../pages/general/PasswordRecovery/SetNewPassword';
 import ConfirmPasswordRecovery from '../pages/general/PasswordRecovery/ConfirmPasswordRecovery';
+import Myticket from '../pages/user/Ticket/Myticket'
 function App() {
   const route = useLocation();
   const token = useSelector((state) => state.usuarios.token);
@@ -203,6 +204,11 @@ function App() {
           exact
           path="/evento-detalle/:eventoId"
           element={<EventDetail />}
+        />
+                <Route
+          exact
+          path="/mi-ticket"
+          element={<Myticket />}
         />
 
         {/* all */}

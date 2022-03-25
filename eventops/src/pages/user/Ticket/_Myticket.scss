@@ -1,0 +1,151 @@
+.box{
+    margin-top: 2rem;
+    font-family: sans-serif;
+    display: flex;
+    text-align: center;
+    color: rgb(69, 79, 84);
+    justify-content: center;
+    align-items: center;
+  p{
+   font-size: 14px;
+  }
+}
+  .carouselTicket{
+    // background-color: black;
+    width: 40rem;
+    display: flex;
+    justify-content: center;
+  }
+  .boxQrCode{
+    border-top: 0.5rem solid #9F2D30; 
+    padding: 0.6rem 0 0rem 0;
+    p{
+      margin: 0;
+      margin-top:0.5rem;
+     font-size: 1rem;
+    }
+    .qrCodeImg{
+      width: 4rem;
+      height: 4rem;
+      margin: 0.5rem;
+    }
+  }
+  
+  .boxTicketDescription{
+    padding: 1rem 0.7rem 0;
+    display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+  }
+  .carouselTicket .carousel-inner {
+    width: 70%;
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 2.47rem;
+  }
+  .carousel-control-prev{
+    // background-color: #9F2D30;
+    margin-bottom: 2.47rem;
+  }
+  .carousel-control-next{
+    // background-color: #9F2D30;
+    margin-bottom: 2.47rem;
+  }
+  .carousel-indicators{
+    height: 1rem;
+    // background-color: rebeccapurple;
+  }
+  .boxCircles{
+      display: flex;
+      justify-content: space-between;
+    .circle{
+      width: 0.5rem; 
+      height: 1rem; 
+      background: #21262A;
+    }
+    .left{
+      -moz-border-radius: 0 100px 100px 0;
+      -webkit-border-radius: 0 100px 100px 0;
+      border-radius: 0 100px 100px 0;
+    }
+    .rigth{
+      -moz-border-radius: 100px 0 0 100px;
+      -webkit-border-radius: 100px 0 0 100px;
+      border-radius: 100px 0 0 100px;
+    }
+  
+  }
+  .boxInformation{
+    margin: 0 21px;
+    margin-top: -0.7rem;
+    border-top-style: dotted; 
+    border-top-width: 4px;
+    .boxClientInformation{
+      padding: 0.4rem 0 0;
+      .information {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+        border-bottom: 1px solid rgb(69, 79, 84, 34%);
+        .v-line{
+          border-left: 1px solid rgb(69, 79, 84, 34%);
+          height:3rem;
+          margin: 1.1rem 0 0.6rem;
+         }
+        .userData1{
+          margin:1.1rem 0 0.7rem 0;
+          font-weight: bold
+        }
+        .userData2{
+          margin-bottom:0.6rem;
+          font-weight: lighter;
+        }
+        .primaryInformation{
+          min-width: 12rem;
+          padding: 0 0.8rem;
+        
+        }
+        .primaryInformation-width{
+          width: 50%;
+          min-width: 12.5rem;
+        }
+        .secondaryInformation{
+          min-width: 8rem;
+          width: 48%;
+          padding: 0 0.8rem;
+        }
+      }
+  
+    }
+  }
+
+  .dowloadButton {
+    font-weight: 300;
+    color: #fff;
+    background-color: #9f2d30;
+    border-radius: 8px;
+    border-style: none;
+    padding: 0.3rem;
+    width: 8rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  @media(max-width:619px){
+    .v-line{
+     display:none;
+     }
+   .primaryInformation{
+     border-bottom: 1px solid rgb(69, 79, 84, 34%);
+     width: 100% !important;
+     min-width: 11rem !important;
+   }
+  }
+  
+.buttonContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem;
+}

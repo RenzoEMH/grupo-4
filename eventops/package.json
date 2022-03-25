@@ -12,6 +12,7 @@
     "bootstrap-icons": "^1.7.2",
     "lodash": "^4.17.21",
     "react": "^17.0.2",
+    "react-bootstrap": "^2.2.1",
     "react-dom": "^17.0.2",
     "react-epayco": "^0.1.5",
     "react-redux": "^7.2.6",
