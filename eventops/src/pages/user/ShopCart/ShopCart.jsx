@@ -5,6 +5,7 @@ import PaymentSummary from '../../../components/PaymentSummary';
 import parseJwt from '../../../utils/ParseJwt';
 import { useEffect, useState } from 'react';
 import { getAllEventsAsync } from '../../../redux/features/eventsSlice';
+import { emptyCart } from '../../../redux/features/cartSlice';
 
 const ShopCart = () => {
   const token = useSelector((state) => state.usuarios.token);
@@ -43,6 +44,10 @@ const ShopCart = () => {
     );
   }, [shopCartList]);
 
+  const handleEmptyCartButtonClick = () => {
+    dispatch(emptyCart());
+  };
+
   const openPayment = () => {
     let data = {
       name: 'EVENTOPS',
@@ -69,7 +74,19 @@ const ShopCart = () => {
               <h3>Mi compra</h3>
             </div>
             <div className="col-md-2">
-              <button className="btn btn-danger">Vaciar Carrito</button>
+              {shopCartList.length > 0 ? (
+                <button
+                  onClick={handleEmptyCartButtonClick}
+                  type="button"
+                  className="btn btn-danger"
+                >
+                  Vaciar Carrito
+                </button>
+              ) : (
+                <button type="button" className="btn btn-danger" disabled>
+                  Vaciar Carrito
+                </button>
+              )}
             </div>
           </div>
           <div className="row border-top border-bottom" id="cabeceraCarrito">
@@ -109,9 +126,19 @@ const ShopCart = () => {
           className="col-md-3"
           style={{ display: 'flex', justifyContent: 'center' }}
         >
-          <button onClick={openPayment} className="btn btn-danger">
-            Pagar Ahora
-          </button>
+          {shopCartList.length > 0 ? (
+            <button
+              onClick={openPayment}
+              type="button"
+              className="btn btn-danger"
+            >
+              Pagar Ahora
+            </button>
+          ) : (
+            <button type="button" className="btn btn-danger" disabled>
+              Pagar Ahora
+            </button>
+          )}
         </div>
       </div>
     </main>
