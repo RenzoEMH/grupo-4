@@ -22,7 +22,7 @@ const errors = {
 const registerUserIsValid = (e, registerUser, users) => {
   const validation = { isValid: true, formErrors: {} };
 
-  users.forEach((user) => {
+  users?.forEach((user) => {
     if (user.email === registerUser.email) {
       validation.isValid = false;
       validation.formErrors.emailNotValid = errors.emailNotValid;
