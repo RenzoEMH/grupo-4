@@ -40,7 +40,10 @@ const Home = () => {
         <div className="d-flex flex-column flex-grow-1 gap-3">
           <section className="eventos-filtrados d-flex flex-grow-1">
             <div className="container">
-              <div className="row row-cols-1 row-cols-md-3 g-4 mb-4">
+              <div
+                data-test-id="populares-container"
+                className="row row-cols-1 row-cols-md-3 g-4 mb-4"
+              >
                 {eventos
                   .map((evento) => (
                     <EventCard evento={evento} key={evento._id} />
@@ -57,7 +60,10 @@ const Home = () => {
         <div className="d-flex flex-column flex-grow-1 gap-3">
           <section className="eventos-filtrados d-flex flex-grow-1">
             <div className="container">
-              <div className="row row-cols-1 row-cols-md-3 g-4">
+              <div
+                data-test-id="proximos-container"
+                className="row row-cols-1 row-cols-md-3 g-4"
+              >
                 {getSortedEventsCards()}
               </div>
             </div>

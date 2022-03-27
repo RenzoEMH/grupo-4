@@ -44,7 +44,7 @@ const Carrusel = () => {
             )
           )}
       </div>
-      <div className="carousel-inner">
+      <div data-test-id="carousel-container" className="carousel-inner">
         {!!slides &&
           slides.map((itemSlide, index) => (
             <SlideCarouselAdmin itemSlide={itemSlide} key={index} />
