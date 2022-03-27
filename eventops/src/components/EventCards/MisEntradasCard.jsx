@@ -41,7 +41,12 @@ const MisEntradasCard = ({ evento: { _id, dates, img, title } }) => {
             {dateFormatter(dates)}
           </p>
           <div className="card-detail text-dark">
-            <button className="card-button bg-secondary">MI TICKET</button>
+            <button
+              onClick={() => navigate(`/mi-ticket/${_id}`)}
+              className="card-button bg-secondary"
+            >
+              MI TICKET
+            </button>
             <button
               onClick={() => navigate(`/evento-detalle/${_id}`)}
               className="card-button"

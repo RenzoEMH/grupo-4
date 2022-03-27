@@ -22,7 +22,7 @@ const errors = {
 const registerUserIsValid = (e, registerUser, users) => {
   const validation = { isValid: true, formErrors: {} };
 
-  users.forEach((user) => {
+  users?.forEach((user) => {
     if (user.email === registerUser.email) {
       validation.isValid = false;
       validation.formErrors.emailNotValid = errors.emailNotValid;
@@ -36,7 +36,7 @@ const registerUserIsValid = (e, registerUser, users) => {
       !(
         posicionArroba < posicionPunto &&
         posicionArroba > 0 &&
-        registerUser.email.indexOf('@@') == -1 &&
+        registerUser.email.indexOf('@@') === -1 &&
         posicionPunto > 2 &&
         registerUser.email.length - posicionPunto > 2
       )

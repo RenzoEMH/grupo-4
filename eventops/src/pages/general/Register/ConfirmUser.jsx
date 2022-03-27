@@ -13,7 +13,7 @@ const ConfirmUser = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(verifyEmailAsync(param));
-  }, []);
+  }, [dispatch, param]);
 
   return (
     <>

@@ -1,9 +1,11 @@
 import './ShopCart.scss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ShopCard from '../../../components/ShopCard';
 import PaymentSummary from '../../../components/PaymentSummary';
-import { useNavigate } from 'react-router-dom';
 import parseJwt from '../../../utils/ParseJwt';
+import { useEffect, useState } from 'react';
+import { getAllEventsAsync } from '../../../redux/features/eventsSlice';
+import { emptyCart } from '../../../redux/features/cartSlice';
 
 const ShopCart = () => {
   const token = useSelector((state) => state.usuarios.token);
@@ -11,7 +13,57 @@ const ShopCart = () => {
   const shopCartList = useSelector((state) =>
     state.shopCart.cart.filter((item) => item.idUsuario === sesion?.id)
   );
-  const navigate = useNavigate();
+  const [subTotal, setSubTotal] = useState();
+  const [description, setDescription] = useState('');
+  const dispatch = useDispatch();
+
+  let handler = window.ePayco.checkout.configure({
+    key: process.env.REACT_APP_EPAYCO_KEY,
+    test: true,
+  });
+
+  useEffect(() => {
+    dispatch(getAllEventsAsync());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setDescription(
+      shopCartList.reduce(
+        (acc, curr, index) =>
+          `${acc}${index !== 0 ? ' || ' : ''}${curr.title} - ${
+            curr.typeTicket
+          } X ${curr.amount}`,
+        ''
+      )
+    );
+  }, [shopCartList]);
+
+  useEffect(() => {
+    setSubTotal(
+      shopCartList.reduce((prev, curr) => prev + curr.price * curr.amount, 0)
+    );
+  }, [shopCartList]);
+
+  const handleEmptyCartButtonClick = () => {
+    dispatch(emptyCart());
+  };
+
+  const openPayment = () => {
+    let data = {
+      name: 'EVENTOPS',
+      description: description,
+      currency: 'usd',
+      amount: subTotal,
+      tax_base: '0',
+      tax: '0',
+      country: 'pe',
+      lang: 'es',
+      external: 'false',
+      response: `${process.env.REACT_APP_BASE_URL}confirmacion-compra`,
+    };
+
+    handler.open(data);
+  };
 
   return (
     <main className="cuerpoCarrito">
@@ -22,7 +74,19 @@ const ShopCart = () => {
               <h3>Mi compra</h3>
             </div>
             <div className="col-md-2">
-              <button className="btn btn-danger">Vaciar Carrito</button>
+              {shopCartList.length > 0 ? (
+                <button
+                  onClick={handleEmptyCartButtonClick}
+                  type="button"
+                  className="btn btn-danger"
+                >
+                  Vaciar Carrito
+                </button>
+              ) : (
+                <button type="button" className="btn btn-danger" disabled>
+                  Vaciar Carrito
+                </button>
+              )}
             </div>
           </div>
           <div className="row border-top border-bottom" id="cabeceraCarrito">
@@ -62,12 +126,19 @@ const ShopCart = () => {
           className="col-md-3"
           style={{ display: 'flex', justifyContent: 'center' }}
         >
-          <button
-            onClick={() => navigate('/metodo-pago')}
-            className="btn btn-danger"
-          >
-            Pagar Ahora
-          </button>
+          {shopCartList.length > 0 ? (
+            <button
+              onClick={openPayment}
+              type="button"
+              className="btn btn-danger"
+            >
+              Pagar Ahora
+            </button>
+          ) : (
+            <button type="button" className="btn btn-danger" disabled>
+              Pagar Ahora
+            </button>
+          )}
         </div>
       </div>
     </main>

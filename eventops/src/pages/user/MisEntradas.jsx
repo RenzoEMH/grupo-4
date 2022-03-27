@@ -10,13 +10,16 @@ import { load, setLength } from '../../redux/features/filtersSlice';
 import { defaultDate, returnDate } from '../../utils/returnDate';
 import getEarliestDate from '../../utils/getEarliestDate';
 import parseJwt from '../../utils/ParseJwt';
+import {
+  getAllTicketsAsync,
+  selectTickets,
+} from '../../redux/features/ticketsSlice';
 
 const perPage = 6;
 
 const filterByTickets = (idEvento, idUsuario, arrayTickets) => {
-  const hasTicket = arrayTickets.some(
-    (ticket) =>
-      ticket.idUsuario === idUsuario && ticket.evento.idEvento === idEvento
+  const hasTicket = arrayTickets?.some(
+    (ticket) => ticket.idUsuario === idUsuario && ticket.idEvento === idEvento
   );
   return hasTicket;
 };
@@ -25,7 +28,7 @@ const MisEntradas = () => {
   const token = useSelector((state) => state.usuarios.token);
   const sesion = parseJwt(token);
   const eventos = useSelector((state) => state.eventos);
-  const entradas = useSelector((state) => state.tickets.tickets);
+  const tickets = useSelector(selectTickets);
   const filters = useSelector((state) => state.filtros);
   const dispatch = useDispatch();
 
@@ -37,12 +40,16 @@ const MisEntradas = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    dispatch(getAllTicketsAsync());
+  }, [dispatch]);
+
+  useEffect(() => {
     const minDate = returnDate(filters.minDate);
     const maxDate = returnDate(filters.maxDate);
 
     const events = eventos.eventos.filter(
       (event) =>
-        filterByTickets(event._id, sesion?.id, entradas) &&
+        filterByTickets(event._id, sesion?.id, tickets) &&
         event.category.indexOf(filters.category) >= 0 &&
         getEarliestDate(event.dates) >= minDate &&
         getEarliestDate(event.dates) <=
@@ -53,7 +60,7 @@ const MisEntradas = () => {
     dispatch(setLength(events.length));
     dispatch(setFilteredEvents(events.slice(0, filters.page * perPage)));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, eventos.eventos, filters]);
+  }, [dispatch, eventos.eventos, filters, tickets]);
 
   return (
     <div className="App">

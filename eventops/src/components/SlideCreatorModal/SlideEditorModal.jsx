@@ -3,9 +3,10 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  saveEditedSlide,
+  selectIsUpdating,
   selectSlides,
   selectSlideToEdit,
+  updateSlideAsync,
 } from '../../redux/features/slidesSlice';
 
 const errors = {
@@ -39,23 +40,19 @@ const SlideEditorModal = () => {
   const eventos = useSelector((state) => state.eventos.eventos);
   const slides = useSelector(selectSlides);
   const slideToEdit = useSelector(selectSlideToEdit);
+  const isUpdating = useSelector(selectIsUpdating);
   const [formErrors, setFormErrors] = useState({});
   const formRef = useRef();
   const dispatch = useDispatch();
 
-  const resetForm = () => {
-    setFormErrors({});
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const evento = [...eventos].find(
-      (eventoElement) =>
-        eventoElement._id === parseInt(formRef.current[0].value)
+      (eventoElement) => eventoElement._id === formRef.current[0].value
     );
 
     const slide = {
-      id: slideToEdit.id,
+      _id: slideToEdit._id,
       title: evento?.title || '',
       date: formRef.current[1].value,
       order: parseInt(formRef.current[2].value),
@@ -66,8 +63,7 @@ const SlideEditorModal = () => {
     const { isValid, formErrors } = slideIsValid(slide);
 
     if (isValid) {
-      dispatch(saveEditedSlide(slide));
-      resetForm();
+      dispatch(updateSlideAsync(slide));
     } else {
       setFormErrors(formErrors);
     }
@@ -173,16 +169,37 @@ const SlideEditorModal = () => {
                 </div>
               </div>
               <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary btn-lg"
-                  data-bs-dismiss="modal"
-                >
-                  Cancelar
-                </button>
-                <button className="btn btn-primary btn-lg" type="submit">
-                  Guardar
-                </button>
+                {isUpdating ? (
+                  <>
+                    <button
+                      type="button"
+                      className="btn btn-secondary btn-lg"
+                      disabled
+                    >
+                      Cancelar
+                    </button>
+                    <button
+                      disabled
+                      className="btn btn-primary btn-lg"
+                      type="button"
+                    >
+                      Guardando...
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      type="button"
+                      className="btn btn-secondary btn-lg"
+                      data-bs-dismiss="modal"
+                    >
+                      Cancelar
+                    </button>
+                    <button className="btn btn-primary btn-lg" type="submit">
+                      Guardar
+                    </button>
+                  </>
+                )}
               </div>
             </form>
           </div>
