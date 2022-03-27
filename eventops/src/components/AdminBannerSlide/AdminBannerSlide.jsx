@@ -1,16 +1,18 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
+  deleteSlideAsync,
   loadSlideToEdit,
-  manageDeleteSlide,
+  selectIsDeleting,
 } from '../../redux/features/slidesSlice';
 import dateOnlyFormatter from '../../utils/dateOnlyFormatter';
 
-const AdminBannerSlide = ({ slide: { id, title, date, order, eventId } }) => {
+const AdminBannerSlide = ({ slide: { _id, title, date, order, eventId } }) => {
   const dispatch = useDispatch();
+  const isDeleting = useSelector(selectIsDeleting);
 
   const handleClickEdit = () => {
     const slideToEdit = {
-      id,
+      _id,
       title,
       date,
       order,
@@ -20,7 +22,7 @@ const AdminBannerSlide = ({ slide: { id, title, date, order, eventId } }) => {
   };
 
   const handleClickDelete = () => {
-    dispatch(manageDeleteSlide(id));
+    dispatch(deleteSlideAsync(_id));
   };
 
   return (
@@ -55,22 +57,43 @@ const AdminBannerSlide = ({ slide: { id, title, date, order, eventId } }) => {
           </p>
         </div>
         <div className="options mt-3 mt-sm-0">
-          <button
-            onClick={handleClickEdit}
-            type="button"
-            data-bs-toggle="modal"
-            data-bs-target="#slideEditorModal"
-            className="btn btn-primary py-2"
-          >
-            <i className="bi bi-pencil-fill"></i>
-          </button>
-          <button
-            onClick={handleClickDelete}
-            type="button"
-            className="btn btn-secondary py-2"
-          >
-            <i className="bi bi-trash-fill"></i>
-          </button>
+          {isDeleting ? (
+            <>
+              <button disabled type="button" className="btn btn-primary py-2">
+                <span
+                  className="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+              </button>
+              <button disabled type="button" className="btn btn-secondary py-2">
+                <span
+                  className="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={handleClickEdit}
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#slideEditorModal"
+                className="btn btn-primary py-2"
+              >
+                <i className="bi bi-pencil-fill"></i>
+              </button>
+              <button
+                onClick={handleClickDelete}
+                type="button"
+                className="btn btn-secondary py-2"
+              >
+                <i className="bi bi-trash-fill"></i>
+              </button>
+            </>
+          )}
         </div>
       </div>
     </section>
