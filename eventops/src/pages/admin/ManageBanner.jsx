@@ -1,11 +1,45 @@
-import { useSelector } from 'react-redux';
-import { selectSlides } from '../../redux/features/slidesSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getAllSlidesAsync,
+  selectCreatedSlide,
+  selectDeleteResponse,
+  selectIsLoading,
+  selectSlides,
+  selectUpdateResponse,
+} from '../../redux/features/slidesSlice';
 import AdminBannerSlide from '../../components/AdminBannerSlide/AdminBannerSlide';
 import SlideCreatorModal from '../../components/SlideCreatorModal/SlideCreatorModal';
 import SlideEditorModal from '../../components/SlideCreatorModal/SlideEditorModal';
+import { useEffect } from 'react';
+import { getAllEventsAsync } from '../../redux/features/eventsSlice';
 
 const ManageBanner = () => {
   const slides = useSelector(selectSlides);
+  const createdSlide = useSelector(selectCreatedSlide);
+  const updateResponse = useSelector(selectUpdateResponse);
+  const deleteResponse = useSelector(selectDeleteResponse);
+  const isLoading = useSelector(selectIsLoading);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllSlidesAsync());
+  }, [dispatch]);
+
+  useEffect(() => {
+    !!createdSlide && dispatch(getAllSlidesAsync());
+  }, [createdSlide, dispatch]);
+
+  useEffect(() => {
+    !!updateResponse && dispatch(getAllSlidesAsync());
+  }, [updateResponse, dispatch]);
+
+  useEffect(() => {
+    !!deleteResponse && dispatch(getAllSlidesAsync());
+  }, [deleteResponse, dispatch]);
+
+  useEffect(() => {
+    dispatch(getAllEventsAsync());
+  }, [dispatch]);
 
   return (
     <main className="eventops__main d-flex flex-grow-1 container">
@@ -14,10 +48,10 @@ const ManageBanner = () => {
         <SlideCreatorModal />
         <SlideEditorModal />
         <div>
-          {[...slides]
-            .sort((a, b) => (a.order > b.order ? 1 : -1))
-            .map((slide) => {
-              return <AdminBannerSlide slide={slide} key={slide.id} />;
+          {isLoading && <h3 className="text-center">Cargando...</h3>}
+          {!!slides &&
+            [...slides].map((slide) => {
+              return <AdminBannerSlide slide={slide} key={slide._id} />;
             })}
         </div>
       </div>
