@@ -1,7 +1,11 @@
 import { useRef } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { saveNewSlide, selectSlides } from '../../redux/features/slidesSlice';
+import {
+  createSlideAsync,
+  selectIsCreating,
+  selectSlides,
+} from '../../redux/features/slidesSlice';
 
 const errors = {
   title: 'Debe escoger un evento',
@@ -32,6 +36,7 @@ const slideIsValid = (slide) => {
 
 const SlideCreatorModal = () => {
   const eventos = useSelector((state) => state.eventos.eventos);
+  const isCreating = useSelector(selectIsCreating);
   const slides = useSelector(selectSlides);
   const [formErrors, setFormErrors] = useState({});
   const formRef = useRef();
@@ -47,12 +52,10 @@ const SlideCreatorModal = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const evento = [...eventos].find(
-      (eventoElement) =>
-        eventoElement._id === parseInt(formRef.current[0].value)
+      (eventoElement) => eventoElement._id === formRef.current[0].value
     );
 
     const slide = {
-      id: Math.floor(Math.random() * 100000) + 1,
       title: evento?.title || '',
       date: formRef.current[1].value,
       order: parseInt(formRef.current[2].value),
@@ -63,7 +66,7 @@ const SlideCreatorModal = () => {
     const { isValid, formErrors } = slideIsValid(slide);
 
     if (isValid) {
-      dispatch(saveNewSlide(slide));
+      dispatch(createSlideAsync(slide));
       resetForm();
     } else {
       setFormErrors(formErrors);
@@ -172,17 +175,38 @@ const SlideCreatorModal = () => {
                 </div>
               </div>
               <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary btn-lg"
-                  data-bs-dismiss="modal"
-                  onClick={resetForm}
-                >
-                  Cancelar
-                </button>
-                <button className="btn btn-primary btn-lg" type="submit">
-                  Guardar
-                </button>
+                {isCreating ? (
+                  <>
+                    <button
+                      type="button"
+                      className="btn btn-secondary btn-lg"
+                      disabled
+                    >
+                      Cancelar
+                    </button>
+                    <button
+                      disabled
+                      className="btn btn-primary btn-lg"
+                      type="button"
+                    >
+                      Creando...
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      type="button"
+                      className="btn btn-secondary btn-lg"
+                      data-bs-dismiss="modal"
+                      onClick={resetForm}
+                    >
+                      Cancelar
+                    </button>
+                    <button className="btn btn-primary btn-lg" type="submit">
+                      Guardar
+                    </button>
+                  </>
+                )}
               </div>
             </form>
           </div>
