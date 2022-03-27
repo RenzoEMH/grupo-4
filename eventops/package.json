@@ -29,7 +29,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint -c .eslintrc.json --ext .js,.jsx ."
+    "lint": "eslint -c .eslintrc.json --ext .js,.jsx .",
+    "cypress": "cypress open"
   },
   "browserslist": {
     "production": [
@@ -42,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cypress": "^9.5.2"
   }
 }
