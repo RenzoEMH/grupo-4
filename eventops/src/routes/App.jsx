@@ -3,6 +3,7 @@ import Footer from '../components/Footer/Footer';
 import Nav from '../components/Nav/Nav';
 import Home from '../pages/general/Home/Home';
 import UserProfile from '../pages/user/UserProfile';
+import EditProfile from '../pages/user/EditProfile';
 import MisEntradas from '../pages/user/MisEntradas';
 import MisEventosCreados from '../pages/user/MisEventosCreados';
 import './App.scss';
@@ -91,6 +92,15 @@ function App() {
           element={
             <RequireAuth type="usuario">
               <UserProfile />
+            </RequireAuth>
+          }
+        />
+        <Route
+          exact
+          path="/editar-perfil/:idUser"
+          element={
+            <RequireAuth type="usuario">
+              <EditProfile />
             </RequireAuth>
           }
         />

@@ -1,93 +1,240 @@
+import './__Profile.scss';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllUsersAsync } from '../../redux/features/usersSlice';
+import parseJwt from '../../utils/ParseJwt';
+
 const UserProfile = () => {
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.usuarios.token);
+  const sesion = parseJwt(token);
+  const users = useSelector((state) => state.usuarios.users);
+  const updatedUser = useSelector((state) => state.usuarios.updatedUser);
+  const userLogin = users?.find((user) => user._id === sesion.id);
+  const path = `/editar-perfil/${userLogin?._id}`;
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(path, { state: userLogin });
+  };
+  useEffect(() => {
+    dispatch(getAllUsersAsync());
+  }, [dispatch]);
+  useEffect(() => {
+    if (updatedUser) dispatch(getAllUsersAsync());
+  }, [updatedUser, dispatch]);
   return (
-    <div className="App">
-      <div className="container d-flex flex-column justify-content-center" id="" style="max-width:100%; max-height: 100%;">
-        <main className="" >
-          <div className="row">
-            <div className="col-md-3 col-left">
-              <div className="row fila-1" style="margin-top:20px; margin-bottom:50px; ">
-                <div className="col-md-4 ">
-                  <img src="./imagenes/imagen-perfil.png" alt="imagen de perfil"/>
-                </div>
-                <div className="col-md-8">
-                  <div className="row" style="color: black">Roberto<br/>Fernandez</div>
-                  <div className="row" style="color:#9F2D30">Cuenta verificada</div>
-                </div>
+    <div
+      className="container d-flex flex-column justify-content-center"
+      id="container-main"
+    >
+      <main className="">
+        <div className="row">
+          <div className="col-md-2 col-left">
+            <div className="row fila-1 mt-1 mb-2">
+              <div className="col-md-6 d-flex justify-content flex-end ">
+                {userLogin?.photo === '' ? (
+                  <i
+                    className="bi bi-person-square"
+                    style={{ fontSize: '7rem' }}
+                  ></i>
+                ) : (
+                  <img
+                    className="img-fluid"
+                    style={{ borderRadius: '50%' }}
+                    src={userLogin?.photo}
+                    alt="preview"
+                  />
+                )}
               </div>
-              <div className="row mi-perfil" style="color: #9F2D30; font-size:24px; margin-left: 10px;">Mi Perfil</div>
-              <div className="row" style="color: black; font-size:18px; margin-left: 10px;">Cerrar Sesion</div>
-            </div>
-            <div className="col-md-6">
-              <div className="row" style="margin-top:20px">
-                <div className="col-md-11">
-                  <h1 style="color:white">Mi perfil</h1>
-                </div>
-                <div className="col-md-1">
-                  <img src="./imagenes/lapiz.png" alt="lapiz"/>
-                </div>
-              </div>
-              <div className="row" style="margin-top:20px">
-                  <div className="row" style="margin-top:10px">
-                    <div className="col-md-6">
-                      <p style="color: white; font-size:16px; margin:auto;">Nombres</p>
-                      <p style="color: white; font-size:16px; font-weight:bold; margin:auto;">Roberto</p>
-                    </div>
-                    <div className="col-md-6" >
-                      <p style="color: white; font-size:16px; margin:auto;">Apellidos</p>
-                      <p style="color: white; font-size:16px; font-weight:bold; margin:auto;">Fernandez</p>
-                    </div>
-                  </div>
-                  <div className="row"style="margin-top:20px">
-                    <div className="col-md-6">
-                      <p style="color: white; font-size:16px; margin:auto;">Tipo de documento</p>
-                      <p style="color: white; font-size:16px; font-weight:bold; margin:auto;">DNI</p>
-                    </div>
-                    <div className="col-md-6">
-                      <p style="color: white; font-size:16px; margin:auto;">Numero de documento</p>
-                      <p style="color: white; font-size:16px; font-weight:bold; margin:auto;">98745621</p>
-                    </div>
-                  </div>
-                  <div className="row" style="margin-top:20px">
-                    <div className="col-md-3">
-                      <p style="color: white; font-size:16px; margin:auto;">Email</p>
-                      <p style="color: white; font-size:16px; font-weight:bold; margin:auto;">roberto@gmail.com</p>
-                    </div>
-                    <div className="col-md-3">
-                      <p style="color: white; font-size:16px; margin:auto;">Código</p>
-                      <p style="color: white; font-size:16px; font-weight:bold; margin:auto;">98745621</p>
-                    </div>
-                    <div className="col-md-3">
-                      <p style="color: white; font-size:16px; margin:auto;">Teléfono</p>
-                      <p style="color: white; font-size:16px; font-weight:bold; margin:auto;">789451236</p>
-                    </div>
-                  </div>
-                  <div className="row" style="margin-top:20px">
-                    <div className="col-md-3">
-                      <p style="color: white; font-size:16px; margin:auto;">Pais</p>
-                      <p style="color: white; font-size:16px; font-weight:bold; margin:auto;">Perú</p>
-                    </div>
-                    <div className="col-md-3">
-                      <p style="color: white; font-size:16px; margin:auto;">Ciudad</p>
-                      <p style="color: white; font-size:16px; font-weight:bold; margin:auto;">Lima</p>
-                    </div>
-                  </div>
-                  <div className="row">                   
-                  </div>            
+              <div className="col-md-6 mt-6 ">
+                <p style={{ color: 'black' }}>
+                  {userLogin?.name} {userLogin?.lastname}
+                </p>
+                <p style={{ color: 'green', fontSize: '13px' }}>
+                  Cuenta verificada
+                </p>
               </div>
             </div>
-            <div className="col-md-3 col-right" style="max-width: 250px; margin-top:20px">
-              <div className="row">
-                <img src="./imagenes/imagen-perfil.png" alt="imagen de perfil" name="imagen-perfil" style="margin:10 auto;"/>
+            <div className="row mi-perfil" style={{ marginLeft: '10px' }}>
+              Mi Perfil
+            </div>
+            <div
+              className="row ml-1"
+              style={{ Color: 'black', fontSize: '18px', marginLeft: '10px' }}
+            >
+              Cerrar Sesion
+            </div>
+          </div>
+
+          <div className="col-md-7">
+            <div className="row mt-2">
+              <div className="col-md-11">
+                <h1 style={{ Color: 'white', marginLeft: '20px' }}>
+                  Mi perfil
+                </h1>
               </div>
-              <div className="row" style="margin-top:20px">
-                <button type="submit" className="btn btn-danger" style="border-radius:25px">
-                  Cambiar/ subir imagen
-                </button>
+              <div className="col-md-1">
+                <i
+                  className="bi bi-pencil-fill"
+                  style={{ fontSize: '2rem', color: 'white' }}
+                  type="button"
+                  onClick={handleClick}
+                ></i>
+              </div>
+            </div>
+
+            <div className="row row-center d-flex flex-row justify-content-between ">
+              <div className="">
+                <form className="mb-5">
+                  <div
+                    className="row d-flex flex-wrap "
+                    style={{
+                      marginTop: '20px',
+                      marginLeft: '15px',
+                      marginRight: '15px',
+                      Color: 'white',
+                    }}
+                  >
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label
+                          htmlFor="firstName"
+                          className="font-weight-light"
+                        >
+                          Nombres
+                        </label>
+                        <h4 className="h6" style={{ lineHeight: '1' }}>
+                          <b>{userLogin?.name}</b>
+                        </h4>
+                      </div>
+                    </div>
+
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label
+                          htmlFor="firstName"
+                          className="font-weight-light"
+                        >
+                          Apellidos
+                        </label>
+                        <h4 className="h6" style={{ lineHeight: '1' }}>
+                          <b>{userLogin?.lastname}</b>
+                        </h4>
+                      </div>
+                    </div>
+
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label
+                          htmlFor="firstName"
+                          className="font-weight-light"
+                        >
+                          Tipo de documento
+                        </label>
+                        <h4 className="h6" style={{ lineHeight: '1' }}>
+                          <b>DNI</b>
+                        </h4>
+                      </div>
+                    </div>
+
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label
+                          htmlFor="firstName"
+                          className="font-weight-light"
+                        >
+                          Número de documento
+                        </label>
+                        <h4 className="h6" style={{ lineHeight: '1' }}>
+                          <b>{userLogin?.dni}</b>
+                        </h4>
+                      </div>
+                    </div>
+
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label
+                          htmlFor="firstName"
+                          className="font-weight-light"
+                        >
+                          Email
+                        </label>
+                        <h4 className="h6" style={{ lineHeight: '1' }}>
+                          <b>{userLogin?.email}</b>
+                        </h4>
+                      </div>
+                    </div>
+
+                    <div className="col-md-6">
+                      <div className="form-row d-flex flex-wrap">
+                        <div className="form-group col-md-7">
+                          <div className="form-group">
+                            <label
+                              htmlFor="phoneCode"
+                              className="font-weight-light"
+                            >
+                              Estado
+                            </label>
+                            <h4 className="h6" style={{ lineHeight: '1' }}>
+                              <b>Activo</b>
+                            </h4>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label
+                          htmlFor="firstName"
+                          className="font-weight-light"
+                        >
+                          ID
+                        </label>
+                        <h4 className="h6" style={{ lineHeight: '1' }}>
+                          <b>{userLogin?._id}</b>
+                        </h4>
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label
+                          htmlFor="firstName"
+                          className="font-weight-light"
+                        >
+                          Telefono
+                        </label>
+                        <h4 className="h6" style={{ lineHeight: '1' }}>
+                          <b>{userLogin?.phone}</b>
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
-        </main>
-      </div>
+          <div className="col-md-3 col-right">
+            <div className="text-center mb-4">
+              <div className="mb-6 class-imagen">
+                {userLogin?.photo === '' ? (
+                  <i
+                    className="bi bi-person-square"
+                    style={{ fontSize: '10rem' }}
+                  ></i>
+                ) : (
+                  <img
+                    className="img-fluid"
+                    style={{ borderRadius: '50%' }}
+                    src={userLogin?.photo}
+                    alt="preview"
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
   );
 };
