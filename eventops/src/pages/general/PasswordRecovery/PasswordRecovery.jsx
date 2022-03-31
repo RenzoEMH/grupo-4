@@ -10,8 +10,7 @@ const errors = {
 };
 
 const emailIsValid = (email, users) => {
-  const validation = { isValid: true, formErrors: {} };
-  console.log(email, users);
+  const validation = { isValid: false, formErrors: {} };
 
   users.forEach((user) => {
     if (user.email === email) {
@@ -19,7 +18,6 @@ const emailIsValid = (email, users) => {
       validation.formErrors.emailNotValid = '';
       return validation;
     } else {
-      validation.isValid = false;
       validation.formErrors.emailNotValid = errors.correo;
     }
   });
@@ -44,7 +42,6 @@ const PasswordRecovery = () => {
       email: elements[0].value,
     };
     const { isValid, formErrors } = emailIsValid(correo.email, users);
-    console.log(isValid, formErrors);
     if (isValid) {
       dispatch(generateLinkPassAsync(correo));
       setSendEmail(true);
@@ -94,6 +91,7 @@ const PasswordRecovery = () => {
               className="password-recovery__mail form-control"
               id="email"
               placeholder="Tu email"
+              data-test-id="input-email-recovery"
             />
             {formErrors !== null && (
               <div className="invalid-feedback d-block">
@@ -101,7 +99,10 @@ const PasswordRecovery = () => {
               </div>
             )}
             {sendEmail !== null && (
-              <div className="valid-feedback d-block">
+              <div
+                className="valid-feedback d-block"
+                data-test-id="confirm-recovery"
+              >
                 Se envio el correo para recuperar contraseña
               </div>
             )}
@@ -110,6 +111,7 @@ const PasswordRecovery = () => {
             <button
               className="password-recovery__btn btn btn-primary btn-lg fw-bold mx-3"
               type="submit"
+              data-test-id="button-recovery"
             >
               Enviar
             </button>

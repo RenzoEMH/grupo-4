@@ -47,7 +47,7 @@ const ManageBanner = () => {
         <h2 className="text-center mt-4">Gestionar Banner</h2>
         <SlideCreatorModal />
         <SlideEditorModal />
-        <div>
+        <div data-test-id="banner-list">
           {isLoading && <h3 className="text-center">Cargando...</h3>}
           {!!slides &&
             [...slides].map((slide) => {
