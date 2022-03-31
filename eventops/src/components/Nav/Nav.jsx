@@ -92,6 +92,7 @@ const Nav = () => {
                     <Link
                       to="/crear-evento"
                       className="nav-link link-light p-3"
+                      data-test-id="button-create-event"
                     >
                       CREAR EVENTO
                     </Link>
@@ -194,7 +195,10 @@ const Nav = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <i className="bi bi-person-fill evt-person"></i>
+                  <i
+                    data-test-id="profile-general"
+                    className="bi bi-person-fill evt-person"
+                  ></i>
                 </span>
                 <ul
                   className="dropdown-menu dropdown-menu-end py-3"
@@ -211,6 +215,7 @@ const Nav = () => {
                           transform: 'rotate(90deg)',
                         }}
                         className="bi bi-box-arrow-in-right lh-1"
+                        data-test-id="login"
                       ></i>
                       Iniciar sesión
                     </Link>

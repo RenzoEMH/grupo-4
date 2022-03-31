@@ -55,6 +55,7 @@ const LogIn = () => {
               type="email"
               className="login__mail form-control"
               id="email"
+              data-test-id="input-email-login"
               placeholder="Tu email"
               onChange={onInputChange('email')}
               required
@@ -65,6 +66,7 @@ const LogIn = () => {
               type="password"
               className="login__password form-control"
               id="contrasena"
+              data-test-id="input-pass-login"
               placeholder="Tu contraseña"
               onChange={onInputChange('password')}
               required
@@ -77,19 +79,24 @@ const LogIn = () => {
             <button
               className="login__btn btn btn-primary btn-lg fw-bold mx-3"
               type="submit"
+              data-test-id="button-login"
             >
               Ingresar
             </button>
           </div>
         </form>
-        <Link to="/recuperar-password">¿Olvidaste tu contraseña?</Link>
+        <Link to="/recuperar-password" data-test-id="forgot-pass">
+          ¿Olvidaste tu contraseña?
+        </Link>
       </section>
       <footer className="simple__footer mb-5">
         <span>
           ¿No tienes cuenta?
           <br />
         </span>
-        <Link to="/registrarse">¡Registrate Aquí!</Link>
+        <Link to="/registrarse" data-test-id="register">
+          ¡Registrate Aquí!
+        </Link>
       </footer>
     </div>
   );

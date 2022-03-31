@@ -39,7 +39,7 @@ const EventsTable = () => {
             <th scope="col">Acciones</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody data-test-id="event-table">
           {eventsFiltered.map((evento) => (
             <tr key={evento._id}>
               <th scope="row">{evento._id}</th>

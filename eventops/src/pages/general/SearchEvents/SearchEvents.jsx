@@ -44,7 +44,10 @@ const SearchEvents = () => {
         <div className="d-flex flex-column flex-grow-1 gap-3">
           <section className="eventos-filtrados d-flex flex-grow-1">
             <div className="container">
-              <div className="row row-cols-1 row-cols-md-3 g-4">
+              <div
+                data-test-id="busqueda-event-container"
+                className="row row-cols-1 row-cols-md-3 g-4"
+              >
                 {eventos.filteredEvents?.map((evento) => {
                   return <EventCard evento={evento} key={evento._id} />;
                 })}

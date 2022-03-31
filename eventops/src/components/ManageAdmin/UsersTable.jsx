@@ -64,7 +64,7 @@ const UsersTable = () => {
               <th scope="col">Acciones</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody data-test-id="event-user">
             {usersFiltered?.map((user) => (
               <tr key={user._id}>
                 <th scope="row">{user._id}</th>

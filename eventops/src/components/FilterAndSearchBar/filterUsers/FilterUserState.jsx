@@ -19,6 +19,7 @@ const FilterUserState = () => {
         data-bs-toggle="dropdown"
         data-bs-auto-close="outside"
         aria-expanded="false"
+        data-test-id="state-filter-user"
       >
         <span className="me-1 me-sm-2">
           <i className="bi bi-recycle"></i>

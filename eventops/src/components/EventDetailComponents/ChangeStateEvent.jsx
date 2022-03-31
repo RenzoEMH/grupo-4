@@ -28,6 +28,7 @@ const ChangeStateEvent = ({ evento }) => {
               id="estado"
               className="form-select d-block w-100"
               defaultValue={evento.state}
+              data-test-id="change-state-event"
             >
               <option value="pendiente">Pendiente</option>
               <option value="active">Activo</option>
@@ -36,7 +37,10 @@ const ChangeStateEvent = ({ evento }) => {
             </select>
           </div>
           {confirmChange === true && (
-            <div className="valid-feedback d-block d-flex justify-content-center">
+            <div
+              className="valid-feedback d-block d-flex justify-content-center"
+              data-test-id="confirm-state"
+            >
               Estado cambiado correctamente
             </div>
           )}

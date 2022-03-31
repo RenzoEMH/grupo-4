@@ -20,7 +20,7 @@ const HomeSearchBox = () => {
     >
       <div className="input-group border rounded-3">
         <button className="input-group-text bg-white border-0">
-          <i className="bi bi-search"></i>
+          <i data-test-id="search-box" className="bi bi-search"></i>
         </button>
         <input
           className="filter-search form-control border-0"

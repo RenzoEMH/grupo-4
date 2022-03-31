@@ -140,6 +140,7 @@ const Register = () => {
               className="register__names form-control"
               id="names"
               placeholder="Tus nombres"
+              data-test-id="input-name"
               value={usuario.Nombres}
               onChange={(e) =>
                 dispatch(setAtribute({ key: 'Nombres', value: e.target.value }))
@@ -151,6 +152,7 @@ const Register = () => {
               className="register__last-names form-control"
               id="last-names"
               placeholder="Tus apellidos"
+              data-test-id="input-lastname"
               value={usuario.apellidos}
               onChange={(e) =>
                 dispatch(
@@ -165,6 +167,7 @@ const Register = () => {
               type="email"
               className="register__mail form-control"
               id="email"
+              data-test-id="input-email"
               placeholder="Tu email - Ej: ejemplo@gmail.com"
               value={usuario.Correo}
               onChange={(e) =>
@@ -185,7 +188,8 @@ const Register = () => {
             <input
               type="email"
               className="register__mail form-control"
-              id="confirm-email"
+              id="input-confirm-email"
+              data-test-id="input-confirm-email"
               placeholder="Confirma tu email"
               required
             />
@@ -200,6 +204,7 @@ const Register = () => {
               type="password"
               className="register__password form-control"
               id="contrasena"
+              data-test-id="input-pass"
               placeholder="Tu contraseña"
               value={usuario.password}
               onChange={(e) =>
@@ -220,6 +225,7 @@ const Register = () => {
               type="password"
               className="register__password form-control"
               id="confirm-contrasena"
+              data-test-id="input-confirm-pass"
               placeholder="Confirma la contraseña"
               required
             />
@@ -236,6 +242,7 @@ const Register = () => {
               value=""
               id="accept-terms-&-conditions"
               required
+              data-test-id="input-terms"
             />
             <label
               className="register__label"
@@ -254,6 +261,7 @@ const Register = () => {
             <button
               className="register__btn btn btn-primary btn-lg fw-bold mx-3"
               type="submit"
+              data-test-id="confirm-register"
             >
               Registrar
             </button>

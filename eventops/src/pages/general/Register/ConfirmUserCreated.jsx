@@ -26,7 +26,9 @@ const ConfirmUserCreated = () => {
         </h1>
       </header>
       <section className="simple__main d-grid col-10 col-lg-5 mx-auto">
-        <h2 className="simple__subtitle mb-5">Usuario Creado</h2>
+        <h2 className="simple__subtitle mb-5" data-test-id="confirm-user">
+          Usuario Creado
+        </h2>
         <div className="mb-4">
           <p className="password-recovery__text">
             Se ha enviado un email a tu correo para verificar y habilitar tu
