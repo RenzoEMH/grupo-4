@@ -160,7 +160,7 @@ const AddTicketsCard = () => {
               item.dateId,
               item.categoryId
             )} disp.):`}</label>
-            <p className="m-0">S/. {item.price}.00</p>
+            <p className="m-0">$ {item.price}.00</p>
           </div>
           <div className="col-md-4">
             <input

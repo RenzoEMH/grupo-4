@@ -6,18 +6,12 @@ import TicketType from './TicketType';
 import { createEventAsync } from '../../redux/features/eventsSlice';
 
 const errors = {
-  currency: 'Debe escoger un tipo de moneda',
   ticketCategories:
     'Ingrese todo los datos sobre la(s) categoria(s) de ticket(s) del evento',
 };
 
 const eventTicketsDetailsAreValid = (details) => {
   const validation = { isValid: true, formErrors: {} };
-
-  if (details.currency === '') {
-    validation.isValid = false;
-    validation.formErrors.currency = errors.currency;
-  }
 
   if (
     details.ticketCategories.some(
@@ -52,11 +46,9 @@ const CreationTicket = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { isValid, formErrors } = eventTicketsDetailsAreValid({
-      currency: e.target[0].value,
       ticketCategories: tickets,
     });
 
-    console.log(isValid);
     if (isValid) {
       dispatch(createEventAsync(tickets));
       setFormErrors({});
@@ -81,21 +73,7 @@ const CreationTicket = () => {
         <h1 className="accordion-button ">Creación de Entradas</h1>
         <div className="container">
           <div className="row border-bottom py-3">
-            <div className="col-md-3 order-md-1">
-              <div className="mb-3">
-                <label htmlFor="currency">Moneda</label>
-                <select className="form-select d-block w-100" id="currency">
-                  <option value="S/.">Soles</option>
-                  <option value="$">Dolares</option>
-                </select>
-                {!!formErrors && (
-                  <div className="invalid-feedback d-block">
-                    {formErrors.currency}
-                  </div>
-                )}
-              </div>
-            </div>
-            <div className="col-md-9 order-md-1 d-md-flex justify-content-md-end align-items-md-center">
+            <div className="col-md-12 order-md-1 d-md-flex justify-content-md-end align-items-md-center">
               <button
                 type="button"
                 className="btn btn-primary col-12 col-md-4"
@@ -155,10 +133,7 @@ const CreationTicket = () => {
           </div>
         </div>
       </div>
-      <div
-        className="col-md-12 order-md-1 container"
-        style={{ marginTop: '1rem' }}
-      >
+      <div className="col-md-12 order-md-1 container my-3">
         <div className="row">
           <div
             className="col-md-6 order-md-1"

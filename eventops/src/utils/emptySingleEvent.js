@@ -24,7 +24,7 @@ const emptySingleEvent = {
   refference: '',
   idOwner: 0,
   ownerName: '',
-  state: 'active',
+  state: 'pendiente',
 };
 
 export default emptySingleEvent;

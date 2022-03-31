@@ -1,34 +1,59 @@
 import { useNavigate } from 'react-router-dom';
 import dateFormatter from '../../utils/dateFormatter';
 
-const MisEntradasCard = ({ evento: { _id, dates, img, title } }) => {
+const MisEntradasCard = ({ evento: { _id, dates, img, title, state } }) => {
   const navigate = useNavigate();
 
   return (
     <div className="col-12 col-md-6 col-lg-4 ">
       <div className="card">
-        <div
-          style={{
-            position: 'absolute',
-            top: '1rem',
-            right: '1rem',
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            padding: '0.7rem',
-            boxShadow: 'rgb(255 255 255 / 20%) 0px 0px 1px 1px',
-            borderRadius: '5px',
-          }}
-        >
-          <span
+        {state === 'active' ? (
+          <div
             style={{
-              backgroundColor: 'lightgreen',
-              border: '2px solid green',
-              borderRadius: '100%',
-              marginRight: '0.5rem',
-              padding: '0.05rem 0.7em',
+              position: 'absolute',
+              top: '1rem',
+              right: '1rem',
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              padding: '0.7rem',
+              boxShadow: 'rgb(255 255 255 / 20%) 0px 0px 1px 1px',
+              borderRadius: '5px',
             }}
-          ></span>
-          ACTIVO
-        </div>
+          >
+            <span
+              style={{
+                backgroundColor: 'green',
+                border: '2px solid lightgreen',
+                borderRadius: '100%',
+                marginRight: '0.5rem',
+                padding: '0.05rem 0.7em',
+              }}
+            ></span>
+            ACTIVO
+          </div>
+        ) : (
+          <div
+            style={{
+              position: 'absolute',
+              top: '1rem',
+              right: '1rem',
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              padding: '0.7rem',
+              boxShadow: 'rgb(255 255 255 / 20%) 0px 0px 1px 1px',
+              borderRadius: '5px',
+            }}
+          >
+            <span
+              style={{
+                backgroundColor: 'red',
+                border: '2px solid lightpink',
+                borderRadius: '100%',
+                marginRight: '0.5rem',
+                padding: '0.05rem 0.7em',
+              }}
+            ></span>
+            INACTIVO
+          </div>
+        )}
         <div className="contenedor-imagen">
           <img src={img} alt={title} className="card-img-top" />
         </div>

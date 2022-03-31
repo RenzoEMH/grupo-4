@@ -53,7 +53,7 @@ const PaymentSummary = () => {
               <p>Subtotal:</p>
             </div>
             <div className="col text-right">
-              S/. {subTotal}
+              $ {subTotal}
               .00
             </div>
           </div>
@@ -61,7 +61,7 @@ const PaymentSummary = () => {
             <div className="col">
               <p>Descuento:</p>
             </div>
-            <div className="col text-right">S/. 0.00</div>
+            <div className="col text-right">$ 0.00</div>
           </div>
           <div
             className="row"
@@ -71,7 +71,7 @@ const PaymentSummary = () => {
               <p>Total</p>
             </div>
             <div className="col text-right">
-              <p>S/. {subTotal}.00</p>
+              <p>$ {subTotal}.00</p>
             </div>
           </div>
         </div>

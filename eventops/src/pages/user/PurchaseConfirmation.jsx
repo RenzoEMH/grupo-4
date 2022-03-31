@@ -54,15 +54,6 @@ const PurchaseConfirmation = () => {
             <div className="detalle">
               <div className="subgrupo">
                 <div className="texto">
-                  <h4>Token:</h4>
-                </div>
-                <div className="valor-texto" id="nro-pedido">
-                  <h4>{createdSale.token}</h4>
-                </div>
-              </div>
-
-              <div className="subgrupo">
-                <div className="texto">
                   <h4>Nº Transacción / Referencia:</h4>
                 </div>
                 <div className="valor-texto" id="codigo-autorizacion">
@@ -125,7 +116,7 @@ const PurchaseConfirmation = () => {
           <div className="botones">
             <div>
               <Link to={'/'} className="btn btn-secondary">
-                Regresas Home
+                Regresar a Inicio
               </Link>
             </div>
             <div>

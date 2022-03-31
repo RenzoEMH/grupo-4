@@ -90,7 +90,7 @@ const ShopCard = ({
           </span>
         </div>
         <div className="col-md-1 text-center">
-          S/.{price * amount}.00 <span className="close"></span>
+          $ {price * amount}.00 <span className="close"></span>
         </div>
         <div className="col-md-1 text-center">
           <span type="button" onClick={removeElement}>

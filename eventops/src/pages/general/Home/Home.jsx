@@ -18,6 +18,7 @@ const Home = () => {
   const getSortedEventsCards = () => {
     const eventsClone = _.cloneDeep(eventos);
     const sortedEventsCards = eventsClone
+      .filter((event) => event.state === 'active')
       .map((evento) => <EventCard evento={evento} key={evento._id} />)
       .sort((a, b) =>
         a.props.evento.dates.sort((a, b) => a.date > b.date)[0].date >
@@ -45,9 +46,11 @@ const Home = () => {
                 className="row row-cols-1 row-cols-md-3 g-4 mb-4"
               >
                 {eventos
+                  .filter((event) => event.state === 'active')
                   .map((evento) => (
                     <EventCard evento={evento} key={evento._id} />
                   ))
+
                   .filter((event, i) => i < 6)}
               </div>
             </div>
