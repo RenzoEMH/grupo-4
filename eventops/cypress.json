@@ -1,1 +1,7 @@
-{}
+{
+  "env": {
+    "userEmail": "mrff88@gmail.com",
+    "userPassword": "123"
+  },
+  "chromeWebSecurity": false
+}
