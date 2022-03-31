@@ -193,7 +193,7 @@ const DetailsEvent = () => {
                   }
                 ></textarea>
               </div>
-              <div className="mb-3">
+              <div data-cy="add-date-component" className="mb-3">
                 <div className="row border-bottom py-3">
                   <button
                     onClick={handleAddDate}

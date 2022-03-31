@@ -54,7 +54,8 @@ const MisEntradas = () => {
         getEarliestDate(event.dates) >= minDate &&
         getEarliestDate(event.dates) <=
           (maxDate !== defaultDate ? maxDate : getEarliestDate(event.dates)) &&
-        (event.state === filters.state || filters.state === '')
+        ((event.state === 'active' ? 'active' : 'inactive') === filters.state ||
+          filters.state === '')
     );
 
     dispatch(setLength(events.length));

@@ -21,17 +21,21 @@ const SearchEvents = () => {
     const minDate = returnDate(filters.minDate);
     const maxDate = returnDate(filters.maxDate);
 
-    const events = eventos.eventos.filter(
-      (event) =>
-        event.title.toLowerCase().indexOf(filters.titleSearch.toLowerCase()) >=
-          0 &&
-        event.lowestPrice >= minPrice &&
-        event.lowestPrice <= (maxPrice !== 0 ? maxPrice : event.lowestPrice) &&
-        event.category.indexOf(filters.category) >= 0 &&
-        getEarliestDate(event.dates) >= minDate &&
-        getEarliestDate(event.dates) <=
-          (maxDate !== defaultDate ? maxDate : getEarliestDate(event.dates))
-    );
+    const events = eventos.eventos
+      .filter((event) => event.state === 'active')
+      .filter(
+        (event) =>
+          event.title
+            .toLowerCase()
+            .indexOf(filters.titleSearch.toLowerCase()) >= 0 &&
+          event.lowestPrice >= minPrice &&
+          event.lowestPrice <=
+            (maxPrice !== 0 ? maxPrice : event.lowestPrice) &&
+          event.category.indexOf(filters.category) >= 0 &&
+          getEarliestDate(event.dates) >= minDate &&
+          getEarliestDate(event.dates) <=
+            (maxDate !== defaultDate ? maxDate : getEarliestDate(event.dates))
+      );
 
     dispatch(setLength(events.length));
     dispatch(setFilteredEvents(events.slice(0, filters.page * perPage)));

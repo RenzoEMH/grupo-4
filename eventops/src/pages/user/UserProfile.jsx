@@ -32,7 +32,7 @@ const UserProfile = () => {
         <div className="row">
           <div className="col-md-2 col-left">
             <div className="row fila-1 mt-1 mb-2">
-              <div className="col-md-6 d-flex justify-content flex-end ">
+              <div className="col-xl-6 d-flex justify-content flex-end ">
                 {userLogin?.photo === '' ? (
                   <i
                     className="bi bi-person-square"
@@ -47,7 +47,7 @@ const UserProfile = () => {
                   />
                 )}
               </div>
-              <div className="col-md-6 mt-6 ">
+              <div className="col-xl-6 mt-6 ">
                 <p style={{ color: 'black' }}>
                   {userLogin?.name} {userLogin?.lastname}
                 </p>

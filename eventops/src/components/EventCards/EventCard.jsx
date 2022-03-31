@@ -20,7 +20,7 @@ const EventCard = ({ evento: { _id, dates, img, lowestPrice, title } }) => {
             {dateFormatter(dates)}
           </p>
           <div className="card-detail text-dark">
-            S/. {lowestPrice}.00
+            $ {lowestPrice}.00
             <button
               onClick={() => navigate(`/evento-detalle/${_id}`)}
               className="card-button"

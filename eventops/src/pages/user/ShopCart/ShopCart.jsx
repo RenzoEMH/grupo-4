@@ -60,7 +60,9 @@ const ShopCart = () => {
       lang: 'es',
       external: 'false',
       response: `${process.env.REACT_APP_BASE_URL}confirmacion-compra`,
+      methodsDisable: ['PSE', 'SP', 'CASH', 'DP'],
     };
+    console.log(handler);
 
     handler.open(data);
   };

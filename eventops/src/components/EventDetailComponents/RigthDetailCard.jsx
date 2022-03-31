@@ -60,7 +60,7 @@ const RigthDetailCard = () => {
               </div>
               <div className="col-md-9 mt-2">
                 <h6>Organizado por:</h6>
-                {/* <p>{owner}</p> */}
+                <p>{evento.ownerName}</p>
               </div>
             </div>
           </div>
