@@ -51,9 +51,9 @@ const UsersTable = () => {
   };
 
   return (
-    <>
+    <div className="col-12 col-md-10">
       <FilterUsers />
-      <div className="table-responsive">
+      <div className="table-responsive ">
         <table className="table table-dark">
           <thead>
             <tr>
@@ -107,7 +107,7 @@ const UsersTable = () => {
       </div>
       <InfoUserModal user={userSelected} />
       <DisableUserModal user={userSelected} />
-    </>
+    </div>
   );
 };
 export default UsersTable;
