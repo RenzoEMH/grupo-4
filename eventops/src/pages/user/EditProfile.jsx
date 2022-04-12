@@ -34,9 +34,9 @@ const EditProfile = () => {
       <main className="">
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="row">
-            <div className="col-md-2 col-left">
-              <div className="row fila-1 mt-1 mb-2">
-                <div className="col-xl-6 d-flex justify-content flex-end ">
+            <div className="col-md-3 col-left">
+              <div className="row fila-1 mt-1 mb-2 align-items-center">
+                <div className="col-xl-6 d-flex justify-content-center">
                   {userLogin?.photo === '' ? (
                     <i
                       className="bi bi-person-square"
@@ -51,7 +51,7 @@ const EditProfile = () => {
                     />
                   )}
                 </div>
-                <div className="col-xl-6 mt-6 ">
+                <div className="col-xl-6 mt-3 ">
                   <p style={{ color: 'black' }}>
                     {userLogin?.name} {userLogin?.lastname}
                   </p>
@@ -63,22 +63,14 @@ const EditProfile = () => {
               <div className="row mi-perfil" style={{ marginLeft: '10px' }}>
                 Mi Perfil
               </div>
-              <div
-                className="row ml-1"
-                style={{ Color: 'black', fontSize: '18px', marginLeft: '10px' }}
-              >
-                Cerrar Sesion
-              </div>
             </div>
 
-            <div className="col-md-7 col-mid">
-              <div className="row mt-2">
-                <div className="col-md-11">
-                  <h1 style={{ Color: 'white', marginLeft: '20px' }}>
-                    Mi perfil
-                  </h1>
+            <div className="col-md-6 order-1 order-md-0">
+              <div className="row m-2">
+                <div className="col-10">
+                  <h1 style={{ Color: 'white' }}>Mi perfil</h1>
                 </div>
-                <div className="col-md-1">
+                <div className="col-2">
                   <Link to="/perfil">
                     <i
                       type="button"
@@ -173,21 +165,17 @@ const EditProfile = () => {
                     </div>
 
                     <div className="col-md-6">
-                      <div className="form-row d-flex flex-wrap">
-                        <div className="form-group col-md">
-                          <div className="form-group">
-                            <p style={{ color: 'white', fontSize: '16px' }}>
-                              Estado
-                            </p>
-                            <input
-                              type="text"
-                              placeholder=""
-                              className="form-control"
-                              defaultValue="Activo"
-                              disabled
-                            />
-                          </div>
-                        </div>
+                      <div className="form-group">
+                        <p style={{ color: 'white', fontSize: '16px' }}>
+                          Estado
+                        </p>
+                        <input
+                          type="text"
+                          placeholder=""
+                          className="form-control"
+                          defaultValue="Activo"
+                          disabled
+                        />
                       </div>
                     </div>
 

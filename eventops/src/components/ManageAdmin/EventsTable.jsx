@@ -27,7 +27,7 @@ const EventsTable = () => {
   }, [dispatch, eventos, eventFilter]);
 
   return (
-    <>
+    <div className="col-12 col-md-10 table-responsive">
       <FilterEventsAdmin />
       <table className="table table-dark">
         <thead>
@@ -61,7 +61,7 @@ const EventsTable = () => {
           ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 export default EventsTable;

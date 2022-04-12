@@ -108,11 +108,13 @@ const SlideEditorModal = () => {
                       <option value={'DEFAULT'} disabled>
                         Seleccionar evento...
                       </option>
-                      {eventos.map(({ _id, title }) => (
-                        <option value={_id} key={_id}>
-                          {title}
-                        </option>
-                      ))}
+                      {eventos
+                        .filter((eventItem) => eventItem.state === 'active')
+                        .map(({ _id, title }) => (
+                          <option value={_id} key={_id}>
+                            {title}
+                          </option>
+                        ))}
                     </select>
                     {!!formErrors && (
                       <div className="invalid-feedback d-block">

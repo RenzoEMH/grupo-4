@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/await-async-utils */
 describe('Admin flow', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/')

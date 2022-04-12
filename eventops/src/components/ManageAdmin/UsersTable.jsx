@@ -7,8 +7,11 @@ import {
 import InfoUserModal from './InfoUserModal';
 import DisableUserModal from './DisableUserModal';
 import FilterUsers from '../FilterAndSearchBar/filterUsers/FilterUsers';
+import parseJwt from '../../utils/ParseJwt';
 const UsersTable = () => {
   const dispatch = useDispatch();
+  const token = useSelector((state) => state.usuarios.token);
+  const sesion = parseJwt(token);
   const userFilter = useSelector((state) => state.filtros.nameUser);
   const users = useSelector((state) => state.usuarios.users);
   const updatedUser = useSelector((state) => state.usuarios.updatedUser);
@@ -37,11 +40,12 @@ const UsersTable = () => {
           (user.name.toLowerCase().indexOf(userFilter.toLowerCase()) >= 0 ||
             user.email.toLowerCase().indexOf(userFilter.toLowerCase()) >= 0 ||
             user._id.toLowerCase().indexOf(userFilter.toLowerCase()) >= 0) &&
-          user.estado.toString() === userState
+          user.estado.toString() === userState &&
+          user._id.toLowerCase() !== sesion?.id
       );
       dispatch(setUsersFiltered(usersFiltered));
     }
-  }, [dispatch, users, userFilter, userState]);
+  }, [dispatch, users, userFilter, userState, sesion?.id]);
 
   const InfoUser = (user) => {
     setUserSelected(user);
@@ -51,9 +55,9 @@ const UsersTable = () => {
   };
 
   return (
-    <>
+    <div className="col-12 col-md-10">
       <FilterUsers />
-      <div className="table-responsive">
+      <div className="table-responsive ">
         <table className="table table-dark">
           <thead>
             <tr>
@@ -107,7 +111,7 @@ const UsersTable = () => {
       </div>
       <InfoUserModal user={userSelected} />
       <DisableUserModal user={userSelected} />
-    </>
+    </div>
   );
 };
 export default UsersTable;

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import AddTicketsCard from './AddTicketsCard';
 import parseJwt from '../../utils/ParseJwt';
 import ChangeStateEvent from './ChangeStateEvent';
+import EditButtonBar from './EditButtonBar';
 
 const RigthDetailCard = () => {
   const { eventoId } = useParams();
@@ -15,6 +16,7 @@ const RigthDetailCard = () => {
 
   return (
     <div className="col-md-4">
+      {sesion?.id === evento?.idOwner && <EditButtonBar />}
       <div className="card">
         <div className="card-body detail-eventops-body">
           <h3 className="card-title">{evento.title}</h3>

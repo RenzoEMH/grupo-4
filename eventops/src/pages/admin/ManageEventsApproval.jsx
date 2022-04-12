@@ -14,7 +14,7 @@ const ManageEventsApproval = () => {
     <main className="body_admin mx-3">
       <section className="row row-cols-1 row-cols-md-2 g-4">
         <div className="col-md-3" id="sideBar">
-          <div className="list-group">
+          <div className="list-group w-75">
             <button
               type="button"
               className={
@@ -53,7 +53,7 @@ const ManageEventsApproval = () => {
             </button>
           </div>
         </div>
-        <div className="col-md-9" id="manageInfo">
+        <div className="col-md-9 d-flex" id="manageInfo">
           {indice === 0 && <Carrusel />}
           {indice === 1 && <EventsTable />}
           {indice === 2 && <UsersTable />}
