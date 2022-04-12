@@ -45,7 +45,7 @@ const EventsTable = () => {
               <th scope="row">{evento._id}</th>
               <td>{evento.title}</td>
               <td>{evento.ownerName}</td>
-              <td>{evento.state}</td>
+              <td>{evento.state === 'active' ? 'activo' : evento.state}</td>
               <td>
                 <div className="btn-group" id="btn-actions">
                   <button
