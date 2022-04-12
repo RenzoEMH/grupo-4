@@ -72,9 +72,15 @@ const MisEntradas = () => {
           <section className="eventos-filtrados d-flex flex-grow-1">
             <div className="container">
               <div className="row row-cols-1 row-cols-md-3 g-4 mb-4">
-                {eventos.filteredEvents?.map((evento) => (
-                  <MisEntradasCard evento={evento} key={evento._id} />
-                ))}
+                {eventos.filteredEvents.length !== 0 ? (
+                  eventos.filteredEvents?.map((evento) => (
+                    <MisEntradasCard evento={evento} key={evento._id} />
+                  ))
+                ) : (
+                  <div style={{ fontSize: 25, width: 600 }}>
+                    No se encontraron resultados
+                  </div>
+                )}
               </div>
             </div>
           </section>

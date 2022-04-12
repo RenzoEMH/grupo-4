@@ -52,9 +52,15 @@ const SearchEvents = () => {
                 data-test-id="busqueda-event-container"
                 className="row row-cols-1 row-cols-md-3 g-4"
               >
-                {eventos.filteredEvents?.map((evento) => {
-                  return <EventCard evento={evento} key={evento._id} />;
-                })}
+                {eventos.filteredEvents.length !== 0 ? (
+                  eventos.filteredEvents?.map((evento) => {
+                    return <EventCard evento={evento} key={evento._id} />;
+                  })
+                ) : (
+                  <div style={{ fontSize: 25, width: 600 }}>
+                    No se encontraron resultados para esta búsqueda.
+                  </div>
+                )}
               </div>
             </div>
           </section>
