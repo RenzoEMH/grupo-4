@@ -37,6 +37,8 @@ describe('Logged user actions tests', () => {
       .its('0.contentDocument.body')
       .find('[data-test="skip-button"]')
       .click();
+    // eslint-disable-next-line testing-library/await-async-utils
+    cy.wait(500);
     cy.get('.img-fluid').should('be.visible').and('have.attr', 'src');
     cy.get(':nth-child(5) > :nth-child(1) > .btn').click().click();
     cy.get(':nth-child(2) > .col-lg-4 > .mb-3 > .form-control').type(
@@ -116,7 +118,7 @@ describe('Logged user actions tests', () => {
     ).click();
     cy.get('.card-img-top').should('be.visible').and('have.attr', 'src');
     cy.scrollTo('top');
-    cy.get('.btn-group > .btn').click();
+    cy.get('.d-grid > .btn').click();
 
     // detalles del evento
     cy.get('.accordion-button').should('have.text', 'Detalles del Evento');
@@ -216,7 +218,15 @@ describe('Logged user actions tests', () => {
   });
 
   // Test payment
-  it.only('Can pay for ticket', { scrollBehavior: false }, () => {
+  it('Can pay for ticket', { scrollBehavior: false }, () => {
+    cy.intercept({
+      method: 'GET',
+      url: '/getip',
+    }).as('epaycoIp');
+    cy.intercept({
+      method: 'POST',
+      url: '/create/transaction/*/*',
+    }).as('epaycoTransaction');
     // add item to cart programmatically
     cy.request('GET', 'http://localhost:5000/api/events').then((resp) => {
       const event = resp.body[0];
@@ -248,16 +258,13 @@ describe('Logged user actions tests', () => {
     cy.get('#navbarDropdown > .bi').click();
     cy.get(':nth-child(4) > .dropdown-item').click();
     cy.url().should('include', '/carrito-compra');
-    // pay for cart items
+    // check if GET and POST request to ePayco return status code 200
     cy.scrollTo('bottom');
-    // cy.intercept(
-    //   { method: 'POST', url: 'https://www.paypal.com/targeting/graphql' },
-    //   (req) => {
-    //     // req.reply({ status: 200, body: '', headers: '' });
-    //     req.destroy();
-    //   }
-    // );
     cy.get('.col-md-3 > .btn').click();
+    // eslint-disable-next-line testing-library/await-async-utils
+    cy.wait('@epaycoIp').its('response.statusCode').should('eq', 200);
+    // eslint-disable-next-line testing-library/await-async-utils
+    cy.wait('@epaycoTransaction').its('response.statusCode').should('eq', 200);
   });
 
   // Test user profile
@@ -280,7 +287,7 @@ describe('Logged user actions tests', () => {
         expect(text.length).to.be.greaterThan(0);
       });
     // edit perfil
-    cy.get('.col-md-1 > .bi').click();
+    cy.get('.col-2 > .bi').click();
     cy.get(':nth-child(4) > .form-group > .form-control')
       .type('{selectall}')
       .type('12345678');
@@ -300,7 +307,7 @@ describe('Logged user actions tests', () => {
     cy.get('.justify-content-center > .btn').click();
     cy.url().should('contain', '/perfil');
     cy.get(':nth-child(4) > .form-group > .h6').should('have.text', '12345678');
-    cy.get('.mb-6 > .img-fluid').should('be.visible').and('have.attr', 'src');
+    cy.get('.mt-3 > .img-fluid').should('be.visible').and('have.attr', 'src');
   });
 
   // Test mis entradas
@@ -319,7 +326,9 @@ describe('Logged user actions tests', () => {
     cy.get('.eventos-filtrados > .container > .row')
       .children()
       .should('have.length.greaterThan', 0);
-    cy.get('.ms-2 > .bi').click();
+    cy.get('.ms-2 > .bi').trigger('click');
+    // eslint-disable-next-line testing-library/await-async-utils
+    cy.wait(1000);
     cy.get('.container.align-items-center > .filter__pill-container')
       .children()
       .should('have.lengthOf', 0);
@@ -343,7 +352,7 @@ describe('Logged user actions tests', () => {
     cy.get('#categoriasDropdown').click();
     cy.get('[for="radioConciertos"]').click();
     cy.get('.category-dropdown__btn').click();
-    cy.get('.eventos-filtrados > .container > .row').click();
+    cy.get('.m-4').click();
     cy.get('.container.align-items-center > .filter__pill-container')
       .children()
       .should('have.lengthOf', 1);
