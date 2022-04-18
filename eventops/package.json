@@ -30,7 +30,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint -c .eslintrc.json --ext .js,.jsx .",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "e2e:seedDB": "node ./cypress/database/seedMongo.js"
   },
   "browserslist": {
     "production": [
@@ -46,6 +47,8 @@
   },
   "devDependencies": {
     "cypress": "^9.5.2",
-    "eslint-plugin-cypress": "^2.12.1"
+    "dotenv": "^16.0.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "mongodb": "^4.5.0"
   }
 }
