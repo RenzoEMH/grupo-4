@@ -1,6 +1,7 @@
 /* eslint-disable testing-library/await-async-utils */
 describe('Admin flow', () => {
   beforeEach(() => {
+    cy.exec('npm run e2e:seedDB');
     cy.visit('http://localhost:3000/')
       .get('[data-test-id="profile-general"]')
       .click()
@@ -28,7 +29,7 @@ describe('Admin flow', () => {
     cy.get('.justify-content-center').click();
     cy.get(
       '#slideModal > .modal-dialog > .modal-content > form > .modal-body > .slider > :nth-child(1) > .form-select'
-    ).select('6238c360d4783babc19d2a0a');
+    ).select('Rock alternativo');
     cy.get(
       '#slideModal > .modal-dialog > .modal-content > form > .modal-body > .slider > .row > :nth-child(1) > #date'
     ).type('2022-04-20');
@@ -40,7 +41,7 @@ describe('Admin flow', () => {
     ).click();
     cy.get(
       '#slideModal > .modal-dialog > .modal-content > form > .modal-footer > .btn-secondary'
-    ).click();
+    ).trigger('click');
     cy.get(':nth-child(3) > .d-flex > .details > :nth-child(1)').should(
       'exist'
     );
@@ -68,7 +69,7 @@ describe('Admin flow', () => {
     cy.get('[data-test-id="banner-list"]').children().should('have.length', 2);
   });
 
-  it('Manage events', () => {
+  it('Manage events', { scrollBehavior: false }, () => {
     cy.get('[value="1"]')
       .click()
       .get('.filter-search')
@@ -91,7 +92,7 @@ describe('Admin flow', () => {
       .get('[value="1"]')
       .click()
       .get('tbody > tr > :nth-child(4)')
-      .should('to.have.text', 'active');
+      .should('to.have.text', 'activo');
   });
 
   it('Manage users', () => {

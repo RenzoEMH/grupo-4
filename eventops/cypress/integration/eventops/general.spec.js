@@ -1,5 +1,8 @@
 /* eslint-disable testing-library/await-async-utils */
 describe('Home Eventops', () => {
+  before(() => {
+    cy.exec('npm run e2e:seedDB');
+  });
   beforeEach(() => {
     cy.visit('http://localhost:3000/');
   });
