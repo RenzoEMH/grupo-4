@@ -14,6 +14,7 @@ const EventsTable = () => {
   useEffect(() => {
     dispatch(getAllEventsAsync());
   }, [dispatch]);
+
   useEffect(() => {
     if (eventos?.length > 0) {
       const eventsFiltered = eventos?.filter(

@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilteredEvents } from '../../../redux/features/eventsSlice';
+import {
+  getAllEventsAsync,
+  setFilteredEvents,
+} from '../../../redux/features/eventsSlice';
 import EventCard from '../../../components/EventCards/EventCard';
 import FilterAndSearchBar from '../../../components/FilterAndSearchBar/busqueda/FilterAndSearchBar';
 import { load, setLength } from '../../../redux/features/filtersSlice';
@@ -14,6 +17,10 @@ const SearchEvents = () => {
   const eventos = useSelector((state) => state.eventos);
   const filters = useSelector((state) => state.filtros);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllEventsAsync());
+  }, [dispatch]);
 
   useEffect(() => {
     const minPrice = returnNumber(filters.minPrice);
