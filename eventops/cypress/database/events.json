@@ -1,0 +1,633 @@
+[
+  {
+    "_id": {
+      "$oid": "623102237b86b575cbf6f1ea"
+    },
+    "title": "Rock alternativo",
+    "img": "https://res.cloudinary.com/dqihgaxhf/image/upload/v1647378683/jpvwqxz49t6u133xzw3i.jpg",
+    "ticketImg": "",
+    "lowestPrice": 10,
+    "category": "Conciertos",
+    "ageRestriction": "allAges",
+    "description": "Luego de 2 años sin tener un concierto presencial, Adrián Bello vuelve con toda su banda y se presenta en el Centro de Convenciones Barranco. Todo lo que sube, Brasil, Explosion,Escondidos, entre otros, son algunos de los temas que el artistapodrá por fin tocar en vivo en un reencuentro muy especial con su público",
+    "infoExtra": "info",
+    "currency": "",
+    "city": "Lima,Lima",
+    "address": "Avenida Javier Prado este 4200",
+    "refference": "",
+    "idOwner": {
+      "$oid": "622caf196bee03785f13a820"
+    },
+    "ownerName": "ERICK FRANCO DEL CASTILLO DEZA",
+    "state": "active",
+    "dates": [
+      {
+        "date": "2022-04-02",
+        "startHour": "18:00",
+        "endHour": "22:00",
+        "isEditable": true,
+        "ticketCategories": [
+          {
+            "type": "General",
+            "price": 10,
+            "quantity": 30,
+            "sold": 0,
+            "_id": {
+              "$oid": "6243a522275cea368c4dda3b"
+            },
+            "createdAt": {
+              "$date": {
+                "$numberLong": "1648600354784"
+              }
+            },
+            "updatedAt": {
+              "$date": {
+                "$numberLong": "1648600354784"
+              }
+            }
+          },
+          {
+            "type": "VIP",
+            "price": 15,
+            "quantity": 20,
+            "sold": 0,
+            "_id": {
+              "$oid": "6243a522275cea368c4dda3c"
+            },
+            "createdAt": {
+              "$date": {
+                "$numberLong": "1648600354784"
+              }
+            },
+            "updatedAt": {
+              "$date": {
+                "$numberLong": "1648600354784"
+              }
+            }
+          }
+        ],
+        "_id": {
+          "$oid": "6243a522275cea368c4dda3a"
+        },
+        "updatedAt": {
+          "$date": {
+            "$numberLong": "1647378979457"
+          }
+        },
+        "createdAt": {
+          "$date": {
+            "$numberLong": "1647378979457"
+          }
+        }
+      },
+      {
+        "date": "2022-04-23",
+        "startHour": "18:00",
+        "endHour": "22:00",
+        "isEditable": true,
+        "ticketCategories": [
+          {
+            "type": "General",
+            "price": 10,
+            "quantity": 30,
+            "sold": 0,
+            "_id": {
+              "$oid": "6243a522275cea368c4dda3e"
+            },
+            "createdAt": {
+              "$date": {
+                "$numberLong": "1648600354784"
+              }
+            },
+            "updatedAt": {
+              "$date": {
+                "$numberLong": "1648600354784"
+              }
+            }
+          },
+          {
+            "type": "VIP",
+            "price": 15,
+            "quantity": 20,
+            "sold": 0,
+            "_id": {
+              "$oid": "6243a522275cea368c4dda3f"
+            },
+            "createdAt": {
+              "$date": {
+                "$numberLong": "1648600354784"
+              }
+            },
+            "updatedAt": {
+              "$date": {
+                "$numberLong": "1648600354784"
+              }
+            }
+          }
+        ],
+        "_id": {
+          "$oid": "6243a522275cea368c4dda3d"
+        },
+        "updatedAt": {
+          "$date": {
+            "$numberLong": "1647378979458"
+          }
+        },
+        "createdAt": {
+          "$date": {
+            "$numberLong": "1647378979458"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1647378979458"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1649205557276"
+      }
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "625dafe7f3e28d1b1166b98b"
+    },
+    "title": "Conciertoooo",
+    "img": "https://res.cloudinary.com/dqihgaxhf/image/upload/v1647554191/fe5ymkts6ppd6gw3ekuv.jpg",
+    "ticketImg": "",
+    "lowestPrice": 10,
+    "category": "Conciertos",
+    "ageRestriction": "adultOnly",
+    "description": "buen concierto",
+    "infoExtra": "mañana",
+    "currency": "",
+    "city": "Lima,Lima",
+    "address": "Javier Prado 1500",
+    "refference": "Frente a una avenida ",
+    "idOwner": {
+      "$oid": "622a65f7543ff6a45981d6a9"
+    },
+    "ownerName": "",
+    "state": "active",
+    "dates": [
+      {
+        "date": "2022-03-24",
+        "startHour": "17:55",
+        "endHour": "20:54",
+        "isEditable": true,
+        "ticketCategories": [
+          {
+            "type": "General",
+            "price": 10,
+            "quantity": 100,
+            "sold": 0,
+            "_id": {
+              "$oid": "623a76a5d1af8f734bfb07a5"
+            },
+            "createdAt": {
+              "$date": {
+                "$numberLong": "1647998629311"
+              }
+            },
+            "updatedAt": {
+              "$date": {
+                "$numberLong": "1647998629311"
+              }
+            }
+          },
+          {
+            "type": "VIP",
+            "price": 20,
+            "quantity": 50,
+            "sold": 0,
+            "_id": {
+              "$oid": "623a76a5d1af8f734bfb07a6"
+            },
+            "createdAt": {
+              "$date": {
+                "$numberLong": "1647998629311"
+              }
+            },
+            "updatedAt": {
+              "$date": {
+                "$numberLong": "1647998629311"
+              }
+            }
+          }
+        ],
+        "_id": {
+          "$oid": "623a76a5d1af8f734bfb07a4"
+        },
+        "updatedAt": {
+          "$date": {
+            "$numberLong": "1647554301027"
+          }
+        },
+        "createdAt": {
+          "$date": {
+            "$numberLong": "1647554301027"
+          }
+        }
+      },
+      {
+        "date": "2022-03-25",
+        "startHour": "17:54",
+        "endHour": "20:54",
+        "isEditable": true,
+        "ticketCategories": [
+          {
+            "type": "General",
+            "price": 10,
+            "quantity": 100,
+            "sold": 0,
+            "_id": {
+              "$oid": "623a76a5d1af8f734bfb07a8"
+            },
+            "createdAt": {
+              "$date": {
+                "$numberLong": "1647998629311"
+              }
+            },
+            "updatedAt": {
+              "$date": {
+                "$numberLong": "1647998629311"
+              }
+            }
+          },
+          {
+            "type": "VIP",
+            "price": 20,
+            "quantity": 50,
+            "sold": 0,
+            "_id": {
+              "$oid": "623a76a5d1af8f734bfb07a9"
+            },
+            "createdAt": {
+              "$date": {
+                "$numberLong": "1647998629311"
+              }
+            },
+            "updatedAt": {
+              "$date": {
+                "$numberLong": "1647998629311"
+              }
+            }
+          }
+        ],
+        "_id": {
+          "$oid": "623a76a5d1af8f734bfb07a7"
+        },
+        "updatedAt": {
+          "$date": {
+            "$numberLong": "1647554301027"
+          }
+        },
+        "createdAt": {
+          "$date": {
+            "$numberLong": "1647554301027"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1647554301028"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1649708498258"
+      }
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "625daff5f3e28d1b1166b98c"
+    },
+    "title": "Concierto de Salsa",
+    "img": "https://res.cloudinary.com/dqihgaxhf/image/upload/v1647886944/krnskzubkhqmfbbzjr88.jpg",
+    "ticketImg": "",
+    "lowestPrice": 10,
+    "category": "Conciertos",
+    "ageRestriction": "withAdult",
+    "description": "Salsaaaaaaaa en Lima",
+    "infoExtra": "Entradas para todo el publico",
+    "currency": "",
+    "city": "Lima,Lima",
+    "address": "Av. Javier prado 1200",
+    "refference": "Estadiooo",
+    "idOwner": {
+      "$oid": "622a65f7543ff6a45981d6a9"
+    },
+    "ownerName": "",
+    "state": "active",
+    "dates": [
+      {
+        "date": "2022-03-31",
+        "startHour": "19:00",
+        "endHour": "23:30",
+        "isEditable": true,
+        "ticketCategories": [
+          {
+            "type": "General",
+            "price": 10,
+            "quantity": 100,
+            "sold": 0,
+            "_id": {
+              "$oid": "6238f792db9869bc3b581563"
+            },
+            "createdAt": {
+              "$date": {
+                "$numberLong": "1647900562046"
+              }
+            },
+            "updatedAt": {
+              "$date": {
+                "$numberLong": "1647900562046"
+              }
+            }
+          },
+          {
+            "type": "VIP",
+            "price": 20,
+            "quantity": 50,
+            "sold": 0,
+            "_id": {
+              "$oid": "6238f792db9869bc3b581564"
+            },
+            "createdAt": {
+              "$date": {
+                "$numberLong": "1647900562046"
+              }
+            },
+            "updatedAt": {
+              "$date": {
+                "$numberLong": "1647900562046"
+              }
+            }
+          }
+        ],
+        "_id": {
+          "$oid": "6238f792db9869bc3b581562"
+        },
+        "updatedAt": {
+          "$date": {
+            "$numberLong": "1647887068857"
+          }
+        },
+        "createdAt": {
+          "$date": {
+            "$numberLong": "1647887068857"
+          }
+        }
+      },
+      {
+        "date": "2022-04-01",
+        "startHour": "19:00",
+        "endHour": "23:30",
+        "isEditable": true,
+        "ticketCategories": [
+          {
+            "type": "General",
+            "price": 10,
+            "quantity": 100,
+            "sold": 0,
+            "_id": {
+              "$oid": "6238f792db9869bc3b581566"
+            },
+            "createdAt": {
+              "$date": {
+                "$numberLong": "1647900562046"
+              }
+            },
+            "updatedAt": {
+              "$date": {
+                "$numberLong": "1647900562046"
+              }
+            }
+          },
+          {
+            "type": "VIP",
+            "price": 20,
+            "quantity": 50,
+            "sold": 0,
+            "_id": {
+              "$oid": "6238f792db9869bc3b581567"
+            },
+            "createdAt": {
+              "$date": {
+                "$numberLong": "1647900562046"
+              }
+            },
+            "updatedAt": {
+              "$date": {
+                "$numberLong": "1647900562046"
+              }
+            }
+          }
+        ],
+        "_id": {
+          "$oid": "6238f792db9869bc3b581565"
+        },
+        "updatedAt": {
+          "$date": {
+            "$numberLong": "1647887068857"
+          }
+        },
+        "createdAt": {
+          "$date": {
+            "$numberLong": "1647887068857"
+          }
+        }
+      },
+      {
+        "date": "2022-04-02",
+        "startHour": "19:08",
+        "endHour": "23:30",
+        "isEditable": true,
+        "ticketCategories": [
+          {
+            "type": "General",
+            "price": 10,
+            "quantity": 100,
+            "sold": 0,
+            "_id": {
+              "$oid": "6238f792db9869bc3b581569"
+            },
+            "createdAt": {
+              "$date": {
+                "$numberLong": "1647900562047"
+              }
+            },
+            "updatedAt": {
+              "$date": {
+                "$numberLong": "1647900562047"
+              }
+            }
+          },
+          {
+            "type": "VIP",
+            "price": 20,
+            "quantity": 50,
+            "sold": 0,
+            "_id": {
+              "$oid": "6238f792db9869bc3b58156a"
+            },
+            "createdAt": {
+              "$date": {
+                "$numberLong": "1647900562047"
+              }
+            },
+            "updatedAt": {
+              "$date": {
+                "$numberLong": "1647900562047"
+              }
+            }
+          }
+        ],
+        "_id": {
+          "$oid": "6238f792db9869bc3b581568"
+        },
+        "createdAt": {
+          "$date": {
+            "$numberLong": "1647900562047"
+          }
+        },
+        "updatedAt": {
+          "$date": {
+            "$numberLong": "1647900562047"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1647887068858"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1649708530959"
+      }
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "625db002f3e28d1b1166b98d"
+    },
+    "title": "Partido de Voley",
+    "img": "https://res.cloudinary.com/dqihgaxhf/image/upload/v1647887123/tcumqvsatsag4uqsm3td.jpg",
+    "ticketImg": "",
+    "lowestPrice": 10,
+    "category": "Deportes",
+    "ageRestriction": "allAges",
+    "description": "Final de Voley",
+    "infoExtra": "este sabadooo",
+    "currency": "",
+    "city": "Lima,Lima",
+    "address": "Av. Angamos 1200",
+    "refference": "Estadio",
+    "idOwner": {
+      "$oid": "622a65f7543ff6a45981d6a9"
+    },
+    "ownerName": "",
+    "state": "active",
+    "dates": [
+      {
+        "date": "2022-04-02",
+        "startHour": "20:00",
+        "endHour": "22:00",
+        "isEditable": true,
+        "ticketCategories": [
+          {
+            "type": "General",
+            "price": 10,
+            "quantity": 100,
+            "sold": 0,
+            "_id": {
+              "$oid": "6238c360d4783babc19d2a0c"
+            },
+            "createdAt": {
+              "$date": {
+                "$numberLong": "1647887200860"
+              }
+            },
+            "updatedAt": {
+              "$date": {
+                "$numberLong": "1647887200860"
+              }
+            }
+          },
+          {
+            "type": "VIP",
+            "price": 20,
+            "quantity": 50,
+            "sold": 0,
+            "_id": {
+              "$oid": "6238c360d4783babc19d2a0d"
+            },
+            "createdAt": {
+              "$date": {
+                "$numberLong": "1647887200860"
+              }
+            },
+            "updatedAt": {
+              "$date": {
+                "$numberLong": "1647887200860"
+              }
+            }
+          },
+          {
+            "type": "Platinum",
+            "price": 25,
+            "quantity": 20,
+            "sold": 0,
+            "_id": {
+              "$oid": "6238c360d4783babc19d2a0e"
+            },
+            "createdAt": {
+              "$date": {
+                "$numberLong": "1647887200860"
+              }
+            },
+            "updatedAt": {
+              "$date": {
+                "$numberLong": "1647887200860"
+              }
+            }
+          }
+        ],
+        "_id": {
+          "$oid": "6238c360d4783babc19d2a0b"
+        },
+        "createdAt": {
+          "$date": {
+            "$numberLong": "1647887200860"
+          }
+        },
+        "updatedAt": {
+          "$date": {
+            "$numberLong": "1647887200860"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1647887200861"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1649708534786"
+      }
+    },
+    "__v": 0
+  }
+]

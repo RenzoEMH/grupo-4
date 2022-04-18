@@ -1,0 +1,80 @@
+[
+  {
+    "_id": {
+      "$oid": "622caf196bee03785f13a820"
+    },
+    "name": "ERICK FRANCO",
+    "lastname": "DEL CASTILLO DEZA",
+    "email": "mrff88@gmail.com",
+    "password": "$2b$10$ALy3A1THEQLJKdQuulc/zuWAFPLSJNxas5LdKLVentIJUT/7/LuPS",
+    "photo": "https://res.cloudinary.com/dqihgaxhf/image/upload/v1650171399/prulja8gcqajwaxozzfb.jpg",
+    "dni": "12345678",
+    "type": "usuario",
+    "estado": true,
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1647095577198"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1650171399711"
+      }
+    },
+    "__v": 0,
+    "verified": true,
+    "phone": ""
+  },
+  {
+    "_id": {
+      "$oid": "625dae05f3e28d1b1166b988"
+    },
+    "name": "TEST",
+    "lastname": "TESTER",
+    "email": "eventops.notify@gmail.com",
+    "password": "$2b$10$VV0aSYORjDFzGqo7oRIHfeN3rnTsdhb10TGAtflZf05kNeQdO5Qdy",
+    "photo": "",
+    "dni": "",
+    "type": "usuario",
+    "estado": true,
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1647997263362"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1647997286120"
+      }
+    },
+    "__v": 0,
+    "verified": true,
+    "phone": ""
+  },
+  {
+    "_id": {
+      "$oid": "625dae40f3e28d1b1166b989"
+    },
+    "name": "daniel",
+    "lastname": "muñoz",
+    "email": "daniel@gmail.com",
+    "password": "$2b$10$ALy3A1THEQLJKdQuulc/zuWAFPLSJNxas5LdKLVentIJUT/7/LuPS",
+    "photo": "",
+    "dni": "",
+    "type": "admin",
+    "estado": true,
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1646944427624"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1646944427624"
+      }
+    },
+    "__v": 0,
+    "verified": true,
+    "phone": ""
+  }
+]

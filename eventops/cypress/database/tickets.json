@@ -1,0 +1,32 @@
+[{
+  "_id": {
+    "$oid": "6245b2478c826637fc6902a0"
+  },
+  "idSale": {
+    "$oid": "6245b2478c826637fc69029e"
+  },
+  "idUsuario": {
+    "$oid": "622caf196bee03785f13a820"
+  },
+  "idEvento": {
+    "$oid": "623102237b86b575cbf6f1ea"
+  },
+  "idDate": {
+    "$oid": "6243a522275cea368c4dda3a"
+  },
+  "idCategory": {
+    "$oid": "6243a522275cea368c4dda3b"
+  },
+  "quantity": 1,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1648734791678"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1648734791678"
+    }
+  },
+  "__v": 0
+}]

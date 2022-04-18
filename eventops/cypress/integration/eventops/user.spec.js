@@ -1,8 +1,11 @@
 /// <reference types="Cypress" />
 
 describe('Logged user actions tests', () => {
-  // Login programmatically
+  // Reseed DB and login programmatically
   beforeEach(() => {
+    // to reseed DB
+    cy.exec('npm run e2e:seedDB');
+    // to login programmatically
     cy.visit('http://localhost:3000');
     cy.request('POST', 'http://localhost:5000/api/login', {
       email: Cypress.env('userEmail'),
@@ -18,6 +21,10 @@ describe('Logged user actions tests', () => {
 
   // Tests to create event
   it('Can create an event', { scrollBehavior: false }, () => {
+    cy.intercept({
+      method: 'POST',
+      url: '/api/events/create',
+    }).as('createEvent');
     cy.get('.btn > .nav-link').click();
     cy.url().should('include', '/crear-evento');
     // detalles del evento
@@ -104,11 +111,17 @@ describe('Logged user actions tests', () => {
     cy.get(
       '[style="display: flex; justify-content: flex-start;"] > .btn'
     ).click();
+    // eslint-disable-next-line testing-library/await-async-utils
+    cy.wait('@createEvent').its('response.statusCode').should('eq', 201);
     cy.get('[style="font-size: 4rem;"]').should('have.text', '¡Éxito!');
   });
 
   // Test edit event
   it('Can edit an event', { scrollBehavior: false }, () => {
+    cy.intercept({
+      method: 'PUT',
+      url: '/api/events/update/*',
+    }).as('updateEvent');
     cy.get('#navbarDropdown > .bi').click();
     cy.get(':nth-child(3) > .dropdown-item').click();
     cy.url().should('include', '/mis-eventos');
@@ -157,6 +170,8 @@ describe('Logged user actions tests', () => {
     cy.get(
       '[style="display: flex; justify-content: flex-start;"] > .btn'
     ).click();
+    // eslint-disable-next-line testing-library/await-async-utils
+    cy.wait('@updateEvent').its('response.statusCode').should('eq', 200);
     cy.get('[style="font-size: 4rem;"]').should('have.text', '¡Éxito!');
   });
 
